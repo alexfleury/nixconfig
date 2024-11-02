@@ -334,15 +334,13 @@ in
             wifi = " ";
           };
           tooltip = true;
+          tooltip-format-ethernet = " {bandwidthUpBits}\n {bandwidthDownBits}";
           tooltip-format-wifi = "SSID: {essid}\n󰒢 {signalStrength}%\n {bandwidthUpBits}\n {bandwidthDownBits}";
           on-click = "kitty nmtui";
         };
 
         "temperature#cpu" = {
-          #"hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
-          #"hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input",
-          hwmon-path-abs = "/sys/devices/platform/coretemp.0/hwmon";
-          input-filename = "temp1_input";
+          hwmon-path = "/sys/class/hwmon/hwmon1/temp1_input";
           critical-threshold = 80;
           interval = 2;
           format = "{icon} {temperatureC}°C";
@@ -351,8 +349,7 @@ in
         };
 
         "temperature#gpu" = {
-          hwmon-path-abs = "/sys/class/hwmon/hwmon3/";
-          input-filename = "temp2_input";
+          hwmon-path = "/sys/class/hwmon/hwmon3/temp2_input";
           critical-threshold = 80;
           interval = 2;
           format = "{icon} {temperatureC}°C";

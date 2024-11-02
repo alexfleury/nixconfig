@@ -8,6 +8,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.kernelModules = [ "amdgpu" ];
 
   networking.hostName = settings.hostname;
   networking.networkmanager.enable = true;
