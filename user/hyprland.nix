@@ -7,7 +7,7 @@ in
     enable = true;
     settings = {
       # Monitor settings.
-      monitor = ",preferred,auto,auto";
+      monitor = "DP-1,1920x1080@144,0x0,1";
 
       # Common applications.
       "$terminal" = "kitty";
@@ -185,7 +185,7 @@ in
       ];
 
       input-field = {
-        size = "250, 50";
+        size = "220, 40";
         dots_size = 0.33;
         dots_spacing = 0.2;
         outline_thickness = 6;
@@ -245,7 +245,7 @@ in
       mainBar = {
         position = "top";
         layer = "top";
-        height = 30;
+        height = 34;
         modules-left = ["group/group-power" "idle_inhibitor" "hyprland/workspaces"];
         modules-center = ["clock"];
         modules-right = [
@@ -288,7 +288,7 @@ in
         };
 
         "custom/gpu" = {
-          exec = "cat /sys/class/hwmon/hwmon3/device/gpu_busy_percent";
+          exec = "cat /sys/class/hwmon/hwmon0/device/gpu_busy_percent";
           format = "  {}%";
           interval = 2;
           return-type = "";
@@ -318,12 +318,6 @@ in
           tooltip = false;
         };
 
-        #memory = {
-        #  format = "  {}%";
-        #  format-alt = "  {used}/{total} GiB";
-        #  interval = 5;
-        #};
-
         network = {
           interval = 1;
           interface = "enp9s0";
@@ -340,7 +334,8 @@ in
         };
 
         "temperature#cpu" = {
-          hwmon-path = "/sys/class/hwmon/hwmon1/temp1_input";
+          hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:18.3/hwmon";
+          input-filename = "temp1_input";
           critical-threshold = 80;
           interval = 2;
           format = "{icon} {temperatureC}°C";
@@ -349,19 +344,14 @@ in
         };
 
         "temperature#gpu" = {
-          hwmon-path = "/sys/class/hwmon/hwmon3/temp2_input";
+          hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:03.1/0000:0a:00.0/0000:0b:00.0/0000:0c:00.0/hwmon";
+          input-filename = "temp2_input";
           critical-threshold = 80;
           interval = 2;
           format = "{icon} {temperatureC}°C";
           format-icons = ["" "" "" "" ""];
           tooltip = false;
         };
-
-        #tray = {
-        #  icon-size = 12;
-        #  spacing = 10;
-        #  show-passive-items = false;
-        #};
 
         wireplumber = {
           format = "{icon} {volume}%";
@@ -414,7 +404,7 @@ in
         border: none;
         border-radius: 0;
         font-family: Fira Mono Nerd Font;
-        font-size: 12px;
+        font-size: 14px;
         min-height: 0;
       }
 
