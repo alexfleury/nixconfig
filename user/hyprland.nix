@@ -209,7 +209,6 @@ in
 
   services.hypridle = {
     enable = true;
-
     settings = {
       general = {
         lock_cmd = "hyprlock";
@@ -218,11 +217,11 @@ in
       };
 
       listener = [
-        {
-          timeout = 300;
-          on-timeout = "brightnessctl -s set 10";
-          on-resume = "brightnessctl -r";
-        }
+        #{
+        #  timeout = 300;
+        #  on-timeout = "brightnessctl -s set 10";
+        #  on-resume = "brightnessctl -r";
+        #}
         {
           timeout = 600;
           on-timeout = "hyprlock";
@@ -253,6 +252,8 @@ in
           #"tray"
           "cpu"
           "temperature#cpu"
+          "custom/gpu"
+          "temperature#gpu"
           #"memory"
           "network"
           "bluetooth"
@@ -276,13 +277,21 @@ in
 
         cpu = {
           format = " {usage}%";
-          format-alt = " {avg_frequency} GHz";
-          interval = 5;
+          interval = 2;
+          tooltip = false;
         };
 
         "custom/notifications" = {
           format = " ";
           on-click = "swaync-client -t -sw";
+          tooltip = false;
+        };
+
+        "custom/gpu" = {
+          exec = "cat /sys/class/hwmon/hwmon3/device/gpu_busy_percent";
+          format = "  {}%";
+          interval = 2;
+          return-type = "";
           tooltip = false;
         };
 
@@ -334,6 +343,16 @@ in
           #"hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input",
           hwmon-path-abs = "/sys/devices/platform/coretemp.0/hwmon";
           input-filename = "temp1_input";
+          critical-threshold = 80;
+          interval = 2;
+          format = "{icon} {temperatureC}°C";
+          format-icons = ["" "" "" "" ""];
+          tooltip = false;
+        };
+
+        "temperature#gpu" = {
+          hwmon-path-abs = "/sys/class/hwmon/hwmon3/";
+          input-filename = "temp2_input";
           critical-threshold = 80;
           interval = 2;
           format = "{icon} {temperatureC}°C";
@@ -415,6 +434,7 @@ in
       #clock,
       #cpu,
       #custom-lock,
+      #custom-gpu,
       #custom-notifications,
       #custom-power,
       #custom-quit,
@@ -448,6 +468,10 @@ in
       #custom-lock {
         color: #8fbcbb;
         padding-right: 12px;
+      }
+
+      #custom-gpu {
+        color: #81a1c1;
       }
 
       #custom-notifications {
@@ -491,6 +515,15 @@ in
 
       #temperature.cpu.critical {
         background-color: #88c0d0;
+        color: #2e3440;
+      }
+
+      #temperature.gpu {
+        color: #5e81ac;
+      }
+
+      #temperature.cpu.critical {
+        background-color: #5e81ac;
         color: #2e3440;
       }
 

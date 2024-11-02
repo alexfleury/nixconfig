@@ -68,7 +68,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    brightnessctl
+    #brightnessctl
     git
     psmisc
     vim
