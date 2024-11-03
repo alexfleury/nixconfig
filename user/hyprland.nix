@@ -276,7 +276,7 @@ in
         };
 
         cpu = {
-          format = " {usage}%";
+          format = "  {usage}%";
           interval = 2;
           tooltip = false;
         };

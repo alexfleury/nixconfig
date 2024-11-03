@@ -91,6 +91,12 @@
       userEmail = "28400108+alexfleury@users.noreply.github.com";
     };
 
+    xdg.enable = true;
+    xdg.userDirs = {
+      enable = true;
+      createDirectories = true;
+    };
+
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 

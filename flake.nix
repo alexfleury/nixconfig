@@ -27,20 +27,27 @@
           system = settings.system;
           modules = [
             ./configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.users.${settings.username}.imports = [ ./home.nix ];
+              home-manager.extraSpecialArgs = { inherit inputs; inherit settings;};
+            }
           ];
           specialArgs = {
             inherit settings;
           };
         };
       };
-      homeConfigurations = {
-        ${settings.username} = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ ./home.nix ];
-          extraSpecialArgs = {
-            inherit settings;
-          };
-        };
-      };
-  };
+      # Home-manager as standalone.
+      #homeConfigurations = {
+      #  ${settings.username} = home-manager.lib.homeManagerConfiguration {
+      #    inherit pkgs;
+      #    modules = [ ./home.nix ];
+      #    extraSpecialArgs = {
+      #      inherit settings;
+      #    };
+      #  };
+      #};
+    };
 }
