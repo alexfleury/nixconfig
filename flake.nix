@@ -29,8 +29,8 @@
             ./configuration.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
               home-manager.backupFileExtension = "backup";
+              home-manager.useGlobalPkgs = true;
               home-manager.users.${settings.username}.imports = [ ./home.nix ];
               home-manager.extraSpecialArgs = { inherit inputs; inherit settings;};
             }

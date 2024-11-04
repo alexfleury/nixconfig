@@ -9,7 +9,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelModules = ["i2c-dev" "ddcci_backlight"];
+  boot.kernelModules = [ "i2c-dev" "ddcci_backlight" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
 
   networking.hostName = settings.hostname;
@@ -75,6 +75,7 @@
   environment.systemPackages = with pkgs; [
     ddcutil
     git
+    jq
     psmisc
     vim
     wget

@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  color = config.palette;
+  c = config.palette;
 in
 {
   wayland.windowManager.hyprland = {
@@ -55,7 +55,7 @@ in
         "$mod, mouse_down, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
         "$mod, F, fullscreen"
-        "$mod, L, exec, hyprlock"
+        "$mod, L, exec, loginctl lock-session"
       ]
       # Switch and move to workspaces 1 to 6.
       ++ (
@@ -89,8 +89,8 @@ in
       general = {
         allow_tearing = false;
         border_size = 2;
-        "col.active_border" = "rgb(${color.accent0}) rgb(${color.accent3}) 45deg";
-        "col.inactive_border" = "rgb(${color.grey})";
+        "col.active_border" = "rgb(${c.accent0}) rgb(${c.accent3}) 45deg";
+        "col.inactive_border" = "rgb(${c.grey})";
         gaps_in = 4;
         gaps_out = 4;
         layout = "dwindle";
@@ -162,14 +162,14 @@ in
       background = {
         blur_passes = 1;
         blur_size = 8;
-        color = "rgb(${color.background0})";
+        color = "rgb(${c.background0})";
         path = "~/nixosconfig/wallpapers/PXL_20231125_173902958.jpg";
       };
 
       label = [
         {
           text = "$TIME";
-          color = "rgb(${color.foreground0})";
+          color = "rgb(${c.foreground0})";
           font_size = 80;
           font_family = "Fira Sans Nerd Font";
           position = "0, 130";
@@ -179,7 +179,7 @@ in
         }
         {
           text = "cmd[update:43200000] echo \"\$(date +\"%A, %d %B %Y\")\"";
-          color = "rgb(${color.foreground0})";
+          color = "rgb(${c.foreground0})";
           font_size = 20;
           font_family = "Fira Sans Nerd Font";
           position = "0, 60";
@@ -197,12 +197,12 @@ in
         dots_center = true;
         fade_on_empty = false;
         hide_input = false;
-        capslock_color = "rgb(${color.yellow})";
-        check_color = "rgb(${color.accent0})";
-        fail_color = "rgb(${color.red})";
-        font_color = "rgb(${color.black})";
-        inner_color = "rgb(${color.white})";
-        outer_color = "rgb(${color.accent3})";
+        capslock_color = "rgb(${c.yellow})";
+        check_color = "rgb(${c.accent0})";
+        fail_color = "rgb(${c.red})";
+        font_color = "rgb(${c.black})";
+        inner_color = "rgb(${c.white})";
+        outer_color = "rgb(${c.accent3})";
         placeholder_text = "󰌾 Logged in as $USER";
         fail_text = "$FAIL ($ATTEMPTS)";
         position = "0, -20";
@@ -224,8 +224,8 @@ in
       listener = [
         {
           timeout = 300;
-          on-timeout = "ddcutil setvcp 10 - 40";
-          on-resume = "ddcutil setvcp 10 + 40";
+          on-timeout = "ddcutil setvcp 10 - 30";
+          on-resume = "ddcutil setvcp 10 + 30";
         }
         {
           timeout = 600;
@@ -254,16 +254,13 @@ in
         modules-left = ["group/group-power" "idle_inhibitor" "hyprland/workspaces"];
         modules-center = ["clock"];
         modules-right = [
-          #"tray"
           "cpu"
           "temperature#cpu"
           "custom/gpu"
           "temperature#gpu"
-          #"memory"
           "network"
           "bluetooth"
           "wireplumber"
-          #"custom/brightness"
           "custom/notifications"
         ];
 
@@ -290,9 +287,9 @@ in
         };
 
         #"custom/brightness" = {
-        #  format = "{icon} {percentage}%";
+        #  format = "{icon} {}%";
         #  format-icons = [ "󱩐" "󱩒" "󰛨" ];
-        #  return-type = "string";
+        #  return-type = "";
         #  exec = "ddcutil getvcp 10 | cut -d : -f2 | cut -d , -f1 | cut -d = -f2 | tr -d ' '";
         #  on-scroll-up = "ddcutil setvcp 10 + 10";
         #  on-scroll-down = "ddcutil setvcp 10 - 10";
@@ -302,18 +299,42 @@ in
         #  tooltip = false;
         #};
 
+        "custom/gpu" = {
+          exec = "amdgpu_top -d --json | jq --unbuffered --compact-output '.[0]'.gpu_activity.GFX.value";
+          format = "  {}%";
+          interval = 2;
+          return-type = "";
+          tooltip = false;
+        };
+
+        "custom/lock" = {
+          format = "";
+          tooltip = false;
+          on-click = "loginctl lock-session";
+        };
+
         "custom/notifications" = {
           format = " ";
           on-click = "swaync-client -t -sw";
           tooltip = false;
         };
 
-        "custom/gpu" = {
-          exec = "cat /sys/class/hwmon/hwmon0/device/gpu_busy_percent";
-          format = "  {}%";
-          interval = 2;
-          return-type = "";
+        "custom/power" = {
+          format = " ";
           tooltip = false;
+          on-click = "shutdown now";
+        };
+
+        "custom/quit" = {
+            format = "󰈆";
+            tooltip = false;
+            on-click = "hyprctl dispatch exit";
+        };
+
+        "custom/reboot" = {
+          format = "";
+          tooltip = false;
+          on-click = "reboot";
         };
 
         "hyprland/workspaces" = {
@@ -385,38 +406,18 @@ in
         };
 
         "group/group-power" = {
-            orientation = "inherit";
-            drawer = {
-              transition-duration = 500;
-              children-class = "not-power";
-              transition-left-to-right = true;
-            };
-            modules = [
-                "custom/power"
-                "custom/lock"
-                "custom/quit"
-                "custom/reboot"
-            ];
-        };
-        "custom/quit" = {
-            format = "󰈆";
-            tooltip = false;
-            on-click = "hyprctl dispatch exit";
-        };
-        "custom/lock" = {
-          format = "";
-          tooltip = false;
-          on-click = "hyprlock";
-        };
-        "custom/reboot" = {
-          format = "";
-          tooltip = false;
-          on-click = "reboot";
-        };
-        "custom/power" = {
-          format = " ";
-          tooltip = false;
-          on-click = "shutdown now";
+          orientation = "inherit";
+          drawer = {
+            transition-duration = 500;
+            children-class = "not-power";
+            transition-left-to-right = true;
+          };
+          modules = [
+              "custom/power"
+              "custom/lock"
+              "custom/quit"
+              "custom/reboot"
+          ];
         };
       };
     };
@@ -435,8 +436,8 @@ in
       }
 
       tooltip {
-        background: #2e3440;
-        border: 1px solid #cdd6f4;
+        background: #${c.background3};
+        border: 1px solid #${c.foreground2};
       }
 
       #bluetooth,
@@ -451,14 +452,13 @@ in
       #custom-reboot,
       #custom-wlogout,
       #idle_inhibitor,
-      #memory,
       #network,
       #temperature,
       #wireplumber
       {
-        background-color: #2e3440;
+        background-color: #${c.background0};
         border-radius: 5px;
-        color: #cdd6f4;
+        color: #${c.foreground0};
         font-weight: bold;
         margin: 5px;
         padding-left: 10px;
@@ -468,85 +468,72 @@ in
       }
 
       #bluetooth {
-        color: #5e81ac;
+        color: #${c.blue};
       }
 
       #cpu {
-        color: #a3be8c;
+        color: #${c.accent0};
       }
 
       #custom-brightness {
-        color: #ebcb8b;
+        color: #${c.yellow};
       }
 
       #custom-lock {
-        color: #8fbcbb;
+        color: #${c.accent0};
         padding-right: 12px;
       }
 
       #custom-gpu {
-        color: #81a1c1;
-      }
-
-      #custom-notifications {
-        color: #d8dee9;
+        color: #${c.accent2};
       }
 
       #custom-power {
-        color: #BF616A;
+        color: #${c.red};
         padding-left: 12px;
       }
 
       #custom-quit {
-        color: #88c0d0;
+        color: #${c.accent1};
         padding-right: 12px;
       }
 
       #custom-reboot {
-        color: #81a1c1;
-      }
-
-      #custom-wlogout {
-        color: #BF616A;
-        padding-left: 12px;
+        color: #${c.accent2};
       }
 
       #idle_inhibitor {
-        color: #5e81ac;
-      }
-
-      #memory {
-        color: #88c0d0;
+        color: #${c.accent3};
       }
 
       #network {
-        color: #B48EAD;
+        color: #${c.purple};
       }
 
       #temperature.cpu {
-        color: #8fbcbb;
+        color: #${c.accent1};
       }
 
       #temperature.cpu.critical {
-        background-color: #88c0d0;
-        color: #2e3440;
+        background-color: #${c.accent1};
+        color: #${c.background0};
       }
 
       #temperature.gpu {
-        color: #5e81ac;
+        color: #${c.accent3};
       }
 
       #temperature.cpu.critical {
-        background-color: #5e81ac;
-        color: #2e3440;
+        background-color: #${c.accent3};
+        color: #${c.background0};
       }
 
       #wireplumber {
-        color: #ebcb8b;
+        color: #${c.yellow};
       }
 
       #workspaces {
-        background: #2e3440;
+        background: #${c.background0};
         border-radius: 5px;
         font-weight: normal;
         margin: 5px;
@@ -556,27 +543,16 @@ in
 
       #workspaces button {
         border-radius: 5px;
-        color: #d8dee9;
+        color: #${c.foreground0};
       }
 
       #workspaces button.active {
-        background-color: #d8dee9;
-        color: #2e3440;
+        background-color: #${c.foreground0};
+        color: #${c.background0};
       }
 
       #workspaces button.urgent {
-        color: #bf616a;
-      }
-
-      #tray {
-        background-color: #cdd6f4;
-        border-radius: 5px;
-        font-weight: bold;
-        margin: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
-        margin-top: 2px;
-        margin-bottom: 2px;
+        color: #${c.red};
       }
     '';
   };
@@ -586,25 +562,25 @@ in
     settings = {
       positionX = "right";
       positionY = "top";
+      control-center-height = 600;
+      control-center-width = 500;
       control-center-margin-top = 4;
       control-center-margin-bottom = 4;
       control-center-margin-right = 4;
       control-center-margin-left = 0;
+      fit-to-screen = true;
+      hide-on-clear = false;
+      hide-on-action = true;
+      keyboard-shortcuts = true;
+      image-visibility = "when-available";
       notification-icon-size = 64;
       notification-body-image-height = 100;
       notification-body-image-width = 200;
+      notification-window-width = 500;
       timeout = 10;
       timeout-low = 5;
       timeout-critical = 0;
-      fit-to-screen = true;
-      control-center-width = 500;
-      control-center-height = 600;
-      notification-window-width = 500;
-      keyboard-shortcuts = true;
-      image-visibility = "when-available";
       transition-time = 200;
-      hide-on-clear = false;
-      hide-on-action = true;
       widgets = [
         "mpris"
         "title"
