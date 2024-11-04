@@ -14,12 +14,11 @@
   };
 
   config = {
-    # Home Manager needs a bit of information about you and the paths it should
-    # manage.
     home.username = settings.username;
     home.homeDirectory = "/home/${settings.username}";
 
     home.packages = with pkgs; [
+      amdgpu_top
       hyprcursor
       hyprshot
       kitty
@@ -27,6 +26,7 @@
       libreoffice
       nautilus
       neovim
+      pavucontrol
     ];
 
     #home.file = {
@@ -42,7 +42,30 @@
       sudo = "sudo ";
     };
 
-    programs.firefox.enable = true;
+    programs.firefox = {
+      enable = true;
+      policies = {
+        HardwareAcceleration = true;
+        DisableTelemetry = true;
+        DisableFirefoxStudies = true;
+        EnableTrackingProtection = {
+          Value= true;
+          Locked = true;
+          Cryptomining = true;
+          Fingerprinting = true;
+        };
+      };
+      profiles = {
+        default = {
+          id = 0;
+          name = "default";
+          isDefault = true;
+          settings = {
+            "media.ffmpeg.vaapi.enabled" = true;
+          };
+        };
+      };
+    };
 
     gtk = {
       enable = true;

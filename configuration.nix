@@ -9,6 +9,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelModules = ["i2c-dev" "ddcci_backlight"];
+  boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
 
   networking.hostName = settings.hostname;
   networking.networkmanager.enable = true;
@@ -25,6 +27,8 @@
   # Enable CUPS to print documents.
   #services.printing.enable = true;
 
+  hardware.i2c.enable = true;
+
   # Bluetooth.
   hardware.bluetooth = {
     enable = true;
@@ -35,12 +39,11 @@
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-    pulse.enable = true;
+    wireplumber.enable = true;
   };
 
   hardware.graphics = {
@@ -52,6 +55,7 @@
   environment = {
     shells = [ pkgs.zsh ];
     sessionVariables.NIXOS_OZONE_WL = "1";
+    sessionVariables.MOZ_ENABLE_WAYLAND = "1";
     loginShellInit = ''
       [[ "$(tty)" = "/dev/tty1" ]] && exec Hyprland &> /dev/null
     '';
@@ -61,7 +65,7 @@
   users.users.${settings.username} = {
     isNormalUser = true;
     description = settings.name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "i2c" ];
     shell = pkgs.zsh;
   };
 
@@ -69,7 +73,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    #brightnessctl
+    ddcutil
     git
     psmisc
     vim
@@ -92,8 +96,9 @@
   services.udisks2.enable = true;
 
   security = {
-      polkit.enable = true;
       pam.services.hyprlock = {};
+      polkit.enable = true;
+      rtkit.enable = true;
   };
 
   services.gvfs.enable = true;

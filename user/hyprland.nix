@@ -74,8 +74,8 @@ in
         ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        ",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
-        ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
+        #",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
+        #",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
       ];
       # Drag mouse.
       bindm = [
@@ -89,7 +89,7 @@ in
       general = {
         allow_tearing = false;
         border_size = 2;
-        "col.active_border" = "rgb(${color.blue0}) rgb(${color.blue3}) 45deg";
+        "col.active_border" = "rgb(${color.accent0}) rgb(${color.accent3}) 45deg";
         "col.inactive_border" = "rgb(${color.grey})";
         gaps_in = 4;
         gaps_out = 4;
@@ -140,7 +140,12 @@ in
 
       gestures.workspace_swipe = false;
 
-      windowrulev2 = "suppressevent maximize, class:.*";
+      #windowrulev2 = "suppressevent maximize, class:.*";
+      windowrulev2 = [
+        "idleinhibit fullscreen, class:^(*)$"
+        "idleinhibit fullscreen, title:^(*)$"
+        "idleinhibit fullscreen, fullscreen:1"
+      ];
     };
     #plugins = [ pkgs.hyprlandPlugins.hyprbars ];
   }; # End of wayland.windowManager.hyprland
@@ -156,15 +161,15 @@ in
 
       background = {
         blur_passes = 1;
-        blur_size = 7;
-        color = "rgb(${color.almostblack})";
+        blur_size = 8;
+        color = "rgb(${color.background0})";
         path = "~/nixosconfig/wallpapers/PXL_20231125_173902958.jpg";
       };
 
       label = [
         {
           text = "$TIME";
-          color = "rgb(${color.white0})";
+          color = "rgb(${color.foreground0})";
           font_size = 80;
           font_family = "Fira Sans Nerd Font";
           position = "0, 130";
@@ -174,7 +179,7 @@ in
         }
         {
           text = "cmd[update:43200000] echo \"\$(date +\"%A, %d %B %Y\")\"";
-          color = "rgb(${color.white0})";
+          color = "rgb(${color.foreground0})";
           font_size = 20;
           font_family = "Fira Sans Nerd Font";
           position = "0, 60";
@@ -193,11 +198,11 @@ in
         fade_on_empty = false;
         hide_input = false;
         capslock_color = "rgb(${color.yellow})";
-        check_color = "rgb(${color.blue0})";
+        check_color = "rgb(${color.accent0})";
         fail_color = "rgb(${color.red})";
-        font_color = "rgb(${color.almostblack})";
-        inner_color = "rgb(${color.white0})";
-        outer_color = "rgb(${color.blue3})";
+        font_color = "rgb(${color.black})";
+        inner_color = "rgb(${color.white})";
+        outer_color = "rgb(${color.accent3})";
         placeholder_text = "󰌾 Logged in as $USER";
         fail_text = "$FAIL ($ATTEMPTS)";
         position = "0, -20";
@@ -211,20 +216,20 @@ in
     enable = true;
     settings = {
       general = {
-        lock_cmd = "hyprlock";
-        before_sleep_cmd = "hyprlock";
+        lock_cmd = "pidof hyprlock || hyprlock ";
+        before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "hyprctl dispatch dpms on";
       };
 
       listener = [
-        #{
-        #  timeout = 300;
-        #  on-timeout = "brightnessctl -s set 10";
-        #  on-resume = "brightnessctl -r";
-        #}
+        {
+          timeout = 300;
+          on-timeout = "ddcutil setvcp 10 - 40";
+          on-resume = "ddcutil setvcp 10 + 40";
+        }
         {
           timeout = 600;
-          on-timeout = "hyprlock";
+          on-timeout = "loginctl lock-session";
         }
         {
           timeout = 900;
@@ -258,6 +263,7 @@ in
           "network"
           "bluetooth"
           "wireplumber"
+          #"custom/brightness"
           "custom/notifications"
         ];
 
@@ -265,13 +271,15 @@ in
           format = "";
           format-disabled = "󰂲";
           format-connected = "󰂱";
+          on-click = "rfkill toggle bluetooth";
+          on-click-right = "blueman-manager";
           tooltip = false;
         };
 
         clock = {
           interval = 60;
-          format = "  {:%H:%M}";
-          format-alt = "  {:%A, %B %d   %H:%M}";
+          format = "  {:%A, %B %d   %H:%M}";
+          format-alt = "  {:%H:%M}";
           tooltip = false;
         };
 
@@ -280,6 +288,19 @@ in
           interval = 2;
           tooltip = false;
         };
+
+        #"custom/brightness" = {
+        #  format = "{icon} {percentage}%";
+        #  format-icons = [ "󱩐" "󱩒" "󰛨" ];
+        #  return-type = "string";
+        #  exec = "ddcutil getvcp 10 | cut -d : -f2 | cut -d , -f1 | cut -d = -f2 | tr -d ' '";
+        #  on-scroll-up = "ddcutil setvcp 10 + 10";
+        #  on-scroll-down = "ddcutil setvcp 10 - 10";
+        #  on-click = "ddcutil setvcp 10 0";
+        #  on-click-right = "ddcutil setvcp 10 100";
+        #  interval = 1;
+        #  tooltip = false;
+        #};
 
         "custom/notifications" = {
           format = " ";
@@ -359,6 +380,7 @@ in
           format-icons = ["" "" " "];
           max-volume = 100.0;
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          on-click-right = "pavucontrol";
           tooltip = false;
         };
 
@@ -420,6 +442,7 @@ in
       #bluetooth,
       #clock,
       #cpu,
+      #custom-brightness,
       #custom-lock,
       #custom-gpu,
       #custom-notifications,
@@ -450,6 +473,10 @@ in
 
       #cpu {
         color: #a3be8c;
+      }
+
+      #custom-brightness {
+        color: #ebcb8b;
       }
 
       #custom-lock {
