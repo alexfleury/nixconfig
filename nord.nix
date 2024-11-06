@@ -1,6 +1,6 @@
 # As defined in https://www.nordtheme.com/docs/colors-and-palettes.
 let
-  # Polar Night.
+  # Polar night.
   nord0 = "2e3440";
   nord1 = "3b4252";
   nord2 = "434c5e";

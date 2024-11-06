@@ -19,14 +19,17 @@
 
     home.packages = with pkgs; [
       amdgpu_top
+      geeqie
       hyprcursor
       hyprshot
+      hyprsunset
       kitty
       libnotify
       libreoffice
       nautilus
       neovim
       pavucontrol
+      vlc
     ];
 
     #home.file = {
@@ -99,14 +102,14 @@
 
     palette = (import ./nord.nix);
 
-    services.gammastep = {
-      enable = true;
-      latitude = "45.5019";
-      longitude = "-73.5674";
-      tray = false;
-      temperature.day = 5500;
-      temperature.night = 3700;
-    };
+    #services.gammastep = {
+    #  enable = true;
+    #  latitude = "45.5019";
+    #  longitude = "-73.5674";
+    #  tray = false;
+    #  temperature.day = 5500;
+    #  temperature.night = 3700;
+    #};
 
     programs.git = {
       enable = true;
@@ -148,6 +151,21 @@
       enable = true;
       createDirectories = true;
     };
+
+  services.udiskie = {
+    enable = true;
+    automount = true;
+    notify = true;
+    tray = "never";
+    settings = {
+      device_config = [
+        {
+          id_type = "btrfs";
+          ignore = true;
+        }
+      ];
+    };
+  }; # End of services.udiskie
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;

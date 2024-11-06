@@ -216,9 +216,10 @@ in
     enable = true;
     settings = {
       general = {
-        lock_cmd = "pidof hyprlock || hyprlock ";
-        before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "hyprctl dispatch dpms on";
+        before_sleep_cmd = "loginctl lock-session";
+        ignore_dbus_inhibit = true;
+        lock_cmd = "pidof hyprlock || hyprlock";
       };
 
       listener = [
@@ -844,13 +845,6 @@ in
       wallpaper = [ " ,~/nixosconfig/wallpapers/PXL_20231125_173902958.jpg" ];
     };
   }; # End of services.hyprpaper
-
-  services.udiskie = {
-    enable = true;
-    automount = true;
-    notify = true;
-    tray = "never";
-  }; # End of services.udiskie
 
   programs.rofi = {
     enable = true;

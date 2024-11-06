@@ -6,11 +6,16 @@
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.loader.systemd-boot = {
+    enable = true;
+    configurationLimit = 10;
+    consoleMode = "auto";
+  };
+
   boot.kernelModules = [ "i2c-dev" "ddcci_backlight" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = settings.hostname;
   networking.networkmanager.enable = true;
@@ -49,6 +54,11 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [
+      vulkan-loader
+      vulkan-validation-layers
+      vulkan-extension-layer
+    ];
   };
 
   programs.zsh.enable = true;
@@ -73,6 +83,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    btrfs-progs
     ddcutil
     git
     jq
@@ -92,7 +103,14 @@
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
-  programs.steam.enable = true;
+  #programs.gamemode.enable = true;
+  programs.steam = {
+    enable = true;
+    extraPackages = with pkgs; [
+      gamescope
+    ];
+    #gamescopeSession.enable = true;
+  };
 
   services.udisks2.enable = true;
 
