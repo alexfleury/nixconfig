@@ -537,14 +537,17 @@ in
         background: #${c.background0};
         border-radius: 5px;
         font-weight: normal;
-        margin: 5px;
         margin-top: 2px;
         margin-bottom: 2px;
+        padding-left: 0px;
+        padding-right: 0px;
       }
 
       #workspaces button {
         border-radius: 5px;
         color: #${c.foreground0};
+        padding-left: 12px;
+        padding-right: 12px;
       }
 
       #workspaces button.active {

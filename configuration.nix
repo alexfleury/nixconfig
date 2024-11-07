@@ -34,6 +34,11 @@
 
   hardware.i2c.enable = true;
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
   # Bluetooth.
   hardware.bluetooth = {
     enable = true;
@@ -49,16 +54,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     wireplumber.enable = true;
-  };
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-    extraPackages = with pkgs; [
-      vulkan-loader
-      vulkan-validation-layers
-      vulkan-extension-layer
-    ];
   };
 
   programs.zsh.enable = true;
@@ -103,13 +98,11 @@
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
-  #programs.gamemode.enable = true;
   programs.steam = {
     enable = true;
-    extraPackages = with pkgs; [
-      gamescope
-    ];
-    #gamescopeSession.enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
   };
 
   services.udisks2.enable = true;

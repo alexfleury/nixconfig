@@ -160,7 +160,11 @@
     settings = {
       device_config = [
         {
-          id_type = "btrfs";
+          device_file = "/dev/sda1";
+          ignore = true;
+        }
+        {
+          device_file = "/dev/sdb1";
           ignore = true;
         }
       ];
