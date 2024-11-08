@@ -129,6 +129,7 @@ in
       dwindle = {
         preserve_split = true;
         pseudotile = true;
+        smart_split = true;
       };
 
       master.new_status = "master";
@@ -157,12 +158,14 @@ in
       general = {
         disable_loading_bar = true;
         hide_cursor = true;
+        ignore_empty_input = true;
       };
 
       background = {
         blur_passes = 1;
-        blur_size = 8;
-        color = "rgb(${c.background0})";
+        blur_size = 15;
+        color = "rgb(${c.background3})";
+        noise = 0.2;
         path = "~/nixosconfig/wallpapers/PXL_20231125_173902958.jpg";
       };
 
@@ -225,8 +228,8 @@ in
       listener = [
         {
           timeout = 300;
-          on-timeout = "ddcutil setvcp 10 - 30";
-          on-resume = "ddcutil setvcp 10 + 30";
+          on-timeout = "ddcutil dumpvcp ~/.local/share/ddcutil/restore.vcp && ddcutil setvcp 10 1";
+          on-resume = "ddcutil loadvcp ~/.local/share/ddcutil/restore.vcp";
         }
         {
           timeout = 600;
@@ -403,6 +406,7 @@ in
           max-volume = 100.0;
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           on-click-right = "pavucontrol";
+          scroll-step = 2.0;
           tooltip = false;
         };
 

@@ -82,6 +82,7 @@
     ddcutil
     git
     jq
+    openrgb-with-all-plugins
     psmisc
     vim
     wget
@@ -107,6 +108,8 @@
 
   services.udisks2.enable = true;
 
+  services.hardware.openrgb.enable = true;
+
   security = {
       pam.services.hyprlock = {};
       polkit.enable = true;
@@ -115,7 +118,21 @@
 
   services.gvfs.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix = {
+    settings.experimental-features = [ "nix-command" "flakes" ];
+
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
+    };
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than +5";
+      persistent = true;
+    };
+  };
 
   system.stateVersion = "24.05"; # Don't change this unless you know.
 }

@@ -29,6 +29,7 @@
       nautilus
       neovim
       pavucontrol
+      rclone
       vlc
     ];
 
@@ -37,6 +38,7 @@
 
     home.sessionVariables = {
       EDITOR = "vim";
+      TERMINAL = "kitty";
     };
 
     home.shellAliases = {
