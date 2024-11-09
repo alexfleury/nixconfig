@@ -16,10 +16,10 @@ in
 
       # Startup applications.
       exec-once = [
-        "waybar"
+        "hyprpanel"
         "hyprpaper"
         "hypridle"
-        "swaync"
+        #"swaync"
         #"systemctl --user start hyprpolkitagent"
       ];
 
@@ -162,17 +162,15 @@ in
       };
 
       background = {
-        blur_passes = 1;
-        blur_size = 15;
+        blur_passes = 0;
         color = "rgb(${c.background3})";
-        noise = 0.2;
         path = "~/nixosconfig/wallpapers/PXL_20231125_173902958.jpg";
       };
 
       label = [
         {
           text = "$TIME";
-          color = "rgb(${c.foreground0})";
+          color = "rgb(${c.accent3})";
           font_size = 80;
           font_family = "Fira Sans Nerd Font";
           position = "0, 130";
@@ -182,7 +180,7 @@ in
         }
         {
           text = "cmd[update:43200000] echo \"\$(date +\"%A, %d %B %Y\")\"";
-          color = "rgb(${c.foreground0})";
+          color = "rgb(${c.accent3})";
           font_size = 20;
           font_family = "Fira Sans Nerd Font";
           position = "0, 60";
@@ -566,7 +564,7 @@ in
   };
 
   services.swaync = {
-    enable = true;
+    enable = false;
     settings = {
       positionX = "right";
       positionY = "top";

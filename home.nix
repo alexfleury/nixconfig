@@ -21,6 +21,7 @@
       amdgpu_top
       geeqie
       hyprcursor
+      hyprpanel
       hyprshot
       hyprsunset
       kitty
@@ -148,10 +149,20 @@
       };
     };
 
-    xdg.enable = true;
-    xdg.userDirs = {
+    xdg = {
       enable = true;
-      createDirectories = true;
+      mime.enable = true;
+      mimeApps.enable = true;
+      mimeApps.defaultApplications = {
+        "application/pdf" = "firefox.desktop";
+        "image/*" = "geeqie.desktop";
+        "video/*" = "vlc.desktop";
+        "audio/*" = "vlc.desktop";
+        "inode/directory" = "org.gnome.Nautilus.desktop";
+        "text/plain" = "nvim.desktop";
+      };
+      userDirs.enable = true;
+      userDirs.createDirectories = true;
     };
 
   services.udiskie = {
