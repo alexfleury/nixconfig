@@ -21,7 +21,7 @@
       amdgpu_top
       geeqie
       hyprcursor
-      hyprpanel
+      hyprpolkitagent
       hyprshot
       hyprsunset
       kitty
@@ -29,6 +29,7 @@
       libreoffice
       nautilus
       neovim
+      networkmanagerapplet
       pavucontrol
       rclone
       vlc
@@ -39,13 +40,13 @@
 
     home.sessionVariables = {
       EDITOR = "vim";
-      TERMINAL = "kitty";
     };
 
     home.shellAliases = {
       ".." = "cd ..";
       home-manager = "home-manager -b hm.bak";
       sudo = "sudo ";
+      neofetch = "fastfetch";
     };
 
     programs.firefox = {
@@ -71,7 +72,7 @@
           };
         };
       };
-    };
+    }; # End of programs.firefox.
 
     gtk = {
       enable = true;
@@ -88,7 +89,7 @@
         package = pkgs.nordzy-cursor-theme;
       };
       gtk2.configLocation = "${config.home.homeDirectory}/.gtkrc-2.0";
-    };
+    }; # End of gtk.
 
     dconf = {
       settings = {
@@ -101,18 +102,9 @@
           button-layout = "";
         };
       };
-    };
+    }; # End of dconf.
 
     palette = (import ./nord.nix);
-
-    #services.gammastep = {
-    #  enable = true;
-    #  latitude = "45.5019";
-    #  longitude = "-73.5674";
-    #  tray = false;
-    #  temperature.day = 5500;
-    #  temperature.night = 3700;
-    #};
 
     programs.git = {
       enable = true;
@@ -147,7 +139,7 @@
         init.defaultBranch = "main";
         push.autoSetupRemote = true;
       };
-    };
+    }; # End of programs.git.
 
     xdg = {
       enable = true;
@@ -163,26 +155,26 @@
       };
       userDirs.enable = true;
       userDirs.createDirectories = true;
-    };
+    }; # End of xdg.
 
-  services.udiskie = {
-    enable = true;
-    automount = true;
-    notify = true;
-    tray = "never";
-    settings = {
-      device_config = [
-        {
-          device_file = "/dev/sda1";
-          ignore = true;
-        }
-        {
-          device_file = "/dev/sdb1";
-          ignore = true;
-        }
-      ];
-    };
-  }; # End of services.udiskie
+    services.udiskie = {
+      enable = true;
+      automount = true;
+      notify = true;
+      tray = "never";
+      settings = {
+        device_config = [
+          {
+            device_file = "/dev/sda1";
+            ignore = true;
+          }
+          {
+            device_file = "/dev/sdb1";
+            ignore = true;
+          }
+        ];
+      };
+    }; # End of services.udiskie
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;

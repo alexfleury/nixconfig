@@ -7,7 +7,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ...}:
@@ -35,7 +34,7 @@
               home-manager.users.${settings.username}.imports = [ ./home.nix ];
               home-manager.extraSpecialArgs = { inherit inputs; inherit settings;};
             }
-            {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
+            #{nixpkgs.overlays = [inputs.hyprpanel.overlay];}
           ];
           specialArgs = {
             inherit settings;

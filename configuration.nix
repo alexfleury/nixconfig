@@ -42,7 +42,7 @@
   # Bluetooth.
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;
+    powerOnBoot = false;
     settings.General.Experimental = true;
   };
   services.blueman.enable = true;
@@ -118,6 +118,12 @@
 
   services.gvfs.enable = true;
 
+  # Remove Zoom75 ability to wake up from sleep.
+  # (it does it insteantly in 2.4 GHz wireless mode).
+  #services.udev.extraRules = ''
+  #  ACTION=="add", ATTRS{idVendor}=="6d66", ATTRS{idProduct}=="8888", ATTR{power/wakeup}="disabled"
+  #'';
+
   nix = {
     settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -129,7 +135,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than +5";
+      options = "--delete-older-than 14d";
       persistent = true;
     };
   };

@@ -3,7 +3,7 @@
 {
   programs.kitty = {
     enable = true;
-    font.name = "Fira Mono Nerd Font";
+    font.name = "Hack Nerd Font";
     font.size = 12;
     themeFile = "Nord";
     settings = {
