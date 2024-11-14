@@ -139,7 +139,6 @@ in
 
         network = {
           interval = 2;
-          interface = "enp9s0";
           format-ethernet = "{icon} Wired 󰓅 {bandwidthTotalBits}";
           format-wifi = "{icon} {essid} 󰓅 {bandwidthTotalBits}";
           format-disconnected = "";
@@ -150,7 +149,7 @@ in
           tooltip = true;
           tooltip-format-ethernet = " {bandwidthUpBits}\n {bandwidthDownBits}";
           tooltip-format-wifi = "󰒢 {signalStrength}%\n {bandwidthUpBits}\n {bandwidthDownBits}";
-          on-click = "nm-connection-editor";
+          on-click-right = "nm-connection-editor";
         };
 
         "temperature#cpu" = {

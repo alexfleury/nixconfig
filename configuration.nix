@@ -70,7 +70,7 @@
   users.users.${settings.username} = {
     isNormalUser = true;
     description = settings.name;
-    extraGroups = [ "networkmanager" "wheel" "i2c" ];
+    extraGroups = [ "networkmanager" "wheel" "i2c" "gamemode" ];
     shell = pkgs.zsh;
   };
 
@@ -99,6 +99,7 @@
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
+  programs.gamemode.enable = true;
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
