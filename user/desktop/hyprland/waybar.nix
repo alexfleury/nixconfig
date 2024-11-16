@@ -21,6 +21,7 @@ in
           "bluetooth"
           "wireplumber"
           "custom/brightness"
+          "custom/hyprsunset"
           #"tray"
           "custom/notifications"
         ];
@@ -81,6 +82,17 @@ in
           format = "  {}%";
           interval = 2;
           return-type = "";
+          tooltip = false;
+        };
+
+        "custom/hyprsunset" = {
+          format = "{}";
+          return-type = "json";
+          exec = "hyprsunset.sh";
+          on-click = "killall hyprsunset; hyprsunset -t 3000";
+          on-click-middle = "killall hyprsunset; hyprsunset -t 5000";
+          on-click-right = "killall hyprsunset";
+          interval = 5;
           tooltip = false;
         };
 
@@ -229,6 +241,7 @@ in
       #custom-brightness,
       #custom-lock,
       #custom-gpu,
+      #custom-hyprsunset,
       #custom-notifications,
       #custom-power,
       #custom-quit,
@@ -253,6 +266,19 @@ in
 
       #custom-lock {
         padding-right: 12px;
+      }
+
+      #custom-hyprsunset {
+        color: #${c.red};
+        padding-right: 12px;
+      }
+
+      #custom-hyprsunset.enabled {
+        color: #${c.blue};
+      }
+
+      #custom-hyprsunset.disabled {
+        color: #${c.yellow};
       }
 
       #custom-power {

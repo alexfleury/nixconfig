@@ -1,39 +1,44 @@
-{ config, pkgs, settings, ... }:
-
+{ config, pkgs, ... }:
+let
+  hostname = "quantumflower";
+  locale = "en_CA.UTF-8";
+  name = "Alexandre";
+  timezone = "America/Toronto";
+  username = "alex";
+in
 {
   imports =[
     ./hardware-configuration.nix
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot = {
-    enable = true;
-    configurationLimit = 10;
-    consoleMode = "auto";
+  boot = {
+    extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
+    initrd.kernelModules = [ "amdgpu" ];
+    kernelModules = [ "i2c-dev" "ddcci_backlight" ];
+    loader.efi.canTouchEfiVariables = true;
+    loader.systemd-boot = {
+      enable = true;
+      configurationLimit = 5;
+      consoleMode = "auto";
+    };
   };
 
-  boot.kernelModules = [ "i2c-dev" "ddcci_backlight" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Networking.
+  networking = {
+    hostName = hostname;
+    networkmanager.enable = true;
+  };
 
-  networking.hostName = settings.hostname;
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = settings.timezone;
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = settings.locale;
-
-  # Configure console keymap
+  # Set locale-related settings.
   console.keyMap = "ca";
+  i18n.defaultLocale = locale;
+  time.timeZone = timezone;
 
-  # Enable CUPS to print documents.
-  #services.printing.enable = true;
-
+  # Setting monitor backlight.
   hardware.i2c.enable = true;
 
+  # GPU related settings.
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -56,6 +61,7 @@
     wireplumber.enable = true;
   };
 
+  # Default shell is set to ZSH.
   programs.zsh.enable = true;
   environment = {
     shells = [ pkgs.zsh ];
@@ -64,12 +70,13 @@
     loginShellInit = ''
       [[ "$(tty)" = "/dev/tty1" ]] && exec Hyprland &> /dev/null
     '';
+    localBinInPath = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${settings.username} = {
+  # Define a user account.
+  users.users.${username} = {
     isNormalUser = true;
-    description = settings.name;
+    description = name;
     extraGroups = [ "networkmanager" "wheel" "i2c" "gamemode" ];
     shell = pkgs.zsh;
   };
@@ -77,6 +84,7 @@
   # Allow unfree packages.
   nixpkgs.config.allowUnfree = true;
 
+  # System-wide packages.
   environment.systemPackages = with pkgs; [
     btrfs-progs
     ddcutil
@@ -88,17 +96,20 @@
     wget
   ];
 
+  # Install system-wide fonts.
   fonts = {
     enableDefaultPackages = true;
     packages = [ pkgs.nerdfonts ];
   };
 
+  # Enable hyprland.
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
+  # Gaming-related options.
   programs.gamemode.enable = true;
   programs.steam = {
     enable = true;
@@ -107,32 +118,28 @@
     localNetworkGameTransfers.openFirewall = true;
   };
 
-  services.udisks2.enable = true;
+  # Services.
+  services = {
+    gvfs.enable = true;
+    hardware.openrgb.enable = true;
+    #printing.enable = true;
+    udisks2.enable = true;
+  };
 
-  services.hardware.openrgb.enable = true;
-
+  # Security ann encryption.
   security = {
       pam.services.hyprlock = {};
       polkit.enable = true;
       rtkit.enable = true;
   };
 
-  services.gvfs.enable = true;
-
-  # Remove Zoom75 ability to wake up from sleep.
-  # (it does it insteantly in 2.4 GHz wireless mode).
-  #services.udev.extraRules = ''
-  #  ACTION=="add", ATTRS{idVendor}=="6d66", ATTRS{idProduct}=="8888", ATTR{power/wakeup}="disabled"
-  #'';
-
+  # Nix-related options.
   nix = {
     settings.experimental-features = [ "nix-command" "flakes" ];
-
     optimise = {
       automatic = true;
       dates = [ "weekly" ];
     };
-
     gc = {
       automatic = true;
       dates = "weekly";

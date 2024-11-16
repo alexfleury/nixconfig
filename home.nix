@@ -1,10 +1,17 @@
-{ config, pkgs, lib, settings, ... }:
+{ config, pkgs, lib, ... }:
+let
+  username = "alex";
+in
 {
   imports = [
-    ./user/cli.nix
-    ./user/hyprland.nix
-    ./user/kitty.nix
-    ./user/vscodium.nix
+    ./user/cli/fastfetch.nix
+    ./user/cli/git.nix
+    ./user/cli/zsh.nix
+    ./user/desktop/hyprland/hyprland.nix
+    ./user/desktop/firefox.nix
+    ./user/desktop/kitty.nix
+    ./user/desktop/vscodium.nix
+    ./user/desktop/udiskie.nix
   ];
 
   options = {
@@ -14,11 +21,13 @@
   };
 
   config = {
-    home.username = settings.username;
-    home.homeDirectory = "/home/${settings.username}";
+    home.username = username;
+    home.homeDirectory = "/home/${username}";
 
     home.packages = with pkgs; [
       amdgpu_top
+      borgbackup
+      discord
       geeqie
       hyprcursor
       hyprpolkitagent
@@ -33,10 +42,15 @@
       pavucontrol
       rclone
       vlc
+      yt-dlp
     ];
 
-    #home.file = {
-    #};
+    home.file = {
+      ".local/bin" = {
+        source = ./scripts;
+        recursive = true;
+      };
+    };
 
     home.sessionVariables = {
       EDITOR = "vim";
@@ -44,36 +58,11 @@
 
     home.shellAliases = {
       ".." = "cd ..";
-      home-manager = "home-manager -b hm.bak";
       sudo = "sudo ";
       neofetch = "fastfetch";
     };
 
-    programs.firefox = {
-      enable = true;
-      policies = {
-        HardwareAcceleration = true;
-        DisableTelemetry = true;
-        DisableFirefoxStudies = true;
-        EnableTrackingProtection = {
-          Value= true;
-          Locked = true;
-          Cryptomining = true;
-          Fingerprinting = true;
-        };
-      };
-      profiles = {
-        default = {
-          id = 0;
-          name = "default";
-          isDefault = true;
-          settings = {
-            "media.ffmpeg.vaapi.enabled" = true;
-          };
-        };
-      };
-    }; # End of programs.firefox.
-
+    # Theming and color.
     gtk = {
       enable = true;
       theme = {
@@ -104,43 +93,6 @@
       };
     }; # End of dconf.
 
-    palette = (import ./nord.nix);
-
-    programs.git = {
-      enable = true;
-      userName = "alexfleury";
-      userEmail = "28400108+alexfleury@users.noreply.github.com";
-      ignores = [
-        # MacOS junk.
-        ".DS_store"
-
-        # Python compilation and cache.
-        "*.pyc"
-        "build"
-        "dist"
-        ".eggs"
-        "*.egg-info"
-        "__pycache__"
-        ".ipynb_checkpoints"
-
-        # Per repo gitignore.
-        ".gitignore"
-
-        # Data files.
-        "*.hdf5"
-
-        # VS Code workspace files.
-        ".vscode"
-        "*.code-workspace"
-      ];
-      extraConfig = {
-        color.ui = true;
-        fetch.prune = true;
-        init.defaultBranch = "main";
-        push.autoSetupRemote = true;
-      };
-    }; # End of programs.git.
-
     xdg = {
       enable = true;
       mime.enable = true;
@@ -157,24 +109,7 @@
       userDirs.createDirectories = true;
     }; # End of xdg.
 
-    services.udiskie = {
-      enable = true;
-      automount = true;
-      notify = true;
-      tray = "never";
-      settings = {
-        device_config = [
-          {
-            device_file = "/dev/sda1";
-            ignore = true;
-          }
-          {
-            device_file = "/dev/sdb1";
-            ignore = true;
-          }
-        ];
-      };
-    }; # End of services.udiskie
+    palette = (import ./user/desktop/nord.nix);
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;

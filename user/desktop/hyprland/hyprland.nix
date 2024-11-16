@@ -96,20 +96,20 @@ in
         border_size = 2;
         "col.active_border" = "rgb(${c.accent0}) rgb(${c.accent3}) 45deg";
         "col.inactive_border" = "rgb(${c.grey})";
-        gaps_in = 4;
-        gaps_out = 4;
+        gaps_in = 5;
+        gaps_out = 5;
         layout = "dwindle";
         resize_on_border = false;
       };
 
       decoration = {
         active_opacity = 1.0;
-        "col.shadow" = "rgba(1a1a1aee)";
-        drop_shadow = true;
-        inactive_opacity = 1.0;
+        #"col.shadow" = "rgba(1a1a1aee)";
+        #drop_shadow = true;
+        inactive_opacity = 0.8;
         rounding = 10;
-        shadow_range = 4;
-        shadow_render_power = 3;
+        #shadow_range = 4;
+        #shadow_render_power = 3;
         blur = {
           enabled = true;
           passes = 1;

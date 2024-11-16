@@ -1,8 +1,6 @@
-{ config, ... }:
+{ ... }:
 
 {
-  programs.bat.enable = true;
-
   programs.fastfetch = {
     enable = true;
     settings = {
@@ -49,24 +47,5 @@
         }
       ];
     };
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.zsh = {
-    enable = true;
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" ];
-      theme = "agnoster";
-    };
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+  }; # End of programs.fastfetch.
 }

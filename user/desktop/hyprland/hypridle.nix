@@ -27,8 +27,8 @@
           on-resume = "hyprctl dispatch dpms on";
         }
         {
-          timeout = 1800;
-          on-timeout = "systemctl suspend";
+          timeout = 3600;
+          on-timeout = "systemctl hibernate";
         }
       ];
     };
