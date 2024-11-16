@@ -118,6 +118,9 @@ in
     localNetworkGameTransfers.openFirewall = true;
   };
 
+  # Remember ssh passphrase.
+  programs.ssh.startAgent = true;
+
   # Services.
   services = {
     gvfs.enable = true;
