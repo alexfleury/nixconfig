@@ -28,6 +28,7 @@ in
   networking = {
     hostName = hostname;
     networkmanager.enable = true;
+    networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
   };
 
   # Set locale-related settings.
