@@ -33,6 +33,7 @@ in
       hyprpolkitagent
       hyprshot
       hyprsunset
+      jdk
       kitty
       libnotify
       libreoffice
@@ -43,6 +44,7 @@ in
       rclone
       vlc
       yt-dlp
+      zathura
     ];
 
     home.file = {
