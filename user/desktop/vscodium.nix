@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.vscode = {
@@ -9,7 +9,7 @@
       bbenoist.nix
     ];
     userSettings = {
-      "editor.fontFamily" = "Hack Nerd Font";
+      "editor.fontFamily" = "${config.font},Hack Nerd Font";
       "editor.fontSize" = 12;
       "editor.minimap.enabled" = false;
       "editor.tabSize" = 2;

@@ -9,7 +9,7 @@ in
       mainBar = {
         position = "top";
         layer = "top";
-        height = 34;
+        height = 40;
         modules-left = ["group/group-power" "idle_inhibitor" "hyprland/workspaces"];
         modules-center = ["clock"];
         modules-right = [
@@ -221,8 +221,8 @@ in
         animation-timing-function: steps(6);
         border: none;
         border-radius: 0;
-        font-family: Hack Nerd Font;
-        font-size: 12px;
+        font-family: ${config.font};
+        font-size: 13px;
         min-height: 0;
       }
 

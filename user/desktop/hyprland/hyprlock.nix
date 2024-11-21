@@ -24,7 +24,7 @@ in
           text = "$TIME";
           color = "rgb(${c.white})";
           font_size = 80;
-          font_family = "Hack Nerd Font";
+          font_family = "${config.font}";
           position = "0, 130";
           halign = "center";
           valign = "center";
@@ -34,7 +34,7 @@ in
           text = "cmd[update:43200000] echo \"\$(date +\"%A, %d %B %Y\")\"";
           color = "rgb(${c.white})";
           font_size = 20;
-          font_family = "Hack Nerd Font";
+          font_family = "${config.font}";
           position = "0, 60";
           halign = "center";
           valign = "center";

@@ -1,9 +1,9 @@
-{ ... }:
+{ config, ... }:
 
 {
   programs.kitty = {
     enable = true;
-    font.name = "Hack Nerd Font";
+    font.name = "${config.font}";
     font.size = 12;
     themeFile = "Nord";
     settings = {

@@ -18,6 +18,9 @@ in
     palette = lib.mkOption {
       type = lib.types.attrsOf lib.types.str;
     };
+    font = lib.mkOption {
+      type = lib.types.str;
+    };
   };
 
   config = {
@@ -112,6 +115,7 @@ in
     }; # End of xdg.
 
     palette = (import ./user/desktop/nord.nix);
+    font = "Fira Code Nerd Font";
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
