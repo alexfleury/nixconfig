@@ -24,6 +24,11 @@ in
   };
 
   config = {
+
+    # User options.
+    font = "Fira Code Nerd Font";
+    palette = (import ./user/desktop/nord.nix);
+
     home.username = username;
     home.homeDirectory = "/home/${username}";
 
@@ -41,7 +46,6 @@ in
       libnotify
       libreoffice
       nautilus
-      neovim
       networkmanagerapplet
       pavucontrol
       rclone
@@ -108,14 +112,11 @@ in
         "video/*" = "vlc.desktop";
         "audio/*" = "vlc.desktop";
         "inode/directory" = "org.gnome.Nautilus.desktop";
-        "text/plain" = "nvim.desktop";
+        "text/plain" = "vscodium.desktop";
       };
       userDirs.enable = true;
       userDirs.createDirectories = true;
     }; # End of xdg.
-
-    palette = (import ./user/desktop/nord.nix);
-    font = "Fira Code Nerd Font";
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;

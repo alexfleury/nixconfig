@@ -104,12 +104,8 @@ in
 
       decoration = {
         active_opacity = 1.0;
-        #"col.shadow" = "rgba(1a1a1aee)";
-        #drop_shadow = true;
-        inactive_opacity = 0.8;
+        inactive_opacity = 1.0;
         rounding = 10;
-        #shadow_range = 4;
-        #shadow_render_power = 3;
         blur = {
           enabled = true;
           passes = 1;
@@ -152,8 +148,6 @@ in
         "idleinhibit fullscreen, fullscreen:1"
       ];
     };
-
-    #plugins = [ pkgs.hyprlandPlugins.hyprbars ];
 
   }; # End of wayland.windowManager.hyprland
 }

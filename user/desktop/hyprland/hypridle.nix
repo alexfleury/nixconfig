@@ -12,11 +12,6 @@
       };
 
       listener = [
-        #{
-        #  timeout = 300;
-        #  on-timeout = "ddcutil dumpvcp ~/.local/share/ddcutil/restore.vcp && ddcutil setvcp 10 1";
-        #  on-resume = "ddcutil loadvcp ~/.local/share/ddcutil/restore.vcp";
-        #}
         {
           timeout = 600;
           on-timeout = "loginctl lock-session";
