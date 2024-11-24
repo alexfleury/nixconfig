@@ -16,7 +16,9 @@ in
     enable = true;
     settings = {
       # Monitor settings.
-      monitor = "DP-1,1920x1080@144,0x0,1";
+      #monitor = "DP-1,3840x2160@240,0x0,1.5";
+      monitor = ",3840x2160@120.00,auto,2,bitdepth,10";
+      xwayland.force_zero_scaling = true;
 
       # Common applications.
       "$terminal" = "kitty";
@@ -107,7 +109,7 @@ in
         inactive_opacity = 1.0;
         rounding = 10;
         blur = {
-          enabled = true;
+          enabled = false;
           passes = 1;
           size = 3;
           vibrancy = 0.1696;
@@ -138,6 +140,8 @@ in
       misc = {
         disable_hyprland_logo = true;
         force_default_wallpaper = -1;
+        mouse_move_enables_dpms = false;
+        key_press_enables_dpms = true;
       };
 
       gestures.workspace_swipe = false;

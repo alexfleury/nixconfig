@@ -68,12 +68,12 @@ in
           format-icons = [ "󱩐" "󱩒" "󰛨" ];
           return-type = "json";
           exec = "ddcutil getvcp 10 | grep -oP \"current.*?=\\s*\\K[0-9]+\" | { read x; echo '{\"percentage\":'\${x}'}'; }";
-          on-scroll-up = "ddcutil --noverify --sleep-multiplier .03 setvcp 10 + 10";
-          on-scroll-down = "ddcutil --noverify --sleep-multiplier .03 setvcp 10 - 10";
-          on-click = "ddcutil --noverify setvcp 10 1";
-          on-click-middle = "ddcutil --noverify setvcp 10 50";
-          on-click-right = "ddcutil --noverify setvcp 10 100";
-          interval = 1;
+          #on-scroll-up = "ddcutil --noverify --sleep-multiplier .03 setvcp 10 + 10";
+          #on-scroll-down = "ddcutil --noverify --sleep-multiplier .03 setvcp 10 - 10";
+          on-click = "ddcutil setvcp 10 1";
+          on-click-middle = "ddcutil setvcp 10 50";
+          on-click-right = "ddcutil setvcp 10 100";
+          interval = 2;
           tooltip = false;
         };
 
@@ -270,7 +270,7 @@ in
 
       #custom-hyprsunset {
         color: #${c.red};
-        padding-right: 12px;
+        padding-right: 16px;
       }
 
       #custom-hyprsunset.enabled {
@@ -283,7 +283,7 @@ in
 
       #custom-power {
         color: #${c.red};
-        padding-left: 12px;
+        padding-left: 16px;
       }
 
       #custom-quit {

@@ -16,6 +16,7 @@ in
     extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
     initrd.kernelModules = [ "amdgpu" ];
     kernelModules = [ "i2c-dev" "ddcci_backlight" ];
+    kernelParams = [ "preempt=full" ]; # preempt=full fixed buzzing sound ion Hogwarts Legacy.
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot = {
       enable = true;
@@ -78,7 +79,7 @@ in
   users.users.${username} = {
     isNormalUser = true;
     description = name;
-    extraGroups = [ "networkmanager" "wheel" "i2c" "gamemode" ];
+    extraGroups = [ "wheel" "networkmanager""i2c" "gamemode" ];
     shell = pkgs.zsh;
   };
 
@@ -136,6 +137,9 @@ in
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
+    extraCompatPackages = [
+      pkgs.proton-ge-bin
+    ];
   };
 
   # Remember ssh passphrase.
