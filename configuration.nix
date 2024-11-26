@@ -13,9 +13,9 @@ in
 
   # Bootloader.
   boot = {
-    extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
-    initrd.kernelModules = [ "amdgpu" ];
-    kernelModules = [ "i2c-dev" "ddcci_backlight" ];
+    #extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
+    #initrd.kernelModules = [ "amdgpu" ];
+    #kernelModules = [ "i2c-dev" "ddcci_backlight" ];
     kernelParams = [ "preempt=full" ]; # preempt=full fixed buzzing sound ion Hogwarts Legacy.
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot = {
@@ -67,8 +67,11 @@ in
   programs.zsh.enable = true;
   environment = {
     shells = [ pkgs.zsh ];
-    sessionVariables.NIXOS_OZONE_WL = "1";
-    sessionVariables.MOZ_ENABLE_WAYLAND = "1";
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      MOZ_ENABLE_WAYLAND = "1";
+      QT_AUTO_SCREEN_SCALE_FACTOR = "auto";
+    };
     loginShellInit = ''
       [[ "$(tty)" = "/dev/tty1" ]] && exec Hyprland &> /dev/null
     '';
@@ -79,7 +82,7 @@ in
   users.users.${username} = {
     isNormalUser = true;
     description = name;
-    extraGroups = [ "wheel" "networkmanager""i2c" "gamemode" ];
+    extraGroups = [ "wheel" "networkmanager" "gamemode" ]; # "i2c"
     shell = pkgs.zsh;
   };
 

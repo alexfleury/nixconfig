@@ -71,8 +71,8 @@ in
           #on-scroll-up = "ddcutil --noverify --sleep-multiplier .03 setvcp 10 + 10";
           #on-scroll-down = "ddcutil --noverify --sleep-multiplier .03 setvcp 10 - 10";
           on-click = "ddcutil setvcp 10 1";
-          on-click-middle = "ddcutil setvcp 10 50";
-          on-click-right = "ddcutil setvcp 10 100";
+          on-click-middle = "ddcutil setvcp 10 30";
+          on-click-right = "ddcutil setvcp 10 70";
           interval = 2;
           tooltip = false;
         };

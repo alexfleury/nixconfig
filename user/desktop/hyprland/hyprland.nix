@@ -16,8 +16,7 @@ in
     enable = true;
     settings = {
       # Monitor settings.
-      #monitor = "DP-1,3840x2160@240,0x0,1.5";
-      monitor = ",3840x2160@120.00,auto,2,bitdepth,10";
+      monitor = "DP-1,highres,0x0,1.5,vrr,2";
       xwayland.force_zero_scaling = true;
 
       # Common applications.
@@ -140,18 +139,20 @@ in
       misc = {
         disable_hyprland_logo = true;
         force_default_wallpaper = -1;
-        mouse_move_enables_dpms = false;
-        key_press_enables_dpms = true;
+        mouse_move_enables_dpms = true;
+        key_press_enables_dpms = false;
       };
 
       gestures.workspace_swipe = false;
 
       windowrulev2 = [
-        "idleinhibit fullscreen, class:^(*)$"
-        "idleinhibit fullscreen, title:^(*)$"
+        #"idleinhibit fullscreen, class:^(*)$"
+        #"idleinhibit fullscreen, title:^(*)$"
         "idleinhibit fullscreen, fullscreen:1"
       ];
-    };
 
+      #debug.disable_logs = false;
+
+    };
   }; # End of wayland.windowManager.hyprland
 }
