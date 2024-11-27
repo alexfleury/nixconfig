@@ -16,7 +16,7 @@ in
     enable = true;
     settings = {
       # Monitor settings.
-      monitor = "DP-1,highres,0x0,1.5,vrr,2";
+      monitor = "DP-1,3840x2160@120.00,0x0,1.5,vrr,2";
       xwayland.force_zero_scaling = true;
 
       # Common applications.
@@ -65,6 +65,8 @@ in
         "$mod, mouse_up, workspace, e-1"
         "$mod, F, fullscreen"
         "$mod, L, exec, loginctl lock-session"
+        "$mod SHIFT, w, exec, killall -SIGUSR1 .waybar-wrapped || waybar" # Toggle waybar.
+        "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
       ]
       # Switch and move to workspaces 1 to 6.
       ++ (
