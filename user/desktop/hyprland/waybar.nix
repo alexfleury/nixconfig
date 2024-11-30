@@ -9,7 +9,7 @@ in
       mainBar = {
         position = "top";
         layer = "top";
-        height = 40;
+        height = 42;
         modules-left = ["group/group-power" "idle_inhibitor" "hyprland/workspaces"];
         modules-center = ["clock"];
         modules-right = [
@@ -227,7 +227,7 @@ in
       }
 
       window#waybar {
-        background: #${c.background0};
+        background: transparent;
       }
 
       tooltip {

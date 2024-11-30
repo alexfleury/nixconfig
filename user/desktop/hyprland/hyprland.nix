@@ -16,7 +16,7 @@ in
     enable = true;
     settings = {
       # Monitor settings.
-      monitor = "DP-1,3840x2160@120.00,0x0,1.5,vrr,2";
+      monitor = "DP-1,3840x2160@120.00,0x0,1.5";
       xwayland.force_zero_scaling = true;
 
       # Common applications.

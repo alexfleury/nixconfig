@@ -43,7 +43,7 @@ in
       ];
 
       input-field = {
-        size = "220, 40";
+        size = "300, 50";
         dots_size = 0.33;
         dots_spacing = 0.2;
         outline_thickness = 6;

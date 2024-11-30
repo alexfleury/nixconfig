@@ -13,10 +13,8 @@ in
 
   # Bootloader.
   boot = {
-    #extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
-    #initrd.kernelModules = [ "amdgpu" ];
-    #kernelModules = [ "i2c-dev" "ddcci_backlight" ];
-    kernelParams = [ "preempt=full" ]; # preempt=full fixed buzzing sound ion Hogwarts Legacy.
+    # The param "preempt=full" fixed buzzing sound in Hogwarts Legacy.
+    kernelParams = [ "preempt=full" "consoleblank=60" ];
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot = {
       enable = true;
@@ -70,7 +68,6 @@ in
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
-      QT_AUTO_SCREEN_SCALE_FACTOR = "auto";
     };
     loginShellInit = ''
       [[ "$(tty)" = "/dev/tty1" ]] && exec Hyprland &> /dev/null
@@ -104,7 +101,11 @@ in
   # Install system-wide fonts.
   fonts = {
     enableDefaultPackages = true;
-    packages = [ pkgs.nerdfonts ];
+    packages = with pkgs; [
+      nerd-fonts.fira-code
+      nerd-fonts.fira-mono
+      nerd-fonts.hack
+    ];
   };
 
   # Enable hyprland.
@@ -114,39 +115,23 @@ in
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
-  # Gaming-related options.
-  programs.gamemode = {
-    enable = true;
-    settings = {
-      general = {
-        softrealtime = "auto";
-      };
-
-      gpu = {
-        apply_gpu_optimisations = "accept-responsibility";
-        gpu_device = 1;
-        amd_performance_level = "high";
-      };
-
-      custom = {
-        start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
-        end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
-      };
-    };
-  };
-
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
-    extraCompatPackages = [
-      pkgs.proton-ge-bin
-    ];
   };
+  programs.gamescope.enable = true;
 
   # Remember ssh passphrase.
-  programs.ssh.startAgent = true;
+  programs.ssh = {
+    startAgent = true;
+    #enableAskPassword = true;
+    #askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
+  };
+  #environment.variables = {
+  #  SSH_ASKPASS_REQUIRE = "prefer";
+  #};
 
   # Services.
   services = {
@@ -155,6 +140,8 @@ in
     #printing.enable = true;
     udisks2.enable = true;
   };
+
+  #services.gnome.gnome-keyring.enable = true;
 
   # Security ann encryption.
   security = {

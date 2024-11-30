@@ -6,6 +6,7 @@ in
   imports = [
     ./user/cli/fastfetch.nix
     ./user/cli/git.nix
+    ./user/cli/ssh.nix
     ./user/cli/zsh.nix
     ./user/desktop/hyprland/hyprland.nix
     ./user/desktop/firefox.nix
