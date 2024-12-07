@@ -14,9 +14,9 @@ in
       };
 
       background = {
-        blur_passes = 3;
-        color = "rgb(${c.white})";
-        path = "~/nixosconfig/wallpapers/PXL_20231125_173902958.jpg";
+        #blur_passes = 3;
+        color = "rgba(0, 0, 0, 1.0)";
+        #path = "~/nixosconfig/wallpapers/PXL_20231125_173902958.jpg";
       };
 
       label = [
