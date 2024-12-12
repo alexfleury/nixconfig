@@ -4,6 +4,7 @@ let
 in
 {
   imports = [
+    ./user/cli/borgmatic.nix
     ./user/cli/fastfetch.nix
     ./user/cli/git.nix
     ./user/cli/ssh.nix
@@ -42,17 +43,18 @@ in
       hyprpolkitagent
       hyprshot
       hyprsunset
-      jdk
+      jdk # Java for GDStash.
       kitty
       libnotify
       libreoffice
       nautilus
       networkmanagerapplet
+      okular
+      #password-store
       pavucontrol
       rclone
       vlc
       yt-dlp
-      zathura
     ];
 
     home.file = {
@@ -108,7 +110,7 @@ in
       mime.enable = true;
       mimeApps.enable = true;
       mimeApps.defaultApplications = {
-        "application/pdf" = "firefox.desktop";
+        "application/pdf" = "okular.desktop";
         "image/*" = "geeqie.desktop";
         "video/*" = "vlc.desktop";
         "audio/*" = "vlc.desktop";
@@ -119,10 +121,18 @@ in
       userDirs.createDirectories = true;
     }; # End of xdg.
 
+    # Play/pause on headphones.
     services.mpris-proxy.enable = true;
+
+    programs.password-store = {
+      enable = true;
+      package = pkgs.pass;
+    };
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
+
+    programs.command-not-found.enable = true;
 
     home.stateVersion = "24.05"; # Don't change this unless you know.
   };

@@ -90,7 +90,10 @@ in
   environment.systemPackages = with pkgs; [
     btrfs-progs
     ddcutil
+    e2fsprogs
+    exfat
     git
+    gptfdisk
     jq
     openrgb-with-all-plugins
     psmisc
@@ -149,6 +152,12 @@ in
       polkit.enable = true;
       rtkit.enable = true;
   };
+
+  programs.gnupg.agent = {
+    enable = true;
+  };
+
+  hardware.keyboard.qmk.enable = true;
 
   # Nix-related options.
   nix = {
