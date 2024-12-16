@@ -52,17 +52,13 @@ in
       okular
       #password-store
       pavucontrol
+      qmk
       rclone
       vlc
       yt-dlp
+      (import scripts/bisync_proton.nix { inherit pkgs; } )
+      (import scripts/hyprsunset_widget.nix { inherit pkgs; } )
     ];
-
-    home.file = {
-      ".local/bin" = {
-        source = ./scripts;
-        recursive = true;
-      };
-    };
 
     home.sessionVariables = {
       EDITOR = "vim";

@@ -20,6 +20,7 @@ in
       enable = true;
       configurationLimit = 5;
       consoleMode = "auto";
+      memtest86.enable = true;
     };
   };
 
@@ -91,7 +92,6 @@ in
     btrfs-progs
     ddcutil
     e2fsprogs
-    exfat
     git
     gptfdisk
     jq
@@ -169,7 +169,7 @@ in
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 14d";
+      options = "--delete-older-than 7d";
       persistent = true;
     };
   };
