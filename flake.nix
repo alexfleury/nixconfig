@@ -27,19 +27,8 @@
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users."alex".imports = [ ./home.nix ];
             }
-            #{nixpkgs.overlays = [inputs.hyprpanel.overlay];}
           ];
         };
       };
-      # Home-manager as standalone.
-      #homeConfigurations = {
-      #  ${settings.username} = home-manager.lib.homeManagerConfiguration {
-      #    inherit pkgs;
-      #    modules = [ ./home.nix ];
-      #    extraSpecialArgs = {
-      #      inherit settings;
-      #    };
-      #  };
-      #};
     };
 }

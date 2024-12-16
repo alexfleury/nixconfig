@@ -36,7 +36,6 @@ in
 
     home.packages = with pkgs; [
       amdgpu_top
-      borgbackup
       discord
       geeqie
       hyprcursor
@@ -50,7 +49,6 @@ in
       nautilus
       networkmanagerapplet
       okular
-      #password-store
       pavucontrol
       qmk
       rclone
@@ -106,12 +104,12 @@ in
       mime.enable = true;
       mimeApps.enable = true;
       mimeApps.defaultApplications = {
-        "application/pdf" = "okular.desktop";
-        "image/*" = "geeqie.desktop";
-        "video/*" = "vlc.desktop";
-        "audio/*" = "vlc.desktop";
-        "inode/directory" = "org.gnome.Nautilus.desktop";
-        "text/plain" = "vscodium.desktop";
+        "application/pdf" = [ "okularApplication_pdf.desktop" ];
+        "image/*" = [ "geeqie.desktop" ];
+        "video/*" = [ "vlc.desktop" ];
+        "audio/*" = [ "vlc.desktop" ];
+        "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+        "text/plain" = [ "vscodium.desktop" ];
       };
       userDirs.enable = true;
       userDirs.createDirectories = true;
