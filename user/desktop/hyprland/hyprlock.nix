@@ -1,6 +1,7 @@
 { config, ... }:
 let
   c = config.palette;
+  wallpaperPath = ../../../wallpapers/trees_norded.png;
 in
 {
   programs.hyprlock = {
@@ -9,14 +10,14 @@ in
     settings = {
       general = {
         disable_loading_bar = true;
-        hide_cursor = true;
+        hide_cursor = false;
         ignore_empty_input = true;
       };
 
       background = {
-        #blur_passes = 3;
+        blur_passes = 1;
         color = "rgba(0, 0, 0, 1.0)";
-        #path = "~/nixosconfig/wallpapers/PXL_20231125_173902958.jpg";
+        path = "${wallpaperPath}";
       };
 
       label = [

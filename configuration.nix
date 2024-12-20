@@ -80,7 +80,7 @@ in
   users.users.${username} = {
     isNormalUser = true;
     description = name;
-    extraGroups = [ "wheel" "networkmanager" "gamemode" ]; # "i2c"
+    extraGroups = [ "wheel" "networkmanager" "gamemode" ];
     shell = pkgs.zsh;
   };
 

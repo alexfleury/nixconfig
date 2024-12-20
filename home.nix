@@ -17,12 +17,9 @@ in
   ];
 
   options = {
-    palette = lib.mkOption {
-      type = lib.types.attrsOf lib.types.str;
-    };
-    font = lib.mkOption {
-      type = lib.types.str;
-    };
+    palette = lib.mkOption { type = lib.types.attrsOf lib.types.str; };
+    font = lib.mkOption { type = lib.types.str; };
+    #wallpaperPath = lib.mkOption { type = lib.types.str; };
   };
 
   config = {
@@ -37,7 +34,8 @@ in
     home.packages = with pkgs; [
       amdgpu_top
       discord
-      geeqie
+      feh
+      geany
       hyprcursor
       hyprpolkitagent
       hyprshot
@@ -105,11 +103,11 @@ in
       mimeApps.enable = true;
       mimeApps.defaultApplications = {
         "application/pdf" = [ "okularApplication_pdf.desktop" ];
-        "image/*" = [ "geeqie.desktop" ];
+        "image/*" = [ "feh.desktop" ];
         "video/*" = [ "vlc.desktop" ];
         "audio/*" = [ "vlc.desktop" ];
         "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
-        "text/plain" = [ "vscodium.desktop" ];
+        "text/plain" = [ "geany.desktop" ];
       };
       userDirs.enable = true;
       userDirs.createDirectories = true;

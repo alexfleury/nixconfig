@@ -1,7 +1,6 @@
 { ... }:
 let
-  #wallpaperPath = ../../../wallpapers/PXL_20231125_173902958.jpg;
-  wallpaperPath = ../../../wallpapers/black.jpg;
+  wallpaperPath = ../../../wallpapers/trees_norded.png;
 in
 {
   services.hyprpaper = {
