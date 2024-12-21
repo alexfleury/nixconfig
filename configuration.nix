@@ -1,103 +1,178 @@
-{ config, pkgs, settings, ... }:
-
+{ config, pkgs, ... }:
+let
+  hostname = "quantumflower";
+  locale = "en_CA.UTF-8";
+  name = "Alexandre";
+  timezone = "America/Toronto";
+  username = "alex";
+in
 {
   imports =[
     ./hardware-configuration.nix
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    # The param "preempt=full" fixed buzzing sound in Hogwarts Legacy.
+    kernelParams = [ "preempt=full" "consoleblank=60" ];
+    loader.efi.canTouchEfiVariables = true;
+    loader.systemd-boot = {
+      enable = true;
+      configurationLimit = 5;
+      consoleMode = "auto";
+      memtest86.enable = true;
+    };
+  };
 
-  networking.hostName = settings.hostname;
-  networking.networkmanager.enable = true;
+  # Networking.
+  networking = {
+    hostName = hostname;
+    networkmanager.enable = true;
+    networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
+  };
 
-  # Set your time zone.
-  time.timeZone = settings.timezone;
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = settings.locale;
-
-  # Configure console keymap
+  # Set locale-related settings.
   console.keyMap = "ca";
+  i18n.defaultLocale = locale;
+  time.timeZone = timezone;
 
-  # Enable CUPS to print documents.
-  #services.printing.enable = true;
+  # Setting monitor backlight.
+  hardware.i2c.enable = true;
+
+  # GPU related settings.
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   # Bluetooth.
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;
+    powerOnBoot = false;
     settings.General.Experimental = true;
   };
   services.blueman.enable = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-    pulse.enable = true;
+    wireplumber.enable = true;
   };
 
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
+  # Default shell is set to ZSH.
   programs.zsh.enable = true;
   environment = {
     shells = [ pkgs.zsh ];
-    sessionVariables.NIXOS_OZONE_WL = "1";
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      MOZ_ENABLE_WAYLAND = "1";
+    };
+    # Execute Hyprland after login in tty1,
     loginShellInit = ''
       [[ "$(tty)" = "/dev/tty1" ]] && exec Hyprland &> /dev/null
     '';
+    localBinInPath = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${settings.username} = {
+  # Define a user account.
+  users.users.${username} = {
     isNormalUser = true;
-    description = settings.name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    description = name;
+    extraGroups = [ "wheel" "networkmanager" ];
     shell = pkgs.zsh;
   };
 
   # Allow unfree packages.
   nixpkgs.config.allowUnfree = true;
 
+  # System-wide packages.
   environment.systemPackages = with pkgs; [
-    brightnessctl
+    btrfs-progs
+    ddcutil
+    e2fsprogs
     git
+    gptfdisk
+    jq
+    openrgb-with-all-plugins
     psmisc
     vim
     wget
   ];
 
+  # Install system-wide fonts.
   fonts = {
     enableDefaultPackages = true;
-    packages = [ pkgs.nerdfonts ];
+    packages = with pkgs; [
+      nerd-fonts.fira-code
+      nerd-fonts.fira-mono
+      nerd-fonts.hack
+    ];
   };
 
+  # Enable hyprland.
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
-  programs.steam.enable = true;
+  # Enable steam and gamescope.
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
+  programs.gamescope.enable = true;
 
-  services.udisks2.enable = true;
-
-  security = {
-      polkit.enable = true;
-      pam.services.hyprlock = {};
+  # Remember ssh passphrase.
+  programs.ssh = {
+    startAgent = true;
   };
 
-  services.gvfs.enable = true;
+  # Services.
+  services = {
+    gvfs.enable = true;
+    hardware.openrgb.enable = true;
+    printing.enable = false;
+    udisks2.enable = true;
+  };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # TODO: keyring unlocked at login?
+  #services.gnome.gnome-keyring.enable = true;
+
+  # Security ann encryption.
+  security = {
+      pam.services.hyprlock = {};
+      polkit.enable = true;
+      rtkit.enable = true;
+  };
+
+  # Generate encrupted password.
+  programs.gnupg.agent = {
+    enable = true;
+  };
+
+  # QMK firmware service for keyboards.
+  hardware.keyboard.qmk.enable = true;
+
+  # Nix-related options.
+  nix = {
+    settings.experimental-features = [ "nix-command" "flakes" ];
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+      persistent = true;
+    };
+  };
 
   system.stateVersion = "24.05"; # Don't change this unless you know.
 }

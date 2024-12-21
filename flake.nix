@@ -11,36 +11,24 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, ...}:
     let
-      settings = {
-        system = "x86_64-linux";
-        hostname = "quantumflower";
-        timezone = "America/Toronto";
-        locale = "en_CA.UTF-8";
-        username = "alex";
-        name = "Alexandre";
-      };
       lib = nixpkgs.lib;
-      pkgs = nixpkgs.legacyPackages.${settings.system};
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
     in {
       nixosConfigurations = {
-        ${settings.hostname} = lib.nixosSystem {
-          system = settings.system;
+        "quantumflower" = lib.nixosSystem {
+          system = system;
           modules = [
             ./configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.backupFileExtension = "backup";
+              home-manager.useGlobalPkgs = true;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.users."alex".imports = [ ./home.nix ];
+            }
           ];
-          specialArgs = {
-            inherit settings;
-          };
         };
       };
-      homeConfigurations = {
-        ${settings.username} = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ ./home.nix ];
-          extraSpecialArgs = {
-            inherit settings;
-          };
-        };
-      };
-  };
+    };
 }

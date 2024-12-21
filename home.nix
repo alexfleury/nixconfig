@@ -1,36 +1,61 @@
-{ config, pkgs, lib, settings, ... }:
+{ config, pkgs, lib, ... }:
+let
+  username = "alex";
+in
 {
   imports = [
-    ./user/cli.nix
-    ./user/hyprland.nix
-    ./user/kitty.nix
-    ./user/vscodium.nix
+    ./user/cli/borgmatic.nix
+    ./user/cli/fastfetch.nix
+    ./user/cli/git.nix
+    ./user/cli/ssh.nix
+    ./user/cli/zsh.nix
+    ./user/desktop/hyprland/hyprland.nix
+    ./user/desktop/firefox.nix
+    ./user/desktop/kitty.nix
+    ./user/desktop/vscodium.nix
+    ./user/desktop/udiskie.nix
   ];
 
   options = {
-    palette = lib.mkOption {
-      type = lib.types.attrsOf lib.types.str;
-    };
+    font = lib.mkOption { type = lib.types.str; };
+    palette = lib.mkOption { type = lib.types.attrsOf lib.types.str; };
+    wallpaperPath = lib.mkOption { type = lib.types.path; };
   };
 
   config = {
-    # Home Manager needs a bit of information about you and the paths it should
-    # manage.
-    home.username = settings.username;
-    home.homeDirectory = "/home/${settings.username}";
+    # Custom options.
+    font = "Fira Code Nerd Font";
+    palette = (import ./user/desktop/nord.nix);
+    wallpaperPath = ./wallpapers/trees_norded.png;
+
+    # User-related config.
+    home.username = username;
+    home.homeDirectory = "/home/${username}";
 
     home.packages = with pkgs; [
+      amdgpu_top
+      discord
+      feh
+      geany
       hyprcursor
+      hyprpolkitagent
       hyprshot
+      hyprsunset
+      jdk # Java for GDStash.
       kitty
       libnotify
       libreoffice
       nautilus
-      neovim
+      networkmanagerapplet
+      okular
+      pavucontrol
+      qmk
+      rclone
+      vlc
+      yt-dlp
+      (import scripts/bisync_proton.nix { inherit pkgs; } )
+      (import scripts/hyprsunset_widget.nix { inherit pkgs; } )
     ];
-
-    #home.file = {
-    #};
 
     home.sessionVariables = {
       EDITOR = "vim";
@@ -38,12 +63,11 @@
 
     home.shellAliases = {
       ".." = "cd ..";
-      home-manager = "home-manager -b hm.bak";
       sudo = "sudo ";
+      neofetch = "fastfetch";
     };
 
-    programs.firefox.enable = true;
-
+    # Theming and color.
     gtk = {
       enable = true;
       theme = {
@@ -74,21 +98,29 @@
       };
     };
 
-    palette = (import ./nord.nix);
-
-    services.gammastep = {
+    xdg = {
       enable = true;
-      latitude = "45.5019";
-      longitude = "-73.5674";
-      tray = false;
-      temperature.day = 5500;
-      temperature.night = 3700;
+      mime.enable = true;
+      mimeApps.enable = true;
+      mimeApps.defaultApplications = {
+        "application/pdf" = [ "okularApplication_pdf.desktop" ];
+        "image/*" = [ "feh.desktop" ];
+        "video/*" = [ "vlc.desktop" ];
+        "audio/*" = [ "vlc.desktop" ];
+        "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+        "text/plain" = [ "geany.desktop" ];
+      };
+      userDirs.enable = true;
+      userDirs.createDirectories = true;
     };
 
-    programs.git = {
+    # Play/pause on headphones.
+    services.mpris-proxy.enable = true;
+
+    # Password manager in Linux.
+    programs.password-store = {
       enable = true;
-      userName = "alexfleury";
-      userEmail = "28400108+alexfleury@users.noreply.github.com";
+      package = pkgs.pass;
     };
 
     # Let Home Manager install and manage itself.
