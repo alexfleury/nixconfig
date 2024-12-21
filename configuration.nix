@@ -70,6 +70,7 @@ in
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
     };
+    # Execute Hyprland after login in tty1,
     loginShellInit = ''
       [[ "$(tty)" = "/dev/tty1" ]] && exec Hyprland &> /dev/null
     '';
@@ -80,7 +81,7 @@ in
   users.users.${username} = {
     isNormalUser = true;
     description = name;
-    extraGroups = [ "wheel" "networkmanager" "gamemode" ];
+    extraGroups = [ "wheel" "networkmanager" ];
     shell = pkgs.zsh;
   };
 
@@ -118,6 +119,7 @@ in
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
+  # Enable steam and gamescope.
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
@@ -129,21 +131,17 @@ in
   # Remember ssh passphrase.
   programs.ssh = {
     startAgent = true;
-    #enableAskPassword = true;
-    #askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
   };
-  #environment.variables = {
-  #  SSH_ASKPASS_REQUIRE = "prefer";
-  #};
 
   # Services.
   services = {
     gvfs.enable = true;
     hardware.openrgb.enable = true;
-    #printing.enable = true;
+    printing.enable = false;
     udisks2.enable = true;
   };
 
+  # TODO: keyring unlocked at login?
   #services.gnome.gnome-keyring.enable = true;
 
   # Security ann encryption.
@@ -153,10 +151,12 @@ in
       rtkit.enable = true;
   };
 
+  # Generate encrupted password.
   programs.gnupg.agent = {
     enable = true;
   };
 
+  # QMK firmware service for keyboards.
   hardware.keyboard.qmk.enable = true;
 
   # Nix-related options.

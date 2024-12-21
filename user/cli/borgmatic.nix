@@ -46,8 +46,9 @@
           archive_name_format = "{hostname}_{now}";
         };
 
+        # TODO: add encryption.
         #storage.encryptionPasscommand = "${pkgs.password-store}/bin/pass borg-repo";
-      }; # End of backups.data.
+      };
 
       grimdawn = {
 
@@ -80,7 +81,7 @@
         output.extraConfig = {
           archive_name_format = "gdsave_{now}";
         };
-      }; # End of backups.grimdawn.
+      };
 
     };
   };

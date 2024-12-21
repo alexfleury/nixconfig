@@ -1,7 +1,5 @@
 { config, ... }:
-let
-  c = config.palette;
-in
+
 {
   programs.waybar = {
     enable = true;
@@ -48,11 +46,11 @@ in
             weeks-pos = "right";
             on-scroll = 1;
             format = {
-              months = "<span color='#${c.accent0}'><b>{}</b></span>";
-              days = "<span color='#${c.white}'><b>{}</b></span>";
-              weeks = "<span color='#${c.accent1}'><b>W{}</b></span>";
-              weekdays = "<span color='#${c.accent1}'><b>{}</b></span>";
-              today = "<span color='#${c.accent3}'><b><u>{}</u></b></span>";
+              months = "<span color='#${config.palette.accent0}'><b>{}</b></span>";
+              days = "<span color='#${config.palette.white}'><b>{}</b></span>";
+              weeks = "<span color='#${config.palette.accent1}'><b>W{}</b></span>";
+              weekdays = "<span color='#${config.palette.accent1}'><b>{}</b></span>";
+              today = "<span color='#${config.palette.accent3}'><b><u>{}</u></b></span>";
             };
           };
         };
@@ -231,8 +229,8 @@ in
       }
 
       tooltip {
-        background: #${c.background1};
-        border: 1px solid #${c.foreground1};
+        background: #${config.palette.background1};
+        border: 1px solid #${config.palette.foreground1};
       }
 
       #bluetooth,
@@ -253,9 +251,9 @@ in
       #tray,
       #wireplumber
       {
-        background-color: #${c.background1};
+        background-color: #${config.palette.background1};
         border-radius: 5px;
-        color: #${c.foreground0};
+        color: #${config.palette.foreground0};
         font-weight: bold;
         margin: 5px;
         padding-left: 10px;
@@ -269,20 +267,20 @@ in
       }
 
       #custom-hyprsunset {
-        color: #${c.red};
+        color: #${config.palette.red};
         padding-right: 16px;
       }
 
       #custom-hyprsunset.enabled {
-        color: #${c.blue};
+        color: #${config.palette.blue};
       }
 
       #custom-hyprsunset.disabled {
-        color: #${c.yellow};
+        color: #${config.palette.yellow};
       }
 
       #custom-power {
-        color: #${c.red};
+        color: #${config.palette.red};
         padding-left: 16px;
       }
 
@@ -291,29 +289,29 @@ in
       }
 
       #temperature.cpu.critical {
-        background-color: #${c.foreground0};
-        color: #${c.background1};
+        background-color: #${config.palette.foreground0};
+        color: #${config.palette.background1};
       }
 
       #temperature.gpu.critical {
-        background-color: #${c.foreground0};
-        color: #${c.background1};
+        background-color: #${config.palette.foreground0};
+        color: #${config.palette.background1};
       }
 
       #tray > .passive {
-        color: #${c.blue};
+        color: #${config.palette.blue};
       }
 
       #tray > .passive {
-        color: #${c.red};
+        color: #${config.palette.red};
       }
 
       #tray menu * {
-          color:  #${c.foreground0};
+          color:  #${config.palette.foreground0};
       }
 
       #workspaces {
-        background: #${c.background1};
+        background: #${config.palette.background1};
         border-radius: 5px;
         font-weight: normal;
         margin-top: 5px;
@@ -324,18 +322,18 @@ in
 
       #workspaces button {
         border-radius: 5px;
-        color: #${c.foreground0};
+        color: #${config.palette.foreground0};
         padding-left: 12px;
         padding-right: 12px;
       }
 
       #workspaces button.active {
-        background-color: #${c.foreground0};
-        color: #${c.background1};
+        background-color: #${config.palette.foreground0};
+        color: #${config.palette.background1};
       }
 
       #workspaces button.urgent {
-        color: #${c.red};
+        color: #${config.palette.red};
       }
     '';
   };

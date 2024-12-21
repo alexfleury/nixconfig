@@ -1,7 +1,5 @@
 { config, ... }:
-let
-  c = config.palette;
-in
+
 {
   services.swaync = {
     enable =  true;
@@ -48,7 +46,7 @@ in
     };
     style = ''
       *{
-        color: #${c.foreground0};
+        color: #${config.palette.foreground0};
         font-family: ${config.font};
       }
 
@@ -66,13 +64,13 @@ in
 
       .body-image {
         margin-top: 6px;
-        background-color: #${c.white};
+        background-color: #${config.palette.white};
         border-radius: 12px;
       }
 
       .close-button {
-        background: alpha(#${c.foreground0}, 0.1);
-        color: #${c.white};
+        background: alpha(#${config.palette.foreground0}, 0.1);
+        color: #${config.palette.white};
         text-shadow: none;
         padding: 0;
         border-radius: 100%;
@@ -86,13 +84,13 @@ in
 
       .close-button:hover {
         box-shadow: none;
-        background: alpha(#${c.foreground0}, 0.2);
+        background: alpha(#${config.palette.foreground0}, 0.2);
         transition: all 0.15s ease-in-out;
         border: none;
       }
 
       .control-center {
-        background-color: alpha(#${c.background3}, 0.8);
+        background-color: alpha(#${config.palette.background3}, 0.8);
       }
 
       .control-center-list {
@@ -100,7 +98,7 @@ in
       }
 
       .critical {
-        background: #${c.red};
+        background: #${config.palette.red};
         padding: 2px;
         border-radius: 12px;
       }
@@ -117,7 +115,7 @@ in
 
       .notification-row:focus,
       .notification-row:hover {
-        background: #${c.accent0};
+        background: #${config.palette.accent0};
       }
 
       .notification {
@@ -139,15 +137,15 @@ in
         padding: 4px;
         margin: 0;
         box-shadow: none;
-        background: #${c.background0};
-        border: 1px solid alpha(#${c.foreground0}, 0.15);
+        background: #${config.palette.background0};
+        border: 1px solid alpha(#${config.palette.foreground0}, 0.15);
         color: white;
       }
 
       .notification-default-action:hover,
       .notification-action:hover {
         -gtk-icon-effect: none;
-        background: #${c.accent3};
+        background: #${config.palette.accent3};
       }
 
       .notification-default-action {
@@ -171,7 +169,7 @@ in
 
       .notification-action:last-child {
         border-bottom-right-radius: 10px;
-        border-right: 1px solid alpha(#${c.foreground0}, 0.15);
+        border-right: 1px solid alpha(#${config.palette.foreground0}, 0.15);
       }
 
       .summary {
@@ -205,14 +203,14 @@ in
         font-size: initial;
         color: white;
         text-shadow: none;
-        background: #${c.background0};
-        border: 1px solid alpha(#${c.foreground0}, 0.15);
+        background: #${config.palette.background0};
+        border: 1px solid alpha(#${config.palette.foreground0}, 0.15);
         box-shadow: none;
         border-radius: 12px;
       }
 
       .widget-title>button:hover {
-        background: #${c.accent3};
+        background: #${config.palette.accent3};
       }
 
       .widget-dnd {
@@ -224,17 +222,17 @@ in
       .widget-dnd>switch {
         font-size: initial;
         border-radius: 12px;
-        background: #${c.background0};
-        border: 1px solid alpha(#${c.foreground0}, 0.15);
+        background: #${config.palette.background0};
+        border: 1px solid alpha(#${config.palette.foreground0}, 0.15);
         box-shadow: none;
       }
 
       .widget-dnd>switch:checked {
-        background: #${c.accent3};
+        background: #${config.palette.accent3};
       }
 
       .widget-dnd>switch slider {
-        background: #${c.accent3};
+        background: #${config.palette.accent3};
         border-radius: 12px;
       }
 

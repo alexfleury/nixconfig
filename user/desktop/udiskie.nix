@@ -18,5 +18,5 @@
         }
       ];
     };
-  }; # End of services.udiskie
+  };
 }

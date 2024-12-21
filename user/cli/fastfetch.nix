@@ -47,5 +47,5 @@
         }
       ];
     };
-  }; # End of programs.fastfetch.
+  };
 }

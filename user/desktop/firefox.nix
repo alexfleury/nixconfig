@@ -24,5 +24,5 @@
         };
       };
     };
-  }; # End of programs.firefox.
+  };
 }

@@ -10,7 +10,6 @@
         ignore_dbus_inhibit = false;
         lock_cmd = "pidof hyprlock || hyprlock";
       };
-
       listener = [
         {
           timeout = 300;
@@ -27,5 +26,5 @@
         }
       ];
     };
-  }; # End of services.hypridle
+  };
 }

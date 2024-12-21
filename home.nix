@@ -17,17 +17,18 @@ in
   ];
 
   options = {
-    palette = lib.mkOption { type = lib.types.attrsOf lib.types.str; };
     font = lib.mkOption { type = lib.types.str; };
-    #wallpaperPath = lib.mkOption { type = lib.types.str; };
+    palette = lib.mkOption { type = lib.types.attrsOf lib.types.str; };
+    wallpaperPath = lib.mkOption { type = lib.types.path; };
   };
 
   config = {
-
-    # User options.
+    # Custom options.
     font = "Fira Code Nerd Font";
     palette = (import ./user/desktop/nord.nix);
+    wallpaperPath = ./wallpapers/trees_norded.png;
 
+    # User-related config.
     home.username = username;
     home.homeDirectory = "/home/${username}";
 
@@ -82,7 +83,7 @@ in
         package = pkgs.nordzy-cursor-theme;
       };
       gtk2.configLocation = "${config.home.homeDirectory}/.gtkrc-2.0";
-    }; # End of gtk.
+    };
 
     dconf = {
       settings = {
@@ -95,7 +96,7 @@ in
           button-layout = "";
         };
       };
-    }; # End of dconf.
+    };
 
     xdg = {
       enable = true;
@@ -111,11 +112,12 @@ in
       };
       userDirs.enable = true;
       userDirs.createDirectories = true;
-    }; # End of xdg.
+    };
 
     # Play/pause on headphones.
     services.mpris-proxy.enable = true;
 
+    # Password manager in Linux.
     programs.password-store = {
       enable = true;
       package = pkgs.pass;
@@ -123,8 +125,6 @@ in
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
-
-    programs.command-not-found.enable = true;
 
     home.stateVersion = "24.05"; # Don't change this unless you know.
   };

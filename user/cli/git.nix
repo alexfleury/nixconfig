@@ -34,5 +34,5 @@
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
     };
-  }; # End of programs.git.
+  };
 }

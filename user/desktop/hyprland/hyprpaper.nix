@@ -1,13 +1,14 @@
-{ ... }:
-let
-  wallpaperPath = ../../../wallpapers/trees_norded.png;
-in
+{ config, ... }:
+
 {
   services.hyprpaper = {
+
     enable = true;
+
     settings = {
-      preload = [ "${wallpaperPath}" ];
-      wallpaper = [ " ,${wallpaperPath}" ];
+      preload = [ "${config.wallpaperPath}" ];
+      wallpaper = [ " ,${config.wallpaperPath}" ];
     };
-  }; # End of services.hyprpaper
+
+  };
 }
