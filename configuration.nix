@@ -126,7 +126,11 @@ in
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
   };
-  programs.gamescope.enable = true;
+  programs.gamescope = {
+    enable = true;
+    # https://github.com/NixOS/nixpkgs/issues/351516#issuecomment-2525575711
+    capSysNice = false;
+  };
 
   # Remember ssh passphrase.
   programs.ssh = {

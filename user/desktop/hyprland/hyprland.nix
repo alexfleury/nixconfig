@@ -138,6 +138,7 @@
 
       misc = {
         disable_hyprland_logo = true;
+        disable_hyprland_qtutils_check = true;
         force_default_wallpaper = -1;
         mouse_move_enables_dpms = true;
         key_press_enables_dpms = false;
