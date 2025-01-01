@@ -33,7 +33,6 @@ in
     home.homeDirectory = "/home/${username}";
 
     home.packages = with pkgs; [
-      amdgpu_top
       discord
       feh
       geany
@@ -45,6 +44,7 @@ in
       kitty
       libnotify
       libreoffice
+      makemkv
       nautilus
       networkmanagerapplet
       okular

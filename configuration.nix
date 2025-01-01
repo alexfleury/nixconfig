@@ -15,6 +15,7 @@ in
   boot = {
     # The param "preempt=full" fixed buzzing sound in Hogwarts Legacy.
     kernelParams = [ "preempt=full" "consoleblank=60" ];
+    kernelModules = [ "sg" ];
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot = {
       enable = true;
@@ -70,10 +71,11 @@ in
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
     };
-    # Execute Hyprland after login in tty1,
     loginShellInit = ''
       [[ "$(tty)" = "/dev/tty1" ]] && exec Hyprland &> /dev/null
     '';
+    # Use gamescope in a new session.
+    #[[ "$(tty)" = "/dev/tty2" ]] && gamescope -e --hdr-enabled -- steam -tenfoot &> /dev/null
     localBinInPath = true;
   };
 
@@ -90,12 +92,14 @@ in
 
   # System-wide packages.
   environment.systemPackages = with pkgs; [
+    amdgpu_top
     btrfs-progs
     ddcutil
     e2fsprogs
     git
     gptfdisk
     jq
+    lact
     openrgb-with-all-plugins
     psmisc
     vim
@@ -126,7 +130,11 @@ in
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
   };
-  programs.gamescope.enable = true;
+  programs.gamescope = {
+    enable = true;
+    # https://github.com/NixOS/nixpkgs/issues/351516#issuecomment-2525575711
+    capSysNice = false;
+  };
 
   # Remember ssh passphrase.
   programs.ssh = {

@@ -138,6 +138,7 @@
 
       misc = {
         disable_hyprland_logo = true;
+        disable_hyprland_qtutils_check = true;
         force_default_wallpaper = -1;
         mouse_move_enables_dpms = true;
         key_press_enables_dpms = false;
@@ -152,5 +153,8 @@
       ];
 
     };
+
+    # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/#programs-dont-work-in-systemd-services-but-do-on-the-terminal
+    systemd.variables = ["--all"];
   };
 }

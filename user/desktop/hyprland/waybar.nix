@@ -66,8 +66,6 @@
           format-icons = [ "󱩐" "󱩒" "󰛨" ];
           return-type = "json";
           exec = "ddcutil getvcp 10 | grep -oP \"current.*?=\\s*\\K[0-9]+\" | { read x; echo '{\"percentage\":'\${x}'}'; }";
-          #on-scroll-up = "ddcutil --noverify --sleep-multiplier .03 setvcp 10 + 10";
-          #on-scroll-down = "ddcutil --noverify --sleep-multiplier .03 setvcp 10 - 10";
           on-click = "ddcutil setvcp 10 1";
           on-click-middle = "ddcutil setvcp 10 30";
           on-click-right = "ddcutil setvcp 10 70";
@@ -162,25 +160,25 @@
           on-click-right = "nm-connection-editor";
         };
 
-        "temperature#cpu" = {
-          hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:18.3/hwmon";
-          input-filename = "temp1_input";
-          critical-threshold = 80;
-          interval = 2;
-          format = "{icon} {temperatureC}°C";
-          format-icons = ["" "" "" "" ""];
-          tooltip = false;
-        };
+        #"temperature#cpu" = {
+        #  hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:18.3/hwmon";
+        #  input-filename = "temp1_input";
+        #  critical-threshold = 80;
+        #  interval = 2;
+        #  format = "{icon} {temperatureC}°C";
+        #  format-icons = ["" "" "" "" ""];
+        #  tooltip = false;
+        #};
 
-        "temperature#gpu" = {
-          hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:03.1/0000:0a:00.0/0000:0b:00.0/0000:0c:00.0/hwmon";
-          input-filename = "temp2_input";
-          critical-threshold = 80;
-          interval = 2;
-          format = "{icon} {temperatureC}°C";
-          format-icons = ["" "" "" "" ""];
-          tooltip = false;
-        };
+        #"temperature#gpu" = {
+        #  hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:03.1/0000:0a:00.0/0000:0b:00.0/0000:0c:00.0/hwmon";
+        #  input-filename = "temp2_input";
+        #  critical-threshold = 80;
+        #  interval = 2;
+        #  format = "{icon} {temperatureC}°C";
+        #  format-icons = ["" "" "" "" ""];
+        #  tooltip = false;
+        #};
 
         tray = {
           icon-size = 12;

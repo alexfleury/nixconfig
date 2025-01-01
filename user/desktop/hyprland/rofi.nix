@@ -17,7 +17,7 @@ in
       display-combi = " ";
       show-icons = true;
     };
-  }; # End of programs.rofi
+  };
 
   home.file = {
     "${configPath}/nord.rasi".text = ''
