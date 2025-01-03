@@ -8,6 +8,7 @@
       arcticicestudio.nord-visual-studio-code
       arrterian.nix-env-selector
       bbenoist.nix
+      ms-python.python
     ];
     userSettings = {
       "editor.fontFamily" = "${config.font},Hack Nerd Font";
