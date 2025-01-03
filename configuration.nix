@@ -96,6 +96,8 @@ in
     btrfs-progs
     ddcutil
     e2fsprogs
+    exfat
+    exfatprogs
     git
     gptfdisk
     jq
