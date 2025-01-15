@@ -146,6 +146,16 @@
 
       gestures.workspace_swipe = false;
 
+      workspace = (
+        builtins.concatLists (
+          builtins.genList (i:
+          let ws = i+1;
+          in [
+            "${toString ws}, persistent:true"
+          ])
+        6)
+      );
+
       windowrulev2 = [
         #"idleinhibit fullscreen, class:^(*)$"
         #"idleinhibit fullscreen, title:^(*)$"
