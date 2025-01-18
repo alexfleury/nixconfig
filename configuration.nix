@@ -102,6 +102,7 @@ in
     gptfdisk
     jq
     lact
+    mangohud
     openrgb-with-all-plugins
     psmisc
     vim
