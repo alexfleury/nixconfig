@@ -14,7 +14,7 @@
     enable = true;
     settings = {
       # Monitor settings.
-      monitor = "DP-1,3840x2160@239.99Hz,0x0,1.5";
+      monitor = "DP-1,3840x2160@239.99Hz,0x0,1.5,bitdepth,10";
       xwayland.force_zero_scaling = true;
 
       # Common applications.
