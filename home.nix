@@ -54,6 +54,7 @@ in
       vlc
       yt-dlp
       (import scripts/bisync_proton.nix { inherit pkgs; } )
+      (import scripts/copy_clipboard.nix { inherit pkgs; } )
       (import scripts/hyprsunset_widget.nix { inherit pkgs; } )
     ];
 
