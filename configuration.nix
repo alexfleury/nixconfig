@@ -173,14 +173,11 @@ in
   # Nix-related options.
   nix = {
     settings.experimental-features = [ "nix-command" "flakes" ];
-    optimise = {
-      automatic = true;
-      dates = [ "weekly" ];
-    };
+    settings.auto-optimise-store = true;
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 1w";
       persistent = true;
     };
   };
