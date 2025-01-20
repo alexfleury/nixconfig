@@ -86,7 +86,6 @@
           return-type = "json";
           exec = "hyprsunset_widget";
           on-click = "killall hyprsunset; hyprsunset -t 3000";
-          on-click-middle = "killall hyprsunset; hyprsunset -t 5000";
           on-click-right = "killall hyprsunset";
           interval = 5;
           tooltip = false;
