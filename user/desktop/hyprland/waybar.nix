@@ -7,7 +7,7 @@
       mainBar = {
         position = "top";
         layer = "top";
-        height = 42;
+        height = 45;
         modules-left = ["group/group-power" "idle_inhibitor" "hyprland/workspaces"];
         modules-center = ["clock"];
         modules-right = [
@@ -56,7 +56,7 @@
         };
 
         cpu = {
-          format = "  {usage}%";
+          format = "  {avg_frequency} GHz";
           interval = 2;
           tooltip = false;
         };
@@ -74,8 +74,8 @@
         };
 
         "custom/gpu" = {
-          exec = "amdgpu_top -d --json | jq --unbuffered --compact-output '.[0]'.gpu_activity.GFX.value";
-          format = "  {}%";
+          exec = "amdgpu_top -d --json | jq --unbuffered --compact-output '.[0]'.gpu_metrics.current_gfxclk";
+          format = "  {} MHz";
           interval = 2;
           return-type = "";
           tooltip = false;
@@ -102,6 +102,12 @@
           format = " ";
           on-click = "swaync-client -t -sw";
           tooltip = false;
+        };
+
+        "custom/hibernate" = {
+          format = "󰋣";
+          tooltip = false;
+          on-click = "systemctl hibernate";
         };
 
         "custom/power" = {
@@ -147,8 +153,8 @@
 
         network = {
           interval = 2;
-          format-ethernet = "{icon} Wired 󰓅 {bandwidthTotalBits}";
-          format-wifi = "{icon} {essid} 󰓅 {bandwidthTotalBits}";
+          format-ethernet = "{icon} Wired";
+          format-wifi = "{icon} {essid}";
           format-disconnected = "";
           format-icons = {
             ethernet = " ";
@@ -180,10 +186,10 @@
         #  tooltip = false;
         #};
 
-        tray = {
-          icon-size = 12;
-          spacing = 10;
-        };
+        #tray = {
+        #  icon-size = 12;
+        #  spacing = 10;
+        #};
 
         wireplumber = {
           format = "{icon} {volume}%";
@@ -205,6 +211,7 @@
           };
           modules = [
               "custom/power"
+              "custom/hibernate"
               "custom/lock"
               "custom/quit"
               "custom/reboot"
@@ -237,6 +244,7 @@
       #custom-brightness,
       #custom-lock,
       #custom-gpu,
+      #custom-hibernate,
       #custom-hyprsunset,
       #custom-notifications,
       #custom-power,
@@ -300,10 +308,6 @@
         color: #${config.palette.blue};
       }
 
-      #tray > .passive {
-        color: #${config.palette.red};
-      }
-
       #tray menu * {
           color:  #${config.palette.foreground0};
       }
@@ -332,6 +336,17 @@
 
       #workspaces button.urgent {
         color: #${config.palette.red};
+      }
+
+      #workspaces button.empty {
+        color: #${config.palette.background3};
+      }
+
+      #workspaces button:hover {
+        box-shadow: none;
+        text-shadow: none;
+        transition: none;
+        background-color: #${config.palette.accent3};
       }
     '';
   };
