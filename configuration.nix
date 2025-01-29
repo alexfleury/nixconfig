@@ -100,10 +100,10 @@ in
     exfatprogs
     git
     gptfdisk
-    jq
-    lact
-    mangohud
-    openrgb-with-all-plugins
+    jq # Json formatter.
+    lact # Linux AMDGPU Controller
+    mangohud # Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more
+    openrgb-with-all-plugins # RGB lighthing control.
     psmisc
     vim
     wget

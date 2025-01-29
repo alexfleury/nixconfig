@@ -4,6 +4,7 @@ let
 in
 {
   imports = [
+    ./scripts
     ./user/cli/borgmatic.nix
     ./user/cli/fastfetch.nix
     ./user/cli/git.nix
@@ -26,7 +27,7 @@ in
     # Custom options.
     font = "Fira Code Nerd Font";
     palette = (import ./user/desktop/nord.nix);
-    wallpaperPath = ./wallpapers/trees_norded.png;
+    wallpaperPath = ./wallpapers/trees.jpg;
 
     # User-related config.
     home.username = username;
@@ -36,13 +37,8 @@ in
       discord
       feh
       geany
-      hyprcursor
-      hyprpolkitagent
-      hyprshot
-      hyprsunset
       jdk # Java for GDStash.
       kitty
-      libnotify
       libreoffice
       makemkv
       nautilus
@@ -50,12 +46,8 @@ in
       okular
       pavucontrol
       qmk
-      rclone
       vlc
       yt-dlp
-      (import scripts/bisync_proton.nix { inherit pkgs; } )
-      (import scripts/copy_clipboard.nix { inherit pkgs; } )
-      (import scripts/hyprsunset_widget.nix { inherit pkgs; } )
     ];
 
     home.sessionVariables = {

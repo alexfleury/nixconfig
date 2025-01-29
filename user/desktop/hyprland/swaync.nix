@@ -1,6 +1,11 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
+
+  home.packages = with pkgs; [
+    libnotify
+  ];
+
   services.swaync = {
     enable =  true;
     settings = {

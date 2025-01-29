@@ -10,6 +10,13 @@
     ./waybar.nix
   ];
 
+  home.packages = with pkgs; [
+    hyprcursor
+    hyprpolkitagent
+    hyprshot
+    hyprsunset
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
