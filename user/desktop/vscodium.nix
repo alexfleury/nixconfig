@@ -11,6 +11,7 @@
       ms-python.python
     ];
     userSettings = {
+      "editor.autoClosingBrackets" = "never";
       "editor.fontFamily" = "${config.font},Hack Nerd Font";
       "editor.fontSize" = 12;
       "editor.minimap.enabled" = false;
