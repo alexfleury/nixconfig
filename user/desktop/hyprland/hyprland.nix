@@ -1,5 +1,10 @@
 { config, pkgs, ... }:
 
+let
+  blueman_popup = "class:^(.blueman-manager-wrapped)$ title:^(Bluetooth Devices)$";
+  nm_popup = "class:^(nm-connection-editor)$ title:^(Network Connections)$";
+  pavucontrol_popup = "class:^(org.pulseaudio.pavucontrol)$ title:^(Volume Control)$";
+in
 {
   imports = [
     ./hypridle.nix
@@ -31,10 +36,10 @@
 
       # Startup applications.
       exec-once = [
-        "waybar"
-        "hyprpaper"
-        "hypridle"
-        "swaync"
+        "${pkgs.waybar}/bin/waybar"
+        "${pkgs.hyprpaper}/bin/hyprpaper"
+        "${pkgs.hypridle}/bin/hypridle"
+        "${pkgs.swaynotificationcenter}/bin/swaync"
         "systemctl --user start hyprpolkitagent"
       ];
 
@@ -70,8 +75,9 @@
         "$mod, mouse_up, workspace, e-1"
         "$mod, F, fullscreen"
         "$mod, L, exec, loginctl lock-session"
-        "$mod SHIFT, w, exec, killall -SIGUSR1 .waybar-wrapped || waybar" # Toggle waybar.
+        "$mod SHIFT, w, exec, killall -SIGUSR1 .waybar-wrapped || ${pkgs.waybar}/bin/waybar" # Toggle waybar.
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
+        "$mod, I, exec, ${pkgs.hyprshot}/bin/hyprshot -m region"
       ]
       # Switch and move to workspaces 1 to 6.
       ++ (
@@ -164,9 +170,21 @@
       );
 
       windowrulev2 = [
-        #"idleinhibit fullscreen, class:^(*)$"
-        #"idleinhibit fullscreen, title:^(*)$"
+        "idleinhibit fullscreen, class:^(*)$"
+        "idleinhibit fullscreen, title:^(*)$"
         "idleinhibit fullscreen, fullscreen:1"
+        "float, ${pavucontrol_popup}"
+        "center ${pavucontrol_popup}"
+        "float, ${pavucontrol_popup}"
+        "size 30% 30%, ${pavucontrol_popup}"
+        "float, ${blueman_popup}"
+        "center ${blueman_popup}"
+        "float, ${blueman_popup}"
+        "size 30% 30%, ${blueman_popup}"
+        "float, ${nm_popup}"
+        "center ${nm_popup}"
+        "float, ${nm_popup}"
+        "size 30% 30%, ${nm_popup}"
       ];
 
     };
