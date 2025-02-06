@@ -150,6 +150,24 @@ in
     hardware.openrgb.enable = true;
     printing.enable = false;
     udisks2.enable = true;
+
+    # Local LLM using ollama.
+    ollama = {
+      enable = true;
+      acceleration = "rocm";
+      rocmOverrideGfx = "10.3.0";
+      environmentVariables = {
+        OLLAMA_KEEP_ALIVE = "10s";
+      };
+    };
+    # Web interface to the local LLM.
+    open-webui = {
+      enable = true;
+      openFirewall = true;
+      environment = {
+        HF_HUB_OFFLINE = "1";
+      };
+    };
   };
 
   # TODO: keyring unlocked at login?
