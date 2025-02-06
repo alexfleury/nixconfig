@@ -13,6 +13,7 @@ It provides a modular and reproducible way to manage my system and user environm
 The structure is designed to be modular and straightforward:
 
 ```
+.
 ├── configuration.nix
 ├── flake.lock
 ├── flake.nix
@@ -32,6 +33,13 @@ The structure is designed to be modular and straightforward:
 └── wallpapers
     ├── Wallpapers
 ```
+
+## TODOs
+
+- Reorganization of the folder.
+- Make better use of `default.nix`.
+- `user/desktop/grimdawn.nix`: Configure GD-Stash (java app) for Grim Dawn.
+- `user/desktop/dracula.nix`:
 
 ## License
 
