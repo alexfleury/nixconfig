@@ -37,14 +37,14 @@
         clock = {
           interval = 60;
           format = "  {:%A, %B %d   %H:%M}";
-          format-alt = "  {:%H:%M}";
-          tooltip-format = "{calendar}";
-          tooltip = true;
+          #format-alt = "  {:%H:%M}";
+          #tooltip-format = "{calendar}";
+          tooltip = false;
           calendar = {
-            mode = "year";
-            mode-mon-col = 3;
-            weeks-pos = "right";
-            on-scroll = 1;
+            mode = "month";
+            #mode-mon-col = 3;
+            weeks-pos = "";
+            #on-scroll = 1;
             format = {
               months = "<span color='#${config.palette.accent0}'><b>{}</b></span>";
               days = "<span color='#${config.palette.white}'><b>{}</b></span>";
