@@ -45,6 +45,8 @@ in
       networkmanagerapplet
       okular
       pavucontrol
+      protonvpn-gui
+      protonvpn-cli_2
       qmk
       vlc
       yt-dlp
