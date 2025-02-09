@@ -160,6 +160,7 @@ in
         force_default_wallpaper = -1;
         mouse_move_enables_dpms = true;
         key_press_enables_dpms = false;
+        vrr = 2; # VRR in fullsreen mode only.
       };
 
       gestures.workspace_swipe = false;
