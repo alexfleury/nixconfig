@@ -13,6 +13,7 @@ in
 
   # Bootloader.
   boot = {
+    initrd.kernelModules = [ "amdgpu" ];
     # The param "preempt=full" fixed buzzing sound in Hogwarts Legacy.
     kernelParams = [ "preempt=full" "consoleblank=60" ];
     kernelModules = [ "sg" ];
@@ -158,14 +159,6 @@ in
       rocmOverrideGfx = "10.3.0";
       environmentVariables = {
         OLLAMA_KEEP_ALIVE = "10s";
-      };
-    };
-    # Web interface to the local LLM.
-    open-webui = {
-      enable = true;
-      openFirewall = true;
-      environment = {
-        HF_HUB_OFFLINE = "1";
       };
     };
   };

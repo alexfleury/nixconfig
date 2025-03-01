@@ -8,7 +8,6 @@
     ignores = [
       # MacOS junk.
       ".DS_store"
-
       # Python compilation and cache.
       "*.pyc"
       "build"
@@ -17,13 +16,8 @@
       "*.egg-info"
       "__pycache__"
       ".ipynb_checkpoints"
-
-      # Per repo gitignore.
-      ".gitignore"
-
       # Data files.
       "*.hdf5"
-
       # VS Code workspace files.
       ".vscode"
       "*.code-workspace"
