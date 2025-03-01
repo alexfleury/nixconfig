@@ -43,7 +43,7 @@ in
       makemkv
       nautilus
       networkmanagerapplet
-      okular
+      kdePackages.okular
       pavucontrol
       protonvpn-gui
       protonvpn-cli_2
