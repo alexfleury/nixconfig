@@ -37,7 +37,6 @@ in
       discord
       feh
       geany
-      jdk # Java for GDStash.
       kitty
       libreoffice
       makemkv
@@ -45,8 +44,6 @@ in
       networkmanagerapplet
       kdePackages.okular
       pavucontrol
-      protonvpn-gui
-      protonvpn-cli_2
       qmk
       vlc
       yt-dlp
