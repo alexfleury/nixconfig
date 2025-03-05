@@ -20,6 +20,7 @@ in
     hyprpolkitagent
     hyprshot
     hyprsunset
+    playerctl
   ];
 
   wayland.windowManager.hyprland = {
@@ -59,6 +60,7 @@ in
 
       # Mod keys is the super key.
       "$mod" = "SUPER";
+      "$modd" = "SHIFT";
 
       # Common operations.
       bind = [
@@ -74,13 +76,17 @@ in
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
+        "$mod $modd, H, movewindow, l"
+        "$mod $modd, L, movewindow, r"
+        "$mod $modd, K, movewindow, u"
+        "$mod $modd, J, movewindow, d"
         "$mod, S, togglespecialworkspace, magic"
-        "$mod SHIFT, S, movetoworkspace, special:magic"
+        "$mod $modd, S, movetoworkspace, special:magic"
         "$mod, mouse_down, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
         "$mod, F, fullscreen"
         "$mod, L, exec, loginctl lock-session"
-        "$mod SHIFT, w, exec, killall -SIGUSR1 .waybar-wrapped || ${pkgs.waybar}/bin/waybar" # Toggle waybar.
+        "$mod $modd, W, exec, killall -SIGUSR1 .waybar-wrapped || ${pkgs.waybar}/bin/waybar" # Toggle waybar.
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
         "$mod, I, exec, ${pkgs.hyprshot}/bin/hyprshot -m region"
       ]
@@ -90,19 +96,22 @@ in
           let ws = i + 1;
           in [
             "$mod, code:1${toString i}, workspace, ${toString ws}"
-            "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+            "$mod $modd, code:1${toString i}, movetoworkspace, ${toString ws}"
           ]
         )
         6)
       );
       # Utility keys.
       bindel = [
-        ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1"
-        ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        #",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
-        #",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        #", XF86MonBrightnessUp, exec, brightnessctl s 10%+"
+        #", XF86MonBrightnessDown, exec, brightnessctl s 10%-"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPrev, exec, playerctl previous"
+        ", XF86AudioNext, exec, playerctl next"
       ];
       # Drag mouse.
       bindm = [
