@@ -9,8 +9,8 @@
         arcticicestudio.nord-visual-studio-code
         arrterian.nix-env-selector
         bbenoist.nix
-        continue.continue
-        ms-python.python
+        #continue.continue
+        #ms-python.python
       ];
       userSettings = {
         "editor.autoClosingBrackets" = "never";
