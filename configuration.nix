@@ -88,9 +88,6 @@ in
     shell = pkgs.zsh;
   };
 
-  # Allow unfree packages.
-  nixpkgs.config.allowUnfree = true;
-
   # System-wide packages.
   environment.systemPackages = with pkgs; [
     amdgpu_top

@@ -15,6 +15,7 @@ in
     ./user/desktop/kitty.nix
     ./user/desktop/vscodium.nix
     ./user/desktop/udiskie.nix
+    #./user/desktop/grimdawn.nix
   ];
 
   options = {
@@ -39,6 +40,7 @@ in
       geany
       kitty
       libreoffice
+      gdstash
       makemkv
       nautilus
       networkmanagerapplet

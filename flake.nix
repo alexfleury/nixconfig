@@ -13,11 +13,20 @@
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      #pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        system = system;
+        config.allowUnfree = true;
+        overlays = [
+          (final: prev: {
+            gdstash = final.callPackage ./packages/gdstash.nix { };
+          })
+        ];
+      };
     in {
       nixosConfigurations = {
         "quantumflower" = lib.nixosSystem {
-          system = system;
+          inherit system pkgs;
           modules = [
             ./configuration.nix
             home-manager.nixosModules.home-manager
