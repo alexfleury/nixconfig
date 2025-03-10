@@ -1,9 +1,7 @@
-let
-  pkgs = import <nixpkgs> {};
-in
-{ stdenv ? pkgs.stdenv
+{
+  pkgs
+, stdenv ? pkgs.stdenv
 , fetchurl ? pkgs.fetchurl
-, fetchzip ? pkgs.fetchzip
 , makeWrapper ? pkgs.makeWrapper
 , jre ? pkgs.jre
 }:
@@ -13,7 +11,7 @@ stdenv.mkDerivation rec {
   version = "v181a";
 
   src = fetchurl {
-    url = "https://fmt5.dl.dbolical.com/dl/2016/03/03/GDStash_${version}.zip?st=oa6yQj5kHNez64K0W7WDMA==&e=1741537522";
+    url = "https://sjc4.dl.dbolical.com/dl/2016/03/03/GDStash_v181a.zip?st=zbIl4hK5i8p6JwO4miIVKQ==&e=1741571046";
     sha256 = "sha256-zOFME0/fsWTrTCtPC/4IS0gbO47VOGUK6QUQuPnjtnw=";
   };
 
