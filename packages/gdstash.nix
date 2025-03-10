@@ -1,7 +1,7 @@
 {
   pkgs
 , stdenv ? pkgs.stdenv
-, fetchurl ? pkgs.fetchurl
+, requireFile ? pkgs.requireFile
 , makeWrapper ? pkgs.makeWrapper
 , jre ? pkgs.jre
 }:
@@ -10,9 +10,12 @@ stdenv.mkDerivation rec {
   pname = "GDStash";
   version = "v181a";
 
-  src = fetchurl {
-    url = "https://sjc4.dl.dbolical.com/dl/2016/03/03/GDStash_v181a.zip?st=zbIl4hK5i8p6JwO4miIVKQ==&e=1741571046";
-    sha256 = "sha256-zOFME0/fsWTrTCtPC/4IS0gbO47VOGUK6QUQuPnjtnw=";
+  # GDStash download links expire. Therefore, it should be downloaded
+  # beforehand.
+  src = requireFile {
+    name = "${pname}_${version}.zip";
+    url = "https://forums.crateentertainment.com/t/tool-gd-stash/29036";
+    sha256 = "zOFME0/fsWTrTCtPC/4IS0gbO47VOGUK6QUQuPnjtnw=";
   };
 
   dontBuild = true;
