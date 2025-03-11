@@ -1,11 +1,15 @@
 {
   pkgs
-, stdenv ? pkgs.stdenv
-, requireFile ? pkgs.requireFile
-, makeWrapper ? pkgs.makeWrapper
+, copyDesktopItems ? pkgs.jre
 , jre ? pkgs.jre
+, makeDesktopItem ? pkgs.makeWrapper
+, makeWrapper ? pkgs.makeWrapper
+, requireFile ? pkgs.requireFile
+, stdenv ? pkgs.stdenv
 }:
-
+let
+  description =  "Infinite stash tool for Grim Dawn";
+in
 stdenv.mkDerivation rec {
   pname = "GDStash";
   version = "v181a";
@@ -20,13 +24,27 @@ stdenv.mkDerivation rec {
 
   dontBuild = true;
 
-  nativeBuildInputs = [ makeWrapper ];
+  nativeBuildInputs = [ pkgs.unzip makeWrapper copyDesktopItems ];
 
   unpackPhase = ''
-    ${pkgs.unzip}/bin/unzip ${src}
+    unzip ${src}
   '';
 
+  desktopItems =  [
+    (makeDesktopItem {
+      name = "gdstash";
+      desktopName = "GDStash";
+      comment = description;
+      exec = "GDStash";
+      terminal = false;
+      type = "Application";
+      categories = [ "Game" ];
+    })
+  ];
+
   installPhase = ''
+    runHook preInstall
+
     mkdir -pv $out/share/java $out/bin
     cp GDStash.jar $out/share/java/
     cp -r image $out/share/java/
@@ -36,10 +54,12 @@ stdenv.mkDerivation rec {
     makeWrapper ${jre}/bin/java $out/bin/${pname} \
       --add-flags "-jar $out/share/java/GDStash.jar" \
       --chdir $out/share/java
+
+    runHook postInstall
   '';
 
   meta = {
+    inherit description;
     homepage = "https://forums.crateentertainment.com/t/tool-gd-stash/29036";
-    description = "Infinite stash tool for Grim Dawn.";
   };
 }
