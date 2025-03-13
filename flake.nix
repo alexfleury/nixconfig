@@ -19,7 +19,7 @@
         config.allowUnfree = true;
         overlays = [
           (final: prev: {
-            gdstash = final.callPackage ./packages/gdstash.nix { };
+            gdstash = final.callPackage ./packages/gdstash.nix { inherit pkgs; };
           })
         ];
       };
