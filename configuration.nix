@@ -151,7 +151,7 @@ in
 
     # Local LLM using ollama.
     ollama = {
-      enable = true;
+      enable = false;
       acceleration = "rocm";
       rocmOverrideGfx = "10.3.0";
       environmentVariables = {
