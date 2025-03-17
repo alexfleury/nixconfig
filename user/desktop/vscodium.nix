@@ -6,14 +6,14 @@
     package = pkgs.vscodium;
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
-        arcticicestudio.nord-visual-studio-code
+        #arcticicestudio.nord-visual-studio-code
         arrterian.nix-env-selector
         bbenoist.nix
         ms-python.python
       ];
       userSettings = {
         "editor.autoClosingBrackets" = "never";
-        "editor.fontFamily" = "${config.font},Hack Nerd Font";
+        #"editor.fontFamily" = "${config.font},Hack Nerd Font";
         "editor.fontSize" = 12;
         "editor.minimap.enabled" = false;
         "editor.tabSize" = 2;

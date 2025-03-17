@@ -18,15 +18,15 @@ in
   ];
 
   options = {
-    font = lib.mkOption { type = lib.types.str; };
-    palette = lib.mkOption { type = lib.types.attrsOf lib.types.str; };
+    #font = lib.mkOption { type = lib.types.str; };
+    #palette = lib.mkOption { type = lib.types.attrsOf lib.types.str; };
     wallpaperPath = lib.mkOption { type = lib.types.path; };
   };
 
   config = {
     # Custom options.
-    font = "Fira Code Nerd Font";
-    palette = (import ./user/desktop/nord.nix);
+    #font = "Fira Code Nerd Font";
+    #palette = (import ./user/desktop/nord.nix);
     wallpaperPath = ./wallpapers/trees.jpg;
 
     # User-related config.
@@ -62,35 +62,35 @@ in
     };
 
     # Theming and color.
-    gtk = {
-      enable = true;
-      theme = {
-        name = "Nordic";
-        package = pkgs.nordic;
-      };
-      iconTheme = {
-        name = "Nordzy";
-        package = pkgs.nordzy-icon-theme;
-      };
-      cursorTheme = {
-        name = "Nordzy-cursors";
-        package = pkgs.nordzy-cursor-theme;
-      };
-      gtk2.configLocation = "${config.home.homeDirectory}/.gtkrc-2.0";
-    };
+    #gtk = {
+    #  enable = true;
+    #  theme = {
+    #    name = "Nordic";
+    #    package = pkgs.nordic;
+    #  };
+    #  iconTheme = {
+    #    name = "Nordzy";
+    #    package = pkgs.nordzy-icon-theme;
+    #  };
+    #  cursorTheme = {
+    #    name = "Nordzy-cursors";
+    #    package = pkgs.nordzy-cursor-theme;
+    #  };
+    #  gtk2.configLocation = "${config.home.homeDirectory}/.gtkrc-2.0";
+    #};
 
-    dconf = {
-      settings = {
-        "org/gnome/desktop/interface" = {
-          gtk-theme = "${config.gtk.theme.name}";
-          cursor-theme = "${config.gtk.cursorTheme.name}";
-        };
-        "org/gnome/desktop/wm/preferences" = {
-          theme = "${config.gtk.theme.name}";
-          button-layout = "";
-        };
-      };
-    };
+    #dconf = {
+    #  settings = {
+    #    "org/gnome/desktop/interface" = {
+    #      gtk-theme = "${config.gtk.theme.name}";
+    #      cursor-theme = "${config.gtk.cursorTheme.name}";
+    #    };
+    #    "org/gnome/desktop/wm/preferences" = {
+    #      theme = "${config.gtk.theme.name}";
+    #      button-layout = "";
+    #    };
+    #  };
+    #};
 
     xdg = {
       enable = true;
