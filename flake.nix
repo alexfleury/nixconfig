@@ -3,17 +3,19 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ...}:
+  outputs = { self, nixpkgs, home-manager, ...} @inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
-      #pkgs = nixpkgs.legacyPackages.${system};
       pkgs = import nixpkgs {
         system = system;
         config.allowUnfree = true;
@@ -27,6 +29,7 @@
       nixosConfigurations = {
         "quantumflower" = lib.nixosSystem {
           inherit system pkgs;
+          specialArgs = {inherit inputs;};
           modules = [
             ./configuration.nix
             home-manager.nixosModules.home-manager
@@ -36,6 +39,7 @@
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users."alex".imports = [ ./home.nix ];
             }
+            inputs.stylix.nixosModules.stylix
           ];
         };
       };

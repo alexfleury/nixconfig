@@ -108,14 +108,14 @@ in
   ];
 
   # Install system-wide fonts.
-  fonts = {
-    enableDefaultPackages = true;
-    packages = with pkgs; [
-      nerd-fonts.fira-code
-      nerd-fonts.fira-mono
-      nerd-fonts.hack
-    ];
-  };
+  #fonts = {
+  #  enableDefaultPackages = true;
+  #  packages = with pkgs; [
+  #    nerd-fonts.fira-code
+  #    nerd-fonts.fira-mono
+  #    nerd-fonts.hack
+  #  ];
+  #};
 
   # Enable hyprland.
   programs.hyprland = {
@@ -177,6 +177,31 @@ in
 
   # QMK firmware service for keyboards.
   hardware.keyboard.qmk.enable = true;
+
+  # Automatic ricing.
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+
+    cursor.package = pkgs.nordzy-cursor-theme;
+    cursor.name = "Nordzy-cursors";
+    cursor.size = 28;
+
+    fonts = {
+      monospace = {
+        package = pkgs.nerd-fonts.fira-mono;
+        name = "Fira Mono";
+      };
+      sansSerif = {
+        package = pkgs.nerd-fonts.ubuntu-sans;
+        name = "Ubuntu Sans";
+      };
+      serif = {
+        package = pkgs.nerd-fonts.fira-code;
+        name = "Fira Code";
+      };
+    };
+  };
 
   # Nix-related options.
   nix = {

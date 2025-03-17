@@ -122,8 +122,8 @@ in
       general = {
         allow_tearing = false;
         border_size = 2;
-        "col.active_border" = "rgb(${config.palette.accent0}) rgb(${config.palette.accent3}) 45deg";
-        "col.inactive_border" = "rgb(${config.palette.grey})";
+        #"col.active_border" = "rgb(${config.palette.accent0}) rgb(${config.palette.accent3}) 45deg";
+        #"col.inactive_border" = "rgb(${config.palette.grey})";
         gaps_in = 5;
         gaps_out = 5;
         layout = "dwindle";
