@@ -35,8 +35,7 @@
             home-manager.nixosModules.home-manager
             {
               home-manager.backupFileExtension = "backup";
-              home-manager.useGlobalPkgs = true;
-              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.extraSpecialArgs = { inherit pkgs inputs; };
               home-manager.users."alex".imports = [ ./home.nix ];
             }
             inputs.stylix.nixosModules.stylix

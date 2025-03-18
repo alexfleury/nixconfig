@@ -200,7 +200,25 @@ in
         package = pkgs.nerd-fonts.fira-code;
         name = "Fira Code";
       };
+
+      sizes = {
+        applications = 12;
+        desktop = 12;
+        popups = 10;
+        terminal = 12;
+      };
+
     };
+
+    opacity = {
+      applications = 1.0;
+      desktop = 1.0;
+      popups = 0.8;
+      terminal = 0.8;
+    };
+
+    polarity = "dark";
+
   };
 
   # Nix-related options.
