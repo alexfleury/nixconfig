@@ -190,15 +190,15 @@ in
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.fira-mono;
-        name = "Fira Mono";
+        name = "Fira Mono Nerd Font";
       };
       sansSerif = {
         package = pkgs.nerd-fonts.ubuntu-sans;
-        name = "Ubuntu Sans";
+        name = "Ubuntu Sans Nerd Font";
       };
       serif = {
         package = pkgs.nerd-fonts.fira-code;
-        name = "Fira Code";
+        name = "Fira Code Nerd Font";
       };
 
       sizes = {
