@@ -1,6 +1,8 @@
 { config, ... }:
 
 {
+  stylix.targets.waybar.addCss = false;
+
   programs.waybar = {
     enable = true;
     settings = {
@@ -205,5 +207,133 @@
         };
       };
     };
+
+    style = ''
+      * {
+        animation-timing-function: steps(6);
+        border: none;
+        border-radius: 0;
+        min-height: 0;
+      }
+
+      window#waybar {
+        background: transparent;
+      }
+
+      tooltip {
+        background: @base01;
+        border: 1px solid @base05;
+      }
+
+      #bluetooth,
+      #clock,
+      #cpu,
+      #custom-brightness,
+      #custom-lock,
+      #custom-gpu,
+      #custom-hibernate,
+      #custom-hyprsunset,
+      #custom-notifications,
+      #custom-power,
+      #custom-quit,
+      #custom-reboot,
+      #custom-wlogout,
+      #idle_inhibitor,
+      #network,
+      #temperature,
+      #tray,
+      #wireplumber
+      {
+        background-color: @base01;
+        border-radius: 5px;
+        color: @base04;
+        font-weight: bold;
+        margin: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
+      #custom-lock {
+        padding-right: 12px;
+      }
+
+      #custom-hyprsunset {
+        padding-right: 16px;
+      }
+
+      #custom-hyprsunset.enabled {
+        color: @base0F;
+      }
+
+      #custom-hyprsunset.disabled {
+        color: @base0A;
+      }
+
+      #custom-power {
+        color: @base08;
+        padding-left: 16px;
+      }
+
+      #custom-quit {
+        padding-right: 12px;
+      }
+
+      #temperature.cpu.critical {
+        background-color: @base04;
+        color: @base01;
+      }
+
+      #temperature.gpu.critical {
+        background-color: @base04;
+        color: @base01;
+      }
+
+      #tray > .passive {
+        color: @base0F;
+      }
+
+      #tray menu * {
+          color:  @base04;
+      }
+
+      #workspaces {
+        background: @base01;
+        border-radius: 5px;
+        font-weight: normal;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+
+      #workspaces button {
+        border-radius: 5px;
+        color: @base04;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      #workspaces button.active {
+        background-color: @base04;
+        color: @base01;
+      }
+
+      #workspaces button.urgent {
+        color: @base08;
+      }
+
+      #workspaces button.empty {
+        color: @base03;
+      }
+
+      #workspaces button:hover {
+        box-shadow: none;
+        text-shadow: none;
+        transition: none;
+        background-color: @base0F;
+      }
+  '';
   };
 }
