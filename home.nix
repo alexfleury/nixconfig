@@ -40,7 +40,7 @@ in
       geany
       kitty
       libreoffice
-      gdstash
+      #gdstash
       makemkv
       nautilus
       networkmanagerapplet

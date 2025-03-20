@@ -183,6 +183,8 @@ in
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
 
+    # image = ;
+
     cursor.package = pkgs.nordzy-cursor-theme;
     cursor.name = "Nordzy-cursors";
     cursor.size = 28;
