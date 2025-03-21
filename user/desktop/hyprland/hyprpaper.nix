@@ -1,14 +1,5 @@
 { config, ... }:
 
 {
-  services.hyprpaper = {
-
-    enable = true;
-
-    settings = {
-      preload = [ "${config.wallpaperPath}" ];
-      wallpaper = [ " ,${config.wallpaperPath}" ];
-    };
-
-  };
+  services.hyprpaper.enable = true;
 }
