@@ -107,16 +107,6 @@ in
     wget
   ];
 
-  # Install system-wide fonts.
-  #fonts = {
-  #  enableDefaultPackages = true;
-  #  packages = with pkgs; [
-  #    nerd-fonts.fira-code
-  #    nerd-fonts.fira-mono
-  #    nerd-fonts.hack
-  #  ];
-  #};
-
   # Enable hyprland.
   programs.hyprland = {
     enable = true;
@@ -151,12 +141,10 @@ in
 
     # Local LLM using ollama.
     ollama = {
-      enable = false;
+      enable = true;
       acceleration = "rocm";
       rocmOverrideGfx = "10.3.0";
-      environmentVariables = {
-        OLLAMA_KEEP_ALIVE = "10s";
-      };
+      environmentVariables.OLLAMA_KEEP_ALIVE = "10s";
     };
   };
 
@@ -183,11 +171,13 @@ in
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
 
-    # image = ;
+    image = ./wallpapers/trees.jpg;
 
-    cursor.package = pkgs.nordzy-cursor-theme;
-    cursor.name = "Nordzy-cursors";
-    cursor.size = 28;
+    cursor = {
+      package = pkgs.nordzy-cursor-theme;
+      name = "Nordzy-cursors";
+      size = 28;
+    };
 
     fonts = {
       monospace = {
@@ -212,6 +202,24 @@ in
 
     };
 
+  # Theming and color.
+  #gtk = {
+  #  enable = true;
+  #  theme = {
+  #    name = "Nordic";
+  #    package = pkgs.nordic;
+  #  };
+  #  iconTheme = {
+  #    name = "Nordzy";
+  #    package = pkgs.nordzy-icon-theme;
+  #  };
+  #  cursorTheme = {
+  #    name = "Nordzy-cursors";
+  #    package = pkgs.nordzy-cursor-theme;
+  #  };
+  #  gtk2.configLocation = "${config.home.homeDirectory}/.gtkrc-2.0";
+  #};
+
     opacity = {
       applications = 1.0;
       desktop = 1.0;
@@ -220,7 +228,6 @@ in
     };
 
     polarity = "dark";
-
   };
 
   # Nix-related options.

@@ -12,14 +12,14 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "GDStash";
-  version = "v181a";
+  version = "v181c";
 
   # GDStash download links expire. Therefore, it should be downloaded
   # beforehand.
   src = requireFile {
     name = "${pname}_${version}.zip";
     url = "https://forums.crateentertainment.com/t/tool-gd-stash/29036";
-    sha256 = "zOFME0/fsWTrTCtPC/4IS0gbO47VOGUK6QUQuPnjtnw=";
+    sha256 = "669e00f147e59cdd8e2627c0bad58a2e5187f7cabe49e2b30b0848a0033708ec";
   };
 
   dontBuild = true;

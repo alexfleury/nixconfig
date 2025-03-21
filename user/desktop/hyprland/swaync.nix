@@ -9,8 +9,8 @@
   services.swaync = {
     enable =  true;
     settings = {
-      control-center-height = 600;
-      control-center-width = 300;
+      control-center-height = 700;
+      control-center-width = 432;
       control-center-margin-top = 4;
       control-center-margin-bottom = 4;
       control-center-margin-right = 4;
