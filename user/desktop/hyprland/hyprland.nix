@@ -32,7 +32,7 @@ in
 
     settings = {
       # Monitor settings.
-      monitor = "DP-1,3840x2160@239.99Hz,0x0,1.5,bitdepth,10";
+      monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, cm, hdr";
       xwayland.force_zero_scaling = true;
 
       # Common applications.
@@ -184,7 +184,7 @@ in
         6)
       );
 
-      windowrulev2 = [
+      windowrule = [
         "idleinhibit fullscreen, class:^(*)$"
         "idleinhibit fullscreen, title:^(*)$"
         "idleinhibit fullscreen, fullscreen:1"
@@ -201,6 +201,10 @@ in
         "float, ${nm_popup}"
         "size 30% 30%, ${nm_popup}"
       ];
+
+      experimental = {
+        xx_color_management_v4 = true;
+      };
 
       #plugin = {
       #  hyprbars = {
