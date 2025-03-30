@@ -1,6 +1,7 @@
 { config, ... }:
 
 {
+  # Don't change the whole Waybar CSS.
   stylix.targets.waybar.addCss = false;
 
   programs.waybar = {
@@ -14,13 +15,13 @@
         modules-center = ["clock"];
         modules-right = [
           "cpu"
-          #"temperature#cpu"
+          "temperature#cpu"
           "custom/gpu"
-          #"temperature#gpu"
+          "temperature#gpu"
           "network"
           "bluetooth"
           "wireplumber"
-          "custom/brightness"
+          #"custom/brightness"
           "custom/hyprsunset"
           #"tray"
           "custom/notifications"
@@ -39,8 +40,6 @@
         clock = {
           interval = 60;
           format = "  {:%A, %B %d   %H:%M}";
-          #format-alt = "  {:%H:%M}";
-          #tooltip-format = "{calendar}";
           tooltip = false;
         };
 
@@ -50,17 +49,17 @@
           tooltip = false;
         };
 
-        "custom/brightness" = {
-          format = "{icon} {percentage}%";
-          format-icons = [ "󱩐" "󱩒" "󰛨" ];
-          return-type = "json";
-          exec = "ddcutil getvcp 10 | grep -oP \"current.*?=\\s*\\K[0-9]+\" | { read x; echo '{\"percentage\":'\${x}'}'; }";
-          on-click = "ddcutil setvcp 10 1";
-          on-click-middle = "ddcutil setvcp 10 30";
-          on-click-right = "ddcutil setvcp 10 70";
-          interval = 2;
-          tooltip = false;
-        };
+        #"custom/brightness" = {
+        #  format = "{icon} {percentage}%";
+        #  format-icons = [ "󱩐" "󱩒" "󰛨" ];
+        #  return-type = "json";
+        #  exec = "ddcutil getvcp 10 | grep -oP \"current.*?=\\s*\\K[0-9]+\" | { read x; echo '{\"percentage\":'\${x}'}'; }";
+        #  on-click = "ddcutil setvcp 10 1";
+        #  on-click-middle = "ddcutil setvcp 10 30";
+        #  on-click-right = "ddcutil setvcp 10 70";
+        #  interval = 2;
+        #  tooltip = false;
+        #};
 
         "custom/gpu" = {
           exec = "amdgpu_top -d --json | jq --unbuffered --compact-output '.[0]'.gpu_metrics.current_gfxclk";
@@ -74,7 +73,7 @@
           format = "{}";
           return-type = "json";
           exec = "hyprsunset_widget";
-          on-click = "killall hyprsunset; hyprsunset -t 3000";
+          on-click = "killall hyprsunset; hyprsunset -t 4000 -g 80%";
           on-click-right = "killall hyprsunset";
           interval = 5;
           tooltip = false;
@@ -154,25 +153,25 @@
           on-click-right = "nm-connection-editor";
         };
 
-        #"temperature#cpu" = {
-        #  hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:18.3/hwmon";
-        #  input-filename = "temp1_input";
-        #  critical-threshold = 80;
-        #  interval = 2;
-        #  format = "{icon} {temperatureC}°C";
-        #  format-icons = ["" "" "" "" ""];
-        #  tooltip = false;
-        #};
+        "temperature#cpu" = {
+          hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:18.3/hwmon";
+          input-filename = "temp1_input";
+          critical-threshold = 80;
+          interval = 2;
+          format = "{icon} {temperatureC}°C";
+          format-icons = ["" "" "" "" ""];
+          tooltip = false;
+        };
 
-        #"temperature#gpu" = {
-        #  hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:03.1/0000:0a:00.0/0000:0b:00.0/0000:0c:00.0/hwmon";
-        #  input-filename = "temp2_input";
-        #  critical-threshold = 80;
-        #  interval = 2;
-        #  format = "{icon} {temperatureC}°C";
-        #  format-icons = ["" "" "" "" ""];
-        #  tooltip = false;
-        #};
+        "temperature#gpu" = {
+          hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:03.1/0000:0a:00.0/0000:0b:00.0/0000:0c:00.0/hwmon";
+          input-filename = "temp2_input";
+          critical-threshold = 80;
+          interval = 2;
+          format = "{icon} {temperatureC}°C";
+          format-icons = ["" "" "" "" ""];
+          tooltip = false;
+        };
 
         #tray = {
         #  icon-size = 12;
@@ -227,10 +226,8 @@
 
       #bluetooth,
       #clock,
-      #cpu,
       #custom-brightness,
       #custom-lock,
-      #custom-gpu,
       #custom-hibernate,
       #custom-hyprsunset,
       #custom-notifications,
@@ -253,6 +250,21 @@
         padding-right: 10px;
         margin-top: 5px;
         margin-bottom: 5px;
+      }
+
+      #cpu,
+      #custom-gpu
+      {
+        background-color: @base01;
+        border-radius: 5px 0px 0px 5px;
+        color: @base04;
+        font-weight: bold;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-right: 0px;
+        margin-left: 5px;
       }
 
       #custom-lock {
@@ -280,9 +292,10 @@
         padding-right: 12px;
       }
 
-      #temperature.cpu.critical {
-        background-color: @base04;
-        color: @base01;
+      #temperature {
+        border-radius: 0px 5px 5px 0px;
+        margin-left: 0px;
+        padding-left: 0px;
       }
 
       #temperature.gpu.critical {

@@ -26,10 +26,6 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
 
-    #plugins = with pkgs; [
-    #  hyprlandPlugins.hyprbars
-    #];
-
     settings = {
       # Monitor settings.
       monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, cm, hdr";
@@ -205,20 +201,6 @@ in
       experimental = {
         xx_color_management_v4 = true;
       };
-
-      #plugin = {
-      #  hyprbars = {
-      #    # example config
-      #    bar_height = 20;
-
-          # example buttons (R -> L)
-          # hyprbars-button = color, size, on-click
-      #    hyprbars-button = [
-      #      "rgb(ff4040), 10, 󰖭, hyprctl dispatch killactive"
-      #      "rgb(eeee11), 10, , hyprctl dispatch fullscreen 1"
-      #    ];
-      #  };
-      #};
 
     }; # End of settings.
 

@@ -6,7 +6,6 @@
     package = pkgs.vscodium;
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
-        #arcticicestudio.nord-visual-studio-code
         arrterian.nix-env-selector
         bbenoist.nix
         ms-python.python

@@ -202,24 +202,6 @@ in
 
     };
 
-  # Theming and color.
-  #gtk = {
-  #  enable = true;
-  #  theme = {
-  #    name = "Nordic";
-  #    package = pkgs.nordic;
-  #  };
-  #  iconTheme = {
-  #    name = "Nordzy";
-  #    package = pkgs.nordzy-icon-theme;
-  #  };
-  #  cursorTheme = {
-  #    name = "Nordzy-cursors";
-  #    package = pkgs.nordzy-cursor-theme;
-  #  };
-  #  gtk2.configLocation = "${config.home.homeDirectory}/.gtkrc-2.0";
-  #};
-
     opacity = {
       applications = 1.0;
       desktop = 1.0;
