@@ -32,6 +32,7 @@ in
     makemkv
     nautilus
     networkmanagerapplet
+    nh
     kdePackages.okular
     pavucontrol
     qmk
@@ -41,6 +42,7 @@ in
 
   home.sessionVariables = {
     EDITOR = "vim";
+    FLAKE = "/home/${username}/nixconfig";
   };
 
   home.shellAliases = {

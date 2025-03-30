@@ -99,8 +99,8 @@ in
       );
       # Utility keys.
       bindel = [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ -l 1"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         #", XF86MonBrightnessUp, exec, brightnessctl s 10%+"
@@ -172,7 +172,7 @@ in
           builtins.genList (i:
           let ws = i+1;
           in [
-            "${toString ws}, persistent:true"
+            "${toString ws}, persistent:false"
           ])
         6)
       );
