@@ -24,7 +24,7 @@
           #"custom/brightness"
           "custom/hyprsunset"
           #"tray"
-          "custom/notifications"
+          #"custom/notifications"
         ];
 
         bluetooth = {
@@ -40,6 +40,7 @@
         clock = {
           interval = 60;
           format = "  {:%A, %B %d   %H:%M}";
+          on-click = "swaync-client -t -sw";
           tooltip = false;
         };
 
@@ -73,8 +74,10 @@
           format = "{}";
           return-type = "json";
           exec = "hyprsunset_widget";
-          on-click = "killall hyprsunset; hyprsunset -t 4000 -g 80%";
+          on-click = "killall hyprsunset; hyprsunset -t 4500 -g 80%";
           on-click-right = "killall hyprsunset";
+          on-scroll-up = "hyprctl hyprsunset temperature +100";
+          on-scroll-down = "hyprctl hyprsunset temperature -100";
           interval = 5;
           tooltip = false;
         };
@@ -85,11 +88,11 @@
           on-click = "loginctl lock-session";
         };
 
-        "custom/notifications" = {
-          format = " ";
-          on-click = "swaync-client -t -sw";
-          tooltip = false;
-        };
+        #"custom/notifications" = {
+        #  format = " ";
+        #  on-click = "swaync-client -t -sw";
+        #  tooltip = false;
+        #};
 
         "custom/hibernate" = {
           format = "󰋣";

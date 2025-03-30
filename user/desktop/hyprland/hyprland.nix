@@ -28,7 +28,7 @@ in
 
     settings = {
       # Monitor settings.
-      monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, cm, hdr";
+      monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, cm, hdr, vrr, 2";
       xwayland.force_zero_scaling = true;
 
       # Common applications.
@@ -118,8 +118,6 @@ in
       general = {
         allow_tearing = false;
         border_size = 2;
-        #"col.active_border" = "rgb(${config.palette.accent0}) rgb(${config.palette.accent3}) 45deg";
-        #"col.inactive_border" = "rgb(${config.palette.grey})";
         gaps_in = 5;
         gaps_out = 5;
         layout = "dwindle";
@@ -165,7 +163,6 @@ in
         force_default_wallpaper = -1;
         mouse_move_enables_dpms = true;
         key_press_enables_dpms = false;
-        vrr = 2; # VRR in fullsreen mode only.
       };
 
       gestures.workspace_swipe = false;
