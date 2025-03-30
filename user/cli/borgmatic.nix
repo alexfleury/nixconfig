@@ -23,6 +23,8 @@
             "- mnt/Data/Series/mp4"
             "- mnt/Data/SteamLibrary"
             "- mnt/Data/ProtonDrive"
+            "R /home/${config.home.username}/.ssh"
+            "- .ssh/config"
           ];
           repositories = [
             {

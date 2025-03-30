@@ -6,6 +6,13 @@ pkgs.writeShellApplication {
   runtimeInputs = with pkgs; [ rclone ];
 
   text = ''
-    ${pkgs.rclone}/bin/rclone bisync protondrive: ~/Data/ProtonDrive --create-empty-src-dirs --compare size,modtime,checksum --slow-hash-sync-only --resilient -MvP --drive-skip-gdocs --fix-case
+    ${pkgs.rclone}/bin/rclone bisync protondrive: /mnt/Data/ProtonDrive \
+      --create-empty-src-dirs \
+      --compare size,modtime,checksum \
+      --slow-hash-sync-only \
+      --resilient \
+      -MvP \
+      --drive-skip-gdocs \
+      --fix-case
   '';
 }
