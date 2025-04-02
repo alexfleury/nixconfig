@@ -44,6 +44,7 @@ in
         "${pkgs.swaynotificationcenter}/bin/swaync"
         "systemctl --user start hyprpolkitagent"
         "nm-applet --indicator"
+        "${pkgs.protonvpn-gui}/bin/protonvpn-app"
       ];
 
       env = [
@@ -168,15 +169,6 @@ in
 
       gestures.workspace_swipe = false;
 
-      #workspace = (
-      #  builtins.concatLists (
-      #    builtins.genList (i:
-      #    let ws = i+1;
-      #    in [
-      #      "${toString ws}, persistent:true"
-      #    ])
-      #  6)
-      #);
       workspace = [
         "1, persistent:true"
         "2, persistent:true"
@@ -206,10 +198,6 @@ in
         "float, ${nm_popup}"
         "size 30% 30%, ${nm_popup}"
       ];
-
-      #experimental = {
-      #  xx_color_management_v4 = true;
-      #};
 
     }; # End of settings.
 
