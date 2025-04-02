@@ -12,6 +12,8 @@
       ];
       userSettings = {
         "editor.autoClosingBrackets" = "never";
+        "editor.autoClosingDelete" = "never";
+        "editor.autoClosingOvertype" = "never";
         "editor.minimap.enabled" = false;
         "editor.tabSize" = 2;
         "files.trimTrailingWhitespace" = true;

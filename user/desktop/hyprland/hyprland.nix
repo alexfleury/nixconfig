@@ -28,7 +28,7 @@ in
 
     settings = {
       # Monitor settings.
-      monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, cm, hdr, vrr, 2";
+      monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, vrr, 2";
       xwayland.force_zero_scaling = true;
 
       # Common applications.
@@ -43,6 +43,7 @@ in
         "${pkgs.hypridle}/bin/hypridle"
         "${pkgs.swaynotificationcenter}/bin/swaync"
         "systemctl --user start hyprpolkitagent"
+        "nm-applet --indicator"
       ];
 
       env = [
@@ -86,7 +87,7 @@ in
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
         "$mod, I, exec, ${pkgs.hyprshot}/bin/hyprshot -m region"
       ]
-      # Switch and move to workspaces 1 to 6.
+      # Switch and move to workspaces.
       ++ (
         builtins.concatLists (builtins.genList (i:
           let ws = i + 1;
@@ -95,7 +96,7 @@ in
             "$mod $modd, code:1${toString i}, movetoworkspacesilent, ${toString ws}"
           ]
         )
-        6)
+        9)
       );
       # Utility keys.
       bindel = [
@@ -167,15 +168,26 @@ in
 
       gestures.workspace_swipe = false;
 
-      workspace = (
-        builtins.concatLists (
-          builtins.genList (i:
-          let ws = i+1;
-          in [
-            "${toString ws}, persistent:false"
-          ])
-        6)
-      );
+      #workspace = (
+      #  builtins.concatLists (
+      #    builtins.genList (i:
+      #    let ws = i+1;
+      #    in [
+      #      "${toString ws}, persistent:true"
+      #    ])
+      #  6)
+      #);
+      workspace = [
+        "1, persistent:true"
+        "2, persistent:true"
+        "3, persistent:true"
+        "4, persistent:true"
+        "5, persistent:true"
+        "6, persistent:true"
+        "7, persistent:false"
+        "8, persistent:false"
+        "9, persistent:false"
+      ];
 
       windowrule = [
         "idleinhibit fullscreen, class:^(*)$"
@@ -195,9 +207,9 @@ in
         "size 30% 30%, ${nm_popup}"
       ];
 
-      experimental = {
-        xx_color_management_v4 = true;
-      };
+      #experimental = {
+      #  xx_color_management_v4 = true;
+      #};
 
     }; # End of settings.
 

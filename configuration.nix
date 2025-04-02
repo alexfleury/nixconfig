@@ -30,6 +30,7 @@ in
   networking = {
     hostName = hostname;
     networkmanager.enable = true;
+    networkmanager.dns = "dnsmasq";
     networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
   };
 
@@ -105,6 +106,8 @@ in
     psmisc
     vim
     wget
+    networkmanagerapplet
+    protonvpn-gui
   ];
 
   # Enable hyprland.
@@ -128,28 +131,22 @@ in
   };
 
   # Remember ssh passphrase.
-  programs.ssh = {
-    startAgent = true;
-  };
+  programs.ssh.startAgent = true;
 
   # Services.
-  services = {
-    gvfs.enable = true;
-    hardware.openrgb.enable = true;
-    printing.enable = false;
-    udisks2.enable = true;
+  services.gvfs.enable = true;
+  services.hardware.openrgb.enable = true;
+  services.printing.enable = false;
+  services.udisks2.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
-    # Local LLM using ollama.
-    ollama = {
-      enable = true;
-      acceleration = "rocm";
-      rocmOverrideGfx = "10.3.0";
-      environmentVariables.OLLAMA_KEEP_ALIVE = "10s";
-    };
+  # Local LLM using ollama.
+  services.ollama = {
+    enable = true;
+    acceleration = "rocm";
+    rocmOverrideGfx = "10.3.0";
+    environmentVariables.OLLAMA_KEEP_ALIVE = "10s";
   };
-
-  # TODO: keyring unlocked at login?
-  #services.gnome.gnome-keyring.enable = true;
 
   # Security ann encryption.
   security = {
@@ -158,10 +155,8 @@ in
       rtkit.enable = true;
   };
 
-  # Generate encrupted password.
-  programs.gnupg.agent = {
-    enable = true;
-  };
+  # Generate encrypted password.
+  programs.gnupg.agent.enable = true;
 
   # QMK firmware service for keyboards.
   hardware.keyboard.qmk.enable = true;

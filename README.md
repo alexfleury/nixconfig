@@ -23,6 +23,8 @@ The structure is designed to be modular and straightforward:
 ├── README.md
 ├── scripts
 │   ├── Scripts (shell, bash, python, etc.)
+├── packages
+│   ├── Custom Nix derivations
 ├── user
 │   ├── cli
 │   │   ├── Command-line interface tools
@@ -34,12 +36,25 @@ The structure is designed to be modular and straightforward:
     ├── Wallpapers
 ```
 
+## Post-installation tweaks
+
+### Steam
+
+Launch a Steam game with HDR enabled.
+
+```shell
+DXVK_HDR=1 gamescope -W 3840 -H 2160 -r 240 --mangoapp --hdr-enabled -f -- LD_PRELOAD="" %command%
+```
+
+### SSH
+
+SSH keys should be backed up by `borgmatic`.
+
 ## TODOs
 
-- Reorganization of the folder.
+- Reorganization of the folder for many machines.
 - Make better use of `default.nix`.
-- `user/desktop/grimdawn.nix`: Configure GD-Stash (java app) for Grim Dawn.
-- `user/desktop/dracula.nix`:
+- Complete *Post-installation tweaks*.
 
 ## License
 

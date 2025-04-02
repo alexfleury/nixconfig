@@ -23,7 +23,7 @@
           "wireplumber"
           #"custom/brightness"
           "custom/hyprsunset"
-          #"tray"
+          "tray"
           #"custom/notifications"
         ];
 
@@ -74,7 +74,7 @@
           format = "{}";
           return-type = "json";
           exec = "hyprsunset_widget";
-          on-click = "killall hyprsunset; hyprsunset -t 4500 -g 80%";
+          on-click = "killall hyprsunset; hyprsunset -t 4000 -g 80%";
           on-click-right = "killall hyprsunset";
           on-scroll-up = "hyprctl hyprsunset temperature +100";
           on-scroll-down = "hyprctl hyprsunset temperature -100";
@@ -128,6 +128,9 @@
             "4" = "󰇍";
             "5" = "󰇎";
             "6" = "󰇏";
+            "7" = "󰇏 󰇊";
+            "8" = "󰇏 󰇋";
+            "9" = "󰇏 󰇌";
           };
           sort-by-number = true;
         };
@@ -176,10 +179,10 @@
           tooltip = false;
         };
 
-        #tray = {
+        tray = {
         #  icon-size = 12;
-        #  spacing = 10;
-        #};
+          spacing = 10;
+        };
 
         wireplumber = {
           format = "{icon} {volume}%";
@@ -301,9 +304,12 @@
         padding-left: 0px;
       }
 
+      #temperature.cpu.critical {
+        color: @base08;
+      }
+
       #temperature.gpu.critical {
-        background-color: @base04;
-        color: @base01;
+        color: @base08;
       }
 
       #tray > .passive {

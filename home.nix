@@ -29,11 +29,10 @@ in
     kitty
     libreoffice
     gdstash
+    kdePackages.okular
     makemkv
     nautilus
-    networkmanagerapplet
     nh
-    kdePackages.okular
     pavucontrol
     qmk
     vlc
