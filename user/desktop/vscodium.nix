@@ -20,6 +20,7 @@
         "window.titleBarStyle" = "custom";
         "[python]" = {
           "editor.tabSize" = 4;
+          "editor.rulers" = [ 72 80 ];
         };
       };
     };
