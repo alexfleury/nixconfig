@@ -142,7 +142,7 @@ in
 
   # Local LLM using ollama.
   services.ollama = {
-    enable = true;
+    enable = false;
     acceleration = "rocm";
     rocmOverrideGfx = "10.3.0";
     environmentVariables.OLLAMA_KEEP_ALIVE = "10s";
