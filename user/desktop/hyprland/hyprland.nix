@@ -33,7 +33,7 @@ in
 
       # Common applications.
       "$terminal" = "kitty";
-      "$fileManager" = "nautilus -w";
+      "$fileManager" = "dolphin";
       "$menu" = "rofi -show drun";
 
       # Startup applications.

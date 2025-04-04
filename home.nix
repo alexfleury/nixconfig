@@ -30,8 +30,8 @@ in
     libreoffice
     gdstash
     kdePackages.okular
+    kdePackages.dolphin
     makemkv
-    nautilus
     nh
     pavucontrol
     qmk
@@ -55,11 +55,11 @@ in
     mime.enable = true;
     mimeApps.enable = true;
     mimeApps.defaultApplications = {
-      "application/pdf" = [ "okularApplication_pdf.desktop" ];
+      "application/pdf" = [ "org.kde.okular.desktop" ];
       "image/*" = [ "feh.desktop" ];
       "video/*" = [ "vlc.desktop" ];
       "audio/*" = [ "vlc.desktop" ];
-      "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+      "inode/directory" = [ "org.kde.dolphin.desktop" ];
       "text/plain" = [ "geany.desktop" ];
     };
     userDirs.enable = true;
