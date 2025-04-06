@@ -6,6 +6,8 @@
 
   programs.waybar = {
     enable = true;
+    systemd.enable = true;
+
     settings = {
       mainBar = {
         position = "top";
@@ -109,7 +111,8 @@
         "custom/quit" = {
             format = "󰈆";
             tooltip = false;
-            on-click = "hyprctl dispatch exit";
+            # Before UWSM it was "hyprctl dispatch exit";.
+            on-click = "loginctl terminate-user \"\"";
         };
 
         "custom/reboot" = {
@@ -181,6 +184,7 @@
 
         tray = {
         #  icon-size = 12;
+          reverse-direction = true;
           spacing = 10;
         };
 

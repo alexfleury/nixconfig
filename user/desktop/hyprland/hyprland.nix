@@ -17,11 +17,12 @@ in
 
   home.packages = with pkgs; [
     hyprcursor
-    hyprpolkitagent
     hyprshot
     hyprsunset
     playerctl
   ];
+
+  services.hyprpolkitagent.enable = true;
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -37,20 +38,12 @@ in
       # Common applications.
       "$terminal" = "kitty";
       "$fileManager" = "dolphin";
-      "$menu" = "rofi -show drun";
+      "$menu" = "rofi -show drun -run-command \"uwsm app -- {cmd}\"";
 
       # Startup applications.
       exec-once = [
-        "uwsm-app -s b -- ${pkgs.waybar}/bin/waybar"
-        #"uwsm-app -s b -- ${pkgs.hyprpaper}/bin/hyprpaper"
-        #"uwsm-app -- ${pkgs.swaynotificationcenter}/bin/swaync"
-        "systemctl --user start hyprpolkitagent"
-        #"uwsm-app -s b -- nm-applet --indicator"
-        #"uwsm-app -- ${pkgs.protonvpn-gui}/bin/protonvpn-app"
+        "uwsm-app -- ${pkgs.protonvpn-gui}/bin/protonvpn-app"
       ];
-
-      #env = [
-      #];
 
       input.kb_layout = "ca";
 
@@ -60,10 +53,10 @@ in
 
       # Common operations.
       bind = [
-        "$mod, T, exec, $terminal"
+        "$mod, T, exec, uwsm-app -- $terminal"
         "$mod, Q, killactive,"
         "$mod, M, exit,"
-        "$mod, E, exec, $fileManager"
+        "$mod, E, exec, uwsm-app -- $fileManager"
         "$mod, V, togglefloating,"
         "$mod, R, exec, $menu"
         "$mod, P, pseudo,"
@@ -82,9 +75,8 @@ in
         "$mod, mouse_up, workspace, e-1"
         "$mod, F, fullscreen"
         "$mod, L, exec, loginctl lock-session"
-        "$mod $modd, W, exec, killall -SIGUSR1 .waybar-wrapped || ${pkgs.waybar}/bin/waybar" # Toggle waybar.
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
-        "$mod, I, exec, ${pkgs.hyprshot}/bin/hyprshot -m region"
+        "$mod, I, exec, uwsm-app -- ${pkgs.hyprshot}/bin/hyprshot -m region"
       ]
       # Switch and move to workspaces.
       ++ (
@@ -199,7 +191,8 @@ in
 
     }; # End of settings.
 
+    # Not needed anymore with UWSM?!
     # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/#programs-dont-work-in-systemd-services-but-do-on-the-terminal
-    systemd.variables = ["--all"];
+    #systemd.variables = ["--all"];
   };
 }
