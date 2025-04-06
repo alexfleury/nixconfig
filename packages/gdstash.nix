@@ -1,8 +1,8 @@
 {
   pkgs
-, copyDesktopItems ? pkgs.jre
+, copyDesktopItems ? pkgs.copyDesktopItems
 , jre ? pkgs.jre
-, makeDesktopItem ? pkgs.makeWrapper
+, makeDesktopItem ? pkgs.makeDesktopItem
 , makeWrapper ? pkgs.makeWrapper
 , requireFile ? pkgs.requireFile
 , stdenv ? pkgs.stdenv
@@ -36,6 +36,7 @@ stdenv.mkDerivation rec {
       desktopName = "GDStash";
       comment = description;
       exec = "GDStash";
+      icon = "games-app-symbolic";
       terminal = false;
       type = "Application";
       categories = [ "Game" ];
