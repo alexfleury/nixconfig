@@ -26,6 +26,9 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
 
+    # Avoid conflicts with uwsm.
+    systemd.enable = false;
+
     settings = {
       # Monitor settings.
       monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, vrr, 2";
@@ -38,21 +41,16 @@ in
 
       # Startup applications.
       exec-once = [
-        "${pkgs.waybar}/bin/waybar"
-        "${pkgs.hyprpaper}/bin/hyprpaper"
-        "${pkgs.hypridle}/bin/hypridle"
-        "${pkgs.swaynotificationcenter}/bin/swaync"
+        "uwsm-app -s b -- ${pkgs.waybar}/bin/waybar"
+        #"uwsm-app -s b -- ${pkgs.hyprpaper}/bin/hyprpaper"
+        #"uwsm-app -- ${pkgs.swaynotificationcenter}/bin/swaync"
         "systemctl --user start hyprpolkitagent"
-        "nm-applet --indicator"
-        "${pkgs.protonvpn-gui}/bin/protonvpn-app"
+        #"uwsm-app -s b -- nm-applet --indicator"
+        #"uwsm-app -- ${pkgs.protonvpn-gui}/bin/protonvpn-app"
       ];
 
-      env = [
-        "XCURSOR_SIZE,28"
-        "XCURSOR_THEME,Nordzy-cursors"
-        "HYPRCURSOR_SIZE,28"
-        "HYPRCURSOR_THEME,Nordzy-cursors"
-      ];
+      #env = [
+      #];
 
       input.kb_layout = "ca";
 

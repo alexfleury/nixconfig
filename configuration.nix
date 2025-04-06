@@ -74,7 +74,9 @@ in
       MOZ_ENABLE_WAYLAND = "1";
     };
     loginShellInit = ''
-      [[ "$(tty)" = "/dev/tty1" ]] && exec Hyprland &> /dev/null
+      if uwsm check may-start; then
+        exec uwsm start hyprland.desktop
+      fi
     '';
     # Use gamescope in a new session.
     #[[ "$(tty)" = "/dev/tty2" ]] && gamescope -e --hdr-enabled -- steam -tenfoot &> /dev/null
@@ -115,6 +117,7 @@ in
     enable = true;
     xwayland.enable = true;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
+    withUWSM  = true;
   };
 
   # Enable steam and gamescope.
