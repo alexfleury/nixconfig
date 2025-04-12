@@ -139,9 +139,16 @@ in
   # Services.
   services.gvfs.enable = true;
   services.hardware.openrgb.enable = true;
-  services.printing.enable = false;
+  services.printing.enable = true;
   services.udisks2.enable = true;
   services.gnome.gnome-keyring.enable = true;
+
+  # Automatic discovery of printers.
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # Local LLM using ollama.
   services.ollama = {
