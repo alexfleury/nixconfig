@@ -136,14 +136,14 @@ in
   # Remember ssh passphrase.
   programs.ssh.startAgent = true;
 
-  # Services.
+  # Misc services.
   services.gvfs.enable = true;
   services.hardware.openrgb.enable = true;
-  services.printing.enable = true;
   services.udisks2.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
-  # Automatic discovery of printers.
+  # Printing and automatic discovery of printers.
+  services.printing.enable = true;
   services.avahi = {
     enable = true;
     nssmdns4 = true;

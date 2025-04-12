@@ -6,15 +6,6 @@ let
   pavucontrol_popup = "class:^(org.pulseaudio.pavucontrol)$ title:^(Volume Control)$";
 in
 {
-  imports = [
-    ./hypridle.nix
-    ./hyprlock.nix
-    ./hyprpaper.nix
-    ./rofi.nix
-    ./swaync.nix
-    ./waybar.nix
-  ];
-
   home.packages = with pkgs; [
     hyprcursor
     hyprshot

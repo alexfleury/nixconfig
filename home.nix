@@ -5,12 +5,12 @@ in
 {
   imports = [
     ./scripts
+    ./user/desktop/hyprland
     ./user/cli/borgmatic.nix
     ./user/cli/fastfetch.nix
     ./user/cli/git.nix
     ./user/cli/ssh.nix
     ./user/cli/zsh.nix
-    ./user/desktop/hyprland/hyprland.nix
     ./user/desktop/firefox.nix
     ./user/desktop/kitty.nix
     ./user/desktop/vscodium.nix
