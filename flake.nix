@@ -22,6 +22,7 @@
         overlays = [
           (final: prev: {
             gdstash = final.callPackage ./packages/gdstash.nix { inherit pkgs; };
+            hyprshot-gui = final.callPackage ./packages/hyprshot_gui.nix { inherit pkgs; };
           })
         ];
       };

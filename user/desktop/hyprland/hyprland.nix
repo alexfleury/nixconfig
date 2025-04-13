@@ -9,6 +9,7 @@ in
   home.packages = with pkgs; [
     hyprcursor
     hyprshot
+    hyprshot-gui
     hyprsunset
     playerctl
   ];
@@ -178,6 +179,7 @@ in
         "center ${nm_popup}"
         "float, ${nm_popup}"
         "size 30% 30%, ${nm_popup}"
+        "float, title:^(.*Hyprshot.*)$"
       ];
 
     }; # End of settings.
