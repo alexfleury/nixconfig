@@ -34,6 +34,7 @@ in
     nh
     pavucontrol
     qmk
+    rclone
     vlc
     yt-dlp
   ];
@@ -70,8 +71,8 @@ in
 
   stylix.iconTheme = {
     enable = true;
-    package = pkgs.nordzy-icon-theme;
-    dark = "Nordzy";
+    package = pkgs.dracula-icon-theme;
+    dark = "Dracula";
   };
 
   # Password manager in Linux.

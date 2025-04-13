@@ -68,7 +68,7 @@ in
         "$mod, F, fullscreen"
         "$mod, L, exec, loginctl lock-session"
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
-        "$mod, I, exec, uwsm-app -- ${pkgs.hyprshot}/bin/hyprshot -m region"
+        "$mod, I, exec, uwsm-app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
       ]
       # Switch and move to workspaces.
       ++ (
