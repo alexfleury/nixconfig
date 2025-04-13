@@ -30,7 +30,6 @@ in
     libreoffice
     gdstash
     kdePackages.okular
-    kdePackages.dolphin
     makemkv
     nh
     pavucontrol

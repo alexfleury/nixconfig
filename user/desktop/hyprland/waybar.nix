@@ -183,7 +183,6 @@
         };
 
         tray = {
-        #  icon-size = 12;
           reverse-direction = true;
           spacing = 10;
         };
@@ -316,12 +315,12 @@
         color: @base08;
       }
 
-      #tray > .passive {
-        color: @base0F;
+      #tray > .active {
+        color: @base04;
       }
 
-      #tray menu * {
-          color:  @base04;
+      #tray > .passive {
+        color: @base04;
       }
 
       #workspaces {

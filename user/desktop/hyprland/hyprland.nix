@@ -28,7 +28,7 @@ in
 
       # Common applications.
       "$terminal" = "kitty";
-      "$fileManager" = "dolphin";
+      "$fileManager" = "thunar";
       "$menu" = "rofi -show drun -run-command \"uwsm app -- {cmd}\"";
 
       # Startup applications.

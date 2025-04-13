@@ -133,13 +133,22 @@ in
     capSysNice = false;
   };
 
-  # Remember ssh passphrase.
-  programs.ssh.startAgent = true;
+  programs.thunar.enable = true;
+  programs.xfconf.enable = true;
 
-  # Misc services.
+  # Mount, trash, and other functionalities.
   services.gvfs.enable = true;
-  services.hardware.openrgb.enable = true;
+
+  # Thumbnail support for images
+  services.tumbler.enable = true;
+
+  # Mount USB drives automatically.
   services.udisks2.enable = true;
+
+  # Hardware RGBs.
+  services.hardware.openrgb.enable = true;
+
+  # Somehow needed for protonvpn-gui.
   services.gnome.gnome-keyring.enable = true;
 
   # Printing and automatic discovery of printers.
@@ -157,6 +166,9 @@ in
     rocmOverrideGfx = "10.3.0";
     environmentVariables.OLLAMA_KEEP_ALIVE = "10s";
   };
+
+  # Remember ssh passphrase.
+  programs.ssh.startAgent = true;
 
   # Security ann encryption.
   security = {
