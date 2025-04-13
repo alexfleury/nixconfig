@@ -32,6 +32,7 @@ in
     kdePackages.okular
     makemkv
     nh
+    obsidian
     pavucontrol
     qmk
     rclone
@@ -85,5 +86,4 @@ in
   programs.home-manager.enable = true;
 
   home.stateVersion = "24.05"; # Don't change this unless you know.
-
 }
