@@ -6,6 +6,6 @@ pkgs.writeShellApplication {
   runtimeInputs = with pkgs; [ wl-clipboard xclip ];
 
   text = ''
-    ${pkgs.wl-clipboard}/bin/wl-paste | ${pkgs.xclip}/bin/xclip -selection clipboard
+    wl-paste | xclip -selection clipboard
   '';
 }
