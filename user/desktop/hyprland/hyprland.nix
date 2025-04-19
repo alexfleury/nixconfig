@@ -8,6 +8,7 @@ in
 {
   home.packages = with pkgs; [
     hyprcursor
+    hyprpicker
     hyprshot
     hyprshot-gui
     hyprsunset
@@ -47,7 +48,7 @@ in
       bind = [
         "$mod, T, exec, uwsm-app -- $terminal"
         "$mod, Q, killactive,"
-        "$mod, M, exit,"
+        "$mod, M, exec, uwsm stop"
         "$mod, E, exec, uwsm-app -- $fileManager"
         "$mod, V, togglefloating,"
         "$mod, R, exec, $menu"
