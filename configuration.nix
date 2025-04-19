@@ -109,10 +109,8 @@ in
     gptfdisk
     jq # Json formatter.
     lact # Linux AMDGPU Controller
-    mangohud # Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more
     networkmanagerapplet
     openrgb-with-all-plugins # RGB lighthing control.
-    protonvpn-gui
     psmisc
     vim
     wget

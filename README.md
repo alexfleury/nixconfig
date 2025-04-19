@@ -40,7 +40,13 @@ The structure is designed to be modular and straightforward:
 
 ### Steam
 
-Launch a Steam game with HDR enabled.
+Simplest way to launch a Steam game with gamescope,
+
+```shell
+gamescope -W 3840 -H 2160 -r 240 --mangoapp -f -- %command%
+```
+
+And with HDR enabled.
 
 ```shell
 DXVK_HDR=1 gamescope -W 3840 -H 2160 -r 240 --mangoapp --hdr-enabled -f -- LD_PRELOAD="" %command%

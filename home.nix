@@ -30,10 +30,13 @@ in
     libreoffice
     gdstash
     kdePackages.okular
+    limo
     makemkv
     nh
     obsidian
     pavucontrol
+    proton-pass
+    protonvpn-gui
     qmk
     rclone
     vlc
@@ -80,6 +83,14 @@ in
   programs.password-store = {
     enable = true;
     package = pkgs.pass;
+  };
+
+  # Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more.
+  programs.mangohud = {
+    enable = true;
+    settings = {
+      mangoapp_steam = true;
+    };
   };
 
   # Let Home Manager install and manage itself.
