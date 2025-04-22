@@ -7,6 +7,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    hdrop
     hyprcursor
     hyprpicker
     hyprshot
@@ -35,7 +36,7 @@ in
 
       # Startup applications.
       exec-once = [
-        "uwsm-app -- ${pkgs.protonvpn-gui}/bin/protonvpn-app"
+        "uwsm-app -s b -- ${pkgs.protonvpn-gui}/bin/protonvpn-app"
       ];
 
       input.kb_layout = "ca";
@@ -70,6 +71,7 @@ in
         "$mod, L, exec, loginctl lock-session"
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
         "$mod, I, exec, uwsm-app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
+        "$mod, X, exec, uwsm-app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 $terminal --class $terminal_1"
       ]
       # Switch and move to workspaces.
       ++ (
