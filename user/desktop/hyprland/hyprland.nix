@@ -144,15 +144,9 @@ in
 
       master.new_status = "master";
 
-      misc = {
-        disable_hyprland_logo = true;
-        disable_hyprland_qtutils_check = true;
-        force_default_wallpaper = -1;
-        mouse_move_enables_dpms = true;
-        key_press_enables_dpms = false;
-      };
-
       gestures.workspace_swipe = false;
+
+      cursor.no_warps = true;
 
       workspace = [
         "1, persistent:true"
@@ -184,6 +178,14 @@ in
         "size 30% 30%, ${nm_popup}"
         "float, title:^(.*Hyprshot.*)$"
       ];
+
+      misc = {
+        disable_hyprland_logo = true;
+        disable_hyprland_qtutils_check = true;
+        force_default_wallpaper = -1;
+        mouse_move_enables_dpms = true;
+        key_press_enables_dpms = false;
+      };
 
     }; # End of settings.
 
