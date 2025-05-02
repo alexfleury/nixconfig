@@ -23,10 +23,11 @@ in
     # The param "preempt=full" fixed buzzing sound in Hogwarts Legacy.
     kernelParams = [ "preempt=full" "consoleblank=60" ];
     kernelModules = [ "sg" ];
+    kernelPackages = pkgs.linuxPackages_zen;
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot = {
       enable = true;
-      configurationLimit = 5;
+      configurationLimit = 10;
       consoleMode = "auto";
       memtest86.enable = true;
     };
@@ -115,6 +116,17 @@ in
     vim
     wget
   ];
+
+  # For lact.
+  systemd.services.lact = {
+    enable = true;
+    description = "AMDGPU Control Daemon";
+    after = [ "multi-user.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.lact}/bin/lact daemon";
+    };
+  };
 
   # Enable hyprland.
   programs.hyprland = {
@@ -240,7 +252,7 @@ in
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 1w";
+      options = "--delete-older-than 2w";
       persistent = true;
     };
   };
