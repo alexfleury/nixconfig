@@ -32,11 +32,11 @@ in
       # Common applications.
       "$terminal" = "kitty";
       "$fileManager" = "thunar";
-      "$menu" = "rofi -show drun -run-command \"uwsm app -- {cmd}\"";
+      "$menu" = "rofi -show drun -run-command \"uwsm-app -- {cmd}\"";
 
       # Startup applications.
       exec-once = [
-        "uwsm-app -s b -- ${pkgs.protonvpn-gui}/bin/protonvpn-app"
+        "uwsm-app -- ${pkgs.protonvpn-gui}/bin/protonvpn-app"
       ];
 
       input.kb_layout = "ca";
@@ -72,7 +72,7 @@ in
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
         "$mod, I, exec, uwsm-app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
         "$mod, X, exec, uwsm-app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 $terminal --class $terminal_1"
-        "$mod, D, exec, uwsm-app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 ${pkgs.discord}/bin/discord"
+        #"$mod, D, exec, uwsm-app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 ${pkgs.discord}/bin/discord"
       ]
       # Switch and move to workspaces.
       ++ (

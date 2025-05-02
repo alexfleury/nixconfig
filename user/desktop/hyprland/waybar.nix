@@ -105,7 +105,7 @@
         "custom/power" = {
           format = " ";
           tooltip = false;
-          on-click = "shutdown now";
+          on-click = "systemctl poweroff";
         };
 
         "custom/quit" = {
