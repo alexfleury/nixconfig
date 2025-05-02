@@ -29,23 +29,25 @@ in
     kitty
     libreoffice
     gdstash
-    kdePackages.okular
-    limo
+    #kdePackages.okular
+    limo # Game modding sotfware.
     makemkv
-    nh
+    nh # Nix utility wrapper.
     obsidian
     pavucontrol
     proton-pass
     protonvpn-gui
     qmk
+    qpdfview
     rclone
     vlc
     yt-dlp
+    yubioath-flutter
   ];
 
   home.sessionVariables = {
     EDITOR = "vim";
-    FLAKE = "/home/${username}/nixconfig";
+    NH_FLAKE = "/home/${username}/nixconfig";
   };
 
   home.shellAliases = {
@@ -59,12 +61,12 @@ in
     mime.enable = true;
     mimeApps.enable = true;
     mimeApps.defaultApplications = {
-      "application/pdf" = [ "org.kde.okular.desktop" ];
+      "application/pdf" = [ "qpdfview.desktop" ];
       "image/*" = [ "feh.desktop" ];
       "video/*" = [ "vlc.desktop" ];
       "audio/*" = [ "vlc.desktop" ];
-      "inode/directory" = [ "org.kde.dolphin.desktop" ];
-      "text/plain" = [ "geany.desktop" ];
+      "inode/directory" = [ "thunar.desktop" ];
+      "text/plain" = [ "codium.desktop" ];
     };
     userDirs.enable = true;
     userDirs.createDirectories = true;
