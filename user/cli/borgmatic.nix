@@ -8,9 +8,14 @@
       data = {
 
         hooks.extraConfig = {
-          "before_backup" = [
-            "findmnt {repository_label} > /dev/null || exit 75"
-            "findmnt /mnt/Data > /dev/null || exit 75"
+          commands = [
+            {
+              before = "repository";
+              run = [
+                "findmnt {repository_label} > /dev/null || exit 75"
+                "findmnt /mnt/Data > /dev/null || exit 75"
+              ];
+            }
           ];
         };
 
@@ -55,8 +60,13 @@
       grimdawn = {
 
         hooks.extraConfig = {
-          "before_backup" = [
-            "findmnt /mnt/Data > /dev/null || exit 75"
+          commands = [
+            {
+              before = "repository";
+              run = [
+                "findmnt /mnt/Data > /dev/null || exit 75"
+              ];
+            }
           ];
         };
 
