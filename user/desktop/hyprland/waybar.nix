@@ -13,20 +13,23 @@
         position = "top";
         layer = "top";
         height = 45;
-        modules-left = ["group/group-power" "idle_inhibitor" "hyprland/workspaces"];
-        modules-center = ["clock"];
-        modules-right = [
+        modules-left = [
+          "group/group-power"
+          "idle_inhibitor"
           "cpu"
           "temperature#cpu"
           "custom/gpu"
           "temperature#gpu"
+          "hyprland/workspaces"
+        ];
+        modules-center = ["clock"];
+        modules-right = [
           "network"
           "bluetooth"
           "wireplumber"
-          #"custom/brightness"
+          "custom/brightness"
           "custom/hyprsunset"
           "tray"
-          #"custom/notifications"
         ];
 
         bluetooth = {
@@ -52,17 +55,17 @@
           tooltip = false;
         };
 
-        #"custom/brightness" = {
-        #  format = "{icon} {percentage}%";
-        #  format-icons = [ "󱩐" "󱩒" "󰛨" ];
-        #  return-type = "json";
-        #  exec = "ddcutil getvcp 10 | grep -oP \"current.*?=\\s*\\K[0-9]+\" | { read x; echo '{\"percentage\":'\${x}'}'; }";
-        #  on-click = "ddcutil setvcp 10 1";
-        #  on-click-middle = "ddcutil setvcp 10 30";
-        #  on-click-right = "ddcutil setvcp 10 70";
-        #  interval = 2;
-        #  tooltip = false;
-        #};
+        "custom/brightness" = {
+          format = "{icon} {percentage}%";
+          format-icons = [ "󱩐" "󱩒" "󰛨" ];
+          return-type = "json";
+          exec = "ddcutil getvcp 10 | grep -oP \"current.*?=\\s*\\K[0-9]+\" | { read x; echo '{\"percentage\":'\${x}'}'; }";
+          on-click = "ddcutil setvcp 10 1";
+          on-click-middle = "ddcutil setvcp 10 30";
+          on-click-right = "ddcutil setvcp 10 70";
+          interval = 2;
+          tooltip = false;
+        };
 
         "custom/gpu" = {
           exec = "amdgpu_top -d --json | jq --unbuffered --compact-output '.[0]'.gpu_metrics.current_gfxclk";
@@ -76,7 +79,7 @@
           format = "{}";
           return-type = "json";
           exec = "hyprsunset_widget";
-          on-click = "killall hyprsunset; hyprsunset -t 4000 -g 80%";
+          on-click = "killall hyprsunset; hyprsunset -t 3500";
           on-click-right = "killall hyprsunset";
           on-scroll-up = "hyprctl hyprsunset temperature +100";
           on-scroll-down = "hyprctl hyprsunset temperature -100";
@@ -89,12 +92,6 @@
           tooltip = false;
           on-click = "loginctl lock-session";
         };
-
-        #"custom/notifications" = {
-        #  format = " ";
-        #  on-click = "swaync-client -t -sw";
-        #  tooltip = false;
-        #};
 
         "custom/hibernate" = {
           format = "󰋣";

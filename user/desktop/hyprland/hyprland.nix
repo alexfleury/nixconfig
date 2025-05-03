@@ -35,9 +35,9 @@ in
       "$menu" = "rofi -show drun -run-command \"uwsm-app -- {cmd}\"";
 
       # Startup applications.
-      exec-once = [
-        "uwsm-app -- ${pkgs.protonvpn-gui}/bin/protonvpn-app"
-      ];
+      #exec-once = [
+      #  "uwsm-app -s b -- ${pkgs.protonvpn-gui}/bin/protonvpn-app"
+      #];
 
       input.kb_layout = "ca";
 
