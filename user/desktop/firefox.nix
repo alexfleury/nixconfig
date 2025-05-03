@@ -20,6 +20,7 @@
         name = "default";
         isDefault = true;
         settings = {
+          "browser.tabs.groups.enabled" = true;
           "media.ffmpeg.vaapi.enabled" = true;
         };
       };
