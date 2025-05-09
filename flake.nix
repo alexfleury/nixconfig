@@ -9,7 +9,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # https://github.com/danth/stylix
     stylix.url = "github:danth/stylix";
+
+    # https://github.com/e-tho/iwmenu
+    iwmenu.url = "github:e-tho/iwmenu";
+
+    # https://github.com/e-tho/bzmenu
+    bzmenu.url = "github:e-tho/bzmenu";
   };
 
   outputs = { self, nixpkgs, home-manager, ...} @inputs:

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ inputs, config, pkgs, lib, ... }:
 let
   username = "alex";
 in
@@ -43,6 +43,8 @@ in
     vlc
     yt-dlp
     yubioath-flutter
+    inputs.iwmenu.packages.${pkgs.system}.default
+    inputs.bzmenu.packages.${pkgs.system}.default
   ];
 
   home.sessionVariables = {
