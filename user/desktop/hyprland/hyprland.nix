@@ -72,7 +72,6 @@ in
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
         "$mod, I, exec, uwsm-app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
         "$mod, X, exec, uwsm-app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 $terminal --class $terminal_1"
-        #"$mod, D, exec, uwsm-app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 ${pkgs.discord}/bin/discord"
       ]
       # Switch and move to workspaces.
       ++ (
