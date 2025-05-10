@@ -5,12 +5,12 @@ let
   name = "Alexandre";
   timezone = "America/Toronto";
   username = "alex";
-  wallpaperRepo = pkgs.fetchFromGitHub {
-    owner = "dracula";
-    repo = "wallpaper";
-    rev = "f2b8cc4223bcc2dfd5f165ab80f701bbb84e3303";
-    hash = "sha256-P0MfGkVap8wDd6eSMwmLhvQ4/7Z+pNmgY7O+qt9C1bg=";
-  };
+  #wallpaperRepo = pkgs.fetchFromGitHub {
+  #  owner = "dracula";
+  #  repo = "wallpaper";
+  #  rev = "f2b8cc4223bcc2dfd5f165ab80f701bbb84e3303";
+  #  hash = "sha256-P0MfGkVap8wDd6eSMwmLhvQ4/7Z+pNmgY7O+qt9C1bg=";
+  #};
 in
 {
   imports =[
@@ -103,6 +103,7 @@ in
     amdgpu_top
     btrfs-progs
     ddcutil
+    dysk # Get (pretty) info about mounted disks.
     e2fsprogs
     exfat
     exfatprogs
@@ -204,7 +205,10 @@ in
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
 
-    image = "${wallpaperRepo}/first-collection/nixos.png"; #./wallpapers/camping.jpg;
+    image = ./wallpapers/icy_mountain.jpg;
+    # Other options:
+    #"${wallpaperRepo}/first-collection/nixos.png";
+    # ...
 
     cursor = {
       package = pkgs.qogir-icon-theme;
