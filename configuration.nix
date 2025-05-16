@@ -114,6 +114,7 @@ in
     networkmanagerapplet
     openrgb-with-all-plugins # RGB lighthing control.
     psmisc
+    unzip
     vim
     wget
   ];
