@@ -23,16 +23,15 @@ in
 
   home.packages = with pkgs; [
     discord
-    feh
     freetube
     geany
     kitty
     libreoffice
     gdstash
-    #kdePackages.okular
-    limo # Game modding sotfware.
+    handbrake
     makemkv
     nh # Nix utility wrapper.
+    nomacs
     obsidian
     pavucontrol
     proton-pass
@@ -40,6 +39,7 @@ in
     qmk
     qpdfview
     rclone
+    video2x-full
     vlc
     yt-dlp
     yubioath-flutter
@@ -62,7 +62,7 @@ in
     mimeApps.enable = true;
     mimeApps.defaultApplications = {
       "application/pdf" = [ "qpdfview.desktop" ];
-      "image/*" = [ "feh.desktop" ];
+      "image/*" = [ "nomacs.desktop" ];
       "video/*" = [ "vlc.desktop" ];
       "audio/*" = [ "vlc.desktop" ];
       "inode/directory" = [ "thunar.desktop" ];
