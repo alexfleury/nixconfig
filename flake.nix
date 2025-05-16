@@ -9,7 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:danth/stylix";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+      };
   };
 
   outputs = { self, nixpkgs, home-manager, ...} @inputs:
@@ -23,6 +27,7 @@
           (final: prev: {
             gdstash = final.callPackage ./packages/gdstash.nix { inherit pkgs; };
             hyprshot-gui = final.callPackage ./packages/hyprshot_gui.nix { inherit pkgs; };
+            video2x-full = pkgs.video2x.override { ffmpeg = pkgs.ffmpeg-full; };
           })
         ];
       };
