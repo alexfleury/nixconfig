@@ -23,9 +23,6 @@
 
           patterns = [
             "R /mnt/Data"
-            "- mnt/Data/Audio/Musique/mp3"
-            "- mnt/Data/Films/mp4"
-            "- mnt/Data/Series/mp4"
             "- mnt/Data/SteamLibrary"
             "- mnt/Data/ProtonDrive"
             "R /home/${config.home.username}/.ssh"
