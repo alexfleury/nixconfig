@@ -27,22 +27,21 @@ in
     geany
     kitty
     libreoffice
-    gdstash
+    gdstash # Custom package fro GDStash.
     handbrake
     makemkv
     nh # Nix utility wrapper.
-    nomacs
-    obsidian
+    nomacs # Image viewer.
+    obsidian # Note application.
     pavucontrol
     proton-pass
     protonvpn-gui
     qmk
-    qpdfview
+    qpdfview # PDF viewer.
     rclone
-    video2x-full
-    vlc
+    video2x-full # AI upscaling for videos.
     yt-dlp
-    yubioath-flutter
+    yubioath-flutter # Yubico authentification application.
   ];
 
   home.sessionVariables = {
@@ -94,6 +93,12 @@ in
       mangoapp_steam = true;
     };
   };
+
+  # Music player.
+  programs.rmpc.enable = true;
+
+  # Video player.
+  programs.mpv.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
