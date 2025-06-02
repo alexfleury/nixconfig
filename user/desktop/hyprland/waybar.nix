@@ -16,19 +16,20 @@
         modules-left = [
           "group/group-power"
           "idle_inhibitor"
+          "custom/brightness"
+          "custom/hyprsunset"
+          "hyprland/workspaces"
+        ];
+        modules-center = [ ];
+        modules-right = [
           "cpu"
           "temperature#cpu"
           "custom/gpu"
           "temperature#gpu"
-          "hyprland/workspaces"
-        ];
-        modules-center = ["clock"];
-        modules-right = [
           "network"
           "bluetooth"
           "wireplumber"
-          "custom/brightness"
-          "custom/hyprsunset"
+          "clock"
           "tray"
         ];
 
@@ -44,7 +45,8 @@
 
         clock = {
           interval = 60;
-          format = "  {:%A, %B %d   %H:%M}";
+          #format = "  {:%A, %B %d   %H:%M}";
+          format = " {:%H:%M}";
           on-click = "swaync-client -t -sw";
           tooltip = false;
         };
@@ -96,7 +98,7 @@
         "custom/hibernate" = {
           format = "󰋣";
           tooltip = false;
-          on-click = "systemctl hibernate";
+          on-click = "systemctl sleep";
         };
 
         "custom/power" = {

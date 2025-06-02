@@ -11,8 +11,9 @@
     settings = {
       control-center-height = 800;
       control-center-width = 494;
-      control-center-margin-top = 4;
-      control-center-positionX = "center";
+      control-center-margin-top = 5;
+      control-center-margin-right = 5;
+      control-center-positionX = "right";
       control-center-positionY = "top";
       fit-to-screen = false;
       hide-on-clear = true;
@@ -23,7 +24,7 @@
       notification-body-image-height = 100;
       notification-body-image-width = 200;
       notification-window-width = 400;
-      positionX = "center";
+      positionX = "right";
       positionY = "top";
       timeout = 10;
       timeout-low = 5;

@@ -108,6 +108,7 @@ in
     exfat
     exfatprogs
     git
+    gparted
     gptfdisk
     jq # Json formatter.
     lact # Linux AMDGPU Controller
