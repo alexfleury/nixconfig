@@ -28,7 +28,7 @@ in
     loader.systemd-boot = {
       enable = true;
       configurationLimit = 10;
-      consoleMode = "auto";
+      consoleMode = "max";
       memtest86.enable = true;
     };
   };
@@ -53,6 +53,12 @@ in
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [
+      amdvlk
+    ];
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+    ];
   };
 
   # Bluetooth.
