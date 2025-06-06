@@ -21,7 +21,7 @@ in
   boot = {
     initrd.kernelModules = [ "amdgpu" ];
     # The param "preempt=full" fixed buzzing sound in Hogwarts Legacy.
-    kernelParams = [ "preempt=full" "consoleblank=60" ];
+    kernelParams = [ "consoleblank=60" ];
     kernelModules = [ "sg" ];
     kernelPackages = pkgs.linuxPackages_zen;
     loader.efi.canTouchEfiVariables = true;

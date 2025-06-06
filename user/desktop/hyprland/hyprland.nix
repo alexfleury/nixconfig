@@ -32,11 +32,11 @@ in
       # Common applications.
       "$terminal" = "kitty";
       "$fileManager" = "thunar";
-      "$menu" = "rofi -show drun -run-command \"uwsm-app -- {cmd}\"";
+      "$menu" = "rofi -show drun -run-command \"uwsm app -- {cmd}\"";
 
       # Startup applications.
       exec-once = [
-        "uwsm-app -s b -- protonvpn-app.desktop"
+        "uwsm app -s b -- protonvpn-app.desktop"
       ];
 
       input.kb_layout = "ca";
@@ -47,10 +47,10 @@ in
 
       # Common operations.
       bind = [
-        "$mod, T, exec, uwsm-app -- $terminal"
+        "$mod, T, exec, uwsm app -- $terminal"
         "$mod, Q, killactive,"
         "$mod, M, exec, uwsm stop"
-        "$mod, E, exec, uwsm-app -- $fileManager"
+        "$mod, E, exec, uwsm app -- $fileManager"
         "$mod, V, togglefloating,"
         "$mod, R, exec, $menu"
         "$mod, P, pseudo,"
@@ -70,8 +70,8 @@ in
         "$mod, F, fullscreen"
         "$mod, L, exec, loginctl lock-session"
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
-        "$mod, I, exec, uwsm-app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
-        "$mod, X, exec, uwsm-app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 $terminal --class $terminal_1"
+        "$mod, I, exec, uwsm app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
+        "$mod, X, exec, uwsm app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 $terminal --class $terminal_1"
       ]
       # Switch and move to workspaces.
       ++ (

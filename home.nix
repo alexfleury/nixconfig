@@ -40,6 +40,7 @@ in
     qpdfview # PDF viewer.
     rclone
     video2x-full # AI upscaling for videos.
+    vlc
     yt-dlp
     yubioath-flutter # Yubico authentification application.
   ];
@@ -98,7 +99,7 @@ in
   programs.rmpc.enable = true;
 
   # Video player.
-  programs.mpv.enable = true;
+  #programs.mpv.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
