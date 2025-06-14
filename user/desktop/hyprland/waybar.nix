@@ -45,8 +45,8 @@
 
         clock = {
           interval = 60;
-          #format = "  {:%A, %B %d   %H:%M}";
-          format = " {:%H:%M}";
+          format = "  {:%A, %B %d   %H:%M}";
+          #format = " {:%H:%M}";
           on-click = "swaync-client -t -sw";
           tooltip = false;
         };

@@ -39,10 +39,16 @@ in
     qmk
     qpdfview # PDF viewer.
     rclone
-    video2x-full # AI upscaling for videos.
+    #video2x-full # AI upscaling for videos.
     vlc
     yt-dlp
     yubioath-flutter # Yubico authentification application.
+    # For Battle.net
+    (wineWowPackages.full.override {
+      wineRelease = "staging";
+      mingwSupport = true;
+    })
+    winetricks
   ];
 
   home.sessionVariables = {
@@ -96,7 +102,7 @@ in
   };
 
   # Music player.
-  programs.rmpc.enable = true;
+  #programs.rmpc.enable = true;
 
   # Video player.
   #programs.mpv.enable = true;

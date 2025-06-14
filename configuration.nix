@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 let
   hostname = "quantumflower";
   locale = "en_CA.UTF-8";
@@ -27,7 +27,7 @@ in
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot = {
       enable = true;
-      configurationLimit = 10;
+      configurationLimit = 5;
       consoleMode = "max";
       memtest86.enable = true;
     };
@@ -53,12 +53,6 @@ in
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [
-      amdvlk
-    ];
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-    ];
   };
 
   # Bluetooth.
@@ -106,7 +100,7 @@ in
 
   # System-wide packages.
   environment.systemPackages = with pkgs; [
-    amdgpu_top
+    amdgpu_top # use in waybar to get GPU clock.
     btrfs-progs
     ddcutil
     dysk # Get (pretty) info about mounted disks.
@@ -127,15 +121,8 @@ in
   ];
 
   # For lact.
-  systemd.services.lact = {
-    enable = true;
-    description = "AMDGPU Control Daemon";
-    after = [ "multi-user.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.lact}/bin/lact daemon";
-    };
-  };
+  systemd.packages = with pkgs; [ lact ];
+  systemd.services.lactd.wantedBy = ["multi-user.target"];
 
   # Enable hyprland.
   programs.hyprland = {

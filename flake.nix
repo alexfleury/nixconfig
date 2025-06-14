@@ -35,7 +35,7 @@
       nixosConfigurations = {
         "quantumflower" = lib.nixosSystem {
           inherit system pkgs;
-          specialArgs = {inherit inputs;};
+          specialArgs = { inherit inputs; };
           modules = [
             ./configuration.nix
             home-manager.nixosModules.home-manager
