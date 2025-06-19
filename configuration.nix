@@ -179,9 +179,6 @@ in
     environmentVariables.OLLAMA_KEEP_ALIVE = "10s";
   };
 
-  # Remember ssh passphrase.
-  programs.ssh.startAgent = true;
-
   # Security ann encryption.
   security = {
       pam.services.hyprlock = {};
