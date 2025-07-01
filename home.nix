@@ -28,8 +28,8 @@ in
     kitty
     libreoffice
     gdstash # Custom package fro GDStash.
-    handbrake
-    makemkv
+    #handbrake
+    #makemkv
     nh # Nix utility wrapper.
     nomacs # Image viewer.
     obsidian # Note application.
@@ -42,7 +42,7 @@ in
     #video2x-full # AI upscaling for videos.
     vlc
     yt-dlp
-    yubioath-flutter # Yubico authentification application.
+    #yubioath-flutter # Yubico authentification application.
     # For Battle.net
     (wineWowPackages.full.override {
       wineRelease = "staging";

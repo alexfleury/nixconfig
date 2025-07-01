@@ -197,7 +197,7 @@ in
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
 
-    image = ./wallpapers/icy_mountain.jpg;
+    image = ./wallpapers/trees.jpg;
     # Other options:
     #"${wallpaperRepo}/first-collection/nixos.png";
     # ...

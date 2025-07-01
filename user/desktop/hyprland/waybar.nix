@@ -95,7 +95,7 @@
           on-click = "loginctl lock-session";
         };
 
-        "custom/hibernate" = {
+        "custom/sleep" = {
           format = "󰋣";
           tooltip = false;
           on-click = "systemctl sleep";
@@ -206,9 +206,9 @@
           };
           modules = [
               "custom/power"
-              "custom/hibernate"
+              "custom/sleep"
               "custom/lock"
-              "custom/quit"
+              #"custom/quit"
               "custom/reboot"
           ];
         };
@@ -242,7 +242,6 @@
       #custom-power,
       #custom-quit,
       #custom-reboot,
-      #custom-wlogout,
       #idle_inhibitor,
       #network,
       #temperature,
@@ -258,6 +257,10 @@
         padding-right: 10px;
         margin-top: 5px;
         margin-bottom: 5px;
+      }
+
+      #bluetooth {
+        color: @base0F;
       }
 
       #cpu,
@@ -276,6 +279,7 @@
       }
 
       #custom-lock {
+        color: @base05;
         padding-right: 12px;
       }
 
@@ -291,12 +295,19 @@
         color: @base0A;
       }
 
+      #custom-sleep,
+      #custom-reboot
+      {
+        color: @base05;
+      }
+
       #custom-power {
         color: @base08;
         padding-left: 16px;
       }
 
       #custom-quit {
+        color: @base05;
         padding-right: 12px;
       }
 
@@ -304,6 +315,7 @@
         border-radius: 0px 5px 5px 0px;
         margin-left: 0px;
         padding-left: 0px;
+        color: @base0C;
       }
 
       #temperature.cpu.critical {
@@ -320,6 +332,10 @@
 
       #tray > .passive {
         color: @base04;
+      }
+
+      #wireplumber {
+        color: @base0E;
       }
 
       #workspaces {

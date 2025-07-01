@@ -9,7 +9,7 @@
         before_sleep_cmd = "loginctl lock-session";
         #ignore_dbus_inhibit = false;
         lock_cmd = "pidof hyprlock || hyprlock";
-        unlock_cmd = "loginctl unlock-session";
+        #unlock_cmd = "loginctl unlock-session";
       };
       listener = [
         {

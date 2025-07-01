@@ -75,8 +75,8 @@
 
           repositories = [
             {
-              path = "/mnt/Data/ProtonDrive/GDSaves";
-              label = "protondrive";
+              path = "/mnt/Data/GDSaves";
+              label = "/mnt/Data";
             }
           ];
         };
