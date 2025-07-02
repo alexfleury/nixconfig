@@ -9,10 +9,8 @@ in
   home.packages = with pkgs; [
     hdrop
     hyprcursor
-    hyprpicker
     hyprshot
     hyprshot-gui
-    hyprsunset
     playerctl
   ];
 

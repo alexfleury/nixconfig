@@ -13,8 +13,9 @@ in
     ./user/cli/zsh.nix
     ./user/desktop/firefox.nix
     ./user/desktop/kitty.nix
-    ./user/desktop/vscodium.nix
     ./user/desktop/udiskie.nix
+    ./user/desktop/vscodium.nix
+    ./user/desktop/wlsunset.nix
   ];
 
   # User-related config.

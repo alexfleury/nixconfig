@@ -17,7 +17,6 @@
           "group/group-power"
           "idle_inhibitor"
           "custom/brightness"
-          "custom/hyprsunset"
           "hyprland/workspaces"
         ];
         modules-center = [ ];
@@ -26,7 +25,7 @@
           "temperature#cpu"
           "custom/gpu"
           "temperature#gpu"
-          "network"
+          #"network"
           "bluetooth"
           "wireplumber"
           "clock"
@@ -74,18 +73,6 @@
           format = "  {} MHz";
           interval = 2;
           return-type = "";
-          tooltip = false;
-        };
-
-        "custom/hyprsunset" = {
-          format = "{}";
-          return-type = "json";
-          exec = "hyprsunset_widget";
-          on-click = "killall hyprsunset; hyprsunset -t 3500";
-          on-click-right = "killall hyprsunset";
-          on-scroll-up = "hyprctl hyprsunset temperature +100";
-          on-scroll-down = "hyprctl hyprsunset temperature -100";
-          interval = 5;
           tooltip = false;
         };
 
@@ -236,7 +223,7 @@
       #clock,
       #custom-brightness,
       #custom-lock,
-      #custom-hibernate,
+      #custom-sleep,
       #custom-hyprsunset,
       #custom-notifications,
       #custom-power,
