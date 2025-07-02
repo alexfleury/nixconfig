@@ -10,7 +10,6 @@
     temperature.day = 6500;
     temperature.night = 4000;
 
-    gamma = 0.6;
+    gamma = 1.0;
   };
-
 }
