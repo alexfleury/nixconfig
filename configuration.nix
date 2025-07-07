@@ -129,7 +129,7 @@ in
     enable = true;
     xwayland.enable = true;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
-    withUWSM  = true;
+    withUWSM = true;
   };
 
   # Enable steam and gamescope.
@@ -195,7 +195,7 @@ in
   # Automatic ricing.
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml"; # catppuccin-frappe
 
     image = ./wallpapers/trees.jpg;
     # Other options:

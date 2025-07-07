@@ -13,7 +13,7 @@
       control-center-width = 494;
       control-center-margin-top = 5;
       control-center-margin-right = 5;
-      control-center-positionX = "right";
+      control-center-positionX = "center";
       control-center-positionY = "top";
       fit-to-screen = false;
       hide-on-clear = true;

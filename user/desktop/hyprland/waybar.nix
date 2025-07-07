@@ -7,6 +7,7 @@
   programs.waybar = {
     enable = true;
     systemd.enable = true;
+    systemd.enableDebug = true;
 
     settings = {
       mainBar = {
@@ -19,7 +20,7 @@
           "custom/brightness"
           "hyprland/workspaces"
         ];
-        modules-center = [ ];
+        modules-center = [ "clock" ];
         modules-right = [
           "cpu"
           "temperature#cpu"
@@ -28,7 +29,6 @@
           #"network"
           "bluetooth"
           "wireplumber"
-          "clock"
           "tray"
         ];
 
@@ -44,8 +44,8 @@
 
         clock = {
           interval = 60;
-          format = "  {:%A, %B %d   %H:%M}";
-          #format = " {:%H:%M}";
+          format = " {:%d/%m/%y (%a)   %R}";
+          #format-alt = " {:%d/%m/%y (%a)}";
           on-click = "swaync-client -t -sw";
           tooltip = false;
         };
