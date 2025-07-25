@@ -12,8 +12,7 @@
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-      };
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ...} @inputs:
