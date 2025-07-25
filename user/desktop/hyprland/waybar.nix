@@ -85,7 +85,7 @@
         "custom/sleep" = {
           format = "󰋣";
           tooltip = false;
-          on-click = "systemctl sleep";
+          on-click = "systemctl hibernate";
         };
 
         "custom/power" = {

@@ -7,7 +7,6 @@
     settings = {
 
       general = {
-        disable_loading_bar = true;
         hide_cursor = false;
         ignore_empty_input = true;
       };

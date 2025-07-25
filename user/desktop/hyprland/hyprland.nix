@@ -16,6 +16,8 @@ in
 
   services.hyprpolkitagent.enable = true;
 
+  xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+
   wayland.windowManager.hyprland = {
     enable = true;
 
@@ -183,6 +185,14 @@ in
         force_default_wallpaper = -1;
         mouse_move_enables_dpms = true;
         key_press_enables_dpms = false;
+      };
+
+      experimental = {
+        xx_color_management_v4 = true;
+      };
+
+      debug = {
+        full_cm_proto = true;
       };
 
     }; # End of settings.

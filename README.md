@@ -40,6 +40,12 @@ The structure is designed to be modular and straightforward:
 
 ### Steam
 
+Enabling mangohud.
+
+```shell
+mangohud %command%
+```
+
 Simplest way to launch a Steam game with gamescope,
 
 ```shell
