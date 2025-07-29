@@ -241,16 +241,17 @@ in
     polarity = "dark";
   };
 
-  # Nix-related options.
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.dates = "weekly";
+    clean.extraArgs = "--keep-since 14d --keep 3";
+    flake = "~/nixconfig";
+  };
+
   nix = {
     settings.experimental-features = [ "nix-command" "flakes" ];
     settings.auto-optimise-store = true;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 2w";
-      persistent = true;
-    };
   };
 
   system.stateVersion = "24.05"; # Don't change this unless you know.

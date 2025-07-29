@@ -31,7 +31,6 @@ in
     #gdstash # Custom package fro GDStash.
     #handbrake
     #makemkv
-    nh # Nix utility wrapper.
     nomacs # Image viewer.
     obsidian # Note application.
     pavucontrol
@@ -54,7 +53,6 @@ in
 
   home.sessionVariables = {
     EDITOR = "vim";
-    NH_FLAKE = "/home/${username}/nixconfig";
   };
 
   home.shellAliases = {
