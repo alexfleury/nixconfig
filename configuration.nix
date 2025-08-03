@@ -241,14 +241,6 @@ in
     polarity = "dark";
   };
 
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.dates = "weekly";
-    clean.extraArgs = "--keep-since 14d --keep 3";
-    flake = "~/nixconfig";
-  };
-
   nix = {
     settings.experimental-features = [ "nix-command" "flakes" ];
     settings.auto-optimise-store = true;

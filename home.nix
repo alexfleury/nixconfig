@@ -106,6 +106,14 @@ in
   # Video player.
   #programs.mpv.enable = true;
 
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.dates = "weekly";
+    clean.extraArgs = "--keep-since 14d --keep 3";
+    flake = "/home/${username}/nixconfig";
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
 
@@ -11,8 +11,10 @@
     settings = {
       control-center-height = 800;
       control-center-width = 494;
-      control-center-margin-top = 5;
+      #control-center-margin-top = 5;
       control-center-margin-right = 5;
+      #control-center-margin-bottom = 5;
+      control-center-margin-left = 5;
       control-center-positionX = "center";
       control-center-positionY = "top";
       fit-to-screen = false;
@@ -20,20 +22,23 @@
       hide-on-action = true;
       keyboard-shortcuts = true;
       image-visibility = "when-available";
+      layer = "overlay";
+      notification-2fa-action = true;
       notification-icon-size = 64;
       notification-body-image-height = 100;
       notification-body-image-width = 200;
       notification-window-width = 400;
       positionX = "right";
       positionY = "top";
+      relative-timestamps = false;
       timeout = 10;
       timeout-low = 5;
       timeout-critical = 0;
       transition-time = 200;
       widgets = [
-        "mpris"
         "title"
         "dnd"
+        "mpris"
         "notifications"
       ];
       widget-config = {
@@ -49,5 +54,15 @@
         };
       };
     };
+    style = lib.mkAfter ''
+      .widget-title {
+        font-weight: bold;
+      }
+
+      .widget-dnd {
+        padding-right: 8px;
+        padding-left: 8px;
+      }
+    '';
   };
 }
