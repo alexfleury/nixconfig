@@ -1,5 +1,7 @@
-{ config, ... }:
-
+{ config, lib, ... }:
+let
+  background_transparency = "0.8";
+in
 {
   # Don't change the whole Waybar CSS.
   stylix.targets.waybar.addCss = false;
@@ -202,7 +204,7 @@
       };
     };
 
-    style = ''
+    style = lib.mkAfter ''
       * {
         animation-timing-function: steps(6);
         border: none;
@@ -235,7 +237,7 @@
       #tray,
       #wireplumber
       {
-        background-color: @base01;
+        background-color: alpha(@base01, ${background_transparency});
         border-radius: 5px;
         color: @base04;
         font-weight: bold;
@@ -253,7 +255,7 @@
       #cpu,
       #custom-gpu
       {
-        background-color: @base01;
+        background-color: alpha(@base01, ${background_transparency});
         border-radius: 5px 0px 0px 5px;
         color: @base04;
         font-weight: bold;
@@ -326,7 +328,7 @@
       }
 
       #workspaces {
-        background: @base01;
+        background: alpha(@base01, ${background_transparency});
         border-radius: 5px;
         font-weight: normal;
         margin-top: 5px;

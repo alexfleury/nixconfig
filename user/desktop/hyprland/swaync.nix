@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }:
 
 {
-
   home.packages = with pkgs; [
     libnotify
   ];
@@ -55,6 +54,10 @@
       };
     };
     style = lib.mkAfter ''
+      .control-center {
+        background: alpha(@base01, 0.8);
+      }
+
       .widget-title {
         font-weight: bold;
       }
