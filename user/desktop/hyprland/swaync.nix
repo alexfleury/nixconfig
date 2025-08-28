@@ -53,6 +53,8 @@
         };
       };
     };
+    # CSS options available at
+    # https://github.com/ErikReider/SwayNotificationCenter/blob/main/data/style/style.scss
     style = lib.mkAfter ''
       .control-center {
         background: alpha(@base01, 0.8);
