@@ -28,7 +28,7 @@ in
     geany
     kitty
     libreoffice
-    #gdstash # Custom package fro GDStash.
+    gdstash # Custom package fro GDStash.
     #handbrake
     #makemkv
     nomacs # Image viewer.

@@ -6,10 +6,10 @@ let
   timezone = "America/Toronto";
   username = "alex";
   #wallpaperRepo = pkgs.fetchFromGitHub {
-  #  owner = "dracula";
-  #  repo = "wallpaper";
-  #  rev = "f2b8cc4223bcc2dfd5f165ab80f701bbb84e3303";
-  #  hash = "sha256-P0MfGkVap8wDd6eSMwmLhvQ4/7Z+pNmgY7O+qt9C1bg=";
+  #  owner = "dharmx";
+  #  repo = "wallx";
+  #  rev = "6bf4d733ebf2b484a37c17d742eb47e5139e6a14";
+  #  hash = "sha256-AAA";
   #};
 in
 {
@@ -171,14 +171,6 @@ in
     openFirewall = true;
   };
 
-  # Local LLM using ollama.
-  services.ollama = {
-    enable = false;
-    acceleration = "rocm";
-    rocmOverrideGfx = "10.3.0";
-    environmentVariables.OLLAMA_KEEP_ALIVE = "10s";
-  };
-
   # Security ann encryption.
   security = {
       pam.services.hyprlock = {};
@@ -197,10 +189,10 @@ in
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml"; # catppuccin-frappe
 
-    image = ./wallpapers/trees.jpg;
-    # Other options:
-    #"${wallpaperRepo}/first-collection/nixos.png";
-    # ...
+    # Local file.
+    image = ./wallpapers/a_street_with_buildings_and_signs.png;
+    # Remote file.
+    #image = "${wallpaperRepo}/first-collection/nixos.png";
 
     cursor = {
       package = pkgs.qogir-icon-theme;

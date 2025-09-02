@@ -66,6 +66,11 @@ SSH keys should be backed up by `borgmatic`.
 
 Many CSS properties for styling can be found at https://docs.gtk.org/gtk4/css-properties.html.
 
+### Wallpaper repos
+
+- https://github.com/dharmx/walls
+- https://github.com/dracula/wallpaper
+
 ## TODOs
 
 - Reorganization of the folder for many machines.
