@@ -62,6 +62,10 @@ DXVK_HDR=1 LD_PRELOAD="" gamescope -W 3840 -H 2160 -r 240 --mangoapp --hdr-enabl
 
 SSH keys should be backed up by `borgmatic`.
 
+### CSS
+
+Many CSS properties for styling can be found at https://docs.gtk.org/gtk4/css-properties.html.
+
 ## TODOs
 
 - Reorganization of the folder for many machines.

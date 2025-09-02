@@ -243,7 +243,7 @@ in
 
   nix = {
     settings.experimental-features = [ "nix-command" "flakes" ];
-    settings.auto-optimise-store = true;
+    optimise.automatic = true;
   };
 
   system.stateVersion = "24.05"; # Don't change this unless you know.
