@@ -185,6 +185,7 @@ in
         force_default_wallpaper = -1;
         mouse_move_enables_dpms = true;
         key_press_enables_dpms = false;
+        focus_on_activate = true;
       };
 
       experimental = {

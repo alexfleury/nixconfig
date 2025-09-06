@@ -5,16 +5,11 @@ let
   name = "Alexandre";
   timezone = "America/Toronto";
   username = "alex";
-  #wallpaperRepo = pkgs.fetchFromGitHub {
-  #  owner = "dharmx";
-  #  repo = "wallx";
-  #  rev = "6bf4d733ebf2b484a37c17d742eb47e5139e6a14";
-  #  hash = "sha256-AAA";
-  #};
 in
 {
   imports =[
     ./hardware-configuration.nix
+    ./vms.nix
   ];
 
   # Bootloader.
@@ -141,8 +136,9 @@ in
   };
   programs.gamescope = {
     enable = true;
+    # Apparently not true anymore.
     # https://github.com/NixOS/nixpkgs/issues/351516#issuecomment-2525575711
-    capSysNice = false;
+    capSysNice = true;
   };
 
   programs.thunar.enable = true;
@@ -187,10 +183,15 @@ in
   # Automatic ricing.
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml"; # catppuccin-frappe
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
 
     # Local file.
-    image = ./wallpapers/a_street_with_buildings_and_signs.png;
+    image = pkgs.requireFile {
+      name = "a_street_with_buildings_and_signs.png";
+      url = "https://github.com/dharmx/walls";
+      sha256 = "277855097285c4824f7ed1ebbf1319ddf1ba9700364a338b6870fde81c44c54b";
+    };
+    #./wallpapers/a_street_with_buildings_and_signs.png;
     # Remote file.
     #image = "${wallpaperRepo}/first-collection/nixos.png";
 
