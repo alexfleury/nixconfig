@@ -40,6 +40,7 @@ in
     qpdfview # PDF viewer.
     rclone
     #video2x-full # AI upscaling for videos.
+    tldr
     vlc
     yt-dlp
     #yubioath-flutter # Yubico authentification application.
