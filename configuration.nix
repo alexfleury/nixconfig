@@ -140,7 +140,14 @@ in
     capSysNice = true;
   };
 
-  programs.thunar.enable = true;
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-media-tags-plugin
+      thunar-volman
+      thunar-vcs-plugin
+    ];
+  };
   programs.xfconf.enable = true;
 
   # Mount, trash, and other functionalities.
@@ -148,9 +155,6 @@ in
 
   # Thumbnail support for images
   services.tumbler.enable = true;
-
-  # Mount USB drives automatically.
-  services.udisks2.enable = true;
 
   # Hardware RGBs.
   services.hardware.openrgb.enable = true;

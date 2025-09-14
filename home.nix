@@ -13,7 +13,6 @@ in
     ./user/cli/zsh.nix
     ./user/desktop/firefox.nix
     ./user/desktop/kitty.nix
-    ./user/desktop/udiskie.nix
     ./user/desktop/vscodium.nix
     ./user/desktop/wlsunset.nix
   ];
@@ -53,7 +52,16 @@ in
   ];
 
   home.sessionVariables = {
+    BROWSER = "firefox";
     EDITOR = "vim";
+    TERMINAL = "kitty";
+  };
+
+  home.file = {
+    ".config/xfce4/helpers.rc" = {
+      text = ''TerminalEmulator=kitty'';
+      executable = false;
+    };
   };
 
   home.shellAliases = {
