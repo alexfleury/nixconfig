@@ -144,8 +144,6 @@ in
 
       master.new_status = "master";
 
-      gestures.workspace_swipe = false;
-
       cursor.no_warps = true;
 
       workspace = [
