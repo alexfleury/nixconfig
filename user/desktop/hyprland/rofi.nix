@@ -5,7 +5,7 @@ in
 {
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
+    package = pkgs.rofi;
     location = "center";
     extraConfig = {
       display-ssh = " ";
