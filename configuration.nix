@@ -9,7 +9,6 @@ in
 {
   imports =[
     ./hardware-configuration.nix
-    ./vms.nix
   ];
 
   # Bootloader.
@@ -238,6 +237,12 @@ in
     settings.experimental-features = [ "nix-command" "flakes" ];
     optimise.automatic = true;
   };
+
+  # VMs config.
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = [ "${username}" ];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
   system.stateVersion = "24.05"; # Don't change this unless you know.
 }
