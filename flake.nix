@@ -26,7 +26,7 @@
           (final: prev: {
             gdstash = final.callPackage ./packages/gdstash.nix { inherit pkgs; };
             hyprshot-gui = final.callPackage ./packages/hyprshot_gui.nix { inherit pkgs; };
-            video2x-full = pkgs.video2x.override { ffmpeg = pkgs.ffmpeg-full; };
+            #video2x-full = pkgs.video2x.override { ffmpeg = pkgs.ffmpeg-full; };
           })
         ];
       };

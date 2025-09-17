@@ -27,9 +27,7 @@ in
     geany
     kitty
     libreoffice
-    gdstash # Custom package fro GDStash.
-    #handbrake
-    #makemkv
+    gdstash # Custom package fro GDStashw.
     nomacs # Image viewer.
     obsidian # Note application.
     pavucontrol
@@ -38,17 +36,20 @@ in
     qmk
     qpdfview # PDF viewer.
     rclone
-    #video2x-full # AI upscaling for videos.
+    texlive.combined.scheme-full
     tldr
     vlc
     yt-dlp
-    #yubioath-flutter # Yubico authentification application.
     # For Battle.net
     (wineWowPackages.full.override {
       wineRelease = "staging";
       mingwSupport = true;
     })
     winetricks
+    #handbrake
+    #makemkv
+    #video2x-full # AI upscaling for videos.
+    #yubioath-flutter # Yubico authentification application.
   ];
 
   home.sessionVariables = {

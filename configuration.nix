@@ -58,12 +58,10 @@ in
   services.blueman.enable = true;
 
   # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-    wireplumber.enable = true;
   };
 
   # Default shell is set to ZSH.
@@ -112,6 +110,11 @@ in
     unzip
     vim
     wget
+  ];
+
+  fonts.packages = with pkgs; [
+    corefonts
+    vista-fonts
   ];
 
   # For lact.
