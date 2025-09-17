@@ -14,8 +14,8 @@ pkgs.python3Packages.buildPythonApplication rec {
   src = pkgs.fetchFromGitHub {
     owner = "s-adi-dev";
     repo = "hyprshot-gui";
-    rev = "7cc2d5a01bb73b49182ad5497e0b85bd095e2b97";
-    hash = "sha256-ee2aohHpu67jngp0Lrgv0yOhc7d7Ozm0wl/WrjTyhyA=";
+    rev = "5d210997ae44dbb9b4f88294a07d05945ee0a785";
+    hash = "sha256-Sbl4O/mVPP1kCjwS/MF2TYdKd/3dUKHvscsffiOqC2o=";
   };
 
   nativeBuildInputs = [
