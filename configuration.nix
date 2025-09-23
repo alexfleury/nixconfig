@@ -94,7 +94,6 @@ in
   environment.systemPackages = with pkgs; [
     amdgpu_top # use in waybar to get GPU clock.
     btrfs-progs
-    #ddcutil
     dysk # Get (pretty) info about mounted disks.
     e2fsprogs
     exfat
