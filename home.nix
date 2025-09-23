@@ -68,7 +68,6 @@ in
   home.shellAliases = {
     ".." = "cd ..";
     sudo = "sudo ";
-    neofetch = "fastfetch";
   };
 
   xdg = {

@@ -17,7 +17,7 @@ in
     # The param "preempt=full" fixed buzzing sound in Hogwarts Legacy.
     kernelParams = [ "consoleblank=60" ];
     kernelModules = [ "sg" ];
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot = {
       enable = true;
@@ -40,7 +40,7 @@ in
   i18n.defaultLocale = locale;
   time.timeZone = timezone;
 
-  # Setting monitor backlight.
+  # Controlling monitor settings via software.
   hardware.i2c.enable = true;
 
   # GPU related settings.
@@ -94,7 +94,7 @@ in
   environment.systemPackages = with pkgs; [
     amdgpu_top # use in waybar to get GPU clock.
     btrfs-progs
-    ddcutil
+    #ddcutil
     dysk # Get (pretty) info about mounted disks.
     e2fsprogs
     exfat
@@ -135,6 +135,7 @@ in
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
+    extraCompatPackages = with pkgs; [ proton-ge-bin ];
   };
   programs.gamescope = {
     enable = true;

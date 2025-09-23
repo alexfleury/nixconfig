@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  home.shellAliases = {
+    "borgmatic" = "borgmatic -v 2";
+  };
+
   programs.borgmatic = {
     enable = true;
     backups = {

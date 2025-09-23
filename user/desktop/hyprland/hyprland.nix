@@ -7,6 +7,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    ddcutil
     hdrop
     hyprcursor
     hyprshot
@@ -15,7 +16,6 @@ in
   ];
 
   services.hyprpolkitagent.enable = true;
-
   xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
   wayland.windowManager.hyprland = {
@@ -41,9 +41,9 @@ in
 
       input.kb_layout = "ca";
 
-      # Mod keys is the super key.
       "$mod" = "SUPER";
       "$modd" = "SHIFT";
+      "$moddd" = "SPACE";
 
       # Common operations.
       bind = [
@@ -72,6 +72,10 @@ in
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
         "$mod, I, exec, uwsm app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
         "$mod, X, exec, uwsm app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 $terminal --class $terminal_1"
+        #"$mod, U, exec, ddcutil setvcp 10 10"
+        #"$mod, U, exec, ddcutil setvcp 10 20"
+        #"$mod, U, exec, ddcutil setvcp 10 40"
+        #"$mod, U, exec, ddcutil setvcp 10 80"
       ]
       # Switch and move to workspaces.
       ++ (
@@ -112,6 +116,7 @@ in
       };
 
       decoration = {
+        shadow.enabled = false;
         active_opacity = 1.0;
         inactive_opacity = 1.0;
         rounding = 10;
@@ -124,7 +129,7 @@ in
       };
 
       animations = {
-        enabled = true;
+        enabled = false;
         animation = [
           "border, 1, 10, default"
           "borderangle, 1, 8, default"

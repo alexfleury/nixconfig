@@ -19,7 +19,6 @@ in
         modules-left = [
           "group/group-power"
           "idle_inhibitor"
-          "custom/brightness"
           "hyprland/workspaces"
         ];
         modules-center = [ "clock" ];
@@ -58,18 +57,6 @@ in
           tooltip = false;
         };
 
-        "custom/brightness" = {
-          format = "{icon} {percentage}%";
-          format-icons = [ "󱩐" "󱩒" "󰛨" ];
-          return-type = "json";
-          exec = "ddcutil getvcp 10 | grep -oP \"current.*?=\\s*\\K[0-9]+\" | { read x; echo '{\"percentage\":'\${x}'}'; }";
-          on-click = "ddcutil setvcp 10 1";
-          on-click-middle = "ddcutil setvcp 10 30";
-          on-click-right = "ddcutil setvcp 10 70";
-          interval = 2;
-          tooltip = false;
-        };
-
         "custom/gpu" = {
           exec = "amdgpu_top -d --json | jq --unbuffered --compact-output '.[0]'.gpu_metrics.current_gfxclk";
           format = "  {} MHz";
@@ -100,7 +87,7 @@ in
             format = "󰈆";
             tooltip = false;
             # Before UWSM it was "hyprctl dispatch exit";.
-            on-click = "loginctl terminate-user \"\"";
+            on-click = "uwsm stop";
         };
 
         "custom/reboot" = {
@@ -197,7 +184,7 @@ in
               "custom/power"
               "custom/sleep"
               "custom/lock"
-              #"custom/quit"
+              "custom/quit"
               "custom/reboot"
           ];
         };
@@ -223,7 +210,6 @@ in
 
       #bluetooth,
       #clock,
-      #custom-brightness,
       #custom-lock,
       #custom-sleep,
       #custom-hyprsunset,
