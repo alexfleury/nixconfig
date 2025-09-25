@@ -10,7 +10,7 @@ in
     ./user/cli/fastfetch.nix
     ./user/cli/git.nix
     ./user/cli/ssh.nix
-    ./user/cli/zsh.nix
+    ./user/cli/shell.nix
     ./user/desktop/firefox.nix
     ./user/desktop/kitty.nix
     ./user/desktop/vscodium.nix
