@@ -65,9 +65,9 @@ in
   };
 
   # Default shell is set to ZSH.
-  programs.zsh.enable = true;
+  programs.bash.enable = true;
   environment = {
-    shells = [ pkgs.zsh ];
+    shells = [ pkgs.bash ];
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
@@ -87,7 +87,7 @@ in
     isNormalUser = true;
     description = name;
     extraGroups = [ "wheel" "networkmanager" ];
-    shell = pkgs.zsh;
+    shell = pkgs.bash;
   };
 
   # System-wide packages.

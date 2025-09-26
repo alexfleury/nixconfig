@@ -1,15 +1,16 @@
 { pkgs, ... }:
 
 {
-  programs.zsh = {
+  programs.bash = {
     enable = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" "sudo" "ssh" "safe-paste" ];
-      theme = "agnoster";
-    };
+    enableCompletion = true;
+    initExtra = ''
+      if [ "`id -u`" -eq 0 ]; then
+          PS1="[ \[\e[1;31m\]λ\[\e[1;32m\]\[\e[49m\] \W \[\e[0m\]] "
+      else
+          PS1="[ \[\e[1;32m\]λ \W \[\e[0m\]] "
+      fi
+    '';
   };
 
   programs.bat.enable = true;
@@ -26,11 +27,11 @@
 
   programs.fzf = {
     enable = true;
-    enableZshIntegration = true;
+    enableBashIntegration = true;
   };
 
   programs.zoxide = {
     enable = true;
-    enableZshIntegration = true;
+    enableBashIntegration = true;
   };
 }

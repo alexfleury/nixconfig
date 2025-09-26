@@ -152,12 +152,12 @@ in
       cursor.no_warps = true;
 
       workspace = [
-        "1, persistent:true"
-        "2, persistent:true"
-        "3, persistent:true"
-        "4, persistent:true"
-        "5, persistent:true"
-        "6, persistent:true"
+        "1, persistent:false"
+        "2, persistent:false"
+        "3, persistent:false"
+        "4, persistent:false"
+        "5, persistent:false"
+        "6, persistent:false"
         "7, persistent:false"
         "8, persistent:false"
         "9, persistent:false"
