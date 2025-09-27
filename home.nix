@@ -68,6 +68,12 @@ in
   home.shellAliases = {
     ".." = "cd ..";
     sudo = "sudo ";
+    mktar = "tar -cvf"
+    mkbz2 = "tar -cvjf";
+    mkgz = "tar -cvzf";
+    untar = "tar -xvf";
+    unbz2 = "tar -xvjf";
+    ungz = "tar -xvzf";
   };
 
   xdg = {

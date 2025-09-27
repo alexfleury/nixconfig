@@ -9,4 +9,8 @@
       confirm_os_window_close = 0;
     };
   };
+
+  home.shellAliases = {
+    "kssh" = "kitty +kitten ssh";
+  };
 }
