@@ -43,7 +43,6 @@ in
 
       "$mod" = "SUPER";
       "$modd" = "SHIFT";
-      "$moddd" = "SPACE";
 
       # Common operations.
       bind = [
@@ -72,10 +71,6 @@ in
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
         "$mod, I, exec, uwsm app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
         "$mod, X, exec, uwsm app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 $terminal --class $terminal_1"
-        #"$mod, U, exec, ddcutil setvcp 10 10"
-        #"$mod, U, exec, ddcutil setvcp 10 20"
-        #"$mod, U, exec, ddcutil setvcp 10 40"
-        #"$mod, U, exec, ddcutil setvcp 10 80"
       ]
       # Switch and move to workspaces.
       ++ (
@@ -99,6 +94,10 @@ in
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
+      ];
+      bindl = [
+        "$mod, code:35, exec, ddcutil setvcp 10 + 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
+        "$mod, code:51, exec, ddcutil setvcp 10 - 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
       ];
       # Drag mouse.
       bindm = [

@@ -30,6 +30,7 @@ in
           #"network"
           "bluetooth"
           "wireplumber"
+          "custom/brightness"
           "tray"
         ];
 
@@ -54,6 +55,17 @@ in
         cpu = {
           format = "  {avg_frequency} GHz";
           interval = 2;
+          tooltip = false;
+        };
+
+        "custom/brightness" = {
+          format = "{icon} {percentage}%";
+          format-icons = "󰍹";
+          return-type = "json";
+          exec = "ddcutil getvcp 10 | grep -oP \"current.*?=\\s*\\K[0-9]+\" | { read x; echo '{\"percentage\":'\${x}'}'; }";
+          on-click = "ddcutil setvcp 10 10";
+          on-click-right = "ddcutil setvcp 10 70";
+          interval = 5;
           tooltip = false;
         };
 
@@ -143,7 +155,7 @@ in
           critical-threshold = 80;
           interval = 2;
           format = "{icon} {temperatureC}°C";
-          format-icons = ["" "" "" "" ""];
+          format-icons = ["" "" ""];
           tooltip = false;
         };
 
@@ -153,7 +165,7 @@ in
           critical-threshold = 80;
           interval = 2;
           format = "{icon} {temperatureC}°C";
-          format-icons = ["" "" "" "" ""];
+          format-icons = ["" "" ""];
           tooltip = false;
         };
 
@@ -210,6 +222,7 @@ in
 
       #bluetooth,
       #clock,
+      #custom-brightness,
       #custom-lock,
       #custom-sleep,
       #custom-hyprsunset,
@@ -251,6 +264,10 @@ in
         margin-bottom: 5px;
         margin-right: 0px;
         margin-left: 5px;
+      }
+
+      #custom-brightness {
+        color: @base0A;
       }
 
       #custom-lock {

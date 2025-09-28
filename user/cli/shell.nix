@@ -29,6 +29,7 @@
     settings = {
       format = lib.concatStrings [
         "[](#3B4252)"
+        "$nix_shell"
         "$python"
         "$username"
         "[](bg:#434C5E fg:#3B4252)"
@@ -46,7 +47,7 @@
         "$time"
         "[ ](fg:#33658A)"
       ];
-      add_newline = true;
+      add_newline = false;
       command_timeout = 5000;
 
       username = {
@@ -97,6 +98,12 @@
         style = "bg:#86BBD8";
         format = "[ $symbol ($version) ]($style)";
       };
+
+      # TODO
+      #nix_shell = {
+      #  style = "bg:#3B4252";
+      #  format = "[(\($virtualenv\) )]($style)";
+      #};
 
       python = {
         style = "bg:#3B4252";
