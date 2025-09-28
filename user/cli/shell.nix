@@ -5,6 +5,10 @@
   programs.bash = {
     enable = true;
     enableCompletion = true;
+    historyControl = [
+      "ignoreboth"
+      "erasedups"
+    ];
     historyIgnore = [
       "ls"
       "cd"
