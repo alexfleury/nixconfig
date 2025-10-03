@@ -27,6 +27,7 @@ pkgs.python3Packages.buildPythonApplication rec {
     (python3.withPackages (ps: with ps; [
       pygobject3
     ]))
+    hyprshot
   ];
 
   dontUnpack = true;

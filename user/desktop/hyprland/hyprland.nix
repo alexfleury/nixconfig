@@ -10,7 +10,6 @@ in
     ddcutil
     hdrop
     hyprcursor
-    hyprshot
     hyprshot-gui
     playerctl
   ];
@@ -34,6 +33,10 @@ in
       "$fileManager" = "thunar";
       "$menu" = "rofi -show drun -run-command \"uwsm app -- {cmd}\"";
 
+      env = [
+        "GDK_SCALE, 2"
+      ];
+
       # Startup applications.
       exec-once = [
         "uwsm app -s b -- protonvpn-app.desktop"
@@ -50,7 +53,7 @@ in
         "$mod, Q, killactive,"
         "$mod, M, exec, uwsm stop"
         "$mod, E, exec, uwsm app -- $fileManager"
-        "$mod, V, togglefloating,"
+        "$mod, Z, togglefloating,"
         "$mod, R, exec, $menu"
         "$mod, P, pseudo,"
         "$mod, J, togglesplit,"

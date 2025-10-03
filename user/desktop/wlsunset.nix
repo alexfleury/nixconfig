@@ -8,7 +8,7 @@
     longitude = -71.9;
 
     temperature.day = 6500;
-    temperature.night = 3500;
+    temperature.night = 3000;
 
     gamma = 1.0;
   };
