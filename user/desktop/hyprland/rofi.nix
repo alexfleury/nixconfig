@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   inherit (config.lib.formats.rasi) mkLiteral;
 in
@@ -15,9 +15,22 @@ in
       display-combi = " ";
       show-icons = true;
     };
+    modes = [
+      "calc"
+      "drun"
+      "emoji"
+      "recursivebrowser"
+      "top"
+    ];
+    plugins = with pkgs; [
+      rofi-calc
+      rofi-emoji
+      rofi-top
+    ];
 
     theme = {
       window = {
+        width = mkLiteral "30%";
         location = mkLiteral "center";
         anchor = mkLiteral "center";
         padding = mkLiteral "10px";

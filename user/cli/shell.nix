@@ -1,5 +1,4 @@
 { pkgs, lib, ... }:
-
 {
   #https://github.com/basecamp/omarchy/blob/master/default/bash/functions
   programs.bash = {
@@ -32,37 +31,37 @@
     enableInteractive = true;
     settings = {
       format = lib.concatStrings [
-        "[](#3B4252)"
+        "[](base01)"
         "$nix_shell"
         "$python"
         "$username"
-        "[](bg:#434C5E fg:#3B4252)"
+        "[](bg:base03 fg:base01)"
         "$directory"
-        "[](fg:#434C5E bg:#4C566A)"
+        "[](fg:base03 bg:blue)"
         "$git_branch"
         "$git_status"
-        "[](fg:#4C566A bg:#86BBD8)"
+        "[](fg:blue bg:green)"
         "$c"
         "$julia"
         "$rust"
-        "[](fg:#86BBD8 bg:#06969A)"
+        "[](fg:green bg:red)"
         "$docker_context"
-        "[](fg:#06969A bg:#33658A)"
+        "[](fg:red bg:brown)"
         "$time"
-        "[ ](fg:#33658A)"
+        "[ ](fg:brown)"
       ];
-      add_newline = false;
+      add_newline = true;
       command_timeout = 5000;
 
       username = {
         show_always = true;
-        style_user = "bg:#3B4252";
-        style_root = "bg:#3B4252";
+        style_user = "bg:base01 fg:white";
+        style_root = "bg:base01 fg:white";
         format = "[$user ]($style)";
       };
 
       directory = {
-        style = "bg:#434C5E";
+        style = "bg:base03 fg:white";
         format = "[ $path ]($style)";
         truncation_length = 3;
         truncation_symbol = "…/";
@@ -76,54 +75,54 @@
 
       c = {
         symbol = " ";
-        style = "bg:#86BBD8";
+        style = "bg:green fg:white";
         format = "[ $symbol ($version) ]($style)";
       };
 
       docker_context = {
         symbol = " ";
-        style = "bg:#06969A";
+        style = "bg:red fg:white";
         format = "[ $symbol $context ]($style)$path";
       };
 
       git_branch = {
         symbol = "";
-        style = "bg:#4C566A";
+        style = "bg:blue fg:white";
+        truncation_length = 10;
         format = "[ $symbol $branch ]($style)";
       };
 
       git_status = {
-        style = "bg:#4C566A";
+        style = "bg:blue fg:bold white";
         format = "[$all_status$ahead_behind ]($style)";
       };
 
       julia = {
         symbol = " ";
-        style = "bg:#86BBD8";
+        style = "bg:green fg:white";
         format = "[ $symbol ($version) ]($style)";
       };
 
-      # TODO
-      #nix_shell = {
-      #  style = "bg:#3B4252";
-      #  format = "[(\($virtualenv\) )]($style)";
-      #};
+      nix_shell = {
+        style = "bg:base01 fg:white";
+      };
 
       python = {
-        style = "bg:#3B4252";
+        symbol = "";
+        style = "bg:base01 fg:white";
         format = "[(\($virtualenv\) )]($style)";
       };
 
       rust = {
         symbol = "";
-        style = "bg:#86BBD8";
+        style = "bg:green fg:white";
         format = "[ $symbol ($version) ]($style)";
       };
 
       time = {
         disabled = false;
-        time_format = "%R"; # Hour:Minute Format
-        style = "bg:#33658A";
+        time_format = "%kh%Mm%Ss";
+        style = "bg:brown fg:white";
         format = "[ $time ]($style)";
       };
 
