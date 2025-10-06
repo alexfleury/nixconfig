@@ -31,7 +31,7 @@ in
       # Common applications.
       "$terminal" = "kitty";
       "$fileManager" = "thunar";
-      "$menu" = "rofi -show drun -run-command \"uwsm app -- {cmd}\"";
+      "$menu" = "rofi -show drun";# -run-command \"uwsm app -- {cmd}\"";
 
       env = [
         "GDK_SCALE, 2"
@@ -49,6 +49,7 @@ in
 
       # Common operations.
       bind = [
+        "ALT, TAB, exec, rofi -show window"
         "$mod, T, exec, uwsm app -- $terminal"
         "$mod, Q, killactive,"
         "$mod, M, exec, uwsm stop"

@@ -8,53 +8,58 @@ in
     package = pkgs.rofi;
     location = "center";
     extraConfig = {
-      display-ssh = " ";
-      display-run = " ";
-      display-drun = " ";
-      display-window = " ";
-      display-combi = " ";
+      display-calc = " Calculator";
+      display-drun = " Apps";
+      display-recursivebrowser = " Files";
+      #display-run = " Run";
+      display-top = " Top";
+      display-window = " Window";
+      modi = "drun,recursivebrowser,calc,top";
+      run-command = "uwsm app -- {cmd}";
       show-icons = true;
+      #click-to-exit = true;
     };
     modes = [
       "calc"
       "drun"
-      "emoji"
+      #"emoji"
       "recursivebrowser"
       "top"
+      "window"
     ];
     plugins = with pkgs; [
       rofi-calc
-      rofi-emoji
+      #rofi-emoji
       rofi-top
     ];
 
     theme = {
       window = {
-        width = mkLiteral "30%";
-        location = mkLiteral "center";
         anchor = mkLiteral "center";
-        padding = mkLiteral "10px";
         border = mkLiteral "0px";
         border-radius = mkLiteral "6px";
-        spacing = mkLiteral "0";
         children = mkLiteral "[mainbox]";
+        location = mkLiteral "center";
         orientation = mkLiteral "horizontal";
+        padding = mkLiteral "10px";
+        spacing = mkLiteral "0";
+        width = mkLiteral "30%";
       };
 
       mainbox = {
+        children = mkLiteral "[ \"inputbar\", \"message\", \"listview\", \"mode-switcher\" ]";
         spacing = mkLiteral "0";
-        children = mkLiteral "[ inputbar, message, listview ]";
       };
 
       message = {
-        padding = mkLiteral "5";
         border = mkLiteral "0px 2px 2px 2px";
+        padding = mkLiteral "5";
       };
 
       inputbar = {
-        padding = mkLiteral "11px";
         border = mkLiteral "1px";
         border-radius = mkLiteral "6px 6px 0px 0px";
+        padding = mkLiteral "11px";
       };
 
       prompt = {
@@ -62,27 +67,31 @@ in
       };
 
       listview = {
-        padding = mkLiteral "8px";
         border-radius = mkLiteral "0px 0px 6px 6px";
         border = mkLiteral "0px 1px 1px 1px";
         dynamic = mkLiteral "false";
+        padding = mkLiteral "8px";
       };
 
       element = {
+        border-radius = mkLiteral "4px";
         padding = mkLiteral "3px";
         vertical-align = mkLiteral "0.5";
-        border-radius = mkLiteral "4px";
+      };
+
+      mode-switcher = {
+        border = mkLiteral "0px solid";
+        border-radius = mkLiteral" 0px";
+        margin = mkLiteral "0px";
+        padding = mkLiteral "0px";
+        spacing = mkLiteral "10px";
       };
 
       button = {
-        padding = mkLiteral "6px";
-        horizontal-align = mkLiteral "0.5";
-        border = mkLiteral "2px 0px 2px 2px";
-        border-radius = mkLiteral "4px 0px 0px 4px";
-      };
-
-      "button selected normal" = {
-        border = mkLiteral "2px 0px 2px 2px";
+        border = mkLiteral "0 px solid";
+        border-radius = mkLiteral "20px";
+        cursor = mkLiteral "pointer";
+        padding = mkLiteral "5px 10px";
       };
     };
   };
