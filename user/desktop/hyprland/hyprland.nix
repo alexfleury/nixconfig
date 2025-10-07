@@ -8,10 +8,9 @@ in
 {
   home.packages = with pkgs; [
     ddcutil
-    hdrop
     hyprcursor
-    hyprshot-gui
     playerctl
+    (import ./zoom75_info.nix { inherit pkgs; } )
   ];
 
   services.hyprpolkitagent.enable = true;
@@ -75,6 +74,7 @@ in
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
         "$mod, I, exec, uwsm app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
         "$mod, X, exec, uwsm app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 $terminal --class $terminal_1"
+        "$mod, O, exec, uwsm app -- zoom75-info"
       ]
       # Switch and move to workspaces.
       ++ (
