@@ -17,7 +17,7 @@ in
       modi = "drun,recursivebrowser,calc,top";
       run-command = "uwsm app -- {cmd}";
       show-icons = true;
-      #click-to-exit = true;
+      click-to-exit = true;
     };
     modes = [
       "calc"
