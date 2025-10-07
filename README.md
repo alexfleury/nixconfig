@@ -71,6 +71,13 @@ Many CSS properties for styling can be found at https://docs.gtk.org/gtk4/css-pr
 - https://github.com/dharmx/walls
 - https://github.com/dracula/wallpaper
 
+### Desktop files
+
+They can be found at
+
+- `/run/current-system/sw/share/applications`
+- `$HOME/.local/state/nix/profiles/profile/share/applications`
+
 ## TODOs
 
 - Reorganization of the folder for many machines.

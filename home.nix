@@ -23,17 +23,17 @@ in
   home.packages = with pkgs; [
     discord
     freetube
-    geany
     kitty
     libreoffice
-    gdstash # Custom package fro GDStashw.
+    gdstash # Custom package for GDStash.
+    gnome-text-editor
     nomacs # Image viewer.
     obsidian # Note application.
+    papers # GNOME pdf viewer.
     pavucontrol
     proton-pass
     protonvpn-gui
     qmk
-    qpdfview # PDF viewer.
     rclone
     texlive.combined.scheme-full
     tldr
@@ -80,12 +80,12 @@ in
     mime.enable = true;
     mimeApps.enable = true;
     mimeApps.defaultApplications = {
-      "application/pdf" = [ "qpdfview.desktop" ];
+      "application/pdf" = [ "org.gnome.Papers.desktop" ];
       "image/*" = [ "nomacs.desktop" ];
       "video/*" = [ "vlc.desktop" ];
       "audio/*" = [ "vlc.desktop" ];
-      "inode/directory" = [ "thunar.desktop" ];
-      "text/plain" = [ "codium.desktop" ];
+      "inode/directory" = [ "org.gnome.TextEditor.desktop" ];
+      "text/plain" = [ "gnome-text-editor.desktop" ];
     };
     userDirs.enable = true;
     userDirs.createDirectories = true;
