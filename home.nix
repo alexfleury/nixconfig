@@ -4,7 +4,6 @@ let
 in
 {
   imports = [
-    ./scripts
     ./user/desktop/hyprland
     ./user/cli/borgmatic.nix
     ./user/cli/fastfetch.nix
