@@ -53,7 +53,12 @@ in
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = false;
-    settings.General.Experimental = true;
+    settings = {
+      General = {
+        Experimental = true;
+        FastConnectable = true;
+      };
+    };
   };
   services.blueman.enable = true;
 
@@ -189,6 +194,7 @@ in
   # Automatic ricing.
   stylix = {
     enable = true;
+    autoEnable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
 
     # Local file.

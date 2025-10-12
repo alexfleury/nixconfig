@@ -6,6 +6,7 @@ in
   imports = [
     ./user/desktop/hyprland
     ./user/cli/borgmatic.nix
+    ./user/cli/dev.nix
     ./user/cli/fastfetch.nix
     ./user/cli/git.nix
     ./user/cli/ssh.nix
@@ -64,17 +65,6 @@ in
     };
   };
 
-  home.shellAliases = {
-    ".." = "cd ..";
-    sudo = "sudo ";
-    mktar = "tar -cvf";
-    mkbz2 = "tar -cvjf";
-    mkgz = "tar -cvzf";
-    untar = "tar -xvf";
-    unbz2 = "tar -xvjf";
-    ungz = "tar -xvzf";
-  };
-
   xdg = {
     enable = true;
     mime.enable = true;
@@ -127,6 +117,8 @@ in
     clean.extraArgs = "--keep-since 14d --keep 3";
     flake = "/home/${username}/nixconfig";
   };
+
+  services.blueman-applet.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
