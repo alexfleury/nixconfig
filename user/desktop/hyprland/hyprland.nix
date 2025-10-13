@@ -30,7 +30,7 @@ in
       # Common applications.
       "$terminal" = "kitty";
       "$fileManager" = "thunar";
-      "$menu" = "rofi -show drun";# -run-command \"uwsm app -- {cmd}\"";
+      "$menu" = "rofi -show drun -run-command \"uwsm-app -- {cmd}\"";
 
       env = [
         "GDK_SCALE, 2"
@@ -44,15 +44,13 @@ in
       input.kb_layout = "ca";
 
       "$mod" = "SUPER";
-      "$modd" = "SHIFT";
 
       # Common operations.
       bind = [
-        "ALT, TAB, exec, rofi -show window"
-        "$mod, T, exec, uwsm app -- $terminal"
+        "$mod, T, exec, uwsm-app -- $terminal"
         "$mod, Q, killactive,"
         "$mod, M, exec, uwsm stop"
-        "$mod, E, exec, uwsm app -- $fileManager"
+        "$mod, E, exec, uwsm-app -- $fileManager"
         "$mod, Z, togglefloating,"
         "$mod, R, exec, $menu"
         "$mod, P, pseudo,"
@@ -61,20 +59,21 @@ in
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
-        "$mod $modd, H, movewindow, l"
-        "$mod $modd, L, movewindow, r"
-        "$mod $modd, K, movewindow, u"
-        "$mod $modd, J, movewindow, d"
+        "$mod_SHIFT, H, movewindow, l"
+        "$mod_SHIFT, L, movewindow, r"
+        "$mod_SHIFT, K, movewindow, u"
+        "$mod_SHIFT, J, movewindow, d"
         "$mod, S, togglespecialworkspace, magic"
-        "$mod $modd, S, movetoworkspace, special:magic"
+        "$mod_SHIFT, S, movetoworkspace, special:magic"
         "$mod, mouse_down, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
         "$mod, F, fullscreen"
         "$mod, L, exec, loginctl lock-session"
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
-        "$mod, I, exec, uwsm app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
-        "$mod, X, exec, uwsm app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 $terminal --class $terminal_1"
-        "$mod, O, exec, uwsm app -- zoom75-info"
+        "CTRL_ALT, P, exec, uwsm-app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
+        "$mod, X, exec, uwsm-app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 $terminal --class $terminal_1"
+        "CTRL_ALT, I, exec, uwsm-app -- zoom75-info"
+        "ALT, TAB, exec, rofi -show window"
       ]
       # Switch and move to workspaces.
       ++ (
@@ -82,7 +81,7 @@ in
           let ws = i + 1;
           in [
             "$mod, code:1${toString i}, workspace, ${toString ws}"
-            "$mod $modd, code:1${toString i}, movetoworkspacesilent, ${toString ws}"
+            "$mod_SHIFT, code:1${toString i}, movetoworkspacesilent, ${toString ws}"
           ]
         )
         9)
