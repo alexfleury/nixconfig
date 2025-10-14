@@ -73,7 +73,7 @@ in
         "CTRL_ALT, P, exec, uwsm-app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
         "$mod, X, exec, uwsm-app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 $terminal --class $terminal_1"
         "CTRL_ALT, I, exec, uwsm-app -- zoom75-info"
-        "ALT, TAB, exec, rofi -show window"
+        "ALT, TAB, exec, rofi -modes window -show window -matching fuzzy"
       ]
       # Switch and move to workspaces.
       ++ (

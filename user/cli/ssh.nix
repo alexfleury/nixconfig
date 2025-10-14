@@ -3,8 +3,12 @@
 {
   programs.ssh = {
     enable = true;
-    enableDefaultConfig = false;
-    matchBlocks."github.com".addKeysToAgent = "yes";
-    matchBlocks."github.com".identityFile = "~/.ssh/id_ed25519";
+    enableDefaultConfig = true;
+
+    matchBlocks."pihole" = {
+      hostname = "192.168.0.14";
+      user = "alexandre";
+      port= 22;
+    };
   };
 }
