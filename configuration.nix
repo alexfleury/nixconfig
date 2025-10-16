@@ -9,6 +9,7 @@ in
 {
   imports =[
     ./hardware-configuration.nix
+    ./modules/vms.nix
   ];
 
   # Bootloader.
@@ -91,7 +92,7 @@ in
   users.users.${username} = {
     isNormalUser = true;
     description = name;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
     shell = pkgs.bash;
   };
 
@@ -103,8 +104,6 @@ in
     e2fsprogs
     exfat
     exfatprogs
-    git
-    gparted
     gptfdisk
     jq # Json formatter.
     lact # Linux AMDGPU Controller
@@ -141,6 +140,7 @@ in
     localNetworkGameTransfers.openFirewall = true;
     extraCompatPackages = with pkgs; [ proton-ge-bin ];
   };
+
   programs.gamescope = {
     enable = true;
     # Apparently not true anymore.
@@ -254,12 +254,6 @@ in
     settings.experimental-features = [ "nix-command" "flakes" ];
     optimise.automatic = true;
   };
-
-  # VMs config.
-  programs.virt-manager.enable = true;
-  users.groups.libvirtd.members = [ "${username}" ];
-  virtualisation.libvirtd.enable = true;
-  virtualisation.spiceUSBRedirection.enable = true;
 
   system.stateVersion = "24.05"; # Don't change this unless you know.
 }
