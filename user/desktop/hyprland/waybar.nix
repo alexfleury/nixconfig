@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   background_transparency = "0.8";
 in
@@ -70,7 +70,7 @@ in
         };
 
         "custom/gpu" = {
-          exec = "amdgpu_top -d --json | jq --unbuffered --compact-output '.[0]'.gpu_metrics.current_gfxclk";
+          exec = "${pkgs.amdgpu_top}/bin/amdgpu_top -d --json | ${pkgs.jq}/bin/jq --unbuffered --compact-output '.[0]'.gpu_metrics.current_gfxclk";
           format = "  {} MHz";
           interval = 2;
           return-type = "";

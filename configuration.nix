@@ -98,14 +98,12 @@ in
 
   # System-wide packages.
   environment.systemPackages = with pkgs; [
-    amdgpu_top # use in waybar to get GPU clock.
     btrfs-progs
     dysk # Get (pretty) info about mounted disks.
     e2fsprogs
     exfat
     exfatprogs
     gptfdisk
-    jq # Json formatter.
     lact # Linux AMDGPU Controller
     networkmanagerapplet
     openrgb-with-all-plugins # RGB lighthing control.
