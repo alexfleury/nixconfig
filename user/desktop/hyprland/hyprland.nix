@@ -1,9 +1,12 @@
 { config, pkgs, ... }:
 
 let
-  blueman_popup = "class:^(.blueman-manager-wrapped)$ title:^(Bluetooth Devices)$";
-  nm_popup = "class:^(nm-connection-editor)$ title:^(Network Connections)$";
-  pavucontrol_popup = "class:^(org.pulseaudio.pavucontrol)$ title:^(Volume Control)$";
+  workspaces = {
+    browser = "1";
+    chat = "2";
+    code = "3";
+    steam = "4";
+  };
 in
 {
   home.packages = with pkgs; [
@@ -27,32 +30,26 @@ in
       monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, vrr, 2";
       xwayland.force_zero_scaling = true;
 
-      # Common applications.
-      "$terminal" = "kitty";
-      "$fileManager" = "thunar";
-      "$menu" = "rofi -show drun -run-command \"uwsm-app -- {cmd}\"";
-
       env = [
         "GDK_SCALE, 2"
       ];
 
       # Startup applications.
       exec-once = [
-        "uwsm app -s b -- protonvpn-app.desktop"
+        "uwsm-app -s b -- protonvpn-app.desktop"
       ];
 
       input.kb_layout = "ca";
 
       "$mod" = "SUPER";
-
       # Common operations.
       bind = [
-        "$mod, T, exec, uwsm-app -- $terminal"
+        "$mod, T, exec, uwsm-app -- kitty.desktop"
         "$mod, Q, killactive,"
         "$mod, M, exec, uwsm stop"
-        "$mod, E, exec, uwsm-app -- $fileManager"
+        "$mod, E, exec, uwsm-app -- thunar.desktop"
         "$mod, Z, togglefloating,"
-        "$mod, R, exec, $menu"
+        "$mod, R, exec, rofi -show drun -run-command \"uwsm-app -- {cmd}\""
         "$mod, P, pseudo,"
         "$mod, J, togglesplit,"
         "$mod, left, movefocus, l"
@@ -71,20 +68,29 @@ in
         "$mod, L, exec, loginctl lock-session"
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
         "CTRL_ALT, P, exec, uwsm-app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
-        "$mod, X, exec, uwsm-app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 $terminal --class $terminal_1"
+        "$mod, X, exec, uwsm-app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 kitty.desktop --class $terminal_1"
         "CTRL_ALT, I, exec, uwsm-app -- zoom75-info"
         "ALT, TAB, exec, rofi -modes window -show window -matching fuzzy"
+        "$mod, B, exec, uwsm-app -- firefox.desktop"
+        "$mod, code:49, workspace, ${workspaces.browser}"
+        "$mod_SHIFT, code:49, movetoworkspacesilent, ${workspaces.browser}"
+        "$mod, code:16, workspace, ${workspaces.chat}"
+        "$mod_SHIFT, code:16, movetoworkspacesilent, ${workspaces.chat}"
+        "$mod, code:17, workspace, ${workspaces.code}"
+        "$mod_SHIFT, code:17, movetoworkspacesilent, ${workspaces.code}"
+        "$mod, code:18, workspace, ${workspaces.steam}"
+        "$mod_SHIFT, code:18, movetoworkspacesilent, ${workspaces.steam}"
       ]
       # Switch and move to workspaces.
       ++ (
         builtins.concatLists (builtins.genList (i:
-          let ws = i + 1;
+          let ws = i + 5;
           in [
             "$mod, code:1${toString i}, workspace, ${toString ws}"
             "$mod_SHIFT, code:1${toString i}, movetoworkspacesilent, ${toString ws}"
           ]
         )
-        9)
+        6)
       );
       # Utility keys.
       bindel = [
@@ -157,31 +163,27 @@ in
         "1, persistent:false"
         "2, persistent:false"
         "3, persistent:false"
-        "4, persistent:false"
+        "4, persistent:false, monitor:DP-1, default:true"
         "5, persistent:false"
         "6, persistent:false"
         "7, persistent:false"
         "8, persistent:false"
         "9, persistent:false"
+        "10, persistent:false"
       ];
 
       windowrule = [
         "idleinhibit fullscreen, class:^(*)$"
         "idleinhibit fullscreen, title:^(*)$"
         "idleinhibit fullscreen, fullscreen:1"
-        "float, ${pavucontrol_popup}"
-        "center ${pavucontrol_popup}"
-        "float, ${pavucontrol_popup}"
-        "size 30% 30%, ${pavucontrol_popup}"
-        "float, ${blueman_popup}"
-        "center ${blueman_popup}"
-        "float, ${blueman_popup}"
-        "size 30% 30%, ${blueman_popup}"
-        "float, ${nm_popup}"
-        "center ${nm_popup}"
-        "float, ${nm_popup}"
-        "size 30% 30%, ${nm_popup}"
+        "float, center, size 30% 30%, class:^(org.pulseaudio.pavucontrol)$ title:^(Volume Control)$"
+        "float, center, size 30% 30%, class:^(.blueman-manager-wrapped)$ title:^(Bluetooth Devices)$"
+        "float, center, size 30% 30%, class:^(nm-connection-editor)$ title:^(Network Connections)$"
         "float, title:^(.*Hyprshot.*)$"
+        "workspace ${workspaces.browser}, class:^(firefox)$"
+        "workspace ${workspaces.chat}, class:^(discord)$"
+        "workspace ${workspaces.code}, class:^(codium)$"
+        "workspace ${workspaces.steam}, class:^(steam)$"
       ];
 
       misc = {

@@ -151,16 +151,14 @@ in
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
+      thunar-archive-plugin
       thunar-media-tags-plugin
       thunar-volman
-      thunar-vcs-plugin
     ];
   };
   programs.xfconf.enable = true;
-
   # Mount, trash, and other functionalities.
   services.gvfs.enable = true;
-
   # Thumbnail support for images
   services.tumbler.enable = true;
 
