@@ -18,6 +18,7 @@ in
         height = 45;
         modules-left = [
           "group/group-power"
+          "idle_inhibitor"
           "hyprland/workspaces"
         ];
         modules-center = [ "clock" ];
@@ -30,7 +31,6 @@ in
           "bluetooth"
           "wireplumber"
           "custom/brightness"
-          "idle_inhibitor"
           "tray"
         ];
 
@@ -153,7 +153,7 @@ in
         "temperature#cpu" = {
           hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:18.3/hwmon";
           input-filename = "temp1_input";
-          critical-threshold = 80;
+          critical-threshold = 70;
           interval = 2;
           format = "{icon} {temperatureC}°C";
           format-icons = ["" "" ""];
@@ -163,7 +163,7 @@ in
         "temperature#gpu" = {
           hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:03.1/0000:0a:00.0/0000:0b:00.0/0000:0c:00.0/hwmon";
           input-filename = "temp2_input";
-          critical-threshold = 80;
+          critical-threshold = 70;
           interval = 2;
           format = "{icon} {temperatureC}°C";
           format-icons = ["" "" ""];
@@ -190,7 +190,6 @@ in
           orientation = "inherit";
           drawer = {
             transition-duration = 500;
-            children-class = "not-power";
             transition-left-to-right = true;
           };
           modules = [
