@@ -18,7 +18,6 @@ in
         height = 45;
         modules-left = [
           "group/group-power"
-          "idle_inhibitor"
           "hyprland/workspaces"
         ];
         modules-center = [ "clock" ];
@@ -31,6 +30,7 @@ in
           "bluetooth"
           "wireplumber"
           "custom/brightness"
+          "idle_inhibitor"
           "tray"
         ];
 
