@@ -74,8 +74,8 @@ in
       "image/*" = [ "nomacs.desktop" ];
       "video/*" = [ "vlc.desktop" ];
       "audio/*" = [ "vlc.desktop" ];
-      "inode/directory" = [ "org.gnome.TextEditor.desktop" ];
-      "text/plain" = [ "gnome-text-editor.desktop" ];
+      "inode/directory" = [ "thunar.desktop" ];
+      "text/plain" = [ "org.gnome.TextEditor.desktop" ];
     };
     userDirs.enable = true;
     userDirs.createDirectories = true;
