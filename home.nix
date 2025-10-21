@@ -41,14 +41,11 @@ in
     vlc
     yt-dlp
     # For Battle.net
-    (wineWowPackages.full.override {
-      wineRelease = "staging";
-      mingwSupport = true;
-    })
+    wineWowPackages
     winetricks
     #handbrake
     #makemkv
-    #video2x-full # AI upscaling for videos.
+    #video2x # AI upscaling for videos.
     #yubioath-flutter # Yubico authentification application.
   ];
 

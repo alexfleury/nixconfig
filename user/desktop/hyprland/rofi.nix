@@ -11,7 +11,6 @@ in
       display-calc = " Calculator";
       display-drun = " Apps";
       display-recursivebrowser = " Files";
-      #display-run = " Run";
       display-top = " Top";
       display-window = " Window";
       modi = "drun,recursivebrowser,calc,top";
@@ -25,14 +24,14 @@ in
       "recursivebrowser"
       "top"
       "window"
-      #{
-      #  name = "whatnot";
-      #  path = lib.getExe (import ./search_nixpkgs.nix { inherit pkgs; } );
-      #}
-      #{
-      #  name = "whatnot";
-      #  path = lib.getExe (import ./search_mynixos { inherit pkgs; } );
-      #}
+      {
+        name = "search-mynixos";
+        path = lib.getExe pkgs.search-mynixos;
+      }
+      {
+        name = "search-nixpkgs";
+        path = lib.getExe pkgs.search-nixpkgs;
+      }
     ];
     plugins = with pkgs; [
       rofi-calc

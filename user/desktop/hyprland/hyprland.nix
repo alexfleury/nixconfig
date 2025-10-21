@@ -45,7 +45,7 @@ in
         "$mod, M, exec, uwsm stop"
         "$mod, E, exec, uwsm app -- thunar.desktop"
         "$mod, Z, togglefloating,"
-        "$mod, R, exec, rofi -show drun -run-command \"uwsm app -- {cmd}\""
+        "$mod, R, exec, rofi -show drun"
         "$mod, P, pseudo,"
         "$mod, J, togglesplit,"
         "$mod, left, movefocus, l"
