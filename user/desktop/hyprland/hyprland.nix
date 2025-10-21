@@ -30,13 +30,9 @@ in
       monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, vrr, 2";
       xwayland.force_zero_scaling = true;
 
-      env = [
-        "GDK_SCALE, 2"
-      ];
-
       # Startup applications.
       exec-once = [
-        "uwsm-app -s b -- protonvpn-app.desktop"
+        "uwsm app -s b -- protonvpn-app.desktop"
       ];
 
       input.kb_layout = "ca";
@@ -44,12 +40,12 @@ in
       "$mod" = "SUPER";
       # Common operations.
       bind = [
-        "$mod, T, exec, uwsm-app -- kitty.desktop"
+        "$mod, T, exec, uwsm app -- kitty.desktop"
         "$mod, Q, killactive,"
         "$mod, M, exec, uwsm stop"
-        "$mod, E, exec, uwsm-app -- thunar.desktop"
+        "$mod, E, exec, uwsm app -- thunar.desktop"
         "$mod, Z, togglefloating,"
-        "$mod, R, exec, rofi -show drun -run-command \"uwsm-app -- {cmd}\""
+        "$mod, R, exec, rofi -show drun -run-command \"uwsm app -- {cmd}\""
         "$mod, P, pseudo,"
         "$mod, J, togglesplit,"
         "$mod, left, movefocus, l"
@@ -67,11 +63,11 @@ in
         "$mod, F, fullscreen"
         "$mod, L, exec, loginctl lock-session"
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
-        "CTRL_ALT, P, exec, uwsm-app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
-        "$mod, X, exec, uwsm-app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 kitty.desktop --class $terminal_1"
-        "CTRL_ALT, I, exec, uwsm-app -- zoom75-info"
+        "CTRL_ALT, P, exec, uwsm app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
+        "$mod, X, exec, uwsm app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 kitty.desktop --class $terminal_1"
+        "CTRL_ALT, I, exec, uwsm app -- zoom75-info"
         "ALT, TAB, exec, rofi -modes window -show window -matching fuzzy"
-        "$mod, B, exec, uwsm-app -- firefox.desktop"
+        "$mod, B, exec, uwsm app -- firefox.desktop"
         "$mod, code:49, workspace, ${workspaces.browser}"
         "$mod_SHIFT, code:49, movetoworkspacesilent, ${workspaces.browser}"
         "$mod, code:16, workspace, ${workspaces.chat}"
@@ -163,8 +159,8 @@ in
         "1, persistent:false"
         "2, persistent:false"
         "3, persistent:false"
-        "4, persistent:false, monitor:DP-1, default:true"
-        "5, persistent:false"
+        "4, persistent:false"
+        "5, persistent:false, monitor:DP-1, default:true"
         "6, persistent:false"
         "7, persistent:false"
         "8, persistent:false"

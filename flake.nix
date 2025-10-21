@@ -17,30 +17,25 @@
 
   outputs = { self, nixpkgs, home-manager, ...} @inputs:
     let
+      inherit (self) outputs;
       lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         system = system;
         config.allowUnfree = true;
-        overlays = [
-          (final: prev: {
-            gdstash = final.callPackage ./packages/gdstash.nix { inherit pkgs; };
-            hyprshot-gui = final.callPackage ./packages/hyprshot_gui.nix { inherit pkgs; };
-            #video2x-full = pkgs.video2x.override { ffmpeg = pkgs.ffmpeg-full; };
-          })
-        ];
       };
     in {
+      overlays = import ./overlays { inherit inputs; };
       nixosConfigurations = {
         "quantumflower" = lib.nixosSystem {
-          inherit system pkgs;
-          specialArgs = { inherit inputs; };
+          inherit system;
+          specialArgs = { inherit inputs outputs; };
           modules = [
             ./configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.backupFileExtension = "backup";
-              home-manager.extraSpecialArgs = { inherit pkgs inputs; };
+              home-manager.extraSpecialArgs = { inherit inputs outputs; };
               home-manager.users."alex".imports = [ ./home.nix ];
             }
             inputs.stylix.nixosModules.stylix
