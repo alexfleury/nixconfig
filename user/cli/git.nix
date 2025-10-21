@@ -3,8 +3,16 @@
 {
   programs.git = {
     enable = true;
-    userName = "alexfleury";
-    userEmail = "28400108+alexfleury@users.noreply.github.com";
+
+    settings = {
+      user.name = "alexfleury";
+      user.email = "28400108+alexfleury@users.noreply.github.com";
+      color.ui = true;
+      fetch.prune = true;
+      init.defaultBranch = "main";
+      push.autoSetupRemote = true;
+    };
+
     ignores = [
       # MacOS junk.
       ".DS_store"
@@ -22,12 +30,6 @@
       ".vscode"
       "*.code-workspace"
     ];
-    extraConfig = {
-      color.ui = true;
-      fetch.prune = true;
-      init.defaultBranch = "main";
-      push.autoSetupRemote = true;
-    };
   };
 
   programs.ssh.matchBlocks."github.com" = {

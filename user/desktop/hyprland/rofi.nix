@@ -25,14 +25,14 @@ in
       "recursivebrowser"
       "top"
       "window"
-      {
-        name = "whatnot";
-        path = lib.getExe (import ./search_nixpkgs.nix { inherit pkgs; } );
-      }
-      {
-        name = "whatnot";
-        path = lib.getExe (import ./search_mynixos { inherit pkgs; } );
-      }
+      #{
+      #  name = "whatnot";
+      #  path = lib.getExe (import ./search_nixpkgs.nix { inherit pkgs; } );
+      #}
+      #{
+      #  name = "whatnot";
+      #  path = lib.getExe (import ./search_mynixos { inherit pkgs; } );
+      #}
     ];
     plugins = with pkgs; [
       rofi-calc

@@ -15,27 +15,29 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ...} @inputs:
+  outputs = { self, nixpkgs, home-manager, ...} @ inputs:
     let
-      inherit (self) outputs;
       lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         system = system;
         config.allowUnfree = true;
+        overlays = [
+          (import ./overlays { inherit inputs; }).additions
+          (import ./overlays { inherit inputs; }).modifications
+        ];
       };
     in {
-      overlays = import ./overlays { inherit inputs; };
       nixosConfigurations = {
         "quantumflower" = lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs outputs; };
+          inherit system pkgs;
+          specialArgs = { inherit inputs; };
           modules = [
             ./configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.backupFileExtension = "backup";
-              home-manager.extraSpecialArgs = { inherit inputs outputs; };
+              home-manager.extraSpecialArgs = { inherit pkgs inputs; };
               home-manager.users."alex".imports = [ ./home.nix ];
             }
             inputs.stylix.nixosModules.stylix

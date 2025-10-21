@@ -13,7 +13,7 @@ in
     ddcutil
     hyprcursor
     playerctl
-    (import ./zoom75_info.nix { inherit pkgs; } )
+    zoom75-info
   ];
 
   services.hyprpolkitagent.enable = true;
