@@ -13,28 +13,14 @@ in
       display-recursivebrowser = " Files";
       display-top = " Top";
       display-window = " Window";
-      modi = "drun,recursivebrowser,calc,top";
+      display-search-nixpkgs = "󰏖 Nixpkgs";
+      display-search-mynixos = "󱄅 MyNixOS";
+      modi = "drun,window,recursivebrowser,top,search-nixpkgs:${lib.getExe pkgs.search-nixpkgs},search-mynixos:${lib.getExe pkgs.search-mynixos}";
       run-command = "uwsm app -- {cmd}";
       show-icons = true;
       click-to-exit = true;
     };
-    modes = [
-      "calc"
-      "drun"
-      "recursivebrowser"
-      "top"
-      "window"
-      {
-        name = "search-mynixos";
-        path = lib.getExe pkgs.search-mynixos;
-      }
-      {
-        name = "search-nixpkgs";
-        path = lib.getExe pkgs.search-nixpkgs;
-      }
-    ];
     plugins = with pkgs; [
-      rofi-calc
       rofi-top
     ];
 

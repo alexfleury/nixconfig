@@ -39,5 +39,6 @@ pkgs.python3Packages.buildPythonApplication rec {
   meta = {
     inherit description;
     homepage = "https://github.com/s-adi-dev/hyprshot-gui/tree/main";
+    mainProgram = pname;
   };
 }

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   workspaces = {
@@ -13,7 +13,6 @@ in
     ddcutil
     hyprcursor
     playerctl
-    zoom75-info
   ];
 
   services.hyprpolkitagent.enable = true;
@@ -63,10 +62,11 @@ in
         "$mod, F, fullscreen"
         "$mod, L, exec, loginctl lock-session"
         "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
-        "CTRL_ALT, P, exec, uwsm app -- ${pkgs.hyprshot-gui}/bin/hyprshot-gui"
-        "$mod, X, exec, uwsm app -- ${pkgs.hdrop}/bin/hdrop -f -p t -w 50 -g 50 kitty.desktop --class $terminal_1"
-        "CTRL_ALT, I, exec, uwsm app -- zoom75-info"
-        "ALT, TAB, exec, rofi -modes window -show window -matching fuzzy"
+        "CTRL_ALT, P, exec, uwsm app -- ${lib.getExe pkgs.hyprshot-gui}"
+        "$mod, X, exec, uwsm app -- ${lib.getExe pkgs.hdrop} -f -p t -w 50 -g 50 kitty.desktop --class $terminal_1"
+        "CTRL_ALT, I, exec, uwsm app -- ${lib.getExe pkgs.zoom75-info}"
+        "ALT, TAB, exec, rofi -show window -matching fuzzy"
+        "CTRL_ALT, Delete, exec, rofi -show top"
         "$mod, B, exec, uwsm app -- firefox.desktop"
         "$mod, code:49, workspace, ${workspaces.browser}"
         "$mod_SHIFT, code:49, movetoworkspacesilent, ${workspaces.browser}"
