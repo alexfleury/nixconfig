@@ -1,6 +1,17 @@
 { config, pkgs, lib, ... }:
 let
   username = "alex";
+  #retroarchWithCores = (
+  #  pkgs.retroarch.withCores (
+  #    cores: with cores; [
+  #      dosbox
+  #      meteor
+  #      mupen64plus
+  #      snes9x
+  #      vice-x64
+  #    ]
+  #  )
+  #);
 in
 {
   imports = [
@@ -47,6 +58,8 @@ in
     #makemkv
     #video2x # AI upscaling for videos.
     #yubioath-flutter # Yubico authentification application.
+    #retroarchWithCores
+    x16-run # Commander X16 emulator.
   ];
 
   home.sessionVariables = {

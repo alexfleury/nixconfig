@@ -61,7 +61,6 @@ in
         "$mod, mouse_up, workspace, e-1"
         "$mod, F, fullscreen"
         "$mod, L, exec, loginctl lock-session"
-        "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
         "CTRL_ALT, P, exec, uwsm app -- ${lib.getExe pkgs.hyprshot-gui}"
         "$mod, X, exec, uwsm app -- ${lib.getExe pkgs.hdrop} -f -p t -w 50 -g 50 kitty.desktop --class $terminal_1"
         "CTRL_ALT, I, exec, uwsm app -- ${lib.getExe pkgs.zoom75-info}"
@@ -101,6 +100,7 @@ in
         ", XF86AudioNext, exec, playerctl next"
       ];
       bindl = [
+        "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
         "$mod, code:35, exec, ddcutil setvcp 10 + 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
         "$mod, code:51, exec, ddcutil setvcp 10 - 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
       ];

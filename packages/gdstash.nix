@@ -1,11 +1,11 @@
 {
-  pkgs
-, copyDesktopItems ? pkgs.copyDesktopItems
-, jre ? pkgs.jre
-, makeDesktopItem ? pkgs.makeDesktopItem
-, makeWrapper ? pkgs.makeWrapper
-, requireFile ? pkgs.requireFile
-, stdenv ? pkgs.stdenv
+  stdenv,
+  copyDesktopItems,
+  jre,
+  makeDesktopItem,
+  makeWrapper,
+  requireFile,
+  unzip,
 }:
 let
   description =  "Infinite stash tool for Grim Dawn";
@@ -24,24 +24,11 @@ stdenv.mkDerivation rec {
 
   dontBuild = true;
 
-  nativeBuildInputs = [ pkgs.unzip makeWrapper copyDesktopItems ];
+  buildInputs = [ unzip makeWrapper copyDesktopItems ];
 
   unpackPhase = ''
     unzip ${src}
   '';
-
-  desktopItems =  [
-    (makeDesktopItem {
-      name = "gdstash";
-      desktopName = "GDStash";
-      comment = description;
-      exec = "GDStash";
-      icon = "games-app-symbolic";
-      terminal = false;
-      type = "Application";
-      categories = [ "Game" ];
-    })
-  ];
 
   installPhase = ''
     runHook preInstall
@@ -58,6 +45,19 @@ stdenv.mkDerivation rec {
 
     runHook postInstall
   '';
+
+  desktopItems =  [
+    (makeDesktopItem {
+      name = "gdstash";
+      desktopName = "GDStash";
+      comment = description;
+      exec = "GDStash";
+      icon = "games-app-symbolic";
+      terminal = false;
+      type = "Application";
+      categories = [ "Game" ];
+    })
+  ];
 
   meta = {
     inherit description;

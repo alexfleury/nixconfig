@@ -1,6 +1,10 @@
-{ pkgs }:
-pkgs.writeShellApplication {
+{
+  bashNonInteractive,
+  writeShellApplication,
+  zenity,
+}:
+writeShellApplication {
   name = "zoom75-info";
-  runtimeInputs = with pkgs; [ bashNonInteractive zenity ];
+  runtimeInputs = [ bashNonInteractive zenity ];
   text = builtins.readFile ../scripts/zoom75_info.bash;
 }
