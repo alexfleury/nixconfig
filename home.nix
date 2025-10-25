@@ -1,17 +1,6 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   username = "alex";
-  #retroarchWithCores = (
-  #  pkgs.retroarch.withCores (
-  #    cores: with cores; [
-  #      dosbox
-  #      meteor
-  #      mupen64plus
-  #      snes9x
-  #      vice-x64
-  #    ]
-  #  )
-  #);
 in
 {
   imports = [
@@ -24,6 +13,7 @@ in
     ./user/cli/shell.nix
     ./user/desktop/firefox.nix
     ./user/desktop/kitty.nix
+    ./user/desktop/gaming.nix
     ./user/desktop/vscodium.nix
     ./user/desktop/wlsunset.nix
   ];
@@ -37,7 +27,6 @@ in
     freetube
     kitty
     libreoffice
-    gdstash # Custom package for GDStash.
     gnome-text-editor
     nomacs # Image viewer.
     obsidian # Note application.
@@ -51,15 +40,10 @@ in
     tldr
     vlc
     yt-dlp
-    # For Battle.net
-    wineWowPackages
-    winetricks
     #handbrake
     #makemkv
     #video2x # AI upscaling for videos.
     #yubioath-flutter # Yubico authentification application.
-    #retroarchWithCores
-    x16-run # Commander X16 emulator.
   ];
 
   home.sessionVariables = {
@@ -104,14 +88,6 @@ in
   programs.password-store = {
     enable = true;
     package = pkgs.pass;
-  };
-
-  # Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more.
-  programs.mangohud = {
-    enable = true;
-    settings = {
-      mangoapp_steam = true;
-    };
   };
 
   # Music player.

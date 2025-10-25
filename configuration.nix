@@ -9,6 +9,7 @@ in
 {
   imports =[
     ./hardware-configuration.nix
+    ./modules/gaming.nix
     ./modules/vms.nix
   ];
 
@@ -110,6 +111,7 @@ in
     psmisc
     unzip
     vim
+    xarchiver
     wget
   ];
 
@@ -128,22 +130,6 @@ in
     xwayland.enable = true;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
     withUWSM = true;
-  };
-
-  # Enable steam and gamescope.
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-    extraCompatPackages = with pkgs; [ proton-ge-bin ];
-  };
-
-  programs.gamescope = {
-    enable = true;
-    # Apparently not true anymore.
-    # https://github.com/NixOS/nixpkgs/issues/351516#issuecomment-2525575711
-    capSysNice = true;
   };
 
   programs.thunar = {
