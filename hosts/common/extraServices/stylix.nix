@@ -23,6 +23,11 @@ in {
       #./wallpapers/a_street_with_buildings_and_signs.png;
       # Remote file.
       #image = "${wallpaperRepo}/first-collection/nixos.png";
+      icons = {
+        enable = true;
+        dark = "Dracula";
+        package = pkgs.dracula-icon-theme;
+      };
       cursor = {
         package = pkgs.qogir-icon-theme;
         name = "Qogir Cursors";
@@ -51,7 +56,6 @@ in {
           popups = 10;
           terminal = 12;
         };
-
       };
       opacity = {
         applications = 1.0;

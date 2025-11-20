@@ -114,12 +114,12 @@ in {
         };
 
         decoration = {
-          shadow.enabled = false;
+          shadow.enabled = true;
           active_opacity = 1.0;
-          inactive_opacity = 1.0;
+          inactive_opacity = 0.8;
           rounding = 10;
           blur = {
-            enabled = false;
+            enabled = true;
             passes = 1;
             size = 3;
             vibrancy = 0.1696;
@@ -127,7 +127,7 @@ in {
         };
 
         animations = {
-          enabled = false;
+          enabled = true;
           animation = [
             "border, 1, 10, default"
             "borderangle, 1, 8, default"
