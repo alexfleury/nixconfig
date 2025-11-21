@@ -7,7 +7,7 @@ let
   user = "alex";
 in {
   users.users.${user} = {
-    initialHashedPassword = "$y$j9T$EApohmRLzp9rj3vi1m.zw.$hUEW49/rb9xBFUzxouNID5pSSL5zE8bIXPahCuBGJM6";
+    hashedPasswordFile = config.age.secrets.userAlexHashedPasswordFile.path;
     isNormalUser = true;
     description = user;
     extraGroups = [

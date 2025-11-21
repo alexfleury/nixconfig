@@ -7,7 +7,7 @@
 {
   # Import home-manager modules (agenix and custom ones).
   imports = [ inputs.agenix.homeManagerModules.default ]
-    ++ builtins.attrValues outputs.homeManagerModules;
+    ++ builtins.attrValues outputs.homeModules;
 
   programs.home-manager.enable = true;
 

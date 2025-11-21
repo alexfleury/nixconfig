@@ -78,6 +78,12 @@
   systemd.packages = with pkgs; [ lact ];
   systemd.services.lactd.wantedBy = ["multi-user.target"];
 
+  # Enable the OpenSSH daemon.
+  services.openssh = {
+    enable = true;
+    settings.PermitRootLogin = "no";
+  };
+
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;

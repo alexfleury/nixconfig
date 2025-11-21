@@ -20,11 +20,17 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     agenix,
+    disko,
     home-manager,
     nixpkgs,
     stylix,
@@ -43,7 +49,7 @@
     packages =
       forAllSystems (system: import ./packages nixpkgs.legacyPackages.${system});
     overlays = import ./overlays {inherit inputs;};
-    homeManagerModules = import ./modules/home-manager;
+    homeModules = import ./modules/home-manager;
     nixosConfigurations = {
       quantumflower = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
@@ -51,7 +57,8 @@
           ./hosts/quantumflower
           home-manager.nixosModules.home-manager
           stylix.nixosModules.stylix
-          #agenix.nixosModules.default
+          agenix.nixosModules.default
+          disko.nixosModules.disko
         ];
       };
     };
