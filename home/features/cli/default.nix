@@ -44,6 +44,11 @@
     enableBashIntegration = true;
   };
 
+  programs.yazi = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
   programs.zoxide = {
     enable = true;
     enableBashIntegration = true;
