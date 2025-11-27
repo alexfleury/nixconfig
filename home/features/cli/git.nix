@@ -13,6 +13,7 @@ in {
   config = mkIf cfg.enable rec {
     programs.git = {
       enable = true;
+      lfs.enable = true;
 
       settings = {
         user.name = "alexfleury";
