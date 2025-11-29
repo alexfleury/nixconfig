@@ -14,15 +14,7 @@ in {
       enable = true;
       autoEnable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
-      # Local file.
-      image = pkgs.requireFile {
-        name = "a_street_with_buildings_and_signs.png";
-        url = "https://github.com/dharmx/walls";
-        sha256 = "277855097285c4824f7ed1ebbf1319ddf1ba9700364a338b6870fde81c44c54b";
-      };
-      #./wallpapers/a_street_with_buildings_and_signs.png;
-      # Remote file.
-      #image = "${wallpaperRepo}/first-collection/nixos.png";
+      image = ../../../wallpapers/a_pixel_art_of_a_city_street.png;
       icons = {
         enable = true;
         dark = "Dracula";

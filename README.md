@@ -85,6 +85,19 @@ Many CSS properties for styling can be found at https://docs.gtk.org/gtk4/css-pr
 - https://github.com/dharmx/walls
 - https://github.com/dracula/wallpaper
 
+
+### Local files
+
+One can use local file using this code block.
+
+```nix
+pkgs.requireFile {
+  name = "filename";
+  url = "url";
+  sha256 = "sha256";
+};
+```
+
 ### Desktop files
 
 They can be found in these directories:

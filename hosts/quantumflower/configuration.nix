@@ -114,6 +114,7 @@
 
   extraServices = {
     gaming.enable = true;
+    printing.enable = true;
     openrgb.enable = true;
     qmk.enable = true;
     stylix.enable = true;
