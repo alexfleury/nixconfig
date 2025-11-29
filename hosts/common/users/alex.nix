@@ -7,14 +7,8 @@ let
   user = "alex";
 in rec {
 
-  age.secrets = {
-    userAlexHashedPasswordFile = {
-      file = ../../../secrets/userAlexHashedPasswordFile.age;
-    };
-  };
-
   users.users.${user} = {
-    hashedPasswordFile = config.age.secrets.userAlexHashedPasswordFile.path;
+    initialHashedPassword = "$y$j9T$OYVCw/PECtBF1I0KlvGBD.$uB/rADJJKp6181pZZU6bwimd/Dx9.WQQQRhCGkdR7p7";
     isNormalUser = true;
     description = user;
     extraGroups = [

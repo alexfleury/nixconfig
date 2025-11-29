@@ -6,14 +6,8 @@
 let
   user = "tivi";
 in rec {
-  age.secrets = {
-    userTiviHashedPasswordFile = {
-      file = ../../secrets/userTiviHashedPasswordFile.age;
-    };
-  };
-
   users.users.${user} = {
-    hashedPasswordFile = config.age.secrets.userTiviHashedPasswordFile.path;
+    initialHashedPassword = "$y$j9T$jPSbYTUkEYJnvZgIh.3t1.$LGJDpN5OuB9ka6KEogs4DrcBP/tvQBvRA1iO1IWT6RB";
     isNormalUser = true;
     description = user;
     extraGroups = [
