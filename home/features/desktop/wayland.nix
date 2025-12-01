@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib; let
@@ -27,6 +28,20 @@ in {
       swaync.enable = true;
       waybar.enable = true;
       wlsunset.enable = true;
+    };
+
+    home.packages = with pkgs; [
+      wayscriber
+    ];
+
+    services.cliphist = {
+      enable = true;
+      extraOptions = [
+        "-max-dedupe-search"
+        "10"
+        "-max-items"
+        "500"
+      ];
     };
   };
 }

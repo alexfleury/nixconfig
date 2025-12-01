@@ -120,6 +120,7 @@ in {
         "$mod, code:61, exec, uwsm app -- ${lib.getExe pkgs.zoom75-info}"
         "ALT, TAB, exec, rofi -show window -matching fuzzy"
         "CTRL_ALT, Delete, exec, rofi -show top"
+        "SUPER, V, exec, ${lib.getExe pkgs.cliphist} list | ${lib.getExe pkgs.rofi} -dmenu -display-columns 2 | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy"
       ];
 
       windowrule = [
