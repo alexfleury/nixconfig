@@ -52,6 +52,4 @@
     corefonts
     vista-fonts
   ];
-
-  extraServices.stylix.enable = true;
 }

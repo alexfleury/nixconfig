@@ -8,13 +8,7 @@ in {
     ../features/desktop
   ];
 
-  features = {
-    cli = {
-      bash.enable = true;
-      fastfetch.enable = true;
-      starship.enable = true;
-    };
-  };
+  features.cli.bash.enable = true;
 
   home.username = user;
   home.homeDirectory = "/home/${user}";

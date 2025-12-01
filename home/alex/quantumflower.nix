@@ -33,6 +33,7 @@ in {
       firefox.enable = true;
       kitty.enable = true;
       makemkv.enable = true;
+      stylix.enable = true;
       vscodium.enable = true;
       wayland.enable = true;
     };

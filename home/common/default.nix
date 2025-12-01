@@ -5,8 +5,11 @@
   ...
 }:
 {
-  # Import home-manager modules (agenix and custom ones).
-  imports = [ inputs.agenix.homeManagerModules.default ]
+  # Import home-manager modules (agenix, stylix, and custom ones).
+  imports = [
+    inputs.agenix.homeManagerModules.default
+    inputs.stylix.homeModules.stylix
+    ]
     ++ builtins.attrValues outputs.homeModules;
 
   programs.home-manager.enable = true;

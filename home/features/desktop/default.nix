@@ -5,6 +5,7 @@
     ./hyprland.nix
     ./kitty.nix
     ./makemkv.nix
+    ./stylix.nix
     ./vscodium.nix
     ./wayland.nix
     ./zed.nix

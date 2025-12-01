@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.extraServices.stylix;
+  cfg = config.features.desktop.stylix;
 in {
-  options.extraServices.stylix.enable = mkEnableOption "enable stylix extra services";
+  options.features.desktop.stylix.enable = mkEnableOption "enable stylix HM module";
 
   config = mkIf cfg.enable {
     stylix = {

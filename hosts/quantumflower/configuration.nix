@@ -117,7 +117,6 @@
     printing.enable = true;
     openrgb.enable = true;
     qmk.enable = true;
-    stylix.enable = true;
     thunar.enable = true;
     vms.enable = true;
   };
