@@ -105,6 +105,15 @@ They can be found in these directories:
 - `/run/current-system/sw/share/applications`
 - `$HOME/.local/state/nix/profiles/profile/share/applications`
 
+
+## Hosts
+
+### tvflower
+
+```shell
+nixos-rebuild switch --flake .#tvflower --target-host ip --sudo --ask-sudo-password
+```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

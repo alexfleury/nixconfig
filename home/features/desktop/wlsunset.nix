@@ -16,7 +16,7 @@ in {
       longitude = -71.9;
 
       temperature.day = 6500;
-      temperature.night = 3000;
+      temperature.night = 2800;
 
       gamma = 1.0;
     };
