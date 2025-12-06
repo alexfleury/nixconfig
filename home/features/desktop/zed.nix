@@ -10,6 +10,16 @@ in {
   options.features.desktop.zed.enable = mkEnableOption "enable zed editor";
 
   config = mkIf cfg.enable {
-    programs.zed-editor.enable = true;
+    programs.zed-editor = {
+      enable = true;
+      extensions = [ "nix" ];
+      extraPackages = with pkgs; [ nixd nixfmt-rfc-style ];
+      userSettings = {
+        telemetry = {
+          diagnostics = false;
+          metrics = false;
+        };
+      };
+    };
   };
 }

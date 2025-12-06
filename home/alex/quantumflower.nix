@@ -36,6 +36,7 @@ in {
       stylix.enable = true;
       vscodium.enable = true;
       wayland.enable = true;
+      zed.enable = true;
     };
   };
 
