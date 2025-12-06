@@ -6,11 +6,7 @@
 let
   user = "tivi";
 in {
-  imports = [
-    ../common
-    ../features/cli
-    ../features/desktop
-  ];
+  imports = [ ../common ];
 
   home.username = user;
   home.homeDirectory = "/home/${user}";

@@ -1,6 +1,8 @@
 {
   config,
   inputs,
+  lib,
+  pkgs,
   outputs,
   ...
 }:
@@ -13,6 +15,22 @@
     ++ builtins.attrValues outputs.homeModules;
 
   programs.home-manager.enable = true;
+
+  # Next two blocks are becasue of home-manager.useUserPackages = true.
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+    ];
+    config.allowUnfree = true;
+  };
+  nix = {
+    package = lib.mkDefault pkgs.nix;
+    settings = {
+      experimental-features = ["nix-command" "flakes"];
+      warn-dirty = false;
+    };
+  };
 
   programs.nh = {
     enable = true;
