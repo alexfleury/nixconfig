@@ -20,7 +20,6 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      #ankama-launcher      # Dofus. Not working at the moment.
       gdstash               # Infinite stash for Grim Dawn.
       retroarchWithCores    # Retrogaming.
       x16-run

@@ -8,14 +8,14 @@ with lib; let
   cfg = config.features.desktop.vscodium;
   yamlFormat = pkgs.formats.yaml {};
   continueConfig = {
-    name = "Gemini 2.0 Flash";
-    version = "1.0.2";
+    name = "My config";
+    version = "0.0.1";
     schema = "v1";
     models = [
       {
-        name = "Gemini 2.0 Flash";
+        name = "Gemini 2.5 Flash";
         provider = "gemini";
-        model = "gemini-2.0-flash";
+        model = "gemini-2.5-flash";
         apiKey = "$\{{ secrets.GEMINI_API_KEY }}";
         roles = [
           "chat"
@@ -29,6 +29,18 @@ with lib; let
         capabilities = [
           "tool_use"
           "image_input"
+        ];
+      }
+      {
+        name = "Ollama";
+        provider = "ollama";
+        model = "AUTODETECT";
+        roles = [
+          "chat"
+          "edit"
+          "apply"
+          "rerank"
+          "autocomplete"
         ];
       }
     ];
@@ -49,11 +61,17 @@ in {
           ms-python.python
         ];
         userSettings = {
+          "continue.telemetryEnabled" = false;
           "editor.autoClosingBrackets" = "never";
           "editor.autoClosingDelete" = "never";
           "editor.autoClosingOvertype" = "never";
+          "editor.autoClosingQuotes" = "never";
+          "editor.autoSurround" = "never";
+          "editor.guides.bracketPairsHorizontal" = false;
+          "editor.matchBrackets" = "near";
           "editor.minimap.enabled" = false;
           "editor.tabSize" = 2;
+          "extensions.autoUpdate" = false;
           "files.trimTrailingWhitespace" = true;
           "window.titleBarStyle" = "custom";
           "[python]" = {

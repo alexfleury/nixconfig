@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib; let
@@ -12,7 +13,7 @@ in {
     services = {
       ollama = {
         enable = true;
-        acceleration = "rocm";
+        package = pkgs.ollama-rocm;
         rocmOverrideGfx = "10.3.0";
       };
     };
