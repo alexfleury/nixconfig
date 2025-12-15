@@ -41,6 +41,8 @@ in {
       settings = {
         xwayland.force_zero_scaling = true;
 
+        input.follow_mouse = 2;
+
         "$mod" = "SUPER";
         bind = [
           "$mod, Q, killactive,"
@@ -116,7 +118,7 @@ in {
         decoration = {
           shadow.enabled = true;
           active_opacity = 1.0;
-          inactive_opacity = 0.8;
+          inactive_opacity = 1.0;
           rounding = 10;
           blur = {
             enabled = true;

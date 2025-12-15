@@ -48,7 +48,7 @@
   in {
     packages =
       forAllSystems (system: import ./packages nixpkgs.legacyPackages.${system});
-    overlays = import ./overlays {inherit inputs;};
+    overlays = import ./overlays;
     homeModules = import ./modules/home-manager;
     nixosConfigurations = {
       quantumflower = nixpkgs.lib.nixosSystem {

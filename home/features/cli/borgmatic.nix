@@ -33,7 +33,6 @@ in {
             patterns = [
               "R /mnt/Data"
               "- mnt/Data/SteamLibrary"
-              "- mnt/Data/ProtonDrive"
               "R /home/${config.home.username}/.config/retroarch"
             ];
             repositories = [
