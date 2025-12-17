@@ -40,7 +40,6 @@ with lib; let
           "edit"
           "apply"
           "rerank"
-          "autocomplete"
         ];
       }
     ];

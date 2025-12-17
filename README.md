@@ -17,7 +17,7 @@ It provides a modular and reproducible way to manage my system and user environm
 
 ## Structure
 
-The structure is designed to be modular, and it based on https://code.m3ta.dev/m3tam3re/nixcfg.
+The structure is designed to be modular, and based on https://code.m3ta.dev/m3tam3re/nixcfg.
 
 ```shell
 .
@@ -94,7 +94,7 @@ One can use local file using this code block.
 pkgs.requireFile {
   name = "filename";
   url = "url";
-  sha256 = "sha256";
+  sha256 = "";
 };
 ```
 
