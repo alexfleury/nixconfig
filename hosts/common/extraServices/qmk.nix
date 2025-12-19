@@ -11,6 +11,7 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
+      dos2unix
       qmk
     ];
     hardware.keyboard.qmk.enable = true;

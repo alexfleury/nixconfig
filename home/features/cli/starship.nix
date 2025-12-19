@@ -28,10 +28,8 @@ in {
           "$julia"
           "$rust"
           "[](fg:green bg:red)"
-          "$docker_context"
-          "[](fg:red bg:brown)"
           "$time"
-          "[ ](fg:brown)"
+          "[ ](fg:red)"
         ];
         add_newline = true;
         command_timeout = 5000;
@@ -105,7 +103,7 @@ in {
         time = {
           disabled = false;
           time_format = "%kh%Mm%Ss";
-          style = "bg:brown fg:white";
+          style = "bg:red fg:white";
           format = "[ $time ]($style)";
         };
 
