@@ -45,6 +45,10 @@
       "x86_64-darwin"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
+    # Extend the lib library with custom functions.
+    lib = nixpkgs.lib.extend (final: prev: {
+      autoImports = import ./lib/autoImports.nix { lib = prev; };
+    });
   in {
     packages =
       forAllSystems (system: import ./packages nixpkgs.legacyPackages.${system});
@@ -52,7 +56,7 @@
     homeModules = import ./modules/home-manager;
     nixosConfigurations = {
       quantumflower = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs lib outputs;};
         modules = [
           ./hosts/quantumflower
           home-manager.nixosModules.home-manager
@@ -61,7 +65,7 @@
         ];
       };
       tvflower = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs lib outputs;};
          system = "x86_64-linux";
         modules = [
           ./hosts/tvflower

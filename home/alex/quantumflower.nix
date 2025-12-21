@@ -28,6 +28,7 @@ in {
       python.enable = true;
       ssh.enable = true;
       starship.enable = true;
+      test.enable = true;
     };
     desktop = {
       firefox.enable = true;

@@ -35,7 +35,6 @@ in {
             "temperature#cpu"
             "custom/gpu"
             "temperature#gpu"
-            #"network"
             "bluetooth"
             "wireplumber"
             "custom/brightness"
@@ -55,7 +54,6 @@ in {
           clock = {
             interval = 60;
             format = " {:%d/%m/%y (%a)   %R}";
-            #format-alt = " {:%d/%m/%y (%a)}";
             on-click = "swaync-client -t -sw";
             tooltip = false;
           };
@@ -233,7 +231,6 @@ in {
         #custom-brightness,
         #custom-lock,
         #custom-sleep,
-        #custom-hyprsunset,
         #custom-notifications,
         #custom-power,
         #custom-quit,
@@ -246,7 +243,7 @@ in {
         {
           background-color: alpha(@base01, ${background_transparency});
           border-radius: 5px;
-          color: @base04;
+          color: @base05;
           font-weight: bold;
           margin: 5px;
           padding-left: 10px;
@@ -264,7 +261,7 @@ in {
         {
           background-color: alpha(@base01, ${background_transparency});
           border-radius: 5px 0px 0px 5px;
-          color: @base04;
+          color: @base05;
           font-weight: bold;
           padding-left: 10px;
           padding-right: 10px;
@@ -281,18 +278,6 @@ in {
         #custom-lock {
           color: @base05;
           padding-right: 12px;
-        }
-
-        #custom-hyprsunset {
-          padding-right: 16px;
-        }
-
-        #custom-hyprsunset.enabled {
-          color: @base0F;
-        }
-
-        #custom-hyprsunset.disabled {
-          color: @base0A;
         }
 
         #custom-sleep,
@@ -350,13 +335,13 @@ in {
 
         #workspaces button {
           border-radius: 5px;
-          color: @base04;
+          color: @base05;
           padding-left: 12px;
           padding-right: 12px;
         }
 
         #workspaces button.active {
-          background-color: @base04;
+          background-color: @base05;
           color: @base01;
         }
 

@@ -68,13 +68,13 @@ in {
 
         git_branch = {
           symbol = "";
-          style = "bg:blue fg:white";
+          style = "bg:blue fg:base00";
           truncation_length = 10;
           format = "[ $symbol $branch ]($style)";
         };
 
         git_status = {
-          style = "bg:blue fg:bold white";
+          style = "bg:blue fg:bold base00";
           format = "[$all_status$ahead_behind ]($style)";
         };
 
@@ -103,7 +103,7 @@ in {
         time = {
           disabled = false;
           time_format = "%kh%Mm%Ss";
-          style = "bg:red fg:white";
+          style = "bg:red fg:base00";
           format = "[ $time ]($style)";
         };
 

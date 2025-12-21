@@ -25,6 +25,9 @@ in {
     # Thumbnail support for images
     services.tumbler.enable = true;
 
-    environment.systemPackages = [ pkgs.file-roller ];
+    environment.systemPackages = with pkgs; [
+      file-roller
+      p7zip
+    ];
   };
 }
