@@ -35,7 +35,6 @@ let
     in
       # Flatten the list of lists into a single list of file paths.
       builtins.concatLists files;
-
 in
 # The main function exported by this module. It takes a directory path and
 # returns a list of discovered .nix file paths.
