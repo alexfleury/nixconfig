@@ -25,7 +25,6 @@ in {
       borgmatic.enable = true;
       fastfetch.enable = true;
       git.enable = true;
-      python.enable = true;
       ssh.enable = true;
       starship.enable = true;
     };
@@ -103,7 +102,7 @@ in {
 
   wayland.windowManager.hyprland = {
     settings = {
-      monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, vrr, 2";
+      monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, vrr, 3, cm, auto";
 
       # Startup applications.
       exec-once = [
