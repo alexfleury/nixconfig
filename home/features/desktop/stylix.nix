@@ -13,7 +13,7 @@ in {
     stylix = {
       enable = true;
       autoEnable = true;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
       image = ../../../wallpapers/a_pixel_art_of_a_city_street.png;
       icons = {
         enable = true;

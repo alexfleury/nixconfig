@@ -17,7 +17,13 @@ in {
     #users.groups.libvirtd.members = [ get.username.from.option? ];
 
     virtualisation = {
-      libvirtd.enable = true;
+      libvirtd = {
+        enable = true;
+        qemu = {
+          package = pkgs.qemu_kvm;
+          swtpm.enable = true;
+        };
+      };
       spiceUSBRedirection.enable = true;
     };
 
