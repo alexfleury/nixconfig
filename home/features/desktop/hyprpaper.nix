@@ -8,5 +8,10 @@ with lib; let
 in {
   options.features.desktop.wayland.hyprpaper.enable = mkEnableOption "enable hyprpaper";
 
-  config.services.hyprpaper.enable = lib.mkForce cfg.enable;
+  config = mkIf cfg.enable {
+    services.hyprpaper.enable = lib.mkForce cfg.enable;
+    services.hyprpaper.settings = lib.mkAfter {
+      splash = false;
+    };
+  };
 }

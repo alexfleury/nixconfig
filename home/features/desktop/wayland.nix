@@ -13,7 +13,7 @@ in {
     features.desktop.wayland = {
       hypridle.enable = true;
       hyprlock.enable = true;
-      hyprpaper.enable = false;
+      hyprpaper.enable = true;
       rofi.enable = true;
       swaync.enable = true;
       waybar.enable = true;
@@ -33,8 +33,5 @@ in {
         "500"
       ];
     };
-
-    # Temporary (waiting stylix hyprpaper fix).
-    services.wpaperd.enable = true;
   };
 }
