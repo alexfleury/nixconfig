@@ -89,7 +89,9 @@ in {
       };
     };
     stylix.targets.vscode.profileNames = [ "default" ];
-    home.packages = [ pkgs.nixfmt-rfc-style ];
+    home.packages = with pkgs; [
+      nixfmt
+    ];
     home.file.".continue/config.yaml".source = continueYaml;
   };
 }

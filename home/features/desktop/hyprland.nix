@@ -41,6 +41,10 @@ in {
       settings = {
         xwayland.force_zero_scaling = true;
 
+        env = [
+          "XDG_CURRENT_DESKTOP, Hyprland"
+        ];
+
         input.follow_mouse = 2;
 
         "$mod" = "SUPER";
@@ -165,9 +169,9 @@ in {
         ];
 
         windowrule = [
-          "idleinhibit fullscreen, class:^(*)$"
-          "idleinhibit fullscreen, title:^(*)$"
-          "idleinhibit fullscreen, fullscreen:1"
+          "match:class ^(*)$, idle_inhibit fullscreen"
+          "match:title ^(*)$, idle_inhibit fullscreen$"
+          "match:fullscreen 1, idle_inhibit fullscreen"
         ];
 
         misc = {
@@ -177,14 +181,6 @@ in {
           mouse_move_enables_dpms = true;
           key_press_enables_dpms = false;
           focus_on_activate = true;
-        };
-
-        experimental = {
-          xx_color_management_v4 = true;
-        };
-
-        debug = {
-          full_cm_proto = true;
         };
 
       };

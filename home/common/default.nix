@@ -16,7 +16,7 @@
 
   programs.home-manager.enable = true;
 
-  # Next two blocks are becasue of home-manager.useUserPackages = true.
+  # Next two blocks are there because of home-manager.useUserPackages = true.
   nixpkgs = {
     overlays = [
       outputs.overlays.additions
@@ -27,7 +27,7 @@
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [ "nix-command" "flakes" ];
       warn-dirty = false;
     };
   };

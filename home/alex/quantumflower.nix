@@ -124,16 +124,17 @@ in {
       ];
 
       windowrule = [
-        "float, center, size 30% 30%, class:^(org.pulseaudio.pavucontrol)$ title:^(Volume Control)$"
-        "float, center, size 30% 30%, class:^(.blueman-manager-wrapped)$ title:^(Bluetooth Devices)$"
-        "float, center, size 30% 30%, class:^(nm-connection-editor)$ title:^(Network Connections)$"
-        "float, title:^(.*Hyprshot.*)$"
-        "float, center, size 30% 30%, class:^(org.gnome.FileRoller)$"
-        "workspace ${workspaces.browser}, class:^(firefox)$"
-        "workspace ${workspaces.chat}, class:^(discord)$"
-        "workspace ${workspaces.code}, class:^(codium)$"
-        "workspace ${workspaces.steam}, class:^(steam)$"
+        "match:title ^(Volume Control), float on center on size (monitor_w*0.3) (monitor_h*0.3)$"
+        "match:title ^(Bluetooth Devices)$, float on center on size (monitor_w*0.3) (monitor_h*0.3)"
+        "match:title ^(Network Connections)$, float on center on size (monitor_w*0.3) (monitor_h*0.3)"
+        "match:title ^(.*Hyprshot.*)$, float on"
+        "match:class ^(org.gnome.FileRoller)$, float on center on size (monitor_w*0.3) (monitor_h*0.3)"
+        "match:class ^(firefox)$, workspace ${workspaces.browser}"
+        "match:class ^(discord)$, workspace ${workspaces.chat}"
+        "match:class ^(codium)$, workspace ${workspaces.code}"
+        "match:class ^(steam)$, workspace ${workspaces.steam}"
       ];
+
     };
   };
 }
