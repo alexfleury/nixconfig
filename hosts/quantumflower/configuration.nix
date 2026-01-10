@@ -4,7 +4,6 @@
   ];
 
   boot = {
-    initrd.kernelModules = [ "amdgpu" ];
     # The kernel param "preempt=full" fixed buzzing sound in Hogwarts Legacy.
     kernelParams = [ "consoleblank=60" ];
     # sg is for the usv CD drive.
@@ -38,6 +37,11 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+  };
+
+  hardware.amdgpu = {
+    initrd.enable = true;
+    overdrive.enable = true;
   };
 
   hardware.bluetooth = {

@@ -48,6 +48,12 @@ in {
     programs.lutris = {
       enable = true;
       defaultWinePackage = pkgs.proton-ge-bin;
+      extraPackages = with pkgs; [
+        gamescope
+        #gamemode
+        mangohud
+        #winetricks
+      ];
       protonPackages = with pkgs; [
         proton-ge-bin
       ];
