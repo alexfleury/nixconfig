@@ -116,6 +116,12 @@
     vista-fonts
   ];
 
+  # Fixes
+  # Mount point '/boot' which backs the random seed file is world accessible,
+  # which is a security hole!
+  # https://discourse.nixos.org/t/nixos-install-with-custom-flake-results-in-boot-being-world-accessible/34555/17
+  fileSystems."/boot".options = [ "umask=0077" "defaults" ];
+
   extraServices = {
     gaming.enable = true;
     printing.enable = true;

@@ -35,7 +35,7 @@ in {
       stylix.enable = true;
       vscodium.enable = true;
       wayland.enable = true;
-      zed.enable = true;
+      zed.enable = false;
     };
   };
 
@@ -52,6 +52,7 @@ in {
     libreoffice                 # Office suite.
     nomacs                      # Image viewer.
     obsidian                    # Note application.
+    kdePackages.okular          # KDE pdf viewer.
     papers                      # GNOME pdf viewer.
     #pastel                     # CLI to manipulate colors.
     pavucontrol                 # Manage sound through a panel.

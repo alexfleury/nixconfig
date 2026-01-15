@@ -14,10 +14,21 @@ in {
       makemkv
     ];
 
-    home.activation = {
-      makemkSetup = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        ${pkgs.makemkv}/bin/makemkvcon reg ${config.age.secrets.makemkvKey.path}
-      '';
+    systemd.user.services = {
+      makemkvActivation = {
+        Unit = {
+          Description = "Activation of the MakeMKV software with an encrypted key.";
+        };
+        Install = {
+          WantedBy = [ "multi-user.target" ];
+        };
+        Service = {
+          Type = "oneshot";
+          ExecStart = "${pkgs.writeShellScript "activate-makemkv" ''
+            ${pkgs.makemkv}/bin/makemkvcon reg ${config.age.secrets.makemkvKey.path} > /dev/null 2>&1
+          ''}";
+        };
+      };
     };
   };
 }
