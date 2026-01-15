@@ -94,13 +94,13 @@
   };
 
   security = {
-      # Note that PAM must be configured to enable hyprlock to perform
-      # authentication. The package installed through home-manager will not be
-      # able to unlock the session without this configurations.
-      # https://mynixos.com/home-manager/option/programs.hyprlock.enable
-      pam.services.hyprlock = {};
-      # For realtime audio (used by pulseaudio or pipewire).
-      rtkit.enable = true;
+    # Note that PAM must be configured to enable hyprlock to perform
+    # authentication. The package installed through home-manager will not be
+    # able to unlock the session without this configurations.
+    # https://mynixos.com/home-manager/option/programs.hyprlock.enable
+    pam.services.hyprlock = {};
+    # For realtime audio (used by pulseaudio or pipewire).
+    rtkit.enable = true;
   };
 
   programs.bash.enable = true;
