@@ -18,9 +18,10 @@ in {
       makemkvActivation = {
         Unit = {
           Description = "Activation of the MakeMKV software with an encrypted key.";
+          ConditionPathExists = "!${config.home.homeDirectory}/.MakeMKV/settings.conf";
         };
         Install = {
-          WantedBy = [ "multi-user.target" ];
+          WantedBy = [ "default.target" ];
         };
         Service = {
           Type = "oneshot";
