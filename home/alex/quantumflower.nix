@@ -53,7 +53,7 @@ in {
     nomacs                      # Image viewer.
     obsidian                    # Note application.
     kdePackages.okular          # KDE pdf viewer.
-    papers                      # GNOME pdf viewer.
+    #papers                      # GNOME pdf viewer.
     #pastel                     # CLI to manipulate colors.
     pavucontrol                 # Manage sound through a panel.
     protonvpn-gui               # Proton VPN.
@@ -90,7 +90,7 @@ in {
     mime.enable = true;
     mimeApps.enable = true;
     mimeApps.defaultApplications = {
-      "application/pdf" = [ "org.gnome.Papers.desktop" ];
+      "application/pdf" = [ "org.kde.okular.desktop" ];
       "image/*" = [ "nomacs.desktop" ];
       "video/*" = [ "vlc.desktop" ];
       "audio/*" = [ "vlc.desktop" ];

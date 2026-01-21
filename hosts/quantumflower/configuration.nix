@@ -70,7 +70,7 @@
     };
     loginShellInit = ''
       if uwsm check may-start; then
-        exec uwsm start hyprland-uwsm.desktop
+        exec uwsm start -e -D Hyprland hyprland.desktop
       fi
     '';
     # Use gamescope in a new session.

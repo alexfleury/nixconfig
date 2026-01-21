@@ -104,6 +104,7 @@ They can be found in these directories:
 
 - `/run/current-system/sw/share/applications`
 - `$HOME/.local/state/nix/profiles/profile/share/applications`
+- `$HOME/.local/share/applications`
 
 
 ## Hosts
