@@ -13,6 +13,8 @@ in {
     stylix = {
       enable = true;
       autoEnable = true;
+      # https://github.com/nix-community/stylix/issues/1832#issuecomment-3169274982
+      overlays.enable = false;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
       image = ../../../wallpapers/a_pixel_art_of_a_city_street.png;
       icons = {

@@ -13,9 +13,9 @@ with lib; let
     schema = "v1";
     models = [
       {
-        name = "Gemini 2.5 Flash";
+        name = "Gemini 3 Flash Preview";
         provider = "gemini";
-        model = "gemini-2.5-flash";
+        model = "gemini-3-flash-preview";
         apiKey = "$\{{ secrets.GEMINI_API_KEY }}";
         roles = [
           "chat"
@@ -24,7 +24,7 @@ with lib; let
         ];
         defaultCompletionOptions = {
           contextLength = 1048576;
-          maxTokens = 8192;
+          maxTokens = 65536;
         };
         capabilities = [
           "tool_use"
@@ -39,11 +39,11 @@ with lib; let
           "chat"
           "edit"
           "apply"
-          "rerank"
         ];
       }
     ];
   };
+
   continueYaml = yamlFormat.generate "config.yaml" continueConfig;
 in {
   options.features.desktop.vscodium.enable = mkEnableOption "enable codium";

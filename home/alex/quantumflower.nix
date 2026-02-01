@@ -47,7 +47,7 @@ in {
     asunder                     # Ripping audio CDs.
     discord                     # Communication software.
     gnome-text-editor           # Simple text editor.
-    handbrake                   # Transcoding videos.
+    #handbrake                  # Transcoding videos.
     inkscape-with-extensions    # Vector image manip software.
     libreoffice                 # Office suite.
     nomacs                      # Image viewer.

@@ -23,8 +23,10 @@
   home-manager = {
     backupFileExtension = "backup";
     extraSpecialArgs = {inherit inputs outputs;};
-    #useGlobalPkgs = true; # There is a warning with overlays...
-    useUserPackages = true;
+    # There is a warning with overlays... Can be fixed with
+    # stylix.overlays.enable = false in HM.
+    useGlobalPkgs = true;
+    #useUserPackages = true;
   };
 
   nixpkgs = {

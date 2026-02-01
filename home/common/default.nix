@@ -16,14 +16,14 @@
 
   programs.home-manager.enable = true;
 
-  # Next two blocks are there because of home-manager.useUserPackages = true.
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-    ];
-    config.allowUnfree = true;
-  };
+  # Next two blocks are there when home-manager.useUserPackages = true.
+  #nixpkgs = {
+  #  overlays = [
+  #    outputs.overlays.additions
+  #    outputs.overlays.modifications
+  #  ];
+  #  config.allowUnfree = true;
+  #};
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
