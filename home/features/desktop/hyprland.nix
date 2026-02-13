@@ -47,49 +47,47 @@ in {
 
         input.follow_mouse = 2;
 
-        "$mod" = "SUPER";
         bind = [
-          "$mod, Q, killactive,"
-          "$mod, M, exec, uwsm stop"
-          "$mod, Z, togglefloating,"
-          "$mod, R, exec, rofi -show drun"
-          "$mod, P, pseudo,"
-          "$mod, J, togglesplit,"
-          "$mod, left, movefocus, l"
-          "$mod, right, movefocus, r"
-          "$mod, up, movefocus, u"
-          "$mod, down, movefocus, d"
-          "$mod_SHIFT, H, movewindow, l"
-          "$mod_SHIFT, L, movewindow, r"
-          "$mod_SHIFT, K, movewindow, u"
-          "$mod_SHIFT, J, movewindow, d"
-          "$mod, S, togglespecialworkspace, magic"
-          "$mod_SHIFT, S, movetoworkspace, special:magic"
-          "$mod, mouse_down, workspace, e+1"
-          "$mod, mouse_up, workspace, e-1"
-          "$mod, F, fullscreen"
-          "$mod, L, exec, loginctl lock-session"
-          "$mod, code:49, workspace, ${workspaces.browser}"
-          "$mod_SHIFT, code:49, movetoworkspacesilent, ${workspaces.browser}"
-          "$mod, code:16, workspace, ${workspaces.code}"
-          "$mod_SHIFT, code:16, movetoworkspacesilent, ${workspaces.code}"
-          "$mod, code:17, workspace, ${workspaces.chat}"
-          "$mod_SHIFT, code:17, movetoworkspacesilent, ${workspaces.chat}"
-          "$mod, code:18, workspace, ${workspaces.steam}"
-          "$mod_SHIFT, code:18, movetoworkspacesilent, ${workspaces.steam}"
+          "SUPER, Q, killactive,"
+          #"SUPER, M, exec, uwsm stop"
+          "SUPER, Z, togglefloating,"
+          "SUPER, R, exec, rofi -show drun"
+          "SUPER, P, pseudo,"
+          "SUPER, J, togglesplit,"
+          "SUPER, left, movefocus, l"
+          "SUPER, right, movefocus, r"
+          "SUPER, up, movefocus, u"
+          "SUPER, down, movefocus, d"
+          "SUPER_SHIFT, H, movewindow, l"
+          "SUPER_SHIFT, L, movewindow, r"
+          "SUPER_SHIFT, K, movewindow, u"
+          "SUPER_SHIFT, J, movewindow, d"
+          "SUPER, S, togglespecialworkspace, magic"
+          "SUPER_SHIFT, S, movetoworkspace, special:magic"
+          "SUPER, mouse_down, workspace, e+1"
+          "SUPER, mouse_up, workspace, e-1"
+          "SUPER, F, fullscreen"
+          "SUPER, L, exec, loginctl lock-session"
+          "SUPER, code:49, workspace, ${workspaces.browser}"
+          "SUPER_SHIFT, code:49, movetoworkspacesilent, ${workspaces.browser}"
+          "SUPER, code:16, workspace, ${workspaces.code}"
+          "SUPER_SHIFT, code:16, movetoworkspacesilent, ${workspaces.code}"
+          "SUPER, code:17, workspace, ${workspaces.chat}"
+          "SUPER_SHIFT, code:17, movetoworkspacesilent, ${workspaces.chat}"
+          "SUPER, code:18, workspace, ${workspaces.steam}"
+          "SUPER_SHIFT, code:18, movetoworkspacesilent, ${workspaces.steam}"
         ]
         # Switch and move to workspaces.
         ++ (
           builtins.concatLists (builtins.genList (i:
             let ws = i + 5;
             in [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod_SHIFT, code:1${toString i}, movetoworkspacesilent, ${toString ws}"
+              "SUPER, code:1${toString i}, workspace, ${toString ws}"
+              "SUPER_SHIFT, code:1${toString i}, movetoworkspacesilent, ${toString ws}"
             ]
           )
           6)
         );
-        # Utility keys.
         bindel = [
           ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ -l 1"
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
@@ -100,14 +98,13 @@ in {
           ", XF86AudioNext, exec, playerctl next"
         ];
         bindl = [
-          "$mod, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
-          "$mod, code:35, exec, ddcutil setvcp 10 + 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
-          "$mod, code:51, exec, ddcutil setvcp 10 - 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
+          "SUPER, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
+          "SUPER, code:35, exec, ddcutil setvcp 10 + 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
+          "SUPER, code:51, exec, ddcutil setvcp 10 - 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
         ];
-        # Drag mouse.
         bindm = [
-          "$mod, mouse:272, movewindow"
-          "$mod, mouse:273, resizewindow"
+          "SUPER, mouse:272, movewindow"
+          "SUPER, mouse:273, resizewindow"
         ];
 
         general = {

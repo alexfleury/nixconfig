@@ -45,7 +45,7 @@ in {
   # User packages.
   home.packages = with pkgs; [
     asunder                     # Ripping audio CDs.
-    discord                     # Communication software.
+    #discord                    # Communication software.
     gnome-text-editor           # Simple text editor.
     #handbrake                  # Transcoding videos.
     inkscape-with-extensions    # Vector image manip software.
@@ -53,12 +53,13 @@ in {
     nomacs                      # Image viewer.
     obsidian                    # Note application.
     kdePackages.okular          # KDE pdf viewer.
-    #papers                      # GNOME pdf viewer.
+    #papers                     # GNOME pdf viewer.
     #pastel                     # CLI to manipulate colors.
     pavucontrol                 # Manage sound through a panel.
     protonvpn-gui               # Proton VPN.
     #video2x                    # AI upscaling for videos.
     vlc                         # Reading videos.
+    vesktop                     # Alternative discord app.
     #yubioath-flutter           # Yubico authentification application.
   ];
 
@@ -112,13 +113,12 @@ in {
 
       input.kb_layout = "ca";
 
-      "$mod" = "SUPER";
       bind = [
-        "$mod, T, exec, uwsm app -- kitty.desktop"
-        "$mod, E, exec, uwsm app -- thunar.desktop"
-        "$mod, R, exec, rofi -show drun"
-        "$mod, I, exec, uwsm app -- ${lib.getExe pkgs.hyprshot-gui}"
-        "$mod, code:61, exec, uwsm app -- ${lib.getExe pkgs.zoom75-info}"
+        "SUPER, T, exec, uwsm app -- kitty.desktop"
+        "SUPER, E, exec, uwsm app -- thunar.desktop"
+        "SUPER, R, exec, rofi -show drun"
+        "SUPER, I, exec, uwsm app -- ${lib.getExe pkgs.hyprshot-gui}"
+        "SUPER, code:61, exec, uwsm app -- ${lib.getExe pkgs.zoom75-info}"
         "ALT, TAB, exec, rofi -show window -matching fuzzy"
         "CTRL_ALT, Delete, exec, rofi -show top"
         "SUPER, V, exec, ${lib.getExe pkgs.cliphist} list | ${lib.getExe pkgs.rofi} -dmenu -display-columns 2 | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy"
@@ -126,12 +126,12 @@ in {
 
       windowrule = [
         "match:title ^(Volume Control), float on center on size (monitor_w*0.3) (monitor_h*0.3)$"
-        "match:title ^(Bluetooth Devices)$, float on center on size (monitor_w*0.3) (monitor_h*0.3)"
-        "match:title ^(Network Connections)$, float on center on size (monitor_w*0.3) (monitor_h*0.3)"
+        "match:title ^(Bluetooth Devices), float on center on size (monitor_w*0.3) (monitor_h*0.3)"
+        "match:title ^(Network Connections), float on center on size (monitor_w*0.3) (monitor_h*0.3)"
         "match:title ^(.*Hyprshot.*)$, float on"
         "match:class ^(org.gnome.FileRoller)$, float on center on size (monitor_w*0.3) (monitor_h*0.3)"
         "match:class ^(firefox)$, workspace ${workspaces.browser}"
-        "match:class ^(discord)$, workspace ${workspaces.chat}"
+        "match:class ^(vesktop)$, workspace ${workspaces.chat}"
         "match:class ^(codium)$, workspace ${workspaces.code}"
         "match:class ^(steam)$, workspace ${workspaces.steam}"
       ];
