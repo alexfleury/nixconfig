@@ -11,6 +11,16 @@ let
     chat = "3";
     steam = "4";
   };
+  mkMenu = menu: let
+    configFile = pkgs.writeText "config.yaml"
+      (lib.generators.toYAML {} {
+        anchor = "center";
+        inherit menu;
+      });
+  in
+    pkgs.writeShellScriptBin "my-menu" ''
+      exec ${lib.getExe pkgs.wlr-which-key} ${configFile}
+    '';
 in {
   imports = [
     ../common
@@ -117,11 +127,47 @@ in {
         "SUPER, T, exec, uwsm app -- kitty.desktop"
         "SUPER, E, exec, uwsm app -- thunar.desktop"
         "SUPER, R, exec, rofi -show drun"
-        "SUPER, I, exec, uwsm app -- ${lib.getExe pkgs.hyprshot-gui}"
-        "SUPER, code:61, exec, uwsm app -- ${lib.getExe pkgs.zoom75-info}"
         "ALT, TAB, exec, rofi -show window -matching fuzzy"
         "CTRL_ALT, Delete, exec, rofi -show top"
         "SUPER, V, exec, ${lib.getExe pkgs.cliphist} list | ${lib.getExe pkgs.rofi} -dmenu -display-columns 2 | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy"
+        "SUPER, code:49, workspace, ${workspaces.browser}"
+        "SUPER_SHIFT, code:49, movetoworkspacesilent, ${workspaces.browser}"
+        "SUPER, code:16, workspace, ${workspaces.code}"
+        "SUPER_SHIFT, code:16, movetoworkspacesilent, ${workspaces.code}"
+        "SUPER, code:17, workspace, ${workspaces.chat}"
+        "SUPER_SHIFT, code:17, movetoworkspacesilent, ${workspaces.chat}"
+        "SUPER, code:18, workspace, ${workspaces.steam}"
+        "SUPER_SHIFT, code:18, movetoworkspacesilent, ${workspaces.steam}"
+
+        # Application shortcut as seen in https://www.vimjoyer.com/vid74-which-key.
+        ("SUPER_SHIFT, D, exec, " + lib.getExe (mkMenu [
+          {
+            key = "d";
+            desc = "Discord";
+            cmd = "uwsm app -- vesktop.desktop";
+          }
+          {
+            key = "f";
+            desc = "Firefox";
+            cmd = "uwsm app -- firefox.desktop";
+          }
+          {
+            key = "s";
+            desc = "Screenshot";
+            cmd = "uwsm app -- ${lib.getExe pkgs.hyprshot-gui}";
+          }
+          {
+            key = "k";
+            desc = "Zoom 75 keyboard cheat sheet";
+            cmd = "uwsm app -- ${lib.getExe pkgs.zoom75-info}";
+          }
+
+        ]))
+      ];
+
+      bindl = [
+        "SUPER, code:35, exec, ddcutil setvcp 10 + 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
+        "SUPER, code:51, exec, ddcutil setvcp 10 - 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
       ];
 
       windowrule = [

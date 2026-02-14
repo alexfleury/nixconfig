@@ -6,12 +6,6 @@
   ...
 }:
 with lib; let
-  workspaces = {
-    browser = "1";
-    code = "2";
-    chat = "3";
-    steam = "4";
-  };
   cfg = config.features.desktop.hyprland;
 in {
   options.features.desktop.hyprland.enable =
@@ -49,15 +43,21 @@ in {
 
         bind = [
           "SUPER, Q, killactive,"
-          #"SUPER, M, exec, uwsm stop"
           "SUPER, Z, togglefloating,"
-          "SUPER, R, exec, rofi -show drun"
           "SUPER, P, pseudo,"
-          "SUPER, J, togglesplit,"
+          "SUPER, C, togglesplit,"
           "SUPER, left, movefocus, l"
           "SUPER, right, movefocus, r"
           "SUPER, up, movefocus, u"
           "SUPER, down, movefocus, d"
+          "SUPER_SHIFT, left, movewindow, l"
+          "SUPER_SHIFT, right, movewindow, r"
+          "SUPER_SHIFT, up, movewindow, u"
+          "SUPER_SHIFT, down, movewindow, d"
+          "SUPER, H, movefocus, l"
+          "SUPER, L, movefocus, r"
+          "SUPER, K, movefocus, u"
+          "SUPER, J, movefocus, d"
           "SUPER_SHIFT, H, movewindow, l"
           "SUPER_SHIFT, L, movewindow, r"
           "SUPER_SHIFT, K, movewindow, u"
@@ -68,14 +68,6 @@ in {
           "SUPER, mouse_up, workspace, e-1"
           "SUPER, F, fullscreen"
           "SUPER, L, exec, loginctl lock-session"
-          "SUPER, code:49, workspace, ${workspaces.browser}"
-          "SUPER_SHIFT, code:49, movetoworkspacesilent, ${workspaces.browser}"
-          "SUPER, code:16, workspace, ${workspaces.code}"
-          "SUPER_SHIFT, code:16, movetoworkspacesilent, ${workspaces.code}"
-          "SUPER, code:17, workspace, ${workspaces.chat}"
-          "SUPER_SHIFT, code:17, movetoworkspacesilent, ${workspaces.chat}"
-          "SUPER, code:18, workspace, ${workspaces.steam}"
-          "SUPER_SHIFT, code:18, movetoworkspacesilent, ${workspaces.steam}"
         ]
         # Switch and move to workspaces.
         ++ (
@@ -99,8 +91,6 @@ in {
         ];
         bindl = [
           "SUPER, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
-          "SUPER, code:35, exec, ddcutil setvcp 10 + 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
-          "SUPER, code:51, exec, ddcutil setvcp 10 - 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
         ];
         bindm = [
           "SUPER, mouse:272, movewindow"
