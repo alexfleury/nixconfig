@@ -76,7 +76,7 @@ in {
           };
 
           "custom/gpu" = {
-            exec = "${pkgs.amdgpu_top}/bin/amdgpu_top -d --json | ${pkgs.jq}/bin/jq --unbuffered --compact-output '.[0]'.gpu_metrics.current_gfxclk";
+            exec = "${lib.getExe pkgs.amdgpu_top} -d --json | ${lib.getExe pkgs.jq} --unbuffered --compact-output '.[0]'.gpu_metrics.current_gfxclk";
             format = "  {} MHz";
             interval = 2;
             return-type = "";

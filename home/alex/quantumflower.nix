@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -15,6 +16,9 @@ let
     configFile = pkgs.writeText "config.yaml"
       (lib.generators.toYAML {} {
         anchor = "center";
+        background = config.lib.stylix.colors.withHashtag.base00;
+        color = config.lib.stylix.colors.withHashtag.base05;
+        border = config.lib.stylix.colors.withHashtag.base0D;
         inherit menu;
       });
   in
@@ -123,13 +127,32 @@ in {
 
       input.kb_layout = "ca";
 
+      workspace = [
+        "1, persistent:false"
+        "2, persistent:false"
+        "3, persistent:false"
+        "4, persistent:false"
+        "5, persistent:false, monitor:DP-1, default:true"
+        "6, persistent:false"
+        "7, persistent:false"
+        "8, persistent:false"
+        "9, persistent:false"
+        "10, persistent:false"
+      ];
+
       bind = [
         "SUPER, T, exec, uwsm app -- kitty.desktop"
         "SUPER, E, exec, uwsm app -- thunar.desktop"
         "SUPER, R, exec, rofi -show drun"
         "ALT, TAB, exec, rofi -show window -matching fuzzy"
         "CTRL_ALT, Delete, exec, rofi -show top"
-        "SUPER, V, exec, ${lib.getExe pkgs.cliphist} list | ${lib.getExe pkgs.rofi} -dmenu -display-columns 2 | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy"
+        (
+          lib.strings.concatStrings [
+            "SUPER, V, exec, ${lib.getExe pkgs.cliphist} list | "
+            "rofi -dmenu -display-columns 2 | "
+            "${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy"
+          ]
+        )
         "SUPER, code:49, workspace, ${workspaces.browser}"
         "SUPER_SHIFT, code:49, movetoworkspacesilent, ${workspaces.browser}"
         "SUPER, code:16, workspace, ${workspaces.code}"
@@ -142,6 +165,11 @@ in {
         # Application shortcut as seen in https://www.vimjoyer.com/vid74-which-key.
         ("SUPER_SHIFT, D, exec, " + lib.getExe (mkMenu [
           {
+            key = "c";
+            desc = "Codium";
+            cmd = "uwsm app -- codium.desktop";
+          }
+          {
             key = "d";
             desc = "Discord";
             cmd = "uwsm app -- vesktop.desktop";
@@ -152,16 +180,15 @@ in {
             cmd = "uwsm app -- firefox.desktop";
           }
           {
-            key = "s";
-            desc = "Screenshot";
-            cmd = "uwsm app -- ${lib.getExe pkgs.hyprshot-gui}";
-          }
-          {
             key = "k";
             desc = "Zoom 75 keyboard cheat sheet";
             cmd = "uwsm app -- ${lib.getExe pkgs.zoom75-info}";
           }
-
+          {
+            key = "s";
+            desc = "Screenshot";
+            cmd = "uwsm app -- ${lib.getExe pkgs.hyprshot-gui}";
+          }
         ]))
       ];
 

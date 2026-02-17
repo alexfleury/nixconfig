@@ -24,9 +24,14 @@ in {
 
     programs.gamescope = {
       enable = true;
-      # Apparently not true anymore.
       # https://github.com/NixOS/nixpkgs/issues/351516#issuecomment-2525575711
-      capSysNice = true;
+      capSysNice = false;
+    };
+
+    services.ananicy = {
+      enable = true;
+      package = pkgs.ananicy-cpp;
+      rulesProvider = pkgs.ananicy-rules-cachyos;
     };
   };
 }

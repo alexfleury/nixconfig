@@ -30,15 +30,15 @@ in {
       fonts = {
         monospace = {
           package = pkgs.nerd-fonts.fira-mono;
-          name = "Fira Mono Nerd Font";
+          name = "FiraMono Nerd Font";
         };
         sansSerif = {
           package = pkgs.nerd-fonts.ubuntu-sans;
-          name = "Ubuntu Sans Nerd Font";
+          name = "UbuntuSans Nerd Font";
         };
         serif = {
           package = pkgs.nerd-fonts.fira-code;
-          name = "Fira Code Nerd Font";
+          name = "FiraCode Nerd Font";
         };
         emoji = {
           package = pkgs.noto-fonts-color-emoji;

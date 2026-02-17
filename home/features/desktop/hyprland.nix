@@ -142,19 +142,6 @@ in {
 
         cursor.no_warps = true;
 
-        workspace = [
-          "1, persistent:false"
-          "2, persistent:false"
-          "3, persistent:false"
-          "4, persistent:false"
-          "5, persistent:false, monitor:DP-1, default:true"
-          "6, persistent:false"
-          "7, persistent:false"
-          "8, persistent:false"
-          "9, persistent:false"
-          "10, persistent:false"
-        ];
-
         windowrule = [
           "match:class ^(*)$, idle_inhibit fullscreen"
           "match:title ^(*)$, idle_inhibit fullscreen$"
