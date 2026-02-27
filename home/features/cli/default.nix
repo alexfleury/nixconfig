@@ -26,6 +26,17 @@
 
   programs.bat.enable = true;
 
+  programs.carapace = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    nix-direnv.enable = true;
+  };
+
   programs.ripgrep = {
     enable = true;
     arguments = [

@@ -48,6 +48,11 @@
       ];
       warn-dirty = false;
     };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
     optimise.automatic = true;
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
   };

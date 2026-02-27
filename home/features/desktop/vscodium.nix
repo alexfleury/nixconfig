@@ -31,16 +31,16 @@ with lib; let
           "image_input"
         ];
       }
-      {
-        name = "Ollama";
-        provider = "ollama";
-        model = "AUTODETECT";
-        roles = [
-          "chat"
-          "edit"
-          "apply"
-        ];
-      }
+      #{
+      #  name = "Ollama";
+      #  provider = "ollama";
+      #  model = "AUTODETECT";
+      #  roles = [
+      #    "chat"
+      #    "edit"
+      #    "apply"
+      #  ];
+      #}
     ];
   };
 
