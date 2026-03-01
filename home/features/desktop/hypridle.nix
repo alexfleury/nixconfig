@@ -20,7 +20,7 @@ in {
         listener = [
           {
             timeout = 1800;
-            on-timeout = "loginctl lock-session";
+            on-timeout = "loginctl lock-session && sleep 5s && hyprctl dispatch dpms off";
           }
           {
             timeout = 300;
