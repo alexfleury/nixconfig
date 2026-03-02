@@ -8,7 +8,16 @@
 
     video2x = prev.video2x.override { ffmpeg = prev.ffmpeg-full; };
 
-    steam = prev.steam.override { extraProfile = "export GDK_SCALE=2"; };
+    steam = prev.steam.override {
+      extraProfile = "export GDK_SCALE=2";
+      extraEnv = {
+        #MANGOHUD = 1;
+        #MANGOHUD_CONFIG = "read_cfg,no_display";
+        PROTON_ENABLE_HDR = true;
+        PROTON_ENABLE_WAYLAND = true;
+        LD_PRELOAD="";
+      };
+    };
 
     # https://github.com/ValveSoftware/gamescope/issues/1622
     gamescope = prev.gamescope.overrideAttrs (_: {

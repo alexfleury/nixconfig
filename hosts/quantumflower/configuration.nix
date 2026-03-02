@@ -1,7 +1,4 @@
 { pkgs, ... }: {
-  imports =[
-    ./hardware-configuration.nix
-  ];
 
   boot = {
     # The kernel param "preempt=full" fixed buzzing sound in Hogwarts Legacy.
@@ -122,6 +119,15 @@
   # https://discourse.nixos.org/t/nixos-install-with-custom-flake-results-in-boot-being-world-accessible/34555/17
   fileSystems."/boot".options = [ "umask=0077" "defaults" ];
 
+  programs.gamescope.args = [
+    "-W 3840"
+    "-H 2160"
+    "--adaptive-sync"
+    "--hdr-enabled"
+    "--mangoapp"
+    "-f"
+  ];
+
   extraServices = {
     gaming.enable = true;
     printing.enable = true;
@@ -131,4 +137,5 @@
     thunar.enable = true;
     vms.enable = true;
   };
+
 }

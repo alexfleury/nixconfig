@@ -42,6 +42,9 @@ in {
         position = "top-right";
         font_size = lib.mkForce 24;
         font_size_text = lib.mkForce 24;
+        no_display = true;
+        fsr = true;
+        hdr = true;
       };
     };
 
