@@ -69,7 +69,7 @@ mangohud %command%
 ```shell
 LD_PRELOAD="" gamescope -W 3840 -H 2160 -r 240 --mangoapp -f -- %command%
 # or
-gamescope -W 3840 -H 2160 -r 240 -f -- env LD_PRELOAD="$LD_PRELOAD" %command%
+LD_PRELOAD="" gamescope -W 3840 -H 2160 -r 240 -f -- env LD_PRELOAD="$LD_PRELOAD" %command%
 ```
 
 - Same but with HDR enabled.

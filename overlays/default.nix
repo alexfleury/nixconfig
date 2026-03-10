@@ -13,9 +13,9 @@
       extraEnv = {
         #MANGOHUD = 1;
         #MANGOHUD_CONFIG = "read_cfg,no_display";
-        PROTON_ENABLE_HDR = true;
-        PROTON_ENABLE_WAYLAND = true;
-        LD_PRELOAD="";
+        PROTON_ENABLE_HDR = "1";
+        PROTON_ENABLE_WAYLAND = "1";
+        #LD_PRELOAD="";
       };
     };
 
