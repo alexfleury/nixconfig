@@ -15,6 +15,8 @@ in {
       enable = true;
       lfs.enable = true;
 
+      signing.format = "openpgp";
+
       settings = {
         user.name = "alexfleury";
         user.email = "28400108+alexfleury@users.noreply.github.com";

@@ -71,6 +71,7 @@ in {
     #pastel                     # CLI to manipulate colors.
     pavucontrol                 # Manage sound through a panel.
     protonvpn-gui               # Proton VPN.
+    solaar                      # For Logitech Unifying Receiver
     #video2x                    # AI upscaling for videos.
     vlc                         # Reading videos.
     vesktop                     # Alternative discord app.
@@ -114,6 +115,7 @@ in {
     };
     userDirs.enable = true;
     userDirs.createDirectories = true;
+    userDirs.setSessionVariables = true;
   };
 
   wayland.windowManager.hyprland = {
