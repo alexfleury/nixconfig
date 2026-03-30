@@ -120,7 +120,7 @@ in {
 
   wayland.windowManager.hyprland = {
     settings = {
-      monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, vrr, 3, cm, auto";
+      monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, vrr, 3, cm, hdr";
 
       # Startup applications.
       exec-once = [
@@ -145,7 +145,8 @@ in {
       bind = [
         "SUPER, T, exec, uwsm app -- kitty.desktop"
         "SUPER, E, exec, uwsm app -- thunar.desktop"
-        "SUPER, R, exec, rofi -show drun"
+        "SUPER, D, exec, rofi -show drun"
+        "SUPER, W, exec, systemctl --user is-active --quiet wlsunset && systemctl --user stop wlsunset || systemctl --user start wlsunset"
         "ALT, TAB, exec, rofi -show window -matching fuzzy"
         "CTRL_ALT, Delete, exec, rofi -show top"
         (
@@ -194,10 +195,10 @@ in {
         ]))
       ];
 
-      bindl = [
-        "SUPER, code:35, exec, ddcutil setvcp 10 + 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
-        "SUPER, code:51, exec, ddcutil setvcp 10 - 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
-      ];
+      #bindl = [
+      #  "SUPER, code:35, exec, ddcutil setvcp 10 + 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
+      #  "SUPER, code:51, exec, ddcutil setvcp 10 - 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
+      #];
 
       windowrule = [
         "match:title ^(Volume Control), float on center on size (monitor_w*0.3) (monitor_h*0.3)$"

@@ -108,11 +108,6 @@
     networkmanagerapplet    # NetworkManager menu.
   ];
 
-  fonts.packages = with pkgs; [
-    corefonts
-    vista-fonts
-  ];
-
   # Fixes
   # Mount point '/boot' which backs the random seed file is world accessible,
   # which is a security hole!

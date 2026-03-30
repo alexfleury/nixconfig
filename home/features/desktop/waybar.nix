@@ -37,7 +37,8 @@ in {
             "temperature#gpu"
             "bluetooth"
             "wireplumber"
-            "custom/brightness"
+            # Can't change brightness when hdr is turned on.
+            #"custom/brightness"
             "tray"
           ];
 

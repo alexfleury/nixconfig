@@ -148,6 +148,11 @@ in {
           "match:fullscreen 1, idle_inhibit fullscreen"
         ];
 
+        render = {
+        #  direct_scanout = 1;
+          cm_fs_passthrough = 1;
+        };
+
         misc = {
           disable_hyprland_logo = true;
           disable_hyprland_guiutils_check = true;

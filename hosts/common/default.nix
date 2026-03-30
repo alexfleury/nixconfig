@@ -16,7 +16,7 @@
     gptfdisk      # Better tool for partionning disks.
     psmisc        # For fuse and proc file systems.
     unzip         # Unzipping archives.
-    vim           # Vim editor.
+    vim           # Vim text editor.
     wget          # Download in CLI.
   ];
 
@@ -28,6 +28,12 @@
     useGlobalPkgs = true;
     #useUserPackages = true;
   };
+
+  fonts.packages = with pkgs; [
+    corefonts
+    vista-fonts
+    nerd-fonts.symbols-only
+  ];
 
   nixpkgs = {
     overlays = [
