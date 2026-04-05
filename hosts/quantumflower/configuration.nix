@@ -5,7 +5,7 @@
     kernelParams = [ "quiet" "splash" "consoleblank=60" ];
     # sg is for the usv CD drive.
     kernelModules = [ "sg" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot = {
       enable = true;

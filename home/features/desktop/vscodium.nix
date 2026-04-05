@@ -43,7 +43,6 @@ with lib; let
       #}
     ];
   };
-
   continueYaml = yamlFormat.generate "config.yaml" continueConfig;
 in {
   options.features.desktop.vscodium.enable = mkEnableOption "enable codium";
@@ -55,7 +54,6 @@ in {
       mutableExtensionsDir = false;
       profiles.default = {
         extensions = with pkgs.vscode-extensions; [
-          #arrterian.nix-env-selector
           continue.continue
           jnoortheen.nix-ide
           ms-python.python
@@ -91,7 +89,7 @@ in {
     };
     stylix.targets.vscode.profileNames = [ "default" ];
 
-    #home.packages = with pkgs; [ nixfmt ];
+    home.packages = with pkgs; [ nixfmt ];
     home.file.".continue/config.yaml".source = continueYaml;
   };
 }

@@ -13,7 +13,7 @@ in {
     programs.zed-editor = {
       enable = true;
       extensions = [ "nix" ];
-      extraPackages = with pkgs; [ nixd nixfmt-rfc-style ];
+      extraPackages = with pkgs; [ nixd nixfmt ];
       userSettings = {
         telemetry = {
           diagnostics = false;

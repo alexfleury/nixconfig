@@ -29,22 +29,23 @@ in {
     # and more.
     programs.mangohud = {
       enable = true;
+      enableSessionWide = true;
       settings = lib.mkAfter {
         cpu_stats = true;
         cpu_temp = true;
-        gpu_stats = true;
-        gpu_temp = true;
-        vram = true;
-        ram = true;
-        fps = true;
-        frametime = true;
-        mangoapp_steam = true;
-        position = "top-right";
         font_size = lib.mkForce 24;
         font_size_text = lib.mkForce 24;
-        no_display = true;
+        fps = true;
         fsr = true;
+        gpu_stats = true;
+        gpu_temp = true;
         hdr = true;
+        mangoapp_steam = true;
+        position = "top-right";
+        ram = true;
+        refresh_rate = true;
+        vram = true;
+        winesync = true;
       };
     };
 

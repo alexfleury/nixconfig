@@ -25,8 +25,8 @@
     extraSpecialArgs = {inherit inputs outputs;};
     # There is a warning with overlays... Can be fixed with
     # stylix.overlays.enable = false in HM.
-    useGlobalPkgs = true;
-    #useUserPackages = true;
+    #useGlobalPkgs = true;
+    useUserPackages = true;
   };
 
   fonts.packages = with pkgs; [

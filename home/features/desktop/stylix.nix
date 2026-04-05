@@ -13,8 +13,9 @@ in {
     stylix = {
       enable = true;
       autoEnable = true;
+      # Option discussion (if set to false).
       # https://github.com/nix-community/stylix/issues/1832#issuecomment-3169274982
-      overlays.enable = false;
+      overlays.enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
       image = ../../../wallpapers/a_pixel_art_of_a_city_street.png;
       icons = {
@@ -54,8 +55,8 @@ in {
       opacity = {
         applications = 1.0;
         desktop = 1.0;
-        popups = 0.8;
-        terminal = 0.8;
+        popups = 0.6;
+        terminal = 0.6;
       };
       polarity = "dark";
     };

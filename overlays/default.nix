@@ -11,11 +11,9 @@
     steam = prev.steam.override {
       extraProfile = "export GDK_SCALE=2";
       extraEnv = {
-        #MANGOHUD = 1;
-        #MANGOHUD_CONFIG = "read_cfg,no_display";
+        MANGOHUD_CONFIG = "read_cfg,no_display";
         PROTON_ENABLE_HDR = "1";
         PROTON_ENABLE_WAYLAND = "1";
-        #LD_PRELOAD="";
       };
     };
 
@@ -23,6 +21,5 @@
     gamescope = prev.gamescope.overrideAttrs (_: {
       NIX_CFLAGS_COMPILE = ["-fno-fast-math"];
     });
-
   };
 }

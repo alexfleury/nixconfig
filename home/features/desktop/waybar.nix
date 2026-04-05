@@ -5,8 +5,43 @@
   ...
 }:
 with lib; let
-  background_transparency = "0.8";
+  background_transparency = "0.5";
   cfg = config.features.desktop.wayland.waybar;
+  powerMenuConfigFile = pkgs.writeText "powermenu.xml" ''
+  <?xml version="1.0" encoding="UTF-8"?>
+  <interface>
+    <object class="GtkMenu" id="menu">
+      <child>
+        <object class="GtkMenuItem" id="lock">
+          <property name="label"> Lock</property>
+        </object>
+      </child>
+      <child>
+        <object class="GtkMenuItem" id="logout">
+          <property name="label">󰈆 Logout</property>
+        </object>
+      </child>
+      <child>
+        <object class="GtkSeparatorMenuItem" id="delimiter1" />
+      </child>
+      <child>
+        <object class="GtkMenuItem" id="hibernate">
+          <property name="label">󰋣 Hibernate</property>
+        </object>
+      </child>
+      <child>
+        <object class="GtkMenuItem" id="reboot">
+          <property name="label"> Reboot</property>
+        </object>
+      </child>
+      <child>
+        <object class="GtkMenuItem" id="shutdown">
+          <property name="label"> Shutdown</property>
+        </object>
+      </child>
+    </object>
+  </interface>
+  '';
 in {
   options.features.desktop.wayland.waybar.enable = mkEnableOption "enable waybar";
 
@@ -25,8 +60,8 @@ in {
           layer = "top";
           height = 45;
           modules-left = [
-            "group/group-power"
-            "idle_inhibitor"
+            "custom/powermenu"
+            #"group/group-power"
             "hyprland/workspaces"
           ];
           modules-center = [ "clock" ];
@@ -39,6 +74,7 @@ in {
             "wireplumber"
             # Can't change brightness when hdr is turned on.
             #"custom/brightness"
+            "idle_inhibitor"
             "tray"
           ];
 
@@ -51,20 +87,17 @@ in {
             on-click-right = "blueman-manager";
             tooltip = false;
           };
-
           clock = {
             interval = 60;
             format = " {:%d/%m/%y (%a)   %R}";
             on-click = "swaync-client -t -sw";
             tooltip = false;
           };
-
           cpu = {
             format = "  {avg_frequency} GHz";
             interval = 2;
             tooltip = false;
           };
-
           "custom/brightness" = {
             format = "{icon} {percentage}%";
             format-icons = "󰍹";
@@ -75,7 +108,6 @@ in {
             interval = 5;
             tooltip = false;
           };
-
           "custom/gpu" = {
             exec = "${lib.getExe pkgs.amdgpu_top} -d --json | ${lib.getExe pkgs.jq} --unbuffered --compact-output '.[0]'.gpu_metrics.current_gfxclk";
             format = "  {} MHz";
@@ -83,38 +115,45 @@ in {
             return-type = "";
             tooltip = false;
           };
-
           "custom/lock" = {
             format = "";
             tooltip = false;
             on-click = "loginctl lock-session";
           };
-
           "custom/sleep" = {
             format = "󰋣";
             tooltip = false;
             on-click = "systemctl hibernate";
           };
-
           "custom/power" = {
             format = " ";
             tooltip = false;
             on-click = "systemctl poweroff";
           };
-
           "custom/quit" = {
               format = "󰈆";
               tooltip = false;
               # Before UWSM it was "hyprctl dispatch exit";.
               on-click = "uwsm stop";
           };
-
           "custom/reboot" = {
             format = "";
             tooltip = false;
             on-click = "reboot";
           };
-
+          "custom/powermenu" = {
+            format = " ";
+            tooltip = false;
+            menu = "on-click";
+            menu-file = powerMenuConfigFile;
+            "menu-actions" = {
+                lock = "loginctl lock-session";
+                logout = "uwsm stop";
+                hibernate = "systemctl hibernate";
+                reboot = "reboot";
+                shutdown = "systemctl poweroff";
+            };
+          };
           "hyprland/workspaces" = {
             format = "{icon}";
             on-click = "activate";
@@ -132,16 +171,14 @@ in {
             };
             sort-by-number = true;
           };
-
           idle_inhibitor = {
             format = "{icon}";
             format-icons = {
-              activated = " ";
-              deactivated = " ";
+              activated = "󰅶";
+              deactivated = "󰾪";
             };
             tooltip = false;
           };
-
           network = {
             interval = 2;
             format-ethernet = "{icon} Wired";
@@ -156,7 +193,6 @@ in {
             tooltip-format-wifi = "󰒢 {signalStrength}%\n {bandwidthUpBits}\n {bandwidthDownBits}";
             on-click-right = "nm-connection-editor";
           };
-
           "temperature#cpu" = {
             hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:18.3/hwmon";
             input-filename = "temp1_input";
@@ -166,7 +202,6 @@ in {
             format-icons = ["" "" ""];
             tooltip = false;
           };
-
           "temperature#gpu" = {
             hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:03.1/0000:0a:00.0/0000:0b:00.0/0000:0c:00.0/hwmon";
             input-filename = "temp2_input";
@@ -176,12 +211,10 @@ in {
             format-icons = ["" "" ""];
             tooltip = false;
           };
-
           tray = {
             reverse-direction = true;
             spacing = 10;
           };
-
           wireplumber = {
             format = "{icon} {volume}%";
             format-muted = " ";
@@ -192,7 +225,6 @@ in {
             scroll-step = 2.0;
             tooltip = false;
           };
-
           "group/group-power" = {
             orientation = "inherit";
             drawer = {
@@ -217,16 +249,13 @@ in {
           border-radius: 0;
           min-height: 0;
         }
-
         window#waybar {
           background: transparent;
         }
-
         tooltip {
           background: @base01;
           border: 1px solid @base05;
         }
-
         #bluetooth,
         #clock,
         #custom-brightness,
@@ -234,6 +263,7 @@ in {
         #custom-sleep,
         #custom-notifications,
         #custom-power,
+        #custom-powermenu,
         #custom-quit,
         #custom-reboot,
         #idle_inhibitor,
@@ -252,11 +282,9 @@ in {
           margin-top: 5px;
           margin-bottom: 5px;
         }
-
         #bluetooth {
           color: @base0F;
         }
-
         #cpu,
         #custom-gpu
         {
@@ -271,59 +299,55 @@ in {
           margin-right: 0px;
           margin-left: 5px;
         }
-
         #custom-brightness {
           color: @base0A;
         }
-
         #custom-lock {
           color: @base05;
           padding-right: 12px;
         }
-
         #custom-sleep,
         #custom-reboot
         {
           color: @base05;
         }
-
         #custom-power {
           color: @base08;
           padding-left: 16px;
         }
-
+        #custom-powermenu {
+          color: @base08;
+          padding-left: 16px;
+        }
         #custom-quit {
           color: @base05;
           padding-right: 12px;
         }
-
+        #idle_inhibitor {
+          padding-left: 15px;
+          padding-right: 17px;
+        }
         #temperature {
           border-radius: 0px 5px 5px 0px;
           margin-left: 0px;
           padding-left: 0px;
           color: @base0C;
         }
-
         #temperature.cpu.critical {
           color: @base08;
         }
-
         #temperature.gpu.critical {
           color: @base08;
         }
-
         #tray > .active {
           color: @base04;
         }
-
         #tray > .passive {
           color: @base04;
         }
-
         #wireplumber {
           color: @base0E;
         }
-
         #workspaces {
           background: alpha(@base01, ${background_transparency});
           border-radius: 5px;
@@ -333,32 +357,35 @@ in {
           padding-left: 0px;
           padding-right: 0px;
         }
-
         #workspaces button {
           border-radius: 5px;
           color: @base05;
           padding-left: 12px;
           padding-right: 12px;
         }
-
         #workspaces button.active {
           background-color: @base05;
           color: @base01;
         }
-
         #workspaces button.urgent {
           color: @base08;
         }
-
         #workspaces button.empty {
           color: @base03;
         }
-
         #workspaces button:hover {
           box-shadow: none;
           text-shadow: none;
           transition: none;
           background-color: @base0F;
+        }
+        menu {
+          border-radius: 5px;
+          background: alpha(@base01, 0.8);;
+          color: @base05;
+        }
+        menuitem {
+          border-radius: 5px;
         }
     '';
     };

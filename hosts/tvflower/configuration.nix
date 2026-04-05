@@ -5,13 +5,15 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages;
+    kernelPackages = pkgs.linuxPackages_latest;
     loader.grub = {
       enable = true;
       efiSupport = true;
       efiInstallAsRemovable = true;
       device = "nodev";
     };
+    kernelModules = [ "i2c_hid_acpi" "hid_multitouch" ];
+    kernelParams = [ "i2c_hid_acpi.power_save=0" ];
   };
 
   networking = {
@@ -42,10 +44,13 @@
   };
   services.desktopManager.plasma6.enable = true;
 
+  hardware.enableRedistributableFirmware = true;
+  services.libinput.enable = true;
+
   programs.bash.enable = true;
 
   environment.systemPackages = with pkgs; [
-    # pass...
+    usbutils
   ];
 
   fonts.packages = with pkgs; [

@@ -11,7 +11,7 @@ in {
   config = mkIf cfg.enable {
     programs.kitty = {
       enable = true;
-      settings = {
+      settings = lib.mkAfter {
         enable_audio_bell = "no";
         notify_on_cmd_finish = "never";
         confirm_os_window_close = 0;

@@ -45,11 +45,11 @@ in {
     desktop = {
       firefox.enable = true;
       kitty.enable = true;
-      makemkv.enable = false;
+      makemkv.enable = true;
       stylix.enable = true;
       vscodium.enable = true;
       wayland.enable = true;
-      zed.enable = false;
+      zed.enable = true;
     };
   };
 
@@ -70,7 +70,8 @@ in {
     #papers                     # GNOME pdf viewer.
     #pastel                     # CLI to manipulate colors.
     pavucontrol                 # Manage sound through a panel.
-    protonvpn-gui               # Proton VPN.
+    pdfarranger                 # Merge/split pdf documents and modify them.
+    proton-vpn                  # Proton VPN.
     solaar                      # For Logitech Unifying Receiver
     #video2x                    # AI upscaling for videos.
     vlc                         # Reading videos.
@@ -81,7 +82,7 @@ in {
   # Programs with options.
   programs.freetube.enable = true;
   programs.yt-dlp.enable = true;
-  #programs.texlive = enable = true;
+  #programs.texlive.enable = true;
 
   # Play/pause on headphones.
   services.mpris-proxy.enable = true;
@@ -149,13 +150,6 @@ in {
         "SUPER, W, exec, systemctl --user is-active --quiet wlsunset && systemctl --user stop wlsunset || systemctl --user start wlsunset"
         "ALT, TAB, exec, rofi -show window -matching fuzzy"
         "CTRL_ALT, Delete, exec, rofi -show top"
-        (
-          lib.strings.concatStrings [
-            "SUPER, V, exec, ${lib.getExe pkgs.cliphist} list | "
-            "rofi -dmenu -display-columns 2 | "
-            "${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy"
-          ]
-        )
         "SUPER, code:49, workspace, ${workspaces.browser}"
         "SUPER_SHIFT, code:49, movetoworkspacesilent, ${workspaces.browser}"
         "SUPER, code:16, workspace, ${workspaces.code}"
@@ -192,6 +186,11 @@ in {
             desc = "Screenshot";
             cmd = "uwsm app -- ${lib.getExe pkgs.hyprshot-gui}";
           }
+          {
+            key = "w";
+            desc = "Wayscriber";
+            cmd = "uwsm app -- ${lib.getExe pkgs.wayscriber} -a";
+          }
         ]))
       ];
 
@@ -201,9 +200,9 @@ in {
       #];
 
       windowrule = [
-        "match:title ^(Volume Control), float on center on size (monitor_w*0.3) (monitor_h*0.3)$"
-        "match:title ^(Bluetooth Devices), float on center on size (monitor_w*0.3) (monitor_h*0.3)"
-        "match:title ^(Network Connections), float on center on size (monitor_w*0.3) (monitor_h*0.3)"
+        "match:title ^(Volume Control), float on center on size monitor_w*0.3 monitor_h*0.3$"
+        "match:class .blueman-manager-wrapped, float on center on size monitor_w*0.3 monitor_h*0.3"
+        "match:title ^(Network Connections), float on center on size monitor_w*0.3 monitor_h*0.3"
         "match:title ^(.*Hyprshot.*)$, float on"
         "match:class ^(org.gnome.FileRoller)$, float on center on size (monitor_w*0.3) (monitor_h*0.3)"
         "match:class ^(firefox)$, workspace ${workspaces.browser}"

@@ -4,7 +4,7 @@
   ...
 }:
 let
-  user = "tivi";
+  user = "isa";
 in {
   imports = [ ../common ];
 
@@ -13,13 +13,14 @@ in {
 
   home.packages = with pkgs; [
     brave
+    discord
+    libreoffice
+    obsidian
     proton-vpn
     vlc
   ];
 
   # Programs with options.
-  programs.freetube.enable = true;
-  programs.yt-dlp.enable = true;
   programs.brave.nativeMessagingHosts = [
     pkgs.kdePackages.plasma-browser-integration
   ];
