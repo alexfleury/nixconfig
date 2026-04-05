@@ -7,6 +7,7 @@
 }:
 with lib; let
   cfg = config.features.desktop.hyprland;
+  specialKey = "SUPER";
 in {
   options.features.desktop.hyprland.enable =
     (mkEnableOption "enable hyprland home-manager config") //
@@ -14,11 +15,7 @@ in {
 
   config = mkIf cfg.enable {
 
-    home.packages = with pkgs; [
-      ddcutil
-      hyprcursor
-      playerctl
-    ];
+    home.packages = with pkgs; [ playerctl ];
 
     services.hyprpolkitagent.enable = true;
 
@@ -41,41 +38,46 @@ in {
 
         input.follow_mouse = 2;
 
+        workspace = [
+          "11, persistent:false, monitor:DP-1, default:true"
+          "12, persistent:false"
+          "13, persistent:false"
+          "14, persistent:false"
+          "15, persistent:false"
+          "16, persistent:false"
+        ];
+
         bind = [
-          "SUPER, Q, killactive,"
-          "SUPER, Z, togglefloating,"
-          "SUPER, P, pseudo,"
-          "SUPER, C, togglesplit,"
-          "SUPER, left, movefocus, l"
-          "SUPER, right, movefocus, r"
-          "SUPER, up, movefocus, u"
-          "SUPER, down, movefocus, d"
-          "SUPER_SHIFT, left, movewindow, l"
-          "SUPER_SHIFT, right, movewindow, r"
-          "SUPER_SHIFT, up, movewindow, u"
-          "SUPER_SHIFT, down, movewindow, d"
-          "SUPER, H, movefocus, l"
-          "SUPER, L, movefocus, r"
-          "SUPER, K, movefocus, u"
-          "SUPER, J, movefocus, d"
-          "SUPER_SHIFT, H, movewindow, l"
-          "SUPER_SHIFT, L, movewindow, r"
-          "SUPER_SHIFT, K, movewindow, u"
-          "SUPER_SHIFT, J, movewindow, d"
-          "SUPER, S, togglespecialworkspace, magic"
-          "SUPER_SHIFT, S, movetoworkspace, special:magic"
-          "SUPER, mouse_down, workspace, e+1"
-          "SUPER, mouse_up, workspace, e-1"
-          "SUPER, F, fullscreen"
-          "SUPER, L, exec, loginctl lock-session"
+          "${specialKey}, Q, killactive,"
+          "${specialKey}, O, togglefloating,"
+          "${specialKey}, P, pseudo,"
+          "${specialKey}, I, togglesplit,"
+          "${specialKey}, left, movefocus, l"
+          "${specialKey}, right, movefocus, r"
+          "${specialKey}, up, movefocus, u"
+          "${specialKey}, down, movefocus, d"
+          "${specialKey}_SHIFT, left, movewindow, l"
+          "${specialKey}_SHIFT, right, movewindow, r"
+          "${specialKey}_SHIFT, up, movewindow, u"
+          "${specialKey}_SHIFT, down, movewindow, d"
+          "${specialKey}_SHIFT, H, movewindow, l"
+          "${specialKey}_SHIFT, L, movewindow, r"
+          "${specialKey}_SHIFT, K, movewindow, u"
+          "${specialKey}_SHIFT, J, movewindow, d"
+          "${specialKey}, S, togglespecialworkspace, magic"
+          "${specialKey}_SHIFT, S, movetoworkspace, special:magic"
+          "${specialKey}, mouse_down, workspace, e+1"
+          "${specialKey}, mouse_up, workspace, e-1"
+          "${specialKey}, F, fullscreen"
+          "${specialKey}, L, exec, loginctl lock-session"
         ]
         # Switch and move to workspaces.
         ++ (
           builtins.concatLists (builtins.genList (i:
-            let ws = i + 5;
+            let ws = i + 11;
             in [
-              "SUPER, code:1${toString i}, workspace, ${toString ws}"
-              "SUPER_SHIFT, code:1${toString i}, movetoworkspacesilent, ${toString ws}"
+              "${specialKey}, code:1${toString i}, workspace, ${toString ws}"
+              "${specialKey}_SHIFT, code:1${toString i}, movetoworkspacesilent, ${toString ws}"
             ]
           )
           6)
@@ -88,13 +90,14 @@ in {
           ", XF86AudioPlay, exec, playerctl play-pause"
           ", XF86AudioPrev, exec, playerctl previous"
           ", XF86AudioNext, exec, playerctl next"
+          "${specialKey}, SPACE, exec, playerctl play-pause"
         ];
         bindl = [
-          "SUPER, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
+          "${specialKey}, ESCAPE, exec, sleep 1 && hyprctl dispatch dpms toggle"
         ];
         bindm = [
-          "SUPER, mouse:272, movewindow"
-          "SUPER, mouse:273, resizewindow"
+          "${specialKey}, mouse:272, movewindow"
+          "${specialKey}, mouse:273, resizewindow"
         ];
 
         general = {

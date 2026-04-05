@@ -5,12 +5,15 @@
   ...
 }:
 let
+  specialKey = "SUPER";
   user = "alex";
   workspaces = {
-    browser = "1";
-    code = "2";
-    chat = "3";
+    # Class: workspace id.
+    firefox = "1";
+    codium = "2";
+    vesktop = "3";
     steam = "4";
+    gamescope = "5";
   };
   mkMenu = menu: let
     configFile = pkgs.writeText "config.yaml"
@@ -25,6 +28,7 @@ let
     pkgs.writeShellScriptBin "my-menu" ''
       exec ${lib.getExe pkgs.wlr-which-key} ${configFile}
     '';
+
 in {
   imports = [
     ../common
@@ -130,37 +134,28 @@ in {
 
       input.kb_layout = "ca";
 
-      workspace = [
-        "1, persistent:false"
-        "2, persistent:false"
-        "3, persistent:false"
-        "4, persistent:false"
-        "5, persistent:false, monitor:DP-1, default:true"
-        "6, persistent:false"
-        "7, persistent:false"
-        "8, persistent:false"
-        "9, persistent:false"
-        "10, persistent:false"
-      ];
+      workspace = map (v: "${v}, persistent:false") (builtins.attrValues workspaces);
 
       bind = [
-        "SUPER, T, exec, uwsm app -- kitty.desktop"
-        "SUPER, E, exec, uwsm app -- thunar.desktop"
-        "SUPER, D, exec, rofi -show drun"
-        "SUPER, W, exec, systemctl --user is-active --quiet wlsunset && systemctl --user stop wlsunset || systemctl --user start wlsunset"
+        "${specialKey}, T, exec, uwsm app -- kitty.desktop"
+        "${specialKey}, E, exec, uwsm app -- thunar.desktop"
+        "${specialKey}, D, exec, rofi -show drun"
+        "${specialKey}, W, exec, systemctl --user is-active --quiet wlsunset && systemctl --user stop wlsunset || systemctl --user start wlsunset"
         "ALT, TAB, exec, rofi -show window -matching fuzzy"
         "CTRL_ALT, Delete, exec, rofi -show top"
-        "SUPER, code:49, workspace, ${workspaces.browser}"
-        "SUPER_SHIFT, code:49, movetoworkspacesilent, ${workspaces.browser}"
-        "SUPER, code:16, workspace, ${workspaces.code}"
-        "SUPER_SHIFT, code:16, movetoworkspacesilent, ${workspaces.code}"
-        "SUPER, code:17, workspace, ${workspaces.chat}"
-        "SUPER_SHIFT, code:17, movetoworkspacesilent, ${workspaces.chat}"
-        "SUPER, code:18, workspace, ${workspaces.steam}"
-        "SUPER_SHIFT, code:18, movetoworkspacesilent, ${workspaces.steam}"
+        "${specialKey}, Z, workspace, ${workspaces.firefox}"
+        "${specialKey}_SHIFT, Z, movetoworkspacesilent, ${workspaces.firefox}"
+        "${specialKey}, X, workspace, ${workspaces.codium}"
+        "${specialKey}_SHIFT, X, movetoworkspacesilent, ${workspaces.codium}"
+        "${specialKey}, C, workspace, ${workspaces.vesktop}"
+        "${specialKey}_SHIFT, C, movetoworkspacesilent, ${workspaces.vesktop}"
+        "${specialKey}, V, workspace, ${workspaces.steam}"
+        "${specialKey}_SHIFT, V, movetoworkspacesilent, ${workspaces.steam}"
+        "${specialKey}, B, workspace, ${workspaces.gamescope}"
+        "${specialKey}_SHIFT, B, movetoworkspacesilent, ${workspaces.gamescope}"
 
         # Application shortcut as seen in https://www.vimjoyer.com/vid74-which-key.
-        ("SUPER_SHIFT, D, exec, " + lib.getExe (mkMenu [
+        ("${specialKey}_SHIFT, D, exec, " + lib.getExe (mkMenu [
           {
             key = "c";
             desc = "Codium";
@@ -194,23 +189,15 @@ in {
         ]))
       ];
 
-      #bindl = [
-      #  "SUPER, code:35, exec, ddcutil setvcp 10 + 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
-      #  "SUPER, code:51, exec, ddcutil setvcp 10 - 10 --sleep-multiplier 0.13 --noverify --skip-ddc-checks --maxtries 1,1,1"
-      #];
-
       windowrule = [
         "match:title ^(Volume Control), float on center on size monitor_w*0.3 monitor_h*0.3$"
         "match:class .blueman-manager-wrapped, float on center on size monitor_w*0.3 monitor_h*0.3"
         "match:title ^(Network Connections), float on center on size monitor_w*0.3 monitor_h*0.3"
         "match:title ^(.*Hyprshot.*)$, float on"
         "match:class ^(org.gnome.FileRoller)$, float on center on size (monitor_w*0.3) (monitor_h*0.3)"
-        "match:class ^(firefox)$, workspace ${workspaces.browser}"
-        "match:class ^(vesktop)$, workspace ${workspaces.chat}"
-        "match:class ^(codium)$, workspace ${workspaces.code}"
-        "match:class ^(steam)$, workspace ${workspaces.steam}"
-      ];
-
+      ]
+      ++ lib.mapAttrsToList
+        (name: value: "match:class ^(${name})$, workspace ${value}") workspaces;
     };
   };
 }

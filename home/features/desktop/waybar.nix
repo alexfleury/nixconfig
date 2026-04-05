@@ -115,32 +115,6 @@ in {
             return-type = "";
             tooltip = false;
           };
-          "custom/lock" = {
-            format = "";
-            tooltip = false;
-            on-click = "loginctl lock-session";
-          };
-          "custom/sleep" = {
-            format = "󰋣";
-            tooltip = false;
-            on-click = "systemctl hibernate";
-          };
-          "custom/power" = {
-            format = " ";
-            tooltip = false;
-            on-click = "systemctl poweroff";
-          };
-          "custom/quit" = {
-              format = "󰈆";
-              tooltip = false;
-              # Before UWSM it was "hyprctl dispatch exit";.
-              on-click = "uwsm stop";
-          };
-          "custom/reboot" = {
-            format = "";
-            tooltip = false;
-            on-click = "reboot";
-          };
           "custom/powermenu" = {
             format = " ";
             tooltip = false;
@@ -158,16 +132,17 @@ in {
             format = "{icon}";
             on-click = "activate";
             format-icons = {
+              "11" = "󰇊";
+              "12" = "󰇋";
+              "13" = "󰇌";
+              "14" = "󰇍";
+              "15" = "󰇎";
+              "16" = "󰇏";
               "1" = "󰈹";
               "2" = "";
               "3" = "󰙯";
               "4" = "󰓓";
-              "5" = "󰇊";
-              "6" = "󰇋";
-              "7" = "󰇌";
-              "8" = "󰇍";
-              "9" = "󰇎";
-              "10" = "󰇏";
+              "5" = "󱎓";
             };
             sort-by-number = true;
           };
@@ -225,20 +200,6 @@ in {
             scroll-step = 2.0;
             tooltip = false;
           };
-          "group/group-power" = {
-            orientation = "inherit";
-            drawer = {
-              transition-duration = 500;
-              transition-left-to-right = true;
-            };
-            modules = [
-                "custom/power"
-                "custom/sleep"
-                "custom/lock"
-                "custom/quit"
-                "custom/reboot"
-            ];
-          };
         };
       };
 
@@ -259,12 +220,8 @@ in {
         #bluetooth,
         #clock,
         #custom-brightness,
-        #custom-lock,
-        #custom-sleep,
         #custom-notifications,
-        #custom-power,
         #custom-powermenu,
-        #custom-quit,
         #custom-reboot,
         #idle_inhibitor,
         #network,
@@ -302,26 +259,9 @@ in {
         #custom-brightness {
           color: @base0A;
         }
-        #custom-lock {
-          color: @base05;
-          padding-right: 12px;
-        }
-        #custom-sleep,
-        #custom-reboot
-        {
-          color: @base05;
-        }
-        #custom-power {
-          color: @base08;
-          padding-left: 16px;
-        }
         #custom-powermenu {
           color: @base08;
           padding-left: 16px;
-        }
-        #custom-quit {
-          color: @base05;
-          padding-right: 12px;
         }
         #idle_inhibitor {
           padding-left: 15px;
