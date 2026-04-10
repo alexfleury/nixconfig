@@ -125,7 +125,7 @@ in {
 
   wayland.windowManager.hyprland = {
     settings = {
-      monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, vrr, 3, cm, hdr";
+      monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, vrr, 3, cm, hdr, sdrbrightness, 1.2, sdrsaturation, 1.1";
 
       # Startup applications.
       exec-once = [

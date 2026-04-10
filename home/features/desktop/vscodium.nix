@@ -31,16 +31,21 @@ with lib; let
           "image_input"
         ];
       }
-      #{
-      #  name = "Ollama";
-      #  provider = "ollama";
-      #  model = "AUTODETECT";
-      #  roles = [
-      #    "chat"
-      #    "edit"
-      #    "apply"
-      #  ];
-      #}
+      {
+        name = "Ollama";
+        provider = "ollama";
+        model = "AUTODETECT";
+        roles = [
+          "chat"
+          "edit"
+          "apply"
+        ];
+        defaultCompletionOptions = {
+          temperature = 1.0;
+          topP = 0.95;
+          topK = 64;
+        };
+      }
     ];
   };
   continueYaml = yamlFormat.generate "config.yaml" continueConfig;
@@ -53,7 +58,7 @@ in {
       package = pkgs.vscodium;
       mutableExtensionsDir = false;
       profiles.default = {
-        extensions = with pkgs.vscode-extensions; [
+        extensions = with pkgs.vscode-extensios; [
           continue.continue
           jnoortheen.nix-ide
           ms-python.python
