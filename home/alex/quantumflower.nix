@@ -47,6 +47,7 @@ in {
       starship.enable = true;
     };
     desktop = {
+      ai.enable = true;
       firefox.enable = true;
       kitty.enable = true;
       makemkv.enable = true;
@@ -129,7 +130,7 @@ in {
 
       # Startup applications.
       exec-once = [
-        "uwsm app -s b -- proton.vpn.app.gtk.desktop"
+        "uwsm app -- protonvpn-app --start-minimized"
       ];
 
       input.kb_layout = "ca";

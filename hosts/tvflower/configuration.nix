@@ -43,8 +43,7 @@
     wayland.enable = true;
   };
   services.desktopManager.plasma6.enable = true;
-
-  hardware.enableRedistributableFirmware = true;
+  services.automatic-timezoned.enable = true;
   services.libinput.enable = true;
 
   programs.bash.enable = true;
@@ -57,4 +56,6 @@
     corefonts
     vista-fonts
   ];
+
+  hardware.enableRedistributableFirmware = true;
 }

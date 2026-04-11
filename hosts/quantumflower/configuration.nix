@@ -126,11 +126,10 @@
   extraServices = {
     gaming.enable = true;
     printing.enable = true;
-    ollama.enable = true;
     openrgb.enable = true;
     qmk.enable = true;
     thunar.enable = true;
     vms.enable = true;
+    windowsapps.enable = true;
   };
-
 }
