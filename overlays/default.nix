@@ -10,16 +10,16 @@
 
     steam = prev.steam.override {
       extraProfile = "export GDK_SCALE=2";
-      extraEnv = {
-        MANGOHUD_CONFIG = "read_cfg,no_display";
-        PROTON_ENABLE_HDR = "1";
-        PROTON_ENABLE_WAYLAND = "1";
-      };
+      #extraEnv = {
+      #  MANGOHUD_CONFIG = "read_cfg,no_display";
+      #  PROTON_ENABLE_HDR = "1";
+      #  PROTON_ENABLE_WAYLAND = "1";
+      #};
     };
 
     # https://github.com/ValveSoftware/gamescope/issues/1622
-    gamescope = prev.gamescope.overrideAttrs (_: {
-      NIX_CFLAGS_COMPILE = ["-fno-fast-math"];
-    });
+    #gamescope = prev.gamescope.overrideAttrs (_: {
+    #  NIX_CFLAGS_COMPILE = ["-fno-fast-math"];
+    #});
   };
 }

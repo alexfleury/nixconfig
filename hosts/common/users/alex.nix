@@ -14,7 +14,6 @@ in rec {
     extraGroups = [
       "wheel"
       "networkmanager"
-      "libvirtd"
     ];
     openssh.authorizedKeys.keys = [
       # Agenix

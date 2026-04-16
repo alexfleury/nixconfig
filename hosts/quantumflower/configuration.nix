@@ -130,6 +130,6 @@
     qmk.enable = true;
     thunar.enable = true;
     vms.enable = true;
-    windowsapps.enable = true;
+    windowsapps.enable = false;
   };
 }

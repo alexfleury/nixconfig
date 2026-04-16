@@ -19,6 +19,8 @@ in {
       };
     };
 
+    # Plugins to install:
+    # https://github.com/JuliusBrussee/caveman
     programs.claude-code.enable = true;
 
     programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
