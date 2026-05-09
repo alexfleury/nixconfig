@@ -11,6 +11,8 @@ in {
   config = mkIf cfg.enable {
     programs.firefox = {
       enable = true;
+      # https://github.com/nix-community/home-manager/pull/9180
+      configPath = ".mozilla/firefox";
       policies = {
         HardwareAcceleration = true;
         DisableTelemetry = true;

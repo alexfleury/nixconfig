@@ -119,7 +119,6 @@
     "-H 2160"
     "--adaptive-sync"
     "--hdr-enabled"
-    "--mangoapp"
     "-f"
   ];
 

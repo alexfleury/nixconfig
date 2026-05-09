@@ -130,7 +130,7 @@ in {
 
       # Startup applications.
       exec-once = [
-        "uwsm app -- protonvpn-app --start-minimized"
+        "sleep 2s && uwsm app -- protonvpn-app"
       ];
 
       input.kb_layout = "ca";

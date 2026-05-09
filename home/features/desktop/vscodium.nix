@@ -53,9 +53,9 @@ in {
   options.features.desktop.vscodium.enable = mkEnableOption "enable codium";
 
   config = mkIf cfg.enable {
-    programs.vscode = {
+    programs.vscodium = {
       enable = true;
-      package = pkgs.vscodium;
+      #package = pkgs.vscodium;
       mutableExtensionsDir = false;
       profiles.default = {
         extensions = with pkgs.vscode-extensions; [
