@@ -49,7 +49,7 @@ in {
       ];
     };
 
-    programs.ssh.matchBlocks."github.com" = {
+    programs.ssh.settings."github.com" = {
       addKeysToAgent = "yes";
       identityFile = "${sshFolder}/github";
     };

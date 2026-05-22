@@ -14,7 +14,7 @@ in {
       # Will be removed in the future.
       enableDefaultConfig = false;
 
-      matchBlocks = {
+      settings = {
         # Default config.
         "*" = {
           forwardAgent = false;

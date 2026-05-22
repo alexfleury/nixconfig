@@ -59,9 +59,8 @@ in {
       mutableExtensionsDir = false;
       profiles.default = {
         extensions = with pkgs.vscode-extensions; [
-          #anthropic.claude-code
           jnoortheen.nix-ide
-          ms-python.python
+          #ms-python.python
         ];
         userSettings = {
           "continue.telemetryEnabled" = false;

@@ -25,6 +25,7 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
+      configType = "hyprlang";
 
       # Avoid conflicts with uwsm.
       systemd.enable = false;
@@ -51,7 +52,7 @@ in {
           "${specialKey}, Q, killactive,"
           "${specialKey}, O, togglefloating,"
           "${specialKey}, P, pseudo,"
-          "${specialKey}, I, togglesplit,"
+          #"${specialKey}, I, togglesplit,"
           "${specialKey}, left, movefocus, l"
           "${specialKey}, right, movefocus, r"
           "${specialKey}, up, movefocus, u"
@@ -137,7 +138,6 @@ in {
 
         dwindle = {
           preserve_split = true;
-          pseudotile = true;
           smart_split = true;
         };
 
@@ -147,14 +147,9 @@ in {
 
         windowrule = [
           "match:class ^(*)$, idle_inhibit fullscreen"
-          "match:title ^(*)$, idle_inhibit fullscreen$"
+          "match:title ^(*)$, idle_inhibit fullscreen"
           "match:fullscreen 1, idle_inhibit fullscreen"
         ];
-
-        render = {
-        #  direct_scanout = 1;
-          cm_fs_passthrough = 1;
-        };
 
         misc = {
           disable_hyprland_logo = true;

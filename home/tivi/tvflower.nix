@@ -13,7 +13,7 @@ in {
 
   home.packages = with pkgs; [
     brave
-    proton-vpn
+    #proton-vpn
     vlc
   ];
 
