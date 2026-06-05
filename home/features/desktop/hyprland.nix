@@ -52,7 +52,6 @@ in {
           "${specialKey}, Q, killactive,"
           "${specialKey}, O, togglefloating,"
           "${specialKey}, P, pseudo,"
-          #"${specialKey}, I, togglesplit,"
           "${specialKey}, left, movefocus, l"
           "${specialKey}, right, movefocus, r"
           "${specialKey}, up, movefocus, u"
@@ -144,6 +143,7 @@ in {
         master.new_status = "master";
 
         cursor.no_warps = true;
+        cursor.no_hardware_cursors = 1;
 
         windowrule = [
           "match:class ^(*)$, idle_inhibit fullscreen"

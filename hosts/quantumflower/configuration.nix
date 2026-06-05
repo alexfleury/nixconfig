@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
 
   boot = {
     # The kernel param "preempt=full" fixed buzzing sound in Hogwarts Legacy.

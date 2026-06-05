@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  osConfig,
   pkgs,
   ...
 }:
@@ -10,6 +11,11 @@ in {
   options.features.desktop.stylix.enable = mkEnableOption "enable stylix HM module";
 
   config = mkIf cfg.enable {
+
+    # TODO: Remove when this upstream issue is resolved:
+    # https://github.com/nix-community/stylix/issues/2250
+    gtk.gtk4.theme = osConfig.home-manager.users.${config.home.username}.gtk.theme;
+
     stylix = {
       enable = true;
       autoEnable = true;

@@ -22,8 +22,17 @@ in {
         display-top = " Top";
         display-window = " Window";
         display-search-nixpkgs = "󰏖 Nixpkgs";
-        display-search-mynixos = "󱄅 MyNixOS";
-        modi = "drun,window,recursivebrowser,top,search-nixpkgs:${lib.getExe pkgs.search-nixpkgs},search-mynixos:${lib.getExe pkgs.search-mynixos}";
+        display-search-nix-options = "󱄅 Nix options";
+        display-search-hm-options = "󱎰 HM options";
+        modi = lib.concatStringsSep "," [
+          "drun"
+          "window"
+          #"recursivebrowser"
+          "top"
+          "search-nixpkgs:${lib.getExe pkgs.search-nixpkgs}"
+          "search-nix-options:${lib.getExe pkgs.search-nix-options}"
+          "search-hm-options:${lib.getExe pkgs.search-hm-options}"
+        ];
         run-command = "uwsm app -- {cmd}";
         show-icons = true;
         click-to-exit = true;

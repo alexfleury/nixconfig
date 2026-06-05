@@ -77,6 +77,7 @@ in {
     pavucontrol                 # Manage sound through a panel.
     pdfarranger                 # Merge/split pdf documents and modify them.
     proton-vpn                  # Proton VPN.
+    spotify                     # Streaming music.
     solaar                      # For Logitech Unifying Receiver
     #video2x                    # AI upscaling for videos.
     vlc                         # Reading videos.
