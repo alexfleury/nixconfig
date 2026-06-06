@@ -120,7 +120,6 @@
     "--adaptive-sync"
     "--hdr-enabled"
     "-f"
-    "--force-grab-cursor"
   ];
 
   extraServices = {
