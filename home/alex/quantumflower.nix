@@ -79,6 +79,7 @@ in {
     proton-vpn                  # Proton VPN.
     spotify                     # Streaming music.
     solaar                      # For Logitech Unifying Receiver
+    ungoogled-chromium          # It supports HDR video playback.
     #video2x                    # AI upscaling for videos.
     vlc                         # Reading videos.
     vesktop                     # Alternative discord app.
