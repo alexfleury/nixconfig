@@ -11,8 +11,7 @@
   imports = [
     inputs.agenix.homeManagerModules.default
     inputs.stylix.homeModules.stylix
-    ]
-    ++ builtins.attrValues outputs.homeModules;
+  ] ++ builtins.attrValues outputs.homeModules;
 
   programs.home-manager.enable = true;
 

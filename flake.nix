@@ -4,16 +4,6 @@
   '';
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    stylix = {
-      url = "github:danth/stylix";
-    };
 
     agenix = {
       url = "github:ryantm/agenix";
@@ -24,6 +14,19 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    #flake-parts.url = "github:hercules-ci/flake-parts";
+
+    import-tree.url = "github:vic/import-tree";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    stylix.url = "github:danth/stylix";
   };
 
   outputs = {
@@ -44,10 +47,6 @@
       "x86_64-darwin"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
-    # Extend the lib library with custom functions.
-    lib = nixpkgs.lib.extend (final: prev: {
-      autoImports = import ./lib/autoImports.nix { lib = prev; };
-    });
   in {
     packages =
       forAllSystems (system: import ./packages nixpkgs.legacyPackages.${system});
@@ -55,7 +54,7 @@
     homeModules = import ./modules/home-manager;
     nixosConfigurations = {
       quantumflower = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs lib outputs;};
+        specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/quantumflower
           home-manager.nixosModules.home-manager
@@ -64,7 +63,7 @@
         ];
       };
       tvflower = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs lib outputs;};
+        specialArgs = {inherit inputs outputs;};
          system = "x86_64-linux";
         modules = [
           ./hosts/tvflower

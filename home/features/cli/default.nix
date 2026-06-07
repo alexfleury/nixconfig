@@ -1,10 +1,11 @@
 {
+  inputs,
   lib,
   pkgs,
   ...
 }:
 {
-  imports = lib.autoImports ./.;
+  imports = [ (inputs.import-tree.matchNot ".*/default\\.nix" ./.) ];
 
   home.shellAliases = {
     ".." = "cd ..";

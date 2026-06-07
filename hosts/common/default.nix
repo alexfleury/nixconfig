@@ -6,7 +6,7 @@
   ...
 }:
 {
-  imports = lib.autoImports ./.;
+  imports = [ (inputs.import-tree [ ./extraServices ./users ]) ];
 
   environment.systemPackages = with pkgs; [
     dysk          # Get (pretty) info about mounted disks.
