@@ -128,14 +128,28 @@ in {
 
   wayland.windowManager.hyprland = {
     settings = {
-      monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, vrr, 3, cm, hdr, sdrbrightness, 1.2, sdrsaturation, 1.1";
+
+      monitor = {
+        output = "DP-1";
+        mode = "3840x2160@240";
+        position = "0x0";
+        scale = 1;
+        bitdepth = 10;
+        cm = "hdr";
+        sdrbrightness = 1.2;
+        sdrsaturation = 1.1;
+        vrr = 2;
+      };
 
       # Startup applications.
-      exec-once = [
-        "sleep 2s && protonvpn-app"
-      ];
+      #exec-once = [
+      #  "sleep 2s && protonvpn-app"
+      #];
 
-      input.kb_layout = "ca";
+      input = {
+        kb_layout = "ca";
+        follow_mouse = 2;
+      };
 
       workspace = map (v: "${v}, persistent:false") (builtins.attrValues workspaces);
 
