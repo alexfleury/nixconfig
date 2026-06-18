@@ -5,30 +5,20 @@
   ...
 }:
 let
-  specialKey = "SUPER";
   user = "alex";
-  workspaces = {
-    # Class: workspace id.
-    firefox = "1";
-    codium = "2";
-    vesktop = "3";
-    steam = "4";
-    gamescope = "5";
-  };
-  mkMenu = menu: let
-    configFile = pkgs.writeText "config.yaml"
-      (lib.generators.toYAML {} {
-        anchor = "center";
-        background = config.lib.stylix.colors.withHashtag.base00;
-        color = config.lib.stylix.colors.withHashtag.base05;
-        border = config.lib.stylix.colors.withHashtag.base0D;
-        inherit menu;
-      });
-  in
-    pkgs.writeShellScriptBin "my-menu" ''
-      exec ${lib.getExe pkgs.wlr-which-key} ${configFile}
-    '';
-
+  #mkMenu = menu: let
+  #  configFile = pkgs.writeText "config.yaml"
+  #    (lib.generators.toYAML {} {
+  #      anchor = "center";
+  #      background = config.lib.stylix.colors.withHashtag.base00;
+  #      color = config.lib.stylix.colors.withHashtag.base05;
+  #      border = config.lib.stylix.colors.withHashtag.base0D;
+  #      inherit menu;
+  #    });
+  #in
+  #  pkgs.writeShellScriptBin "my-menu" ''
+  #    exec ${lib.getExe pkgs.wlr-which-key} ${configFile}
+  #  '';
 in {
   imports = [
     ../common
@@ -64,15 +54,12 @@ in {
   # User packages.
   home.packages = with pkgs; [
     asunder                     # Ripping audio CDs.
-    #discord                    # Communication software.
     gnome-text-editor           # Simple text editor.
-    #handbrake                  # Transcoding videos.
     inkscape-with-extensions    # Vector image manip software.
     libreoffice                 # Office suite.
     nomacs                      # Image viewer.
     obsidian                    # Note application.
     kdePackages.okular          # KDE pdf viewer.
-    #papers                     # GNOME pdf viewer.
     #pastel                     # CLI to manipulate colors.
     pavucontrol                 # Manage sound through a panel.
     pdfarranger                 # Merge/split pdf documents and modify them.
@@ -127,80 +114,118 @@ in {
   };
 
   wayland.windowManager.hyprland = {
-    settings = {
-      monitor = "DP-1, 3840x2160@239.99Hz, 0x0, 1.5, bitdepth, 10, vrr, 3, cm, hdr, sdrbrightness, 1.2, sdrsaturation, 1.1";
+    settings =
+      let
+        workspaces = {
+          # Class: workspace id.
+          firefox = "1";
+          codium = "2";
+          vesktop = "3";
+          steam = "4";
+          gamescope = "5";
+        };
+        mkLuaInline = lib.generators.mkLuaInline;
+        toLua = lib.generators.toLua;
+        mkArgs = args: { _args = args; };
+        bind =
+          keys: dispatcher: options:
+          mkArgs [
+            keys
+            dispatcher
+            options
+          ];
+        dsp = {
+          exec_cmd = cmd: mkLuaInline ''hl.dsp.exec_cmd("${cmd}")'';
+          focus = arg: mkLuaInline "hl.dsp.focus(${toLua { } arg})";
+          workspace = {
+            move = arg: mkLuaInline "hl.dsp.workspace.move(${toLua { } arg})";
+          };
+        };
+        mod = "SUPER";
+      in
+      {
+        config = {
+          input = {
+            kb_layout = "ca";
+            follow_mouse = 2;
+          };
+        };
 
-      # Startup applications.
-      exec-once = [
-        "sleep 2s && protonvpn-app"
-      ];
-
-      input.kb_layout = "ca";
-
-      workspace = map (v: "${v}, persistent:false") (builtins.attrValues workspaces);
-
-      bind = [
-        "${specialKey}, T, exec, uwsm app -- kitty.desktop"
-        "${specialKey}, E, exec, uwsm app -- thunar.desktop"
-        "${specialKey}, D, exec, rofi -show drun"
-        "${specialKey}, W, exec, systemctl --user is-active --quiet wlsunset && systemctl --user stop wlsunset || systemctl --user start wlsunset"
-        "ALT, TAB, exec, rofi -show window -matching fuzzy"
-        "CTRL_ALT, Delete, exec, rofi -show top"
-        "${specialKey}, Z, workspace, ${workspaces.firefox}"
-        "${specialKey}_SHIFT, Z, movetoworkspacesilent, ${workspaces.firefox}"
-        "${specialKey}, X, workspace, ${workspaces.codium}"
-        "${specialKey}_SHIFT, X, movetoworkspacesilent, ${workspaces.codium}"
-        "${specialKey}, C, workspace, ${workspaces.vesktop}"
-        "${specialKey}_SHIFT, C, movetoworkspacesilent, ${workspaces.vesktop}"
-        "${specialKey}, V, workspace, ${workspaces.steam}"
-        "${specialKey}_SHIFT, V, movetoworkspacesilent, ${workspaces.steam}"
-        "${specialKey}, B, workspace, ${workspaces.gamescope}"
-        "${specialKey}_SHIFT, B, movetoworkspacesilent, ${workspaces.gamescope}"
-
-        # Application shortcut as seen in https://www.vimjoyer.com/vid74-which-key.
-        ("${specialKey}_SHIFT, D, exec, " + lib.getExe (mkMenu [
+        monitor = [
           {
-            key = "c";
-            desc = "Codium";
-            cmd = "uwsm app -- codium.desktop";
+            output = "DP-1";
+            mode = "3840x2160@240";
+            position = "0x0";
+            scale = 1;
+            bitdepth = 10;
+            cm = "hdr";
+            sdrbrightness = 1.2;
+            sdrsaturation = 1.1;
+            vrr = 2;
+          }
+        ];
+
+        workspace_rule = map (v: { workspace = "${v}"; persistent = false; }) (builtins.attrValues workspaces);
+
+        bind = [
+          (bind "${mod} + T" (dsp.exec_cmd "uwsm app -- kitty.desktop") { })
+          (bind "${mod} + E" (dsp.exec_cmd "uwsm app -- thunar.desktop") { })
+          (bind "${mod} + D" (dsp.exec_cmd "rofi -show drun") { })
+          (bind "ALT + TAB" (dsp.exec_cmd "rofi -show window -matching fuzzy") { })
+          (bind "CTRL + ALT" (dsp.exec_cmd "rofi -show top") { })
+          (bind "${mod} + W" (dsp.exec_cmd "systemctl --user is-active --quiet wlsunset && systemctl --user stop wlsunset || systemctl --user start wlsunset") { })
+          (bind "${mod} + G" (dsp.exec_cmd "uwsm app -- ${lib.getExe pkgs.hyprshot-gui}") { })
+          (bind "${mod} + M" (dsp.exec_cmd "uwsm app -- ${lib.getExe pkgs.wayscriber} -a") { })
+          # Firefox.
+          (bind "${mod} + Z" (dsp.focus { workspace = workspaces.firefox; }) { })
+          (bind "${mod} + SHIFT + Z" (dsp.workspace.move{ workspace = workspaces.firefox; }) { })
+          # Codium.
+          (bind "${mod} + X" (dsp.focus { workspace = workspaces.codium; }) { })
+          (bind "${mod} + SHIFT + X" (dsp.workspace.move{ workspace = workspaces.codium; }) { })
+          # Discord / Vesktop.
+          (bind "${mod} + C" (dsp.focus { workspace = workspaces.vesktop; }) { })
+          (bind "${mod} + SHIFT + C" (dsp.workspace.move{ workspace = workspaces.vesktop; }) { })
+          # Steam.
+          (bind "${mod} + V" (dsp.focus { workspace = workspaces.steam; }) { })
+          (bind "${mod} + SHIFT + V" (dsp.workspace.move{ workspace = workspaces.steam; }) { })
+          # Gamescope.
+          (bind "${mod} + B" (dsp.focus { workspace = workspaces.gamescope; }) { })
+          (bind "${mod} + SHIFT + B" (dsp.workspace.move{ workspace = workspaces.gamescope; }) { })
+        ];
+
+        window_rule = [
+          {
+            match.title = "^(Volume Control)";
+            float = true;
+            center = true;
+            size = "{monitor_w*0.3 monitor_h*0.3}";
           }
           {
-            key = "d";
-            desc = "Discord";
-            cmd = "uwsm app -- vesktop.desktop";
+            match.class = ".blueman-manager-wrapped";
+            float = true;
+            center = true;
+            size = "{monitor_w*0.3 monitor_h*0.3}";
           }
           {
-            key = "f";
-            desc = "Firefox";
-            cmd = "uwsm app -- firefox.desktop";
+            match.title = "^(Network Connections)";
+            float = true;
+            center = true;
+            size = "{monitor_w*0.3 monitor_h*0.3}";
           }
           {
-            key = "k";
-            desc = "Zoom 75 keyboard cheat sheet";
-            cmd = "uwsm app -- ${lib.getExe pkgs.zoom75-info}";
+            match.class = "^(.*Hyprshot.*)$";
+            float = true;
+            center = true;
           }
           {
-            key = "s";
-            desc = "Screenshot";
-            cmd = "uwsm app -- ${lib.getExe pkgs.hyprshot-gui}";
+            match.class = "^(org.gnome.FileRoller)$";
+            float = true;
+            center = true;
+            size = "{monitor_w*0.3 monitor_h*0.3}";
           }
-          {
-            key = "w";
-            desc = "Wayscriber";
-            cmd = "uwsm app -- ${lib.getExe pkgs.wayscriber} -a";
-          }
-        ]))
-      ];
-
-      windowrule = [
-        "match:title ^(Volume Control), float on center on size monitor_w*0.3 monitor_h*0.3$"
-        "match:class .blueman-manager-wrapped, float on center on size monitor_w*0.3 monitor_h*0.3"
-        "match:title ^(Network Connections), float on center on size monitor_w*0.3 monitor_h*0.3"
-        "match:title ^(.*Hyprshot.*)$, float on"
-        "match:class ^(org.gnome.FileRoller)$, float on center on size (monitor_w*0.3) (monitor_h*0.3)"
-      ]
-      ++ lib.mapAttrsToList
-        (name: value: "match:class ^(${name})$, workspace ${value}") workspaces;
-    };
+        ]
+        ++ lib.mapAttrsToList
+          (name: value: { match.class = "^(${name})$"; wokspace = "${value}"; }) workspaces;
+      };
   };
 }
