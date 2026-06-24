@@ -23,8 +23,8 @@
     #});
 
     # https://github.com/NixOS/nixpkgs/issues/513245#issuecomment-4317696552
-    openldap = prev.openldap.overrideAttrs (_: {
-      doCheck = !prev.stdenv.hostPlatform.isi686;
-    });
+    #openldap = prev.openldap.overrideAttrs (_: {
+    #  doCheck = !prev.stdenv.hostPlatform.isi686;
+    #});
   };
 }
