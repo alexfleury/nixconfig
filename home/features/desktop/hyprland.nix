@@ -91,10 +91,12 @@ in {
               key_press_enables_dpms = false;
               mouse_move_enables_dpms = true;
             };
+
+            xwayland.force_zero_scaling = true;
           };
 
           workspace_rule = [
-            { workspace = "11"; persistent = false; }
+            { workspace = "11"; persistent = false; default = true; }
             { workspace = "12"; persistent = false; }
             { workspace = "13"; persistent = false; }
             { workspace = "14"; persistent = false; }
@@ -139,6 +141,12 @@ in {
             })
             (bind "XF86AudioRaiseVolume" (dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+") {
               repeating = true;
+              locked = true;
+            })
+            (bind "XF86AudioMute" (dsp.exec_cmd "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") {
+              locked = true;
+            })
+            (bind "XF86AudioMicMute" (dsp.exec_cmd "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle") {
               locked = true;
             })
             (bind "XF86AudioPlay" (dsp.exec_cmd "playerctl play-pause") { locked = true; })

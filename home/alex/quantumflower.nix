@@ -226,6 +226,13 @@ in {
         ]
         ++ lib.mapAttrsToList
           (name: value: { match.class = "^(${name})$"; workspace = "${value}"; }) workspaces;
+
+        on = {
+          _args = [
+            "hyprland.start"
+            (lib.generators.mkLuaInline "function()\n  hl.exec_cmd(\"protonvpn-app\")\n hl.dispatch(hl.dsp.focus({ workspace = 11 }))\n end")
+          ];
+        };
       };
   };
 }

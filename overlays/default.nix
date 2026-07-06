@@ -6,15 +6,10 @@
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
 
-    video2x = prev.video2x.override { ffmpeg = prev.ffmpeg-full; };
+    #video2x = prev.video2x.override { ffmpeg = prev.ffmpeg-full; };
 
     steam = prev.steam.override {
       extraProfile = "export GDK_SCALE=2";
-      #extraEnv = {
-      #  MANGOHUD_CONFIG = "read_cfg,no_display";
-      #  PROTON_ENABLE_HDR = "1";
-      #  PROTON_ENABLE_WAYLAND = "1";
-      #};
     };
 
     # https://github.com/ValveSoftware/gamescope/issues/1622
@@ -25,6 +20,16 @@
     # https://github.com/NixOS/nixpkgs/issues/513245#issuecomment-4317696552
     #openldap = prev.openldap.overrideAttrs (_: {
     #  doCheck = !prev.stdenv.hostPlatform.isi686;
+    #});
+
+    #waybar = prev.waybar.overrideAttrs (old: rec {
+    #  version = "git";
+    #  src = prev.fetchFromGitHub {
+    #    owner = "Alexays";
+    #    repo = "Waybar";
+    #    rev = "master";
+    #    hash = "sha256-urC1njV+FyrskLdTw0G8/MKPgEM7UjLx0M1BVfeI2rE=";
+    #};
     #});
   };
 }
