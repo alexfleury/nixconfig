@@ -13,19 +13,19 @@ in {
       enable = true;
       settings = {
         general = {
-          after_sleep_cmd = "hyprctl dispatch dpms on";
+          after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({action = \"on\"})'";
           before_sleep_cmd = "loginctl lock-session";
           lock_cmd = "pidof hyprlock || hyprlock";
         };
         listener = [
           {
             timeout = 1800;
-            on-timeout = "loginctl lock-session && sleep 5s && hyprctl dispatch dpms off";
+            on-timeout = "loginctl lock-session && sleep 5s && hyprctl dispatch 'hl.dsp.dpms({action = \"off\"})'";
           }
           {
             timeout = 300;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on";
+            on-timeout = "hyprctl dispatch 'hl.dsp.dpms({action = \"off\"})'";
+            on-resume = "hyprctl dispatch 'hl.dsp.dpms({action = \"on\"})'";
           }
           {
             timeout = 7200;
