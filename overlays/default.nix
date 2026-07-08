@@ -38,7 +38,7 @@
       src = prev.fetchFromGitHub {
         owner = "Alexays";
         repo = "Waybar";
-        rev = "master";
+        rev = "98b2a563f398f63f99ec8a6f7fb2b19a172abd5d";
         hash = "sha256-gVYj72W4L5FJwtfkT/m8PxgDKBT/3HIq1BdnxhFtlPQ=";
       };
     });
