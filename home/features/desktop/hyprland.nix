@@ -168,15 +168,10 @@ in {
 
           window_rule = [
             {
-              match.class = "^(*)";
-              idle_inhibit = "fullscreen";
-            }
-            {
               match.fullscreen = true;
               idle_inhibit = "fullscreen";
             }
           ];
-
         };
       };
 

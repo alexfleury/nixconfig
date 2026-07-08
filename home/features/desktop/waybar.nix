@@ -131,6 +131,8 @@ in {
           "hyprland/workspaces" = {
             format = "{icon}";
             on-click = "activate";
+            version = "0.15.0-unstable";
+            tooltip = false;
             format-icons = {
               "11" = "󰇊";
               "12" = "󰇋";

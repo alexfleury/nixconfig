@@ -22,14 +22,25 @@
     #  doCheck = !prev.stdenv.hostPlatform.isi686;
     #});
 
-    #waybar = prev.waybar.overrideAttrs (old: rec {
-    #  version = "git";
-    #  src = prev.fetchFromGitHub {
-    #    owner = "Alexays";
-    #    repo = "Waybar";
-    #    rev = "master";
-    #    hash = "sha256-urC1njV+FyrskLdTw0G8/MKPgEM7UjLx0M1BVfeI2rE=";
-    #};
-    #});
+    waybar = prev.waybar.overrideAttrs (old: rec {
+      version = "0.15.0-unstable";
+      doInstallCheck = false;
+
+      buildInputs = (old.buildInputs or []) ++ [
+        final.libcava
+        final.modemmanager
+      ];
+
+      nativeBuildInputs = (old.nativeBuildInputs or []) ++ [
+        final.pkg-config
+      ];
+
+      src = prev.fetchFromGitHub {
+        owner = "Alexays";
+        repo = "Waybar";
+        rev = "master";
+        hash = "sha256-gVYj72W4L5FJwtfkT/m8PxgDKBT/3HIq1BdnxhFtlPQ=";
+      };
+    });
   };
 }

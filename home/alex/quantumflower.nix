@@ -6,19 +6,6 @@
 }:
 let
   user = "alex";
-  #mkMenu = menu: let
-  #  configFile = pkgs.writeText "config.yaml"
-  #    (lib.generators.toYAML {} {
-  #      anchor = "center";
-  #      background = config.lib.stylix.colors.withHashtag.base00;
-  #      color = config.lib.stylix.colors.withHashtag.base05;
-  #      border = config.lib.stylix.colors.withHashtag.base0D;
-  #      inherit menu;
-  #    });
-  #in
-  #  pkgs.writeShellScriptBin "my-menu" ''
-  #    exec ${lib.getExe pkgs.wlr-which-key} ${configFile}
-  #  '';
 in {
   imports = [
     ../common
@@ -230,7 +217,12 @@ in {
         on = {
           _args = [
             "hyprland.start"
-            (lib.generators.mkLuaInline "function()\n  hl.exec_cmd(\"protonvpn-app\")\n hl.dispatch(hl.dsp.focus({ workspace = 11 }))\n end")
+            (lib.generators.mkLuaInline ''
+              function()
+                hl.dispatch(hl.dsp.focus({ workspace = 11 }))
+                hl.exec_cmd(protonvpn-app)
+              end
+            '')
           ];
         };
       };
