@@ -220,7 +220,7 @@ in {
             (lib.generators.mkLuaInline ''
               function()
                 hl.dispatch(hl.dsp.focus({ workspace = 11 }))
-                hl.exec_cmd(protonvpn-app)
+                hl.exec_cmd("protonvpn-app")
               end
             '')
           ];

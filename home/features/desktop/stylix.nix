@@ -62,5 +62,8 @@ in {
       };
       polarity = "dark";
     };
+
+    # TODO: https://github.com/nix-community/stylix/issues/478
+    home.pointerCursor.enable = true;
   };
 }
