@@ -200,7 +200,7 @@ in {
             size = "{monitor_w*0.3 monitor_h*0.3}";
           }
           {
-            match.class = "^(.*Hyprshot.*)$";
+            match.title = "^(.*Hyprshot.*)$";
             float = true;
             center = true;
           }
