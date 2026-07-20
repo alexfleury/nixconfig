@@ -17,7 +17,7 @@ in {
       autoEnable = true;
       # Option discussion (if set to false).
       # https://github.com/nix-community/stylix/issues/1832#issuecomment-3169274982
-      overlays.enable = true;
+      #overlays.enable = false;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
       image = ../../../wallpapers/a_pixel_art_of_a_city_street.png;
       icons = {
