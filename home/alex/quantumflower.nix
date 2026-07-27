@@ -94,6 +94,7 @@ in {
       "audio/*" = [ "vlc.desktop" ];
       "inode/directory" = [ "thunar.desktop" ];
       "text/plain" = [ "org.gnome.TextEditor.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
     };
     userDirs.enable = true;
     userDirs.createDirectories = true;
