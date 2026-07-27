@@ -11,14 +11,14 @@ let
   description =  "Infinite stash tool for Grim Dawn";
 in stdenv.mkDerivation rec {
   pname = "GDStash";
-  version = "v181f";
+  version = "v182f";
 
   # GDStash download links expire. Therefore, it should be downloaded
   # beforehand.
   src = requireFile {
     name = "${pname}_${version}.zip";
     url = "https://forums.crateentertainment.com/t/tool-gd-stash/29036";
-    sha256 = "e03557ec9589e180004856dc54f3b752decb210d82e1903626004a6a81b2275c";
+    sha256 = "5a251c55e25518b3bd802e893d0aaf1ebca59adf61b01c79adb98fb59ad3118f";
   };
 
   dontBuild = true;

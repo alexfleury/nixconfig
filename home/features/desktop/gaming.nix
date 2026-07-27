@@ -20,7 +20,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      gdstash               # Infinite stash for Grim Dawn.
+      #gdstash               # Infinite stash for Grim Dawn.
       retroarchWithCores    # Retrogaming.
       x16-run
     ];

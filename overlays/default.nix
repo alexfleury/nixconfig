@@ -42,5 +42,14 @@
         hash = "sha256-gVYj72W4L5FJwtfkT/m8PxgDKBT/3HIq1BdnxhFtlPQ=";
       };
     });
+
+    proton-ge-bin = prev.proton-ge-bin.overrideAttrs (old: rec {
+      version = "GE-Proton11-3";
+
+      src = prev.fetchzip {
+        url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
+        hash = "sha256-RiCmnUKeZRhPUCgm7fsROKFkAl37+/tYkA47tQtkIF4=";
+      };
+    });
   };
 }
