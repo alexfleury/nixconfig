@@ -29,7 +29,7 @@ in {
     # and more.
     programs.mangohud = {
       enable = true;
-      enableSessionWide = true;
+      enableSessionWide = false;
       settings = lib.mkAfter {
         cpu_stats = true;
         cpu_temp = true;
@@ -41,7 +41,7 @@ in {
         gpu_temp = true;
         hdr = true;
         mangoapp_steam = true;
-        position = "top-right";
+        position = "top-left";
         ram = true;
         refresh_rate = true;
         vram = true;

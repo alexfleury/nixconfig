@@ -24,7 +24,7 @@ in {
     programs.claude-code.enable = true;
 
     programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
-      #anthropic.claude-code
+      anthropic.claude-code
     ];
   };
 }

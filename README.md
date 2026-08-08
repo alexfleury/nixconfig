@@ -111,6 +111,12 @@ They can be found in these directories:
 
 ## Hosts
 
+This should prevents the remote machine to sleep while rebuilding via SSH.
+
+```shell
+ssh ip "systemd-inhibit --what=sleep --why="NixOS rebuild" sleep 1h"
+```
+
 ### tvflower
 
 ```shell

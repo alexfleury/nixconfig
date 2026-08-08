@@ -6,49 +6,6 @@
 }:
 with lib; let
   cfg = config.features.desktop.vscodium;
-  yamlFormat = pkgs.formats.yaml {};
-  #continueConfig = {
-  #  name = "My config";
-  #  version = "0.0.1";
-  #  schema = "v1";
-  #  models = [
-  #    {
-  #      name = "Gemini 3 Flash Preview";
-  #      provider = "gemini";
-  #      model = "gemini-3-flash-preview";
-  #      apiKey = "$\{{ secrets.GEMINI_API_KEY }}";
-  #      roles = [
-  #        "chat"
-  #        "edit"
-  #        "apply"
-  #      ];
-  #      defaultCompletionOptions = {
-  #        contextLength = 1048576;
-  #        maxTokens = 65536;
-  #      };
-  #      capabilities = [
-  #        "tool_use"
-  #        "image_input"
-  #      ];
-  #    }
-  #    {
-  #      name = "Ollama";
-  #      provider = "ollama";
-  #      model = "AUTODETECT";
-  #      roles = [
-  #        "chat"
-  #        "edit"
-  #        "apply"
-  #      ];
-  #      defaultCompletionOptions = {
-  #        temperature = 1.0;
-  #        topP = 0.95;
-  #        topK = 64;
-  #      };
-  #    }
-  #  ];
-  #};
-  #continueYaml = yamlFormat.generate "config.yaml" continueConfig;
 in {
   options.features.desktop.vscodium.enable = mkEnableOption "enable codium";
 
@@ -59,10 +16,9 @@ in {
       profiles.default = {
         extensions = with pkgs.vscode-extensions; [
           jnoortheen.nix-ide
-          #ms-python.python
+          ms-python.python
         ];
         userSettings = {
-          "continue.telemetryEnabled" = false;
           "editor.autoClosingBrackets" = "never";
           "editor.autoClosingDelete" = "never";
           "editor.autoClosingOvertype" = "never";
@@ -72,7 +28,7 @@ in {
           "editor.matchBrackets" = "near";
           "editor.minimap.enabled" = false;
           "editor.tabSize" = 2;
-          "extensions.autoUpdate" = false;
+          "extensions.autoUpdate" = "off";
           "files.trimTrailingWhitespace" = true;
           "window.titleBarStyle" = "custom";
           "[python]" = {
@@ -95,7 +51,5 @@ in {
     home.packages = with pkgs; [
       nixfmt
     ];
-
-    #home.file.".continue/config.yaml".source = continueYaml;
   };
 }

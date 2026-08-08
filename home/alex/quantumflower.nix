@@ -31,7 +31,7 @@ in {
       stylix.enable = true;
       vscodium.enable = true;
       wayland.enable = true;
-      zed.enable = true;
+      zed.enable = false;
     };
   };
 
@@ -135,6 +135,7 @@ in {
         config = {
           input = {
             kb_layout = "ca";
+            kb_variant = "";
             follow_mouse = 2;
           };
         };

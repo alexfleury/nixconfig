@@ -104,24 +104,24 @@ in {
             { workspace = "16"; persistent = false; }
           ];
 
-          bind = lib.flatten [
+          bind = let
+            audioPlay = dsp.exec_cmd "playerctl play-pause";
+            audioPrev = dsp.exec_cmd "playerctl previous";
+            audioNext = dsp.exec_cmd "playerctl previous";
+            audioOutMute = dsp.exec_cmd "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+            audioInMute = dsp.exec_cmd "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+            audioVolDown = dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- -l 1";
+            audioVolUp = dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+";
+          in lib.flatten [
             (bind "${mod} + Q" dsp.window.close { })
             (bind "${mod} + SHIFT + Q" dsp.window.kill { })
             (bind "${mod} + ESCAPE" dsp.dpms { })
             (bind "${mod} + O" dsp.window.float { })
             (bind "${mod} + P" dsp.window.pseudo { })
-            (bind "${mod} + left" (dsp.focus { direction = "l"; }) { })
-            (bind "${mod} + down" (dsp.focus { direction = "d"; }) { })
-            (bind "${mod} + up" (dsp.focus { direction = "u"; }) { })
-            (bind "${mod} + right" (dsp.focus { direction = "r"; }) { })
             (bind "${mod} + H" (dsp.focus { direction = "l"; }) { })
             (bind "${mod} + J" (dsp.focus { direction = "d"; }) { })
             (bind "${mod} + K" (dsp.focus { direction = "u"; }) { })
             (bind "${mod} + L" (dsp.focus { direction = "r"; }) { })
-            (bind "${mod} + SHIFT + left" (dsp.window.move { direction = "l"; }) { })
-            (bind "${mod} + SHIFT + down" (dsp.window.move { direction = "d"; }) { })
-            (bind "${mod} + SHIFT + up" (dsp.window.move { direction = "u"; }) { })
-            (bind "${mod} + SHIFT + right" (dsp.window.move { direction = "r"; }) { })
             (bind "${mod} + SHIFT + H" (dsp.window.move { direction = "l"; }) { })
             (bind "${mod} + SHIFT + J" (dsp.window.move { direction = "d"; }) { })
             (bind "${mod} + SHIFT + K" (dsp.window.move { direction = "u"; }) { })
@@ -135,24 +135,18 @@ in {
             (bind "${mod} + mouse_down" (dsp.focus { workspace = "e+1"; }) { })
             (bind "${mod} + mouse_up" (dsp.focus { workspace = "e-1"; }) { })
             # Media controls.
-            (bind "XF86AudioLowerVolume" (dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- -l 1") {
-              repeating = true;
-              locked = true;
-            })
-            (bind "XF86AudioRaiseVolume" (dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+") {
-              repeating = true;
-              locked = true;
-            })
-            (bind "XF86AudioMute" (dsp.exec_cmd "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") {
-              locked = true;
-            })
-            (bind "XF86AudioMicMute" (dsp.exec_cmd "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle") {
-              locked = true;
-            })
-            (bind "XF86AudioPlay" (dsp.exec_cmd "playerctl play-pause") { locked = true; })
-            (bind "XF86AudioPrev" (dsp.exec_cmd "playerctl previous") { locked = true; })
-            (bind "XF86AudioNext" (dsp.exec_cmd "playerctl next") { locked = true; })
-            (bind "${mod} + SPACE" (dsp.exec_cmd "playerctl play-pause") { locked = true; })
+            (bind "XF86AudioLowerVolume" audioVolDown { repeating = true; locked = true; })
+            (bind "XF86AudioRaiseVolume" audioVolUp { repeating = true; locked = true; })
+            (bind "XF86AudioMute" audioOutMute { locked = true; })
+            (bind "XF86AudioMicMute" audioInMute { locked = true; })
+            (bind "XF86AudioPlay" audioPlay { locked = true; })
+            (bind "XF86AudioPrev" audioPrev { locked = true; })
+            (bind "XF86AudioNext" audioNext { locked = true; })
+            (bind "${mod} + SPACE" audioPlay { locked = true; })
+            (bind "${mod} + left" audioPrev { })
+            (bind "${mod} + down" audioVolDown { locked = true; })
+            (bind "${mod} + up" audioVolUp { repeating = true; locked = true; })
+            (bind "${mod} + right" audioNext{ locked = true; })
           ]
           ++ (
             builtins.concatLists (
