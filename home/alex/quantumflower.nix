@@ -212,6 +212,10 @@ in {
             center = true;
             size = "{monitor_w*0.3 monitor_h*0.3}";
           }
+          {
+            match.class = "^(libreoffice.*)$";
+            suppress_event = "maximize";
+          }
         ]
         ++ lib.mapAttrsToList
           (name: value: { match.class = "^(${name})$"; workspace = "${value}"; }) workspaces;
