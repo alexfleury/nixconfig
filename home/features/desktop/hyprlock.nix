@@ -13,7 +13,7 @@ in {
       enable = true;
       settings = {
         general = {
-          hide_cursor = true;
+          hide_cursor = false;
           ignore_empty_input = true;
         };
         background.blur_passes = 1;

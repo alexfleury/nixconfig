@@ -61,7 +61,6 @@ in {
           height = 45;
           modules-left = [
             "custom/powermenu"
-            #"group/group-power"
             "hyprland/workspaces"
           ];
           modules-center = [ "clock" ];
@@ -98,16 +97,16 @@ in {
             interval = 2;
             tooltip = false;
           };
-          "custom/brightness" = {
-            format = "{icon} {percentage}%";
-            format-icons = "󰍹";
-            return-type = "json";
-            exec = "ddcutil getvcp 10 | grep -oP \"current.*?=\\s*\\K[0-9]+\" | { read x; echo '{\"percentage\":'\${x}'}'; }";
-            on-click = "ddcutil setvcp 10 10";
-            on-click-right = "ddcutil setvcp 10 70";
-            interval = 5;
-            tooltip = false;
-          };
+          #"custom/brightness" = {
+          #  format = "{icon} {percentage}%";
+          #  format-icons = "󰍹";
+          #  return-type = "json";
+          #  exec = "ddcutil getvcp 10 | grep -oP \"current.*?=\\s*\\K[0-9]+\" | { read x; echo '{\"percentage\":'\${x}'}'; }";
+          #  on-click = "ddcutil setvcp 10 10";
+          #  on-click-right = "ddcutil setvcp 10 70";
+          #  interval = 5;
+          #  tooltip = false;
+          #};
           "custom/gpu" = {
             exec = "${lib.getExe pkgs.amdgpu_top} -d --json | ${lib.getExe pkgs.jq} --unbuffered --compact-output '.[0]'.gpu_metrics.current_gfxclk";
             format = "  {} MHz";
@@ -144,7 +143,8 @@ in {
               "2" = "";
               "3" = "󰙯";
               "4" = "󰓓";
-              "5" = "";
+              "5" = "󱎓";
+              "6" = "";
             };
             sort-by-number = true;
           };

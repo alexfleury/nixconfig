@@ -101,12 +101,12 @@
 
   environment.systemPackages = with pkgs; [
     btrfs-progs             # BTRFS management tools.
-    #lact                    # Linux AMDGPU Controller.
+    lact                    # Linux AMDGPU Controller.
     networkmanagerapplet    # NetworkManager menu.
   ];
 
-  #systemd.packages = with pkgs; [ lact ];
-  #systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+  systemd.packages = with pkgs; [ lact ];
+  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 
   # Fixes
   # Mount point '/boot' which backs the random seed file is world accessible,

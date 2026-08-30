@@ -24,14 +24,12 @@ in {
       starship.enable = true;
     };
     desktop = {
-      ai.enable = false;
+      ai.enable = true;
       firefox.enable = true;
       kitty.enable = true;
-      makemkv.enable = true;
       stylix.enable = true;
       vscodium.enable = true;
       wayland.enable = true;
-      zed.enable = false;
     };
   };
 
@@ -110,7 +108,8 @@ in {
           codium = "2";
           vesktop = "3";
           steam = "4";
-          spotify = "5";
+          gaming = "5";
+          spotify = "6";
         };
         mkLuaInline = lib.generators.mkLuaInline;
         toLua = lib.generators.toLua;
@@ -177,6 +176,9 @@ in {
           # Steam.
           (bind "${mod} + V" (dsp.focus { workspace = workspaces.steam; }) { })
           (bind "${mod} + SHIFT + V" (dsp.window.move{ workspace = workspaces.steam; }){ })
+          # Gaming (gamescope).
+          (bind "${mod} + B" (dsp.focus { workspace = workspaces.gaming; }) { })
+          (bind "${mod} + SHIFT + B" (dsp.window.move{ workspace = workspaces.gaming; }){ })
           # Music player.
           (bind "${mod} + M" (dsp.focus { workspace = workspaces.spotify; }) { })
           (bind "${mod} + SHIFT + M" (dsp.window.move{ workspace = workspaces.spotify; }){ })

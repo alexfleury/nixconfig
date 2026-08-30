@@ -90,6 +90,7 @@ in {
               focus_on_activate = true;
               key_press_enables_dpms = false;
               mouse_move_enables_dpms = true;
+              on_focus_under_fullscreen = 0;
             };
 
             xwayland.force_zero_scaling = true;
@@ -107,7 +108,7 @@ in {
           bind = let
             audioPlay = dsp.exec_cmd "playerctl play-pause";
             audioPrev = dsp.exec_cmd "playerctl previous";
-            audioNext = dsp.exec_cmd "playerctl previous";
+            audioNext = dsp.exec_cmd "playerctl next";
             audioOutMute = dsp.exec_cmd "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
             audioInMute = dsp.exec_cmd "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
             audioVolDown = dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- -l 1";
