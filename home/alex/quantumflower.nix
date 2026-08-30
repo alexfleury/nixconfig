@@ -108,7 +108,7 @@ in {
           codium = "2";
           vesktop = "3";
           steam = "4";
-          gaming = "5";
+          gamescope = "5";
           spotify = "6";
         };
         mkLuaInline = lib.generators.mkLuaInline;
@@ -177,8 +177,8 @@ in {
           (bind "${mod} + V" (dsp.focus { workspace = workspaces.steam; }) { })
           (bind "${mod} + SHIFT + V" (dsp.window.move{ workspace = workspaces.steam; }){ })
           # Gaming (gamescope).
-          (bind "${mod} + B" (dsp.focus { workspace = workspaces.gaming; }) { })
-          (bind "${mod} + SHIFT + B" (dsp.window.move{ workspace = workspaces.gaming; }){ })
+          (bind "${mod} + B" (dsp.focus { workspace = workspaces.gamescope; }) { })
+          (bind "${mod} + SHIFT + B" (dsp.window.move{ workspace = workspaces.gamescope; }){ })
           # Music player.
           (bind "${mod} + M" (dsp.focus { workspace = workspaces.spotify; }) { })
           (bind "${mod} + SHIFT + M" (dsp.window.move{ workspace = workspaces.spotify; }){ })
