@@ -5,6 +5,8 @@
 }:
 let
   user = "alex";
+  homePath = ../../../home/${user}/${config.networking.hostName};
+  homeFile = ../../../home/${user}/${config.networking.hostName}.nix;
 in rec {
 
   users.users.${user} = {
@@ -23,5 +25,12 @@ in rec {
     ];
     shell = pkgs.bash;
   };
-  home-manager.users.${user} = import ../../../home/${user}/${config.networking.hostName}.nix;
+
+  home-manager.users.${user} =
+  if builtins.pathExists homePath then
+    import homePath
+  else if builtins.pathExists homeFile then
+    import homeFile
+  else
+    {};
 }

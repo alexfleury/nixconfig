@@ -1,104 +1,9 @@
 {
-  config,
   lib,
   pkgs,
   ...
 }:
-let
-  user = "alex";
-in {
-  imports = [
-    ../common
-    ../features/cli
-    ../features/desktop
-    ./secrets.nix
-  ];
-
-  features = {
-    cli = {
-      bash.enable = true;
-      borgmatic.enable = true;
-      fastfetch.enable = true;
-      git.enable = true;
-      ssh.enable = true;
-      starship.enable = true;
-    };
-    desktop = {
-      ai.enable = true;
-      firefox.enable = true;
-      kitty.enable = true;
-      stylix.enable = true;
-      vscodium.enable = true;
-      wayland.enable = true;
-    };
-  };
-
-  home.username = user;
-  home.homeDirectory = "/home/${user}";
-
-  # User packages.
-  home.packages = with pkgs; [
-    asunder                     # Ripping audio CDs.
-    gnome-text-editor           # Simple text editor.
-    #inkscape-with-extensions    # Vector image manip software.
-    libreoffice                 # Office suite.
-    nomacs                      # Image viewer.
-    obsidian                    # Note application.
-    kdePackages.okular          # KDE pdf viewer.
-    #pastel                     # CLI to manipulate colors.
-    pavucontrol                 # Manage sound through a panel.
-    pdfarranger                 # Merge/split pdf documents and modify them.
-    proton-vpn                  # Proton VPN.
-    spotify                     # Streaming music.
-    solaar                      # For Logitech Unifying Receiver
-    ungoogled-chromium          # It supports HDR video playback.
-    #video2x                    # AI upscaling for videos.
-    vlc                         # Reading videos.
-    vesktop                     # Alternative discord app.
-    #yubioath-flutter           # Yubico authentification application.
-  ];
-
-  # Programs with options.
-  programs.freetube.enable = true;
-  programs.yt-dlp.enable = true;
-  #programs.texlive.enable = true;
-
-  # Play/pause on headphones.
-  services.mpris-proxy.enable = true;
-
-  home.sessionVariables = {
-    BROWSER = "firefox";
-    EDITOR = "vim";
-    TERMINAL = "kitty";
-  };
-
-  # Fix for "Open Terminal Here" in Thunar.
-  home.file = {
-    ".config/xfce4/helpers.rc" = {
-      text = ''TerminalEmulator=kitty'';
-      executable = false;
-    };
-  };
-
-  # Settings defaults.
-  xdg = {
-    enable = true;
-    mime.enable = true;
-    mimeApps.enable = true;
-    mimeApps.defaultApplications = {
-      "application/pdf" = [ "org.kde.okular.desktop" ];
-      "image/*" = [ "nomacs.desktop" ];
-      "video/*" = [ "vlc.desktop" ];
-      "audio/*" = [ "vlc.desktop" ];
-      "inode/directory" = [ "thunar.desktop" ];
-      "text/plain" = [ "org.gnome.TextEditor.desktop" ];
-      "x-scheme-handler/https" = [ "firefox.desktop" ];
-    };
-    userDirs.enable = true;
-    userDirs.createDirectories = true;
-    userDirs.setSessionVariables = true;
-  };
-
+{
   wayland.windowManager.hyprland = {
     settings =
       let
@@ -155,7 +60,15 @@ in {
 
         workspace_rule = map (v: { workspace = "${v}"; persistent = false; }) (builtins.attrValues workspaces);
 
-        bind = [
+        bind = let
+            audioPlay = dsp.exec_cmd "swayosd-client --playerctl play-pause";
+            audioPrev = dsp.exec_cmd "swayosd-client --playerctl prev";
+            audioNext = dsp.exec_cmd "swayosd-client --playerctl next";
+            audioOutMute = dsp.exec_cmd "swayosd-client --output-volume mute-toggle";
+            audioInMute = dsp.exec_cmd "swayosd-client --input-volume mute-toggle";
+            audioVolDown = dsp.exec_cmd "swayosd-client --output-volume -2";
+            audioVolUp = dsp.exec_cmd "swayosd-client --output-volume +2";
+          in [
           (bind "${mod} + T" (dsp.exec_cmd "uwsm app -- kitty.desktop") { })
           (bind "${mod} + E" (dsp.exec_cmd "uwsm app -- thunar.desktop") { })
           (bind "${mod} + D" (dsp.exec_cmd "rofi -show drun") { })
@@ -164,6 +77,7 @@ in {
           (bind "${mod} + W" (dsp.exec_cmd "systemctl --user is-active --quiet wlsunset && systemctl --user stop wlsunset || systemctl --user start wlsunset") { })
           (bind "${mod} + I" (dsp.exec_cmd "uwsm app -- ${lib.getExe pkgs.hyprshot-gui}") { })
           (bind "${mod} + SHIFT + I" (dsp.exec_cmd "uwsm app -- ${lib.getExe pkgs.wayscriber} -a") { })
+          (bind "CAPS + Caps_Lock" (dsp.exec_cmd "swayosd-client --caps-lock") { release = true; })
           # Firefox.
           (bind "${mod} + Z" (dsp.focus { workspace = workspaces.firefox; }) { })
           (bind "${mod} + SHIFT + Z" (dsp.window.move{ workspace = workspaces.firefox; }){ })
@@ -182,6 +96,19 @@ in {
           # Music player.
           (bind "${mod} + M" (dsp.focus { workspace = workspaces.spotify; }) { })
           (bind "${mod} + SHIFT + M" (dsp.window.move{ workspace = workspaces.spotify; }){ })
+          # Media controls.
+          (bind "XF86AudioLowerVolume" audioVolDown { repeating = true; locked = true; })
+          (bind "XF86AudioRaiseVolume" audioVolUp { repeating = true; locked = true; })
+          (bind "XF86AudioMute" audioOutMute { locked = true; })
+          (bind "XF86AudioMicMute" audioInMute { locked = true; })
+          (bind "XF86AudioPlay" audioPlay { locked = true; })
+          (bind "XF86AudioPrev" audioPrev { locked = true; })
+          (bind "XF86AudioNext" audioNext { locked = true; })
+          (bind "${mod} + SPACE" audioPlay { locked = true; })
+          (bind "${mod} + left" audioPrev { })
+          (bind "${mod} + down" audioVolDown { locked = true; })
+          (bind "${mod} + up" audioVolUp { repeating = true; locked = true; })
+          (bind "${mod} + right" audioNext{ locked = true; })
         ];
 
         window_rule = [
