@@ -105,10 +105,10 @@
           (bind "XF86AudioPrev" audioPrev { locked = true; })
           (bind "XF86AudioNext" audioNext { locked = true; })
           (bind "${mod} + SPACE" audioPlay { locked = true; })
-          (bind "${mod} + left" audioPrev { })
-          (bind "${mod} + down" audioVolDown { locked = true; })
+          (bind "${mod} + left" audioPrev { locked = true; })
+          (bind "${mod} + down" audioVolDown { repeating = true; locked = true; })
           (bind "${mod} + up" audioVolUp { repeating = true; locked = true; })
-          (bind "${mod} + right" audioNext{ locked = true; })
+          (bind "${mod} + right" audioNext { locked = true; })
         ];
 
         window_rule = [
