@@ -99,6 +99,12 @@
 
   programs.bash.enable = true;
 
+  # Run programs without installing them.
+  programs.comma = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
   environment.systemPackages = with pkgs; [
     btrfs-progs             # BTRFS management tools.
     lact                    # Linux AMDGPU Controller.

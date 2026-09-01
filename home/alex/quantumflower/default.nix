@@ -42,6 +42,7 @@ in {
   # User packages.
   home.packages = with pkgs; [
     asunder                     # Ripping audio CDs.
+    brave                       # Privacy-oriented browser.
     gnome-text-editor           # Simple text editor.
     #inkscape-with-extensions    # Vector image manip software.
     libreoffice                 # Office suite.
