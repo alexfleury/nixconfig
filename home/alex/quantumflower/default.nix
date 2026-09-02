@@ -56,17 +56,18 @@ in {
     proton-vpn                  # Proton VPN.
     spotify                     # Streaming music.
     solaar                      # For Logitech Unifying Receiver
-    ungoogled-chromium          # It supports HDR video playback.
+    #ungoogled-chromium         # It supports HDR video playback.
     #video2x                    # AI upscaling for videos.
     vlc                         # Reading videos.
-    vesktop                     # Alternative discord app.
     #yubioath-flutter           # Yubico authentification application.
   ];
 
   # Programs and services with options.
-  programs.freetube.enable = true;
-  programs.yt-dlp.enable = true;
-
+  programs = {
+    freetube.enable = true;     # YT videos.
+    vesktop.enable = true;      # Discord alternative.
+    yt-dlp.enable = true;       # CLI to download YT videos.
+  };
   services = {
     mpris-proxy.enable = true;   # Play/pause on headphones.
     swayosd.enable = true;       # OSD window for common actions.

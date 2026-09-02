@@ -20,9 +20,6 @@
     wget          # Download in CLI.
   ];
 
-  # Run programs without installing them.
-  programs.comma.enable = true;
-
   home-manager = {
     backupFileExtension = "backup";
     extraSpecialArgs = {inherit inputs outputs;};
