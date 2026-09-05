@@ -66,8 +66,8 @@
             audioNext = dsp.exec_cmd "swayosd-client --playerctl next";
             audioOutMute = dsp.exec_cmd "swayosd-client --output-volume mute-toggle";
             audioInMute = dsp.exec_cmd "swayosd-client --input-volume mute-toggle";
-            audioVolDown = dsp.exec_cmd "swayosd-client --output-volume -2";
-            audioVolUp = dsp.exec_cmd "swayosd-client --output-volume +2";
+            audioVolDown = dsp.exec_cmd "swayosd-client --output-volume -4";
+            audioVolUp = dsp.exec_cmd "swayosd-client --output-volume +4";
           in [
           (bind "${mod} + T" (dsp.exec_cmd "uwsm app -- kitty.desktop") { })
           (bind "${mod} + E" (dsp.exec_cmd "uwsm app -- thunar.desktop") { })

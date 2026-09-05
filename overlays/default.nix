@@ -27,7 +27,6 @@
       doInstallCheck = false;
 
       buildInputs = (old.buildInputs or []) ++ [
-        final.libcava
         final.modemmanager
       ];
 
@@ -35,11 +34,15 @@
         final.pkg-config
       ];
 
+      mesonFlags = (old.mesonFlags or []) ++ [
+        "-Dcava=disabled"
+      ];
+
       src = prev.fetchFromGitHub {
         owner = "Alexays";
         repo = "Waybar";
-        rev = "98b2a563f398f63f99ec8a6f7fb2b19a172abd5d";
-        hash = "sha256-gVYj72W4L5FJwtfkT/m8PxgDKBT/3HIq1BdnxhFtlPQ=";
+        rev = "6d60c8e02be67bb85bb9b1ea803f2fbcf0722002";
+        hash = "sha256-G6AcGuevhkYflQHhJq9GnLhEMgcI51Y6MYKBQvdRPDc=";
       };
     });
 

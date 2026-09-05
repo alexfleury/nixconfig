@@ -176,7 +176,7 @@ in {
             max-volume = 100.0;
             on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
             on-click-right = "pavucontrol";
-            scroll-step = 2.0;
+            scroll-step = 4.0;
             tooltip = false;
           };
         };
