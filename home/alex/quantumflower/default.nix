@@ -45,9 +45,7 @@ in {
     brave                       # Privacy-oriented browser.
     gnome-text-editor           # Simple text editor.
     #inkscape-with-extensions    # Vector image manip software.
-    libreoffice                 # Office suite.
     nomacs                      # Image viewer.
-    obsidian                    # Note application.
     kdePackages.okular          # KDE pdf viewer.
     #pastel                     # CLI to manipulate colors.
     pavucontrol                 # Manage sound through a panel.
@@ -65,6 +63,8 @@ in {
   # Programs and services with options.
   programs = {
     freetube.enable = true;     # YT videos.
+    libreoffice.enable= true;   # Office suite.
+    obsidian.enable = true;     # Note application.
     vesktop.enable = true;      # Discord alternative.
     yt-dlp.enable = true;       # CLI to download YT videos.
   };
