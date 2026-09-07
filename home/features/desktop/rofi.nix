@@ -6,9 +6,9 @@
 }:
 with lib; let
   inherit (config.lib.formats.rasi) mkLiteral;
-  cfg = config.features.desktop.wayland.rofi;
+  cfg = config.features.desktop.rofi;
 in {
-  options.features.desktop.wayland.rofi.enable = mkEnableOption "enable rofi";
+  options.features.desktop.rofi.enable = mkEnableOption "enable rofi";
 
   config = mkIf cfg.enable {
     programs.rofi = {

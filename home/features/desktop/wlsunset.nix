@@ -4,9 +4,9 @@
   ...
 }:
 with lib; let
-  cfg = config.features.desktop.wayland.wlsunset;
+  cfg = config.features.desktop.wlsunset;
 in {
-  options.features.desktop.wayland.wlsunset.enable = mkEnableOption "enable wlsunset";
+  options.features.desktop.wlsunset.enable = mkEnableOption "enable wlsunset";
 
   config = mkIf cfg.enable {
     services.wlsunset = {

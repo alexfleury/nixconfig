@@ -6,7 +6,7 @@
 }:
 with lib; let
   background_transparency = "0.5";
-  cfg = config.features.desktop.wayland.waybar;
+  cfg = config.features.desktop.waybar;
   powerMenuConfigFile = pkgs.writeText "powermenu.xml" ''
   <?xml version="1.0" encoding="UTF-8"?>
   <interface>
@@ -43,7 +43,7 @@ with lib; let
   </interface>
   '';
 in {
-  options.features.desktop.wayland.waybar.enable = mkEnableOption "enable waybar";
+  options.features.desktop.waybar.enable = mkEnableOption "enable waybar";
 
   config = mkIf cfg.enable {
     # Don't change the whole Waybar CSS.

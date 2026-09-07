@@ -18,16 +18,16 @@ in {
       # Option discussion (if set to false).
       # https://github.com/nix-community/stylix/issues/1832#issuecomment-3169274982
       #overlays.enable = false;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
-      image = ../../../wallpapers/a_pixel_art_of_a_city_street.png;
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+      image = ../../../wallpapers/trees.jpg;
       icons = {
         enable = true;
         dark = "Dracula";
-        package = pkgs.dracula-icon-theme;
+        package = pkgs.nordzy-icon-theme;
       };
       cursor = {
-        package = pkgs.qogir-icon-theme;
-        name = "Qogir Cursors";
+        package = pkgs.nordzy-cursor-theme;
+        name = "Nordzy-hyprcursors";
         size = 28;
       };
       fonts = {
@@ -56,9 +56,9 @@ in {
       };
       opacity = {
         applications = 1.0;
-        desktop = 1.0;
+        desktop = 0.0;
         popups = 0.8;
-        terminal = 0.8;
+        terminal = 0.9;
       };
       polarity = "dark";
     };

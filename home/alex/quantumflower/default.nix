@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -12,9 +13,7 @@ in {
     ../../features/cli
     ../../features/desktop
     ../secrets.nix
-    ./hyprland.nix
-    ./waybar.nix
-    ./xdg.nix
+    (inputs.import-tree.matchNot ".*/default\\.nix" ./.)
   ];
 
   features = {
@@ -29,10 +28,17 @@ in {
     desktop = {
       ai.enable = true;
       firefox.enable = true;
+      hypridle.enable = true;
+      hyprlock.enable = true;
+      hyprpaper.enable = true;
       kitty.enable = true;
+      rofi.enable = true;
       stylix.enable = true;
+      swaync.enable = false;
       vscodium.enable = true;
-      wayland.enable = true;
+      waybar.enable = false;
+      wlsunset.enable = true;
+      wayle.enable = true;
     };
   };
 
@@ -49,7 +55,7 @@ in {
     kdePackages.okular          # KDE pdf viewer.
     #pastel                     # CLI to manipulate colors.
     pavucontrol                 # Manage sound through a panel.
-    #playerctl
+    #playerctl                  # Control media.
     pdfarranger                 # Merge/split pdf documents and modify them.
     proton-vpn                  # Proton VPN.
     spotify                     # Streaming music.

@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.features.desktop.wayland.swaync;
+  cfg = config.features.desktop.swaync;
 in {
-  options.features.desktop.wayland.swaync.enable = mkEnableOption "enable swaync";
+  options.features.desktop.swaync.enable = mkEnableOption "enable swaync";
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [

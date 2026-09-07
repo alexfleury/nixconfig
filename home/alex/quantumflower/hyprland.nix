@@ -61,13 +61,13 @@
         workspace_rule = map (v: { workspace = "${v}"; persistent = false; }) (builtins.attrValues workspaces);
 
         bind = let
-            audioPlay = dsp.exec_cmd "swayosd-client --playerctl play-pause";
-            audioPrev = dsp.exec_cmd "swayosd-client --playerctl prev";
-            audioNext = dsp.exec_cmd "swayosd-client --playerctl next";
-            audioOutMute = dsp.exec_cmd "swayosd-client --output-volume mute-toggle";
-            audioInMute = dsp.exec_cmd "swayosd-client --input-volume mute-toggle";
-            audioVolDown = dsp.exec_cmd "swayosd-client --output-volume -4";
-            audioVolUp = dsp.exec_cmd "swayosd-client --output-volume +4";
+            audioPlay = dsp.exec_cmd "wayle media play-pause";
+            audioPrev = dsp.exec_cmd "wayle media previous";
+            audioNext = dsp.exec_cmd "wayle media next";
+            audioOutMute = dsp.exec_cmd "wayle audio output-mute";
+            audioInMute = dsp.exec_cmd "wayle audio input-mute";
+            audioVolDown = dsp.exec_cmd "wayle audio output-volume -4";
+            audioVolUp = dsp.exec_cmd "wayle audio output-volume +4";
           in [
           (bind "${mod} + T" (dsp.exec_cmd "uwsm app -- kitty.desktop") { })
           (bind "${mod} + E" (dsp.exec_cmd "uwsm app -- thunar.desktop") { })

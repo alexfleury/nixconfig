@@ -4,9 +4,9 @@
   ...
 }:
 with lib; let
-  cfg = config.features.desktop.wayland.hypridle;
+  cfg = config.features.desktop.hypridle;
 in {
-  options.features.desktop.wayland.hypridle.enable = mkEnableOption "enable hypridle";
+  options.features.desktop.hypridle.enable = mkEnableOption "enable hypridle";
 
   config = mkIf cfg.enable {
     services.hypridle = {
