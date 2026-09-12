@@ -34,9 +34,7 @@ in {
       kitty.enable = true;
       rofi.enable = true;
       stylix.enable = true;
-      swaync.enable = false;
       vscodium.enable = true;
-      waybar.enable = false;
       wlsunset.enable = true;
       wayle.enable = true;
     };
