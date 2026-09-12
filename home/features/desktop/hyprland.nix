@@ -69,7 +69,7 @@ in {
             };
 
             decoration = {
-              inactive_opacity = 0.8;
+              inactive_opacity = 0.9;
               rounding = 10;
             };
 

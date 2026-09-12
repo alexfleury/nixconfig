@@ -4,9 +4,9 @@
   ...
 }:
 with lib; let
-  cfg = config.features.desktop.wayland.hyprpaper;
+  cfg = config.features.desktop.hyprpaper;
 in {
-  options.features.desktop.wayland.hyprpaper.enable = mkEnableOption "enable hyprpaper";
+  options.features.desktop.hyprpaper.enable = mkEnableOption "enable hyprpaper";
 
   config = mkIf cfg.enable {
     services.hyprpaper.enable = lib.mkForce cfg.enable;
