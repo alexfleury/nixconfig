@@ -22,12 +22,12 @@ in {
       image = ../../../wallpapers/trees.jpg;
       icons = {
         enable = true;
-        dark = "Dracula";
+        dark = "Nordzy-dark";
         package = pkgs.nordzy-icon-theme;
       };
       cursor = {
         package = pkgs.nordzy-cursor-theme;
-        name = "Nordzy-hyprcursors";
+        name = "Nordzy-cursors";
         size = 28;
       };
       fonts = {
