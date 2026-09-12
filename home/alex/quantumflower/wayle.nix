@@ -17,8 +17,20 @@
               "media"
             ];
             right = [
-              "cpu"
-              "custom-gpu"
+              {
+                name = "cpu";
+                modules = [
+                  "cpu"
+                  "custom-cputemp"
+                ];
+              }
+              {
+                name = "gpu";
+                modules = [
+                  "custom-gpufreq"
+                  "custom-gputemp"
+                ];
+              }
               "volume"
               "network"
               "bluetooth"
@@ -44,19 +56,54 @@
             icon-color = "fg-muted";
             icon-name = "tb-image-generation";
             icon-show = true;
-            id = "gpu";
+            id = "gpufreq";
             interval-ms = 2000;
             label-color = "fg-muted";
             label-max-length = 0;
             label-show = true;
-            left-click = "";
-            middle-click = "";
             mode = "poll";
             restart-interval-ms = 1000;
             restart-policy = "never";
-            right-click = "";
-            scroll-down = "";
-            scroll-up = "";
+          }
+          {
+            border-color = "auto";
+            border-show = false;
+            button-bg-color = "bg-surface-elevated";
+            command = "${lib.getExe pkgs.lm_sensors} amdgpu-pci-0c00 | awk '/^edge:/ {print $2}' | sed 's/^+//'";
+            format = "{{ output }}";
+            hide-if-empty = false;
+            icon-bg-color = "bg-base";
+            icon-color = "fg-muted";
+            icon-name = "ld-thermometer-symbolic";
+            icon-show = true;
+            id = "gputemp";
+            interval-ms = 2000;
+            label-color = "fg-muted";
+            label-max-length = 0;
+            label-show = true;
+            mode = "poll";
+            restart-interval-ms = 1000;
+            restart-policy = "never";
+          }
+          {
+            border-color = "auto";
+            border-show = false;
+            button-bg-color = "bg-surface-elevated";
+            command = "${lib.getExe pkgs.lm_sensors} k10temp-pci-00c3 | awk '/^Tctl:/ {print $2}' | sed 's/^+//'";
+            format = "{{ output }}";
+            hide-if-empty = false;
+            icon-bg-color = "bg-base";
+            icon-color = "fg-muted";
+            icon-name = "ld-thermometer-symbolic";
+            icon-show = true;
+            id = "cputemp";
+            interval-ms = 2000;
+            label-color = "fg-muted";
+            label-max-length = 0;
+            label-show = true;
+            mode = "poll";
+            restart-interval-ms = 1000;
+            restart-policy = "never";
           }
         ];
         hyprland-workspaces.workspace-map = {

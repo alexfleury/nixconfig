@@ -29,7 +29,7 @@ in {
               label-color = "fg-default";
             };
             cpu = {
-              format = "{{ avg_freq_ghz }} GHz {{temp_c}} °C";
+              format = "{{ avg_freq_ghz }} GHz";
               icon-bg-color = "bg-base";
               icon-color = "fg-muted";
               label-color = "fg-muted";
