@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="24"
+   height="24"
+   viewBox="0 0 24 24"
+   fill="none"
+   stroke="currentColor"
+   stroke-width="2"
+   stroke-linecap="round"
+   stroke-linejoin="round"
+   class="icon icon-tabler icons-tabler-outline icon-tabler-temperature"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="temperature-0.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs3" />
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="34.265216"
+     inkscape:cx="20.195407"
+     inkscape:cy="14.635834"
+     inkscape:window-width="2546"
+     inkscape:window-height="1383"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3" />
+  <path
+     stroke="none"
+     d="M0 0h24v24H0z"
+     fill="none"
+     id="path1" />
+  <path
+     d="M10 13.5a4 4 0 1 0 4 0v-8.5a2 2 0 0 0 -4 0v8.5"
+     id="path2" />
+  <path
+     d="M 11.289768,15.57213 C 10.030824,16.298981 10.547097,18.222508 12,18.222508 c 1.452903,0 1.969176,-1.923527 0.710232,-2.650378 v -0.91649 c -8.98e-4,-0.946076 -1.421362,-0.946076 -1.420464,0 v 0.91649"
+     id="path2-6"
+     style="fill:#000000;fill-opacity:1;stroke-width:0;stroke-dasharray:none"
+     sodipodi:nodetypes="cscccc" />
+</svg>

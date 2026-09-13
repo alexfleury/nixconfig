@@ -48,7 +48,7 @@ in {
     asunder                     # Ripping audio CDs.
     brave                       # Privacy-oriented browser.
     gnome-text-editor           # Simple text editor.
-    #inkscape-with-extensions    # Vector image manip software.
+    inkscape-with-extensions    # Vector image manip software.
     nomacs                      # Image viewer.
     kdePackages.okular          # KDE pdf viewer.
     #pastel                     # CLI to manipulate colors.
@@ -74,7 +74,7 @@ in {
   };
   services = {
     mpris-proxy.enable = true;   # Play/pause on headphones.
-    swayosd.enable = false;       # OSD window for common actions.
+    swayosd.enable = false;      # OSD window for common actions.
   };
 
   home.sessionVariables = {
