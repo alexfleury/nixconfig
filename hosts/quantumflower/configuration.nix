@@ -105,6 +105,9 @@
     enableBashIntegration = true;
   };
 
+  # Fix for running uv in imperative mode.
+  programs.nix-ld.enable = true;
+
   environment.systemPackages = with pkgs; [
     btrfs-progs             # BTRFS management tools.
     lact                    # Linux AMDGPU Controller.

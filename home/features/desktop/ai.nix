@@ -14,6 +14,9 @@ in {
     services.ollama = {
       enable = true;
       package = pkgs.ollama-vulkan;
+      environmentVariables = {
+        OLLAMA_CONTEXT_LENGTH = "32768";
+      };
     };
 
     # Plugins to install:
@@ -43,7 +46,7 @@ in {
           }
           {
             name = "ANTHROPIC_MODEL";
-            value = "gemma4:e4b";
+            value = "deepseek-r1";
           }
           {
             name = "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC";

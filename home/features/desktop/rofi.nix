@@ -14,8 +14,8 @@ in {
     programs.rofi = {
       enable = true;
       package = pkgs.rofi;
-      location = "center";
-      extraConfig = {
+      settings = {
+        location = 0;
         display-calc = " Calculator";
         display-drun = " Apps";
         display-recursivebrowser = " Files";

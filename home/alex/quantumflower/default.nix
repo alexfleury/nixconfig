@@ -20,6 +20,7 @@ in {
     cli = {
       bash.enable = true;
       borgmatic.enable = true;
+      dev.enable = true;
       fastfetch.enable = true;
       git.enable = true;
       ssh.enable = true;

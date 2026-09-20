@@ -27,14 +27,10 @@
 
   programs.bat.enable = true;
 
-  programs.carapace = {
-    enable = true;
-    enableBashIntegration = true;
-  };
+  programs.carapace.enable = true;
 
   programs.direnv = {
     enable = true;
-    enableBashIntegration = true;
     nix-direnv.enable = true;
   };
 
@@ -48,19 +44,13 @@
     ];
   };
 
-  programs.fzf = {
-    enable = true;
-    enableBashIntegration = true;
-  };
+  programs.fzf.enable = true;
 
   programs.yazi = {
     enable = true;
-    enableBashIntegration = true;
     shellWrapperName = "y";
   };
 
-  programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
-  };
+  programs.zoxide.enable = true;
+
 }

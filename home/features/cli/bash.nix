@@ -34,5 +34,13 @@ in {
         "HISTTIMEFORMAT=\"%F %T\""
       ];
     };
+
+    programs = {
+      carapace.enableBashIntegration = true;
+      direnv.enableBashIntegration = true;
+      fzf.enableBashIntegration = true;
+      yazi.enableBashIntegration = true;
+      zoxide.enableBashIntegration = true;
+    };
   };
 }
