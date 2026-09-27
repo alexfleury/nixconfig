@@ -2,7 +2,12 @@
 
   boot = {
     # The kernel param "preempt=full" fixed buzzing sound in Hogwarts Legacy.
-    kernelParams = [ "quiet" "splash" "consoleblank=60" ];
+    kernelParams = [
+      "quiet"
+      "splash"
+      "consoleblank=60"
+      "systemd.restore_state=1"
+    ];
     # sg is for the usv CD drive.
     kernelModules = [ "sg" ];
     kernelPackages = pkgs.linuxPackages_zen;
