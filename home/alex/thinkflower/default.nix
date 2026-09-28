@@ -27,7 +27,6 @@ in {
       starship.enable = true;
     };
     desktop = {
-      ai.enable = false;
       firefox.enable = true;
       #hypridle.enable = true;
       #hyprlock.enable = true;
@@ -48,7 +47,7 @@ in {
   home.packages = with pkgs; [
     gnome-text-editor           # Simple text editor.
     nomacs                      # Image viewer.
-    kdePackages.okular          # KDE pdf viewer.
+    #kdePackages.okular          # KDE pdf viewer.
     pavucontrol                 # Manage sound through a panel.
     proton-vpn                  # Proton VPN.
     spotify                     # Streaming music.
@@ -57,10 +56,10 @@ in {
 
   # Programs and services with options.
   programs = {
-    freetube.enable = true;     # YT videos.
-    libreoffice.enable= true;   # Office suite.
-    vesktop.enable = true;      # Discord alternative.
-    yt-dlp.enable = true;       # CLI to download YT videos.
+    #freetube.enable = true;     # YT videos.
+    #libreoffice.enable= true;   # Office suite.
+    #vesktop.enable = true;      # Discord alternative.
+    #yt-dlp.enable = true;       # CLI to download YT videos.
   };
   services = {
     mpris-proxy.enable = true;   # Play/pause on headphones.
