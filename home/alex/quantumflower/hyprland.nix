@@ -54,7 +54,7 @@
             cm = "hdr";
             sdrbrightness = 1.2;
             sdrsaturation = 1.1;
-            vrr = 2;
+            vrr = 3;
           }
         ];
 
