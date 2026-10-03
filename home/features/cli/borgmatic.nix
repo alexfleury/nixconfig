@@ -17,7 +17,8 @@ in {
       enable = true;
       backups = {
         data = {
-          hooks.extraConfig = {
+          settings = {
+            archive_name_format = "{hostname}_{now}";
             commands = [
               {
                 before = "repository";
@@ -27,9 +28,9 @@ in {
                 ];
               }
             ];
-          };
-
-          location = {
+            keep_daily = 1;
+            keep_monthly = 1;
+            keep_yearly = -1;
             patterns = [
               "R /mnt/Data"
               "- mnt/Data/SteamLibrary"
@@ -47,22 +48,13 @@ in {
             ];
           };
 
-          retention = {
-            keepDaily = 1;
-            keepMonthly = 1;
-            keepYearly = -1;
-          };
-
-          output.extraConfig = {
-            archive_name_format = "{hostname}_{now}";
-          };
-
           # TODO: add encryption.
           #storage.encryptionPasscommand = "${pkgs.password-store}/bin/pass borg-repo";
         };
 
         grimdawn = {
-          hooks.extraConfig = {
+          settings = {
+            archive_name_format = "gdsave_{now}";
             commands = [
               {
                 before = "repository";
@@ -71,14 +63,13 @@ in {
                 ];
               }
             ];
-          };
-
-          location = {
-            sourceDirectories = [
+            keep_daily = 1;
+            keep_monthly = 1;
+            keep_yearly = -1;
+            source_directories = [
               "${config.home.homeDirectory}/.local/share/Steam/steamapps/compatdata/219990/pfx/drive_c/users/steamuser/Documents/My Games/Grim Dawn/save"
               "${config.home.homeDirectory}/GDStash"
             ];
-
             repositories = [
               {
                 path = "/mnt/Data/GDSaves";
@@ -86,18 +77,7 @@ in {
               }
             ];
           };
-
-          retention = {
-            keepDaily = 1;
-            keepMonthly = 1;
-            keepYearly = -1;
-          };
-
-          output.extraConfig = {
-            archive_name_format = "gdsave_{now}";
-          };
         };
-
       };
     };
   };
