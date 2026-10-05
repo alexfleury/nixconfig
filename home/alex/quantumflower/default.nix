@@ -75,7 +75,6 @@ in {
   };
   services = {
     mpris-proxy.enable = true;   # Play/pause on headphones.
-    swayosd.enable = false;      # OSD window for common actions.
   };
 
   home.sessionVariables = {

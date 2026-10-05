@@ -14,6 +14,7 @@
     exfat         # exFat support.
     exfatprogs    # exFat utilities.
     gptfdisk      # Better tool for partionning disks.
+    jq            # Formatting JSON outputs.
     psmisc        # For fuse and proc file systems.
     unzip         # Unzipping archives.
     vim           # Vim text editor.

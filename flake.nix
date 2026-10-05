@@ -67,7 +67,7 @@
       };
       tvflower = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-         system = "x86_64-linux";
+        system = "x86_64-linux";
         modules = [
           ./hosts/tvflower
           home-manager.nixosModules.home-manager
