@@ -110,8 +110,11 @@
     enableBashIntegration = true;
   };
 
-  # Fix for running uv in imperative mode.
-  programs.nix-ld.enable = true;
+  # Fix for running software in imperative mode.
+  programs.nix-ld = {
+    enable = true;
+    libraries = pkgs.steam-run.args.multiPkgs pkgs;
+  };
 
   environment.systemPackages = with pkgs; [
     btrfs-progs             # BTRFS management tools.

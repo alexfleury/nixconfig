@@ -46,10 +46,11 @@ in {
 
   # User packages.
   home.packages = with pkgs; [
+    ankama-launcher
     asunder                     # Ripping audio CDs.
     brave                       # Privacy-oriented browser.
     gnome-text-editor           # Simple text editor.
-    inkscape-with-extensions    # Vector image manip software.
+    #inkscape-with-extensions   # Vector image manip software.
     nomacs                      # Image viewer.
     kdePackages.okular          # KDE pdf viewer.
     #pastel                     # CLI to manipulate colors.

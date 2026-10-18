@@ -59,7 +59,7 @@ in {
       bar = {
         layout = [
           {
-            center = [ "clock" ];
+            center = [ "clock" "weather" ];
             left = [
               "power"
               "hyprland-workspaces"

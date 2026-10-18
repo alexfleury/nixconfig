@@ -26,7 +26,8 @@ in {
           };
           clock = {
             format = "%d/%m/%y (%a) %R";
-            label-color = "fg-default";
+            label-color = "fg-muted";
+            right-click = "";
           };
           cpu = {
             format = "{{ avg_freq_ghz }} GHz";
@@ -54,6 +55,7 @@ in {
           };
           notifications = {
             border-color = "yellow";
+            label-show = false;
             icon-bg-color = "yellow";
             label-color = "fg-muted";
           };
@@ -76,6 +78,7 @@ in {
             scroll-up = "wayle audio output-volume +4";
           };
           weather = {
+            label-color = "fg-muted";
             location = "Sherbrooke";
             time-format = "24h";
           };

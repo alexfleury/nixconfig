@@ -18,17 +18,21 @@ in {
       # Option discussion (if set to false).
       # https://github.com/nix-community/stylix/issues/1832#issuecomment-3169274982
       #overlays.enable = false;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
-      image = ../../../wallpapers/trees.jpg;
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/darcula.yaml";
+      image = pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/mylinuxforwork/wallpaper/main/cyberpunk1.jpg";
+        hash = "sha256-ymXLfEGtrRblTC6m2SpkkaPTto/m1U4wEQRPXReUjME=";
+      };
       icons = {
         enable = true;
-        dark = "Nordzy-dark";
-        package = pkgs.nordzy-icon-theme;
+        package = pkgs.papirus-icon-theme;
+        dark = "Papirus-Dark";
+        light = "Papirus";
       };
       cursor = {
-        package = pkgs.nordzy-cursor-theme;
-        name = "Nordzy-cursors";
-        size = 28;
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Classic";
+        size = 24;
       };
       fonts = {
         monospace = {

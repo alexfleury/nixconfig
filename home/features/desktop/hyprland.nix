@@ -120,8 +120,8 @@ in {
             (bind "${mod} + mouse:273" dsp.window.resize { mouse = true; })
             (bind "${mod} + F" dsp.window.fullscreen { })
             (bind "${mod} + L" (dsp.exec_cmd "lock-session") { })
-            (bind "${mod} + S" dsp.workspace.toggle_special { })
-            (bind "${mod} + SHIFT + S" (dsp.window.move{ workspace = "special:magic"; }) { })
+            #(bind "${mod} + S" dsp.workspace.toggle_special { })
+            #(bind "${mod} + SHIFT + S" (dsp.window.move{ workspace = "special:magic"; }) { })
             (bind "${mod} + mouse_down" (dsp.focus { workspace = "e+1"; }) { })
             (bind "${mod} + mouse_up" (dsp.focus { workspace = "e-1"; }) { })
           ]
