@@ -18,7 +18,10 @@ in {
       # tip: you can automatically translate your TOML config to Nix by running
       # nix-instantiate --eval --expr 'builtins.fromTOML (builtins.readFile ./config.toml)' | nixfmt
       settings = {
-        bar.scale = 0.85;
+        bar = {
+          bg = "transparent";
+          scale = 0.85;
+        };
         modules = {
           bluetooth = {
             label-color = "fg-muted";
