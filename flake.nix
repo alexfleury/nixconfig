@@ -65,6 +65,17 @@
           agenix.nixosModules.default
         ];
       };
+      thinkflower = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/thinkflower
+          home-manager.nixosModules.home-manager
+          stylix.nixosModules.stylix
+          agenix.nixosModules.default
+          disko.nixosModules.disko
+        ];
+      };
       tvflower = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         system = "x86_64-linux";
