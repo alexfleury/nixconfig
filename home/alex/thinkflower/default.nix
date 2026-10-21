@@ -19,7 +19,6 @@ in {
   features = {
     cli = {
       bash.enable = true;
-      borgmatic.enable = false;
       dev.enable = true;
       fastfetch.enable = true;
       git.enable = true;
@@ -28,15 +27,15 @@ in {
     };
     desktop = {
       firefox.enable = true;
-      #hypridle.enable = true;
-      #hyprlock.enable = true;
-      #hyprpaper.enable = true;
+      hypridle.enable = true;
+      hyprlock.enable = true;
+      hyprpaper.enable = true;
       kitty.enable = true;
-      #rofi.enable = true;
+      rofi.enable = true;
       stylix.enable = true;
       vscodium.enable = true;
-      #wlsunset.enable = true;
-      #wayle.enable = true;
+      wlsunset.enable = true;
+      wayle.enable = true;
     };
   };
 
@@ -56,10 +55,10 @@ in {
 
   # Programs and services with options.
   programs = {
-    #freetube.enable = true;     # YT videos.
-    #libreoffice.enable= true;   # Office suite.
-    #vesktop.enable = true;      # Discord alternative.
-    #yt-dlp.enable = true;       # CLI to download YT videos.
+    freetube.enable = true;     # YT videos.
+    libreoffice.enable= true;   # Office suite.
+    vesktop.enable = true;      # Discord alternative.
+    yt-dlp.enable = true;       # CLI to download YT videos.
   };
   services = {
     mpris-proxy.enable = true;   # Play/pause on headphones.

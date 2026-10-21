@@ -33,6 +33,8 @@
   i18n.defaultLocale = "en_CA.UTF-8";
   time.timeZone = "America/Toronto";
 
+  hardware.enableRedistributableFirmware = true;
+
   # Controlling monitor settings via software.
   hardware.i2c.enable = true;
 

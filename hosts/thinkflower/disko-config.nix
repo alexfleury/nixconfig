@@ -1,5 +1,5 @@
 let
-  sdaId = "ata-SAMSUNG_MZNTY256HDHP-000L7_S305NB0J340095";
+  sdaId = "nvme-Micron_2300_NVMe_512GB__21112E209A6D";
 in
 {
   disko.devices = {
@@ -14,7 +14,7 @@ in
           partitions = {
             ESP = {
               type = "EF00";
-              size = "1G";
+              size = "2G";
 
               content = {
                 type = "filesystem";
