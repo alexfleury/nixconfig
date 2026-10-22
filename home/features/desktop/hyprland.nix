@@ -94,12 +94,12 @@ in {
           };
 
           workspace_rule = [
-            { workspace = "11"; persistent = false; default = true; }
-            { workspace = "12"; persistent = false; }
-            { workspace = "13"; persistent = false; }
-            { workspace = "14"; persistent = false; }
-            { workspace = "15"; persistent = false; }
-            { workspace = "16"; persistent = false; }
+            { workspace = "1"; persistent = true; default = true; }
+            { workspace = "2"; persistent = true; }
+            { workspace = "3"; persistent = true; }
+            { workspace = "4"; persistent = true; }
+            { workspace = "5"; persistent = true; }
+            { workspace = "6"; persistent = true; }
           ];
 
           bind = lib.flatten [
@@ -127,14 +127,14 @@ in {
           ]
           ++ (
             builtins.concatLists (
-              builtins.genList (i:
-                let ws = i + 11;
+              builtins.genList (x:
+                let k = x + 9;
                 in [
-                  (bind "${mod} + code:1${toString i}" (dsp.focus { workspace = "${toString ws}"; }) { })
-                  (bind "${mod} + SHIFT + code:1${toString i}" (dsp.window.move { workspace = "${toString ws}"; }) { })
+                  (bind "${mod} + code:${toString k}" (dsp.focus { workspace = "${toString x}"; }) { })
+                  (bind "${mod} + SHIFT + code:${toString k}" (dsp.window.move { workspace = "${toString x}"; }) { })
                 ]
               )
-            6)
+            7)
           );
 
           window_rule = [

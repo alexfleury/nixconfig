@@ -41,12 +41,12 @@ in {
           hyprland-workspaces = {
             display-mode = "icon";
             workspace-map = {
-              "11".icon = "tb-dice-1";
-              "12".icon = "tb-dice-2";
-              "13".icon = "tb-dice-3";
-              "14".icon = "tb-dice-4";
-              "15".icon = "tb-dice-5";
-              "16".icon = "tb-dice-6";
+              "1".icon = "tb-dice-1";
+              "2".icon = "tb-dice-2";
+              "3".icon = "tb-dice-3";
+              "4".icon = "tb-dice-4";
+              "5".icon = "tb-dice-5";
+              "6".icon = "tb-dice-6";
             };
             workspace-padding = 0.6;
           };

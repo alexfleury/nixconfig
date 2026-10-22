@@ -54,7 +54,7 @@
           }
         ];
 
-        workspace_rule = map (v: { workspace = "${v}"; persistent = false; }) (builtins.attrValues workspaces);
+        #workspace_rule = map (v: { workspace = "${v}"; persistent = false; }) (builtins.attrValues workspaces);
 
         bind = let
             audioPlay = dsp.exec_cmd "wayle media play-pause";
@@ -69,29 +69,28 @@
           (bind "${mod} + E" (dsp.exec_cmd "uwsm app -- thunar.desktop") { })
           (bind "${mod} + D" (dsp.exec_cmd "rofi -show drun") { })
           (bind "ALT + TAB" (dsp.exec_cmd "rofi -show window -matching fuzzy") { })
-          (bind "CTRL + ALT" (dsp.exec_cmd "rofi -show top") { })
           (bind "${mod} + W" (dsp.exec_cmd "systemctl --user is-active --quiet wlsunset && systemctl --user stop wlsunset || systemctl --user start wlsunset") { })
           (bind "${mod} + I" (dsp.exec_cmd "uwsm app -- ${lib.getExe pkgs.hyprshot-gui}") { })
           (bind "${mod} + SHIFT + I" (dsp.exec_cmd "uwsm app -- ${lib.getExe pkgs.wayscriber} -a") { })
           (bind "CAPS + Caps_Lock" (dsp.exec_cmd "swayosd-client --caps-lock") { release = true; })
           # Firefox.
-          (bind "${mod} + Z" (dsp.focus { workspace = workspaces.firefox; }) { })
-          (bind "${mod} + SHIFT + Z" (dsp.window.move{ workspace = workspaces.firefox; }){ })
+          #(bind "${mod} + Z" (dsp.focus { workspace = workspaces.firefox; }) { })
+          #(bind "${mod} + SHIFT + Z" (dsp.window.move{ workspace = workspaces.firefox; }){ })
           # Codium.
-          (bind "${mod} + X" (dsp.focus { workspace = workspaces.codium; }) { })
-          (bind "${mod} + SHIFT + X" (dsp.window.move{ workspace = workspaces.codium; }){ })
+          #(bind "${mod} + X" (dsp.focus { workspace = workspaces.codium; }) { })
+          #(bind "${mod} + SHIFT + X" (dsp.window.move{ workspace = workspaces.codium; }){ })
           # Discord / Vesktop.
-          (bind "${mod} + C" (dsp.focus { workspace = workspaces.vesktop; }) { })
-          (bind "${mod} + SHIFT + C" (dsp.window.move{workspace = workspaces.vesktop;}){ })
+          #(bind "${mod} + C" (dsp.focus { workspace = workspaces.vesktop; }) { })
+          #(bind "${mod} + SHIFT + C" (dsp.window.move{workspace = workspaces.vesktop;}){ })
           # Steam.
-          (bind "${mod} + V" (dsp.focus { workspace = workspaces.steam; }) { })
-          (bind "${mod} + SHIFT + V" (dsp.window.move{ workspace = workspaces.steam; }){ })
+          #(bind "${mod} + V" (dsp.focus { workspace = workspaces.steam; }) { })
+          #(bind "${mod} + SHIFT + V" (dsp.window.move{ workspace = workspaces.steam; }){ })
           # Gaming (gamescope).
-          (bind "${mod} + B" (dsp.focus { workspace = workspaces.gamescope; }) { })
-          (bind "${mod} + SHIFT + B" (dsp.window.move{ workspace = workspaces.gamescope; }){ })
+          #(bind "${mod} + B" (dsp.focus { workspace = workspaces.gamescope; }) { })
+          #(bind "${mod} + SHIFT + B" (dsp.window.move{ workspace = workspaces.gamescope; }){ })
           # Music player.
-          (bind "${mod} + M" (dsp.focus { workspace = workspaces.spotify; }) { })
-          (bind "${mod} + SHIFT + M" (dsp.window.move{ workspace = workspaces.spotify; }){ })
+          #(bind "${mod} + M" (dsp.focus { workspace = workspaces.spotify; }) { })
+          #(bind "${mod} + SHIFT + M" (dsp.window.move{ workspace = workspaces.spotify; }){ })
           # Media controls.
           (bind "XF86AudioLowerVolume" audioVolDown { repeating = true; locked = true; })
           (bind "XF86AudioRaiseVolume" audioVolUp { repeating = true; locked = true; })
@@ -141,16 +140,16 @@
             match.class = "^(libreoffice.*)$";
             suppress_event = "maximize";
           }
-        ]
-        ++ lib.mapAttrsToList
-          (name: value: { match.class = "^(${name})$"; workspace = "${value}"; }) workspaces;
+        ];
+        #++ lib.mapAttrsToList
+        #  (name: value: { match.class = "^(${name})$"; workspace = "${value}"; }) workspaces;
 
         on = {
           _args = [
             "hyprland.start"
             (lib.generators.mkLuaInline ''
               function()
-                hl.dispatch(hl.dsp.focus({ workspace = 11 }))
+                hl.dispatch(hl.dsp.focus({ workspace = 1 }))
                 hl.exec_cmd("protonvpn-app")
               end
             '')
