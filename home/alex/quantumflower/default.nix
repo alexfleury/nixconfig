@@ -46,7 +46,7 @@ in {
 
   # User packages.
   home.packages = with pkgs; [
-    ankama-launcher
+    ankama-launcher             # Dofus.
     asunder                     # Ripping audio CDs.
     brave                       # Privacy-oriented browser.
     gnome-text-editor           # Simple text editor.

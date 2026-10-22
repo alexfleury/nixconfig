@@ -6,6 +6,14 @@
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
 
+    #ankama-launcher = prev.ankama-launcher.overrideAttrs (old: rec {
+    #  src = prev.requireFile {
+    #    name = "dofus.AppImage";
+    #    url = "https://www.dofus.com/fr/mmorpg/telecharger";
+    #    sha256 = "zCLlu0Bk6OviMkp9et22+wyN999b6TAaUcV2O+WgJ60=";
+    #  };
+    #});
+
     #video2x = prev.video2x.override { ffmpeg = prev.ffmpeg-full; };
 
     # https://github.com/ValveSoftware/gamescope/issues/1622
