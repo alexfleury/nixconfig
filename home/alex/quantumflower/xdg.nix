@@ -18,5 +18,11 @@
     userDirs.enable = true;
     userDirs.createDirectories = true;
     userDirs.setSessionVariables = true;
+    terminal-exec = {
+      enable = true;
+      settings = {
+        default = [ "kitty.desktop" ];
+      };
+    };
   };
 }

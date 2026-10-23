@@ -77,6 +77,11 @@
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
 
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
+
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;

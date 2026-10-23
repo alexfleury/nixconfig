@@ -2,11 +2,13 @@
   config,
   lib,
   osConfig,
+  pkgs,
   ...
 }:
 with lib; let
   cfg = config.features.desktop.hyprland;
 in {
+  # Hyprland is activated if the Nix option is activated.
   options.features.desktop.hyprland.enable =
     (mkEnableOption "enable hyprland home-manager config") //
     { default = osConfig.programs.hyprland.enable or false; };
@@ -124,6 +126,14 @@ in {
             #(bind "${mod} + SHIFT + S" (dsp.window.move{ workspace = "special:magic"; }) { })
             (bind "${mod} + mouse_down" (dsp.focus { workspace = "e+1"; }) { })
             (bind "${mod} + mouse_up" (dsp.focus { workspace = "e-1"; }) { })
+            # LCD brightness.
+            (bind "XF86MonBrightnessUp" (dsp.exec_cmd "${lib.getExe pkgs.brightnessctl} -e set +5%") { locked = true; })
+            (bind "XF86MonBrightnessDown" (dsp.exec_cmd "${lib.getExe pkgs.brightnessctl} -e set 5%-") { locked = true; })
+            # Apps.
+            (bind "${mod} + I" (dsp.exec_cmd "uwsm app -- ${lib.getExe pkgs.hyprshot-gui}") { })
+            (bind "${mod} + SHIFT + I" (dsp.exec_cmd "uwsm app -- ${lib.getExe pkgs.wayscriber} -a") { })
+            (bind "${mod} + T" (dsp.exec_cmd "xdg-terminal-exec") { })
+            (bind "${mod} + E" (dsp.exec_cmd "xdg-open $HOME") { })
           ]
           ++ (
             builtins.concatLists (
@@ -135,15 +145,77 @@ in {
                 ]
               )
             7)
-          );
+          )
+          ++ lib.optionals config.features.desktop.wayle.enable (
+            let
+              audioPlay = dsp.exec_cmd "wayle media play-pause";
+              audioPrev = dsp.exec_cmd "wayle media previous";
+              audioNext = dsp.exec_cmd "wayle media next";
+              audioOutMute = dsp.exec_cmd "wayle audio output-mute";
+              audioInMute = dsp.exec_cmd "wayle audio input-mute";
+              audioVolDown = dsp.exec_cmd "wayle audio output-volume -4";
+              audioVolUp = dsp.exec_cmd "wayle audio output-volume +4";
+            in [
+              (bind "XF86AudioLowerVolume" audioVolDown { repeating = true; locked = true; })
+              (bind "XF86AudioRaiseVolume" audioVolUp { repeating = true; locked = true; })
+              (bind "XF86AudioMute" audioOutMute { locked = true; })
+              (bind "XF86AudioMicMute" audioInMute { locked = true; })
+              (bind "XF86AudioPlay" audioPlay { locked = true; })
+              (bind "XF86AudioPrev" audioPrev { locked = true; })
+              (bind "XF86AudioNext" audioNext { locked = true; })
+              (bind "${mod} + SPACE" audioPlay { locked = true; })
+              (bind "${mod} + left" audioPrev { locked = true; })
+              (bind "${mod} + down" audioVolDown { repeating = true; locked = true; })
+              (bind "${mod} + up" audioVolUp { repeating = true; locked = true; })
+              (bind "${mod} + right" audioNext { locked = true; })
+              (bind "${mod} + M" audioOutMute { locked = true; })
+            ]
+          )
+          ++ lib.optionals config.features.desktop.rofi.enable [
+            (bind "${mod} + R" (dsp.exec_cmd "rofi -show drun") { })
+            (bind "ALT + TAB" (dsp.exec_cmd "rofi -show window -matching fuzzy") { })
+          ]
+          ++ lib.optionals config.features.desktop.wlsunset.enable [
+            (bind "${mod} + W"
+              (dsp.exec_cmd "systemctl --user is-active --quiet wlsunset && systemctl --user stop wlsunset || systemctl --user start wlsunset")
+              { }
+            )
+          ];
 
           window_rule = [
             {
               match.fullscreen = true;
               idle_inhibit = "fullscreen";
             }
+            {
+              match.title = "^(Volume Control)";
+              float = true;
+              center = true;
+              size = "{monitor_w*0.3 monitor_h*0.3}";
+            }
+            {
+              match.class = ".blueman-manager-wrapped";
+              float = true;
+              center = true;
+              size = "{monitor_w*0.3 monitor_h*0.3}";
+            }
+            {
+              match.title = "^(Network Connections)";
+              float = true;
+              center = true;
+              size = "{monitor_w*0.3 monitor_h*0.3}";
+            }
+            {
+              match.title = "^(.*Hyprshot.*)$";
+              float = true;
+              center = true;
+            }
+            {
+              match.class = "^(org.gnome.FileRoller)$";
+              float = true;
+            }
           ];
         };
-      };
+    };
   };
 }
