@@ -80,7 +80,7 @@ in {
             dwindle.smart_split = true;
 
             cursor = {
-              no_hardware_cursors = 1;
+              #no_hardware_cursors = 1;
               no_warps = true;
             };
 

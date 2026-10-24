@@ -7,6 +7,8 @@
       "splash"
       "consoleblank=60"
       "systemd.restore_state=1"
+      "acpi_backlight=native"
+      "psmouse.synaptics_intertouch=0"
     ];
     kernelPackages = pkgs.linuxPackages_zen;
     loader.efi.canTouchEfiVariables = true;
@@ -31,7 +33,11 @@
   i18n.defaultLocale = "en_CA.UTF-8";
   time.timeZone = "America/Toronto";
 
+  # For the Wifi and bluetooth firmware.
   hardware.enableAllFirmware = true;
+
+  # For the touchscreen.
+  hardware.sensor.iio.enable = true;
 
   # Controlling monitor settings via software.
   hardware.i2c.enable = true;
