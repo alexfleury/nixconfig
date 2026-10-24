@@ -63,7 +63,6 @@ in {
             left = [
               "power"
               "hyprland-workspaces"
-              "media"
             ];
             right = [
               {
@@ -119,14 +118,6 @@ in {
             field = "Tctl:";
           })
         ];
-        hyprland-workspaces.workspace-map = {
-          "1".icon = "si-firefoxbrowser";
-          "2".icon = "si-vscodium";
-          "3".icon = "si-discord";
-          "4".icon = "si-steam";
-          "5".icon = "tb-device-gamepad";
-          "6".icon = "si-spotify";
-        };
       };
     };
   };
