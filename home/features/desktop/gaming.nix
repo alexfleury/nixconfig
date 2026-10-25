@@ -20,9 +20,9 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      #gdstash               # Infinite stash for Grim Dawn.
-      retroarchWithCores    # Retrogaming.
-      x16-run
+      #gdstash              # Infinite stash for Grim Dawn.
+      #retroarchWithCores   # Retrogaming.
+      #x16-run              # Commander X16 emulator.
     ];
 
     # Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load

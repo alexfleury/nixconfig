@@ -6,13 +6,13 @@
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
 
-    #ankama-launcher = prev.ankama-launcher.overrideAttrs (old: rec {
-    #  src = prev.requireFile {
-    #    name = "dofus.AppImage";
-    #    url = "https://www.dofus.com/fr/mmorpg/telecharger";
-    #    sha256 = "zCLlu0Bk6OviMkp9et22+wyN999b6TAaUcV2O+WgJ60=";
-    #  };
-    #});
+    ankama-launcher = prev.ankama-launcher.overrideAttrs (old: rec {
+      src = prev.requireFile {
+        name = "Ankama_Launcher-Setup-x86_64.AppImage";
+        url = "https://www.dofus.com/fr/mmorpg/telecharger";
+        sha256 = "a9bd2550f4acdee4ccc60a04d91b7d0b181ec5f9afd7404bae823c2665dee660";
+      };
+    });
 
     #video2x = prev.video2x.override { ffmpeg = prev.ffmpeg-full; };
 
