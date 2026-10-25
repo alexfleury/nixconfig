@@ -49,6 +49,7 @@ in {
     #kdePackages.okular          # KDE pdf viewer.
     pavucontrol                 # Manage sound through a panel.
     proton-vpn                  # Proton VPN.
+    quickshell                  # Plugin tools.
     spotify                     # Streaming music.
     vlc                         # Reading videos.
     wdisplays                   # Monitors GUI.
