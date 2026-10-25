@@ -51,6 +51,7 @@ in {
     proton-vpn                  # Proton VPN.
     spotify                     # Streaming music.
     vlc                         # Reading videos.
+    wdisplays                   # Monitors GUI.
   ];
 
   # Programs and services with options.

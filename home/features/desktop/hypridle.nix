@@ -28,7 +28,7 @@ in {
             on-resume = "hyprctl dispatch 'hl.dsp.dpms({action = \"on\"})'";
           }
           {
-            timeout = 7200;
+            timeout = 3600;
             on-timeout = "systemctl hibernate";
           }
         ];
