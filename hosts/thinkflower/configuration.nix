@@ -83,6 +83,20 @@
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
 
+  services.logind = {
+    enable = true;
+    settings.Login = {
+      HandleLidSwitch = "suspend-then-hibernate";
+      HandleLidSwitchExternalPower = "suspend-then-hibernate";
+      HandleLidSwitchDocked = "ignore";
+    };
+  };
+
+  systemd.sleep.settings.Sleep = {
+    HibernateDelaySec = "5min";
+    SuspendState = "mem";
+  };
+
   powerManagement = {
     enable = true;
     powertop.enable = true;

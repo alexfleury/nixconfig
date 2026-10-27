@@ -18,7 +18,9 @@ writeShellApplication {
     choice=$(
       printf '%s\n' \
         " Lock" \
-        "󰋣 Hibernate" \
+        "󰋣 Sleep" \
+        "󰒲 Suspend-then-hibernate" \
+        "󱣻 Hibernate" \
         "󰜉 Reboot" \
         "󰐥 Shutdown" \
       | rofi -dmenu -i -p "Power" -lines 4
@@ -28,7 +30,13 @@ writeShellApplication {
       " Lock")
         loginctl lock-session
         ;;
-      "󰋣 Hibernate")
+      "󰋣 Sleep")
+        systemctl suspend
+        ;;
+      "󰒲 Suspend-then-hibernate")
+        systemctl suspend-then-hibernate
+        ;;
+      "󱣻 Hibernate")
         systemctl hibernate
         ;;
       "󰜉 Reboot")

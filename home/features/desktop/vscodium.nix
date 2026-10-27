@@ -17,7 +17,6 @@ in {
         extensions = with pkgs.vscode-extensions; [
           jnoortheen.nix-ide
           ms-python.python
-          TheQtCompany.qt-qml
         ];
         userSettings = {
           "editor.autoClosingBrackets" = "never";
