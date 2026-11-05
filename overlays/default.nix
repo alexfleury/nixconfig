@@ -12,6 +12,8 @@
         url = "https://www.dofus.com/fr/mmorpg/telecharger";
         sha256 = "JZRK3aZvo/oSrtLjJAIE7uEHwF0PhucjUwK7G840XKI=";
       };
+
+      version = "3.15.10.20586";
     });
 
     #video2x = prev.video2x.override { ffmpeg = prev.ffmpeg-full; };
