@@ -7,7 +7,7 @@
 with lib; let
   cfg = config.extraServices.thunar;
 in {
-  options.extraServices.thunar.enable = mkEnableOption "enable thunar extra services";
+  options.extraServices.thunar.enable = mkEnableOption "enable thunar extra service";
 
   config = mkIf cfg.enable {
     programs.thunar = {

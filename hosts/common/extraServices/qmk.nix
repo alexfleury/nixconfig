@@ -7,7 +7,7 @@
 with lib; let
   cfg = config.extraServices.qmk;
 in {
-  options.extraServices.qmk.enable = mkEnableOption "enable QMK extra services";
+  options.extraServices.qmk.enable = mkEnableOption "enable QMK extra service";
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [

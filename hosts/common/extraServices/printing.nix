@@ -7,7 +7,7 @@
 with lib; let
   cfg = config.extraServices.printing;
 in {
-  options.extraServices.printing.enable = mkEnableOption "enable printing extra services";
+  options.extraServices.printing.enable = mkEnableOption "enable printing extra service";
 
   config = mkIf cfg.enable {
 

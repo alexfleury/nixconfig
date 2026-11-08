@@ -7,7 +7,7 @@
 with lib; let
   cfg = config.extraServices.vms;
 in {
-  options.extraServices.vms.enable = mkEnableOption "enable virtualization extra services";
+  options.extraServices.vms.enable = mkEnableOption "enable virtualization extra service";
 
   config = mkIf cfg.enable {
     programs.virt-manager.enable = true;

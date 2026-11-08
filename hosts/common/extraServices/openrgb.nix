@@ -7,7 +7,7 @@
 with lib; let
   cfg = config.extraServices.openrgb;
 in {
-  options.extraServices.openrgb.enable = mkEnableOption "enable openrgb extra services";
+  options.extraServices.openrgb.enable = mkEnableOption "enable openrgb extra service";
 
   config = mkIf cfg.enable {
     services.hardware.openrgb = {

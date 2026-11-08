@@ -138,8 +138,8 @@
   fileSystems."/boot".options = [ "umask=0077" "defaults" ];
 
   extraServices = {
+    dolphin.enable = true;
     gaming.enable = true;
     printing.enable = true;
-    thunar.enable = true;
   };
 }
