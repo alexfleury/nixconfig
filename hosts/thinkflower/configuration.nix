@@ -66,11 +66,7 @@
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
     };
-    loginShellInit = ''
-      if uwsm check may-start; then
-        exec uwsm start hyprland.desktop
-      fi
-    '';
+    loginShellInit = ''[[ "$(tty)" = "/dev/tty1" ]] && start-hyprland'';
     localBinInPath = true;
   };
 

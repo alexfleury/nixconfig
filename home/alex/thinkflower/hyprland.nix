@@ -29,7 +29,6 @@
           (lib.generators.mkLuaInline ''
             function()
               hl.exec_cmd("protonvpn-app")
-              hl.exec_cmd("noctalia")
             end
           '')
         ];

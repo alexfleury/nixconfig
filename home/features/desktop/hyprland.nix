@@ -130,8 +130,8 @@ in {
             (bind "XF86MonBrightnessUp" (dsp.exec_cmd "${lib.getExe pkgs.brightnessctl} -e set +5%") { locked = true; })
             (bind "XF86MonBrightnessDown" (dsp.exec_cmd "${lib.getExe pkgs.brightnessctl} -e set 5%-") { locked = true; })
             # Apps.
-            (bind "${mod} + I" (dsp.exec_cmd "uwsm app -- ${lib.getExe pkgs.hyprshot-gui}") { })
-            (bind "${mod} + SHIFT + I" (dsp.exec_cmd "uwsm app -- ${lib.getExe pkgs.wayscriber} -a") { })
+            (bind "${mod} + I" (dsp.exec_cmd "${lib.getExe pkgs.hyprshot-gui}") { })
+            (bind "${mod} + SHIFT + I" (dsp.exec_cmd "${lib.getExe pkgs.wayscriber} -a") { })
             (bind "${mod} + T" (dsp.exec_cmd "xdg-terminal-exec") { })
             (bind "${mod} + E" (dsp.exec_cmd "xdg-open $HOME") { })
           ]

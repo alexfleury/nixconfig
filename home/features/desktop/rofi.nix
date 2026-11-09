@@ -33,10 +33,7 @@ in {
           "search-nix-options:${lib.getExe pkgs.search-nix-options}"
           "search-hm-options:${lib.getExe pkgs.search-hm-options}"
         ];
-        run-command =
-          if osConfig.programs.hyprland.withUWSM
-          then "uwsm app -- {cmd}"
-          else "{cmd}";
+        run-command = "{cmd}";
         show-icons = true;
         click-to-exit = true;
       };

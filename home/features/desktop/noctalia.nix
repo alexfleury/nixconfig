@@ -5,13 +5,14 @@
   ...
 }:
 with lib; let
-  cfg = config.features.desktop.wayle;
+  cfg = config.features.desktop.noctalia;
+  nocNamespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$";
 in {
   options.features.desktop.noctalia.enable = mkEnableOption "enable noctalia service";
 
   config = mkIf cfg.enable {
 
-    program.noctalia = {
+    programs.noctalia = {
       enable = true;
 
       systemd.enable = true;
@@ -20,22 +21,24 @@ in {
       #};
     };
 
-    #hl.layer_rule({
-    #  name = "noctalia-no-anim",
-    #  match = {
-    #    namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$",
-    #  },
-    #  no_anim = true,
-    #})
-    #hl.layer_rule({
-    #  name = "noctalia-blur",
-    #  match = {
-    #    namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$",
-    #  },
-    #  ignore_alpha = 0.5,
-    #  blur = true,
-    #  blur_popups = true,
-    #})
+    wayland.windowManager.hyprland.settings = {
+      window_rule = [
+        {
+          name = "noctalia-no-anim";
+          match.namespace = nocNamespace;
+          no_anim = true;
+        }
+      ];
 
+      layer_rule = [
+        {
+          name = "noctalia-blur";
+          match.namespace = nocNamespace;
+          ignore_alpha = 0.5;
+          blur = true;
+          blur_popups = true;
+        }
+      ];
+    };
   };
 }
