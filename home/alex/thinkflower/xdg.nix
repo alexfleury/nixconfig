@@ -11,7 +11,7 @@
       "image/*" = [ "nomacs.desktop" ];
       "video/*" = [ "vlc.desktop" ];
       "audio/*" = [ "vlc.desktop" ];
-      "inode/directory" = [ "thunar.desktop" ];
+      "inode/directory" = [ "org.kde.dolphin.desktop" ];
       "text/plain" = [ "org.gnome.TextEditor.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
     };

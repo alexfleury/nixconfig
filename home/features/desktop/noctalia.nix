@@ -14,11 +14,29 @@ in {
 
     programs.noctalia = {
       enable = true;
-
+      checkConfig = true;
       systemd.enable = true;
 
-      #settings = {
-      #};
+      settings = {
+        bar.default = {
+          scale = 1.15;
+          start = [ "launcher" "workspaces" ];
+        };
+
+        control_center = {
+          media.show_visualizer = false;
+          shortcuts.type = [
+            "wifi"
+            "bluetooth"
+            "caffeine"
+            "power_profile"
+          ];
+        };
+        location.address = "Sherbrooke, Canada";
+        lockscreen.enable = false;
+        widget.launcher.glyph = "terminal-2";
+        widget.workspaces.style = "minimal";
+      };
     };
 
     wayland.windowManager.hyprland.settings = {

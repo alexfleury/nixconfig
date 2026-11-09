@@ -72,7 +72,12 @@
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
     };
-    loginShellInit = ''[[ "$(tty)" = "/dev/tty1" ]] && start-hyprland'';
+    #loginShellInit = ''[[ "$(tty)" = "/dev/tty1" ]] && start-hyprland'';
+    loginShellInit = ''
+      if uwsm check may-start; then
+        exec uwsm start hyprland.desktop
+      fi
+    '';
     # Use gamescope in a new session.
     #[[ "$(tty)" = "/dev/tty2" ]] && \
     # gamescope -e --hdr-enabled -- steam -tenfoot &> /dev/null
@@ -86,6 +91,7 @@
 
   programs.hyprland = {
     enable = true;
+    withUWSM = true;
     xwayland.enable = true;
   };
 
@@ -137,11 +143,11 @@
   ];
 
   extraServices = {
+    dolphin.enable = true;
     gaming.enable = true;
     printing.enable = true;
     openrgb.enable = true;
     qmk.enable = true;
-    thunar.enable = true;
     vms.enable = true;
     windowsapps.enable = false;
   };

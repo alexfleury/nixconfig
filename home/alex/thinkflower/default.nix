@@ -45,7 +45,7 @@ in {
   home.packages = with pkgs; [
     gnome-text-editor           # Simple text editor.
     nomacs                      # Image viewer.
-    #kdePackages.okular          # KDE pdf viewer.
+    kdePackages.okular          # KDE pdf viewer.
     pavucontrol                 # Manage sound through a panel.
     proton-vpn                  # Proton VPN.
     quickshell                  # Plugin tools.
