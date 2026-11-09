@@ -19,14 +19,14 @@ in {
 
     # Setting environment variables see
     # https://wiki.hypr.land/Nix/Hyprland-on-Home-Manager/#nixos-uwsm
-    xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    #xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
     wayland.windowManager.hyprland = {
       enable = true;
       configType = "lua";
 
-      # Avoid conflicts with uwsm.
-      systemd.enable = false;
+      # Turn off for avoiding conflicts with uwsm (if applicable).
+      systemd.enable = true;
 
       settings =
         let

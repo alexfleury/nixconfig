@@ -52,7 +52,6 @@ in {
     programs.waybar = {
       enable = true;
       systemd.enable = true;
-      systemd.enableDebug = true;
 
       settings = {
         mainBar = {
