@@ -22,7 +22,6 @@
     coreutils             # GNU Core Utilities.
     ghgrab                # Download files from a remote git repo.
     gnutar                # GNU tar utility to archive files/folders.
-    leaf-markdown-viewer  # Render markdown file in the terminal.
     rclone                # Rsync but with remote machines.
     tldr                  # Utility to get simple examples for CLI tools.
   ];
