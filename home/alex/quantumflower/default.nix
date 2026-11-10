@@ -29,15 +29,14 @@ in {
     desktop = {
       ai.enable = true;
       firefox.enable = true;
+      noctalia.enable = true;
       hypridle.enable = true;
       hyprlock.enable = true;
-      hyprpaper.enable = true;
       kitty.enable = true;
       rofi.enable = true;
       stylix.enable = true;
       vscodium.enable = true;
       wlsunset.enable = true;
-      wayle.enable = true;
     };
   };
 
@@ -47,7 +46,6 @@ in {
   # User packages.
   home.packages = with pkgs; [
     asunder                     # Ripping audio CDs.
-    brave                       # Privacy-oriented browser.
     gnome-text-editor           # Simple text editor.
     #inkscape-with-extensions   # Vector image manip software.
     nomacs                      # Image viewer.

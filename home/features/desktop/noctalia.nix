@@ -70,6 +70,29 @@ in {
           enabled = true;
           temperature_night = 3500;
         };
+        shell.session.actions = [
+          {
+            action = "logout";
+            countdown_seconds = 0.0;
+            enabled = true;
+            shortcut = "1";
+            variant = "default";
+          }
+          {
+            action = "reboot";
+            countdown_seconds = 0.0;
+            enabled = true;
+            shortcut = "2";
+            variant = "default";
+          }
+          {
+            action = "shutdown";
+            countdown_seconds = 0.0;
+            enabled = true;
+            shortcut = "3";
+            variant = "destructive";
+          }
+        ];
         widget.workspaces.style = "minimal";
         widget.tray.hidden = [ "blueman" "nm-applet" ];
       };
