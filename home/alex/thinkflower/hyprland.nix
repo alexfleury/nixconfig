@@ -2,6 +2,18 @@
   lib,
   ...
 }:
+let
+  mkLuaInline = lib.generators.mkLuaInline;
+  mkArgs = args: { _args = args; };
+  bind =
+    keys: dispatcher: options:
+    mkArgs [
+      keys
+      dispatcher
+      options
+    ];
+  dsp.exec_cmd = cmd: mkLuaInline ''hl.dsp.exec_cmd("${cmd}")'';
+in
 {
   wayland.windowManager.hyprland = {
     settings = {
@@ -21,6 +33,10 @@
           scale = 1.0;
           cm = "auto";
         }
+      ];
+
+      bind =  [
+        (bind "code:107" (dsp.exec_cmd "noctalia msg screenshot-region") { })
       ];
 
       on = {

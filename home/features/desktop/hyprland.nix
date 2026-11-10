@@ -121,7 +121,7 @@ in {
             (bind "${mod} + mouse:272" dsp.window.drag { mouse = true; })
             (bind "${mod} + mouse:273" dsp.window.resize { mouse = true; })
             (bind "${mod} + F" dsp.window.fullscreen { })
-            (bind "${mod} + B" (dsp.exec_cmd "loginctl lock-session") { })
+            (bind "${mod} + code:59" (dsp.exec_cmd "loginctl lock-session") { })
             (bind "${mod} + mouse_down" (dsp.focus { workspace = "e+1"; }) { })
             (bind "${mod} + mouse_up" (dsp.focus { workspace = "e-1"; }) { })
             # LCD brightness.
