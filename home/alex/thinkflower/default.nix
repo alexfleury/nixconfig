@@ -27,15 +27,13 @@ in {
     };
     desktop = {
       firefox.enable = true;
+      kitty.enable = true;
       hypridle.enable = true;
       hyprlock.enable = true;
-      hyprpaper.enable = true;
-      kitty.enable = true;
+      noctalia.enable = true;
       rofi.enable = true;
       stylix.enable = true;
       vscodium.enable = true;
-      wlsunset.enable = true;
-      wayle.enable = true;
     };
   };
 
@@ -46,7 +44,7 @@ in {
   home.packages = with pkgs; [
     gnome-text-editor           # Simple text editor.
     nomacs                      # Image viewer.
-    #kdePackages.okular          # KDE pdf viewer.
+    kdePackages.okular          # KDE pdf viewer.
     pavucontrol                 # Manage sound through a panel.
     proton-vpn                  # Proton VPN.
     quickshell                  # Plugin tools.

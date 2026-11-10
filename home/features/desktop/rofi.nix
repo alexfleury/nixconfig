@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  osConfig,
   pkgs,
   ...
 }:
@@ -27,13 +28,14 @@ in {
         modi = lib.concatStringsSep "," [
           "drun"
           "window"
-          #"recursivebrowser"
           "top"
           "search-nixpkgs:${lib.getExe pkgs.search-nixpkgs}"
           "search-nix-options:${lib.getExe pkgs.search-nix-options}"
           "search-hm-options:${lib.getExe pkgs.search-hm-options}"
         ];
-        run-command = "uwsm app -- {cmd}";
+        run-command = if osConfig.programs.hyprland.withUWSM
+          then "uwsm app -- {cmd}"
+          else "{cmd}";
         show-icons = true;
         click-to-exit = true;
       };

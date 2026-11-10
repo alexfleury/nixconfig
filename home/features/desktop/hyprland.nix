@@ -25,7 +25,7 @@ in {
       enable = true;
       configType = "lua";
 
-      # Avoid conflicts with uwsm.
+      # Removing conflict with UWSM.
       systemd.enable = false;
 
       settings =
@@ -121,17 +121,15 @@ in {
             (bind "${mod} + mouse:272" dsp.window.drag { mouse = true; })
             (bind "${mod} + mouse:273" dsp.window.resize { mouse = true; })
             (bind "${mod} + F" dsp.window.fullscreen { })
-            (bind "${mod} + L" (dsp.exec_cmd "lock-session") { })
-            #(bind "${mod} + S" dsp.workspace.toggle_special { })
-            #(bind "${mod} + SHIFT + S" (dsp.window.move{ workspace = "special:magic"; }) { })
+            (bind "${mod} + B" (dsp.exec_cmd "loginctl lock-session") { })
             (bind "${mod} + mouse_down" (dsp.focus { workspace = "e+1"; }) { })
             (bind "${mod} + mouse_up" (dsp.focus { workspace = "e-1"; }) { })
             # LCD brightness.
             (bind "XF86MonBrightnessUp" (dsp.exec_cmd "${lib.getExe pkgs.brightnessctl} -e set +5%") { locked = true; })
             (bind "XF86MonBrightnessDown" (dsp.exec_cmd "${lib.getExe pkgs.brightnessctl} -e set 5%-") { locked = true; })
             # Apps.
-            (bind "${mod} + I" (dsp.exec_cmd "uwsm app -- ${lib.getExe pkgs.hyprshot-gui}") { })
-            (bind "${mod} + SHIFT + I" (dsp.exec_cmd "uwsm app -- ${lib.getExe pkgs.wayscriber} -a") { })
+            (bind "${mod} + I" (dsp.exec_cmd "${lib.getExe pkgs.hyprshot-gui}") { })
+            (bind "${mod} + SHIFT + I" (dsp.exec_cmd "${lib.getExe pkgs.wayscriber} -a") { })
             (bind "${mod} + T" (dsp.exec_cmd "xdg-terminal-exec") { })
             (bind "${mod} + E" (dsp.exec_cmd "xdg-open $HOME") { })
           ]
@@ -169,6 +167,34 @@ in {
               (bind "${mod} + up" audioVolUp { repeating = true; locked = true; })
               (bind "${mod} + right" audioNext { locked = true; })
               (bind "${mod} + M" audioOutMute { locked = true; })
+            ]
+          )
+          ++ lib.optionals config.features.desktop.noctalia.enable (
+            let
+              ipc = "noctalia msg";
+              audioPlay = dsp.exec_cmd "${ipc} media toggle";
+              audioPrev = dsp.exec_cmd "${ipc} media previous";
+              audioNext = dsp.exec_cmd "${ipc} media next";
+              audioOutMute = dsp.exec_cmd "${ipc} volume-mute";
+              audioInMute = dsp.exec_cmd "${ipc} mic-mute";
+              audioVolDown = dsp.exec_cmd "${ipc} volume-down";
+              audioVolUp = dsp.exec_cmd "${ipc} volume-up";
+            in [
+              (bind "XF86AudioLowerVolume" audioVolDown { repeating = true; locked = true; })
+              (bind "XF86AudioRaiseVolume" audioVolUp { repeating = true; locked = true; })
+              (bind "XF86AudioMute" audioOutMute { locked = true; })
+              (bind "XF86AudioMicMute" audioInMute { locked = true; })
+              (bind "XF86AudioPlay" audioPlay { locked = true; })
+              (bind "XF86AudioPrev" audioPrev { locked = true; })
+              (bind "XF86AudioNext" audioNext { locked = true; })
+              (bind "${mod} + SPACE" audioPlay { locked = true; })
+              (bind "${mod} + left" audioPrev { locked = true; })
+              (bind "${mod} + down" audioVolDown { repeating = true; locked = true; })
+              (bind "${mod} + up" audioVolUp { repeating = true; locked = true; })
+              (bind "${mod} + right" audioNext { locked = true; })
+              (bind "${mod} + M" audioOutMute { locked = true; })
+              #(bind "ALT + TAB" (dsp.exec_cmd "${ipc} window-switcher hold") { })
+              #(bind "ALT + SHIFT + TAB" (dsp.exec_cmd "${ipc} window-switcher hold reverse") { })
             ]
           )
           ++ lib.optionals config.features.desktop.rofi.enable [

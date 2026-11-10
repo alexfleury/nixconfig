@@ -28,7 +28,6 @@
           "hyprland.start"
           (lib.generators.mkLuaInline ''
             function()
-              hl.dispatch(hl.dsp.focus({ workspace = 1 }))
               hl.exec_cmd("protonvpn-app")
             end
           '')

@@ -50,7 +50,7 @@
 
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;
+    powerOnBoot = false;
     settings = {
       General = {
         Experimental = true;
@@ -72,6 +72,7 @@
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
     };
+    #loginShellInit = ''[[ "$(tty)" = "/dev/tty1" ]] && start-hyprland'';
     loginShellInit = ''
       if uwsm check may-start; then
         exec uwsm start hyprland.desktop
@@ -90,8 +91,8 @@
 
   programs.hyprland = {
     enable = true;
-    xwayland.enable = true;
     withUWSM = true;
+    xwayland.enable = true;
   };
 
   security = {
@@ -142,11 +143,11 @@
   ];
 
   extraServices = {
+    dolphin.enable = true;
     gaming.enable = true;
     printing.enable = true;
     openrgb.enable = true;
     qmk.enable = true;
-    thunar.enable = true;
     vms.enable = true;
     windowsapps.enable = false;
   };
