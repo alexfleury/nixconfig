@@ -21,15 +21,6 @@ in {
         bar.default = {
           scale = 1.20;
           start = [ "session" "workspaces" ];
-          end = [
-            "tray"
-            "volume"
-            "network"
-            "bluetooth"
-            "battery"
-            "clipboard"
-            "notifications"
-          ];
           widget_spacing = 12;
         };
 
@@ -53,24 +44,24 @@ in {
           behavior = {
             lock = {
               action = "lock";
-              enabled = true;
+              enabled = false;
               timeout = 600.0;
             };
             lock-and-suspend = {
               action = "lock_and_suspend";
-              enabled = true;
+              enabled = false;
               timeout = 1800.0;
             };
             screen-off = {
               action = "screen_off";
-              enabled = true;
+              enabled = false;
               timeout = 660.0;
             };
           };
         };
         location.address = "Sherbrooke, Canada";
         lockscreen = {
-          enabled = true;
+          enabled = false;
           fingerprint = false;
           transition = [ ];
         };
@@ -103,5 +94,7 @@ in {
         }
       ];
     };
+
+    services.hypridle.settings.general.lock_cmd = lib.mkDefault "noctalia msg session lock";
   };
 }

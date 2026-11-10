@@ -9,6 +9,7 @@ in {
   options.features.desktop.hyprlock.enable = mkEnableOption "enable hyprlock";
 
   config = mkIf cfg.enable {
+
     programs.hyprlock = {
       enable = true;
       settings = {
@@ -51,5 +52,7 @@ in {
         };
       };
     };
+
+    services.hypridle.settings.general.lock_cmd = "pidof hyprlock || hyprlock";
   };
 }

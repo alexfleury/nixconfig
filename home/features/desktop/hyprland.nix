@@ -195,7 +195,6 @@ in {
               (bind "${mod} + M" audioOutMute { locked = true; })
               #(bind "ALT + TAB" (dsp.exec_cmd "${ipc} window-switcher hold") { })
               #(bind "ALT + SHIFT + TAB" (dsp.exec_cmd "${ipc} window-switcher hold reverse") { })
-              #(bind "${mod} + L" (dsp.exec_cmd "${ipc} session lock") { })
             ]
           )
           ++ lib.optionals config.features.desktop.rofi.enable [

@@ -28,6 +28,8 @@ in {
     desktop = {
       firefox.enable = true;
       kitty.enable = true;
+      hypridle.enable = true;
+      hyprlock.enable = true;
       noctalia.enable = true;
       rofi.enable = true;
       stylix.enable = true;

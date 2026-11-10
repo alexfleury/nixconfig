@@ -15,7 +15,6 @@ in {
         general = {
           after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({action = \"on\"})'";
           before_sleep_cmd = "loginctl lock-session";
-          lock_cmd = "pidof hyprlock || hyprlock";
         };
         listener = [
           {
