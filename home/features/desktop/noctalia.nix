@@ -19,23 +19,68 @@ in {
 
       settings = {
         bar.default = {
-          scale = 1.15;
-          start = [ "launcher" "workspaces" ];
+          scale = 1.20;
+          start = [ "session" "workspaces" ];
+          end = [
+            "tray"
+            "volume"
+            "network"
+            "bluetooth"
+            "battery"
+            "clipboard"
+            "notifications"
+          ];
+          widget_spacing = 12;
         };
 
         control_center = {
           media.show_visualizer = false;
-          shortcuts.type = [
-            "wifi"
-            "bluetooth"
-            "caffeine"
-            "power_profile"
+          shortcuts = [
+            { type = "wifi"; }
+            { type = "bluetooth"; }
+            { type = "caffeine"; }
+            { type = "nightlight"; }
+            { type = "notification"; }
+            { type = "power_profile"; }
           ];
         };
+        idle = {
+          behavior_order = [
+            "lock"
+            "screen-off"
+            "lock-and-suspend"
+          ];
+          behavior = {
+            lock = {
+              action = "lock";
+              enabled = true;
+              timeout = 600.0;
+            };
+            lock-and-suspend = {
+              action = "lock_and_suspend";
+              enabled = true;
+              timeout = 1800.0;
+            };
+            screen-off = {
+              action = "screen_off";
+              enabled = true;
+              timeout = 660.0;
+            };
+          };
+        };
         location.address = "Sherbrooke, Canada";
-        lockscreen.enable = false;
-        widget.launcher.glyph = "terminal-2";
+        lockscreen = {
+          enabled = true;
+          fingerprint = false;
+          transition = [ ];
+        };
+        lockscreen_widgets.enabled = false;
+        nightlight = {
+          enabled = true;
+          temperature_night = 3500;
+        };
         widget.workspaces.style = "minimal";
+        widget.tray.hidden = [ "blueman" "nm-applet" ];
       };
     };
 

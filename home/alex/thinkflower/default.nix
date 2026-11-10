@@ -27,14 +27,11 @@ in {
     };
     desktop = {
       firefox.enable = true;
-      hypridle.enable = true;
-      hyprlock.enable = true;
       kitty.enable = true;
       noctalia.enable = true;
       rofi.enable = true;
       stylix.enable = true;
       vscodium.enable = true;
-      wlsunset.enable = true;
     };
   };
 

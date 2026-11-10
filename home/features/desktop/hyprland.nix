@@ -121,7 +121,7 @@ in {
             (bind "${mod} + mouse:272" dsp.window.drag { mouse = true; })
             (bind "${mod} + mouse:273" dsp.window.resize { mouse = true; })
             (bind "${mod} + F" dsp.window.fullscreen { })
-            (bind "${mod} + L" (dsp.exec_cmd "lock-session") { })
+            (bind "${mod} + B" (dsp.exec_cmd "loginctl lock-session") { })
             (bind "${mod} + mouse_down" (dsp.focus { workspace = "e+1"; }) { })
             (bind "${mod} + mouse_up" (dsp.focus { workspace = "e-1"; }) { })
             # LCD brightness.
@@ -193,8 +193,9 @@ in {
               (bind "${mod} + up" audioVolUp { repeating = true; locked = true; })
               (bind "${mod} + right" audioNext { locked = true; })
               (bind "${mod} + M" audioOutMute { locked = true; })
-              (bind "ALT + TAB" (dsp.exec_cmd "${ipc} window-switcher hold") { })
-              (bind "ALT + SHIFT + TAB" (dsp.exec_cmd "${ipc} window-switcher hold reverse") { })
+              #(bind "ALT + TAB" (dsp.exec_cmd "${ipc} window-switcher hold") { })
+              #(bind "ALT + SHIFT + TAB" (dsp.exec_cmd "${ipc} window-switcher hold reverse") { })
+              #(bind "${mod} + L" (dsp.exec_cmd "${ipc} session lock") { })
             ]
           )
           ++ lib.optionals config.features.desktop.rofi.enable [
