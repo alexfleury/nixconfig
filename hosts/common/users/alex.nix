@@ -19,9 +19,11 @@ in rec {
     ];
     openssh.authorizedKeys.keys = [
       # Agenix
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM/1rKfS9rRiyYjJao5C6s1a+yNIPMjTbfCorl67cZ7u alex@quantumflower"
-      # Github key.
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKidPxqmVSowhYJNuPnD+yI81SIib4HLR+JDSfxjpV22 alex@quantumflower"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM/1rKfS9rRiyYjJao5C6s1a+yNIPMjTbfCorl67cZ7u"
+      # Github key (Quantumflower).
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKidPxqmVSowhYJNuPnD+yI81SIib4HLR+JDSfxjpV22"
+      # Github key (Thinkflower).
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKuIEzMxZ/FbISFC55vnkKnb/EJhsrXM50kE0jfQJypj"
     ];
     shell = pkgs.bash;
   };

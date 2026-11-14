@@ -70,6 +70,7 @@ in {
           enabled = true;
           temperature_night = 3500;
         };
+        shell.clipboard_auto_paste  = "off";
         shell.session.actions = [
           {
             action = "logout";

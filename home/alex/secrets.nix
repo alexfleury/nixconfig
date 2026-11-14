@@ -9,6 +9,10 @@
         file = ../../secrets/continueEnv.age;
         path = "${config.home.homeDirectory}/.continue/.env";
       };
+      noctaliaCalendarTOML = {
+        file = ../../secrets/noctaliaCalendarTOML.age;
+        path = "${config.home.homeDirectory}/.config/noctalia/calendar.toml";
+      };
     };
   };
 }
