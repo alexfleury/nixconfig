@@ -27,7 +27,6 @@ in {
       starship.enable = true;
     };
     desktop = {
-      ai.enable = true;
       firefox.enable = true;
       noctalia.enable = true;
       hypridle.enable = true;
@@ -36,7 +35,6 @@ in {
       rofi.enable = true;
       stylix.enable = true;
       vscodium.enable = true;
-      wlsunset.enable = true;
     };
   };
 

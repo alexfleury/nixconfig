@@ -10,7 +10,7 @@
     ];
     # sg is for the usv CD drive.
     kernelModules = [ "sg" ];
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot = {
       enable = true;
