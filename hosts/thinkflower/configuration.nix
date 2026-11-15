@@ -10,7 +10,7 @@
       "acpi_backlight=native"
       "psmouse.synaptics_intertouch=0"
     ];
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot = {
       enable = true;
