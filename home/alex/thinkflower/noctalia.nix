@@ -13,7 +13,6 @@ in {
       "network"
       "bluetooth"
       "battery"
-      "clipboard"
       "notifications"
     ];
   };

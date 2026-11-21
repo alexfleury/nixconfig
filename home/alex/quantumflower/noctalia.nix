@@ -12,7 +12,6 @@ in {
       "volume"
       "network"
       "bluetooth"
-      "clipboard"
       "notifications"
     ];
   };
