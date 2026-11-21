@@ -10,10 +10,10 @@
       src = prev.requireFile {
         name = "Ankama_Launcher-Setup-x86_64.AppImage";
         url = "https://www.dofus.com/fr/mmorpg/telecharger";
-        sha256 = "e7sPh2JsVRtbvsemvHLsilZiVKIII+HkFpqhQJn4G9o=";
+        sha256 = "xR4TXYU1DDPETNCniRwep9i9U1Bp3ROVpKFgqdzhJgU=";
       };
 
-      version = "3.15.15";
+      version = "3.15.18";
     });
 
     #video2x = prev.video2x.override { ffmpeg = prev.ffmpeg-full; };
