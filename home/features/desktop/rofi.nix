@@ -25,6 +25,7 @@ in {
         display-search-nixpkgs = "󰏖 Nixpkgs";
         display-search-nix-options = "󱄅 Nix options";
         display-search-hm-options = "󱎰 HM options";
+        matching = "fuzzy";
         modi = lib.concatStringsSep "," [
           "drun"
           "window"
