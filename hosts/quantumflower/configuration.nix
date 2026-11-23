@@ -107,12 +107,6 @@
 
   programs.bash.enable = true;
 
-  # Run programs without installing them.
-  programs.comma = {
-    enable = true;
-    enableBashIntegration = true;
-  };
-
   # Fix for running software in imperative mode.
   programs.nix-ld = {
     enable = true;
